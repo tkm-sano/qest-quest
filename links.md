@@ -16,7 +16,7 @@ nav_order: 4     # ナビの並び順。お好みで
       {% if lang == "en" %}
         Related Labs & Organizations
       {% else %}
-        関連機関・研究室
+        関連機関・プロジェクト
       {% endif %}
     </span>
   </h2>
