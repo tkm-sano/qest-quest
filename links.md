@@ -21,25 +21,25 @@ nav_order: 4     # ナビの並び順。お好みで
     </span>
   </h2>
   <ul class="org-list">
-    <li><a href="https://www.riken.jp/research/labs/chief/quantum_comp/" target="_blank">
+    <li><a href="https://www.kmd.keio.ac.jp/" target="_blank">
       {% if lang == "en" %}
         RIKEN Center for Quantum Computing
       {% else %}
-        理化学研究所 量子コンピュータ研究センター
+        慶應義塾大学メディアデザイン研究科
       {% endif %}
     </a></li>
-    <li><a href="https://qitp.t.u-tokyo.ac.jp/" target="_blank">
+    <li><a href="https://www.jst.go.jp/moonshot/program/goal6/6C_nagayama.html" target="_blank">
       {% if lang == "en" %}
         The University of Tokyo Quantum Information Technology Project
       {% else %}
-        東京大学 量子情報技術研究拠点
+        ムーンショット目標6 スケーラブルで強靭な統合的量子通信システム
       {% endif %}
     </a></li>
-    <li><a href="https://www.keio.ac.jp/ja/research/researcher/quantum-computing.html" target="_blank">
+    <li><a href="https://qitf.org/" target="_blank">
       {% if lang == "en" %}
         Keio University Quantum Computing Research
       {% else %}
-        慶應義塾大学 量子コンピューティング研究
+        QUANTUM INTERNET TASK FORCE
       {% endif %}
     </a></li>
     <!-- 必要に応じて追加 -->
