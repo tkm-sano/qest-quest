@@ -1,0 +1,306 @@
+/* ─────────────────────────────
+   2.  Hero & Chapter mark
+   ───────────────────────────── */
+.chapter{
+  display:inline-block;padding:.3em 1.2em;
+  background:rgba(70,221,255,.08);
+  border:1px solid var(--q-blue);
+  box-shadow:0 0 8px rgba(70,221,255,.4);
+  list-style: none;
+}
+.chapter span{color:var(--quest-gold);}
+.chapter em{font-style:normal;color:var(--q-blue);}
+
+/* 各ページのセクションタイトルを統一装飾 */
+.chapter {
+  margin: 2.2rem auto 1.6rem auto;
+  font-size: clamp(1.3rem,2.4vw+1.1rem,2.2rem);
+  letter-spacing: 0.06em;
+  text-align: center;
+  position: relative;
+  line-height: 1.28;
+  list-style: none;
+}
+
+/* 全ページ中央揃え・共通化 */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 80vh;
+  justify-content: flex-start;
+  padding-bottom: 40px;
+  list-style: none;
+}
+
+section {
+  margin: 32px 0;
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  list-style: none;
+}
+
+/* ─────────────────────────────
+   ヘッダー
+   ───────────────────────────── */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px 0 32px;   /* 左右32px→左右32px */
+  padding-right: 120px;     /* ←ここを追加 */
+  height: 60px;
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  background: rgba(255,255,255,0.93);
+  z-index: 20;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(70,221,255,0.06);
+  overflow: visible;
+}
+
+/* ─────────────────────────────
+   ロゴ
+   ───────────────────────────── */
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.logo-icon {
+  height: 40px;    /* ヘッダー内に収まるサイズ */
+  width: auto;
+  margin-right: 8px;
+}
+.logo-text-img {
+  height: 36px;    /* アイコンとのバランス */
+  width: auto;
+}
+
+/* ─────────────────────────────
+   ナビメニュー全体
+   ───────────────────────────── */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-left: auto;
+}
+/* メニューバー内の言語切替 */
+
+
+/* ─────────────────────────────
+   デスクトップ横並びリスト
+   ───────────────────────────── */
+.nav-horizontal {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5em;
+}
+
+/* ─────────────────────────────
+   ナビリンク装飾
+   ───────────────────────────── */
+.nav-horizontal li {
+  position: relative;
+}
+
+.nav-horizontal li a {
+  position: relative;
+  display: inline-block;
+  padding: 0.5em 0;
+  color: #002040;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  transition: color 0.3s;
+}
+
+.nav-horizontal li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: #40a9ff;
+  transition: width 0.3s ease;
+}
+
+.nav-horizontal li a:hover {
+  color: #40a9ff;
+}
+
+.nav-horizontal li a:hover::after {
+  width: 100%;
+}
+
+/* ─────────────────────────────
+   カードレイアウト
+   ───────────────────────────── */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  margin: 24px 0;
+}
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 14px rgba(70,221,255,0.09);
+  padding: 1.3em 1.8em;
+  min-width: 210px;
+  max-width: 320px;
+  text-align: center;
+  margin: 0 auto;
+}
+.card img {
+  width: 100px;            /* 以前は 88px だったのを小さめ調整 */
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;      /* 丸形 → 角丸 8px に変更（好みで 50% も可） */
+  margin: 0 auto 16px auto;
+  display: block;
+  max-width: 100%;
+}
+
+/* ─────────────────────────────
+   ハンバーガーメニュー非表示（PC）
+   ───────────────────────────── */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  margin-left: 12px;
+}
+.nav-toggle-bar {
+  width: 26px;
+  height: 3px;
+  background: #111;
+  margin: 4px 0;
+  border-radius: 2px;
+  display: block;
+  transition: all 0.2s;
+}
+
+/* ─────────────────────────────
+   レスポンシブ：スマホでハンバーガー＆メニュー展開
+   ───────────────────────────── */
+@media (max-width: 700px) {
+  .site-header {
+    /* 固定高さやpaddingのまま横並び */
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0 6px;
+    height: auto;
+  }
+  .logo-link {
+    margin: 6px 0;
+  }
+  .nav-toggle,
+  .nav-toggle--fixed {
+    display: flex;
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    z-index: 1002;
+  }
+  .nav-menu ul {
+    display: none;
+    position: absolute;
+    top: 60px; right: 8px;
+    background: #181818;
+    color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.26);
+    padding: 12px 16px;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 999;
+    min-width: 140px;
+    text-align: right;
+  }
+  .nav-menu ul.open {
+    display: flex;
+  }
+  .nav-menu a {
+    color: #fff;
+  }
+  .nav-menu a:hover {
+    color: #ffe760;
+    background: rgba(255,255,255,0.07);
+  }
+  .nav-horizontal {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+}
+/* ─────────────────────────────
+   言語切替 JP｜EN（ヘッダー右上＆モバイル時ボタン左隣）
+───────────────────────────── */
+.site-header {
+  position: relative; /* ここはすでに設定済みのはず */
+}
+
+/* 共通（すべての幅） */
+.lang-switch {
+  position: absolute;
+  top: 50%;
+  right: 16px;           /* デスクトップ時に画面右端から16px */
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+  background: rgba(255,255,255,0.85);
+  padding: 4px 8px;
+  border-radius: 8px;
+  z-index: 1001;
+}
+.lang-switch a {
+  color: #111;
+  margin: 0 6px;
+  text-decoration: none;
+}
+.lang-switch a:hover {
+  color: #40a9ff;
+}
+
+/* モバイル時：ハンバーガーボタン左隣に移動 */
+@media (max-width: 700px) {
+  .lang-switch {
+    top: 10px;
+    right: calc(14px + 44px + 8px);
+  }
+}
+
+/* すべての ul からマーカーを消す */
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* ─────────────────────────────
+   追加：ヒーローセクション内の画像縮小
+   ───────────────────────────── */
+.hero img {
+  max-width: 60%;
+  height: auto;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+
+<body>
+  <header class="site-header">
+    <a href="{{ '/' | relative_url }}" class="logo-link">
+      <img src="{{ '/assets/img/logo_icon.png' | relative_url }}" alt="Q/EST icon" class="logo-icon">
+      <img src="{{ '/assets/img/logo_text.png' | relative_url }}" alt="Q/EST" class="logo-text-img">
+    </a>
+
+    {% include nav.html %}
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">© 2025 Q/EST</footer>
+
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

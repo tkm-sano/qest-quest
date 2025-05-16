@@ -1,0 +1,12 @@
+:root{
+  --quest-blue:#46ddff; --quest-parch:#fff9f2; --quest-gold:#e0b64f;
+  --font-head:"IM Fell English SC",serif;
+}
+body{font-family:Inter,sans-serif;background:var(--quest-parch);color:#333;margin:0}
+h1,h2{font-family:var(--font-head);letter-spacing:.04em}
+.chapter{color:var(--quest-gold);text-shadow:0 0 3px rgba(0,0,0,.15)}
+.btn-quest{display:inline-block;border:2px solid var(--quest-gold);
+ background:var(--quest-parch);padding:.6em 1.4em;transition:.3s}
+.btn-quest:hover{background:linear-gradient(#fff9f2,#f5e6c8)}
+[data-reveal]{opacity:0;transform:translateY(2rem);transition:.8s}
+[data-reveal].in{opacity:1;transform:none}

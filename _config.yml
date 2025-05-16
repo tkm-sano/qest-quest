@@ -1,0 +1,11 @@
+title: Q/EST Quest
+description: 量子インターネットを探求するチーム
+url: ""                 # カスタムドメイン設定後に更新
+baseurl: ""             # GitHub Pages プロジェクトサイトなら "/qest-quest"
+timezone: Asia/Tokyo
+markdown: kramdown
+
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap

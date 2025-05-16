@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>LINKS | Q/EST</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="logo">Q/EST</div>
+  <nav class="nav-menu">
+  <ul>
+    <li><a href="/">VISION</a></li>
+    <li><a href="/members">MEMBER</a></li>
+    <li><a href="/projects">PROJECT</a></li>
+    <li><a href="/links">LINKS</a></li>
+  </ul>
+</nav>
+</header>
+<main>
+<h2>Quantum Resources</h2>
+<ul class="link-list">
+  <li><a href="https://quantum.country" target="_blank">Quantum Country</a></li>
+  <li><a href="https://qiskit.org"        target="_blank">Qiskit</a></li>
+  <li><a href="https://quantum-journal.org" target="_blank">Quantum-Journal</a></li>
+</ul>
+</main>
+<footer class="site-footer">© 2025 Q/EST</footer>
+<script src="/static/js/main.js"></script>
+</body></html>
