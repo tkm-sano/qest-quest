@@ -1,54 +1,31 @@
 <!DOCTYPE html>
-<html lang="{{ lang }}">
-<head>
-  <meta charset="UTF-8">
-  <title>{% block title %}Q/EST{% endblock %}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-</head>
-<body class="quantum-bg">
-  <header class="site-header">
-    <a href="/" class="logo-link">
-      <img src="/assets/img/logo_icon.png" alt="Q/EST Logo Icon" class="logo-icon">
-      <img src="/assets/img/logo_text.png" alt="Q/EST Logo Text" class="logo-text-img">
-    </a>
-    {% include 'includes/nav.html' %}
-    <div class="lang-switch">
-      <a href="?lang=ja"{% if lang == "ja" %} style="font-weight:bold;"{% endif %}>JP</a>
-      |
-      <a href="?lang=en"{% if lang == "en" %} style="font-weight:bold;"{% endif %}>EN</a>
-    </div>
-  </header>
-  <main>
-    {% block content %}{% endblock %}
-  </main>
-  <footer class="site-footer">© 2025 Q/EST</footer>
-  <script src="/assets/js/main.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <title>{{ page.title }} | {{ site.title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" href="{{ '/assets/img/logo_icon.png' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body class="quantum-bg">
-  <header class="site-header">
-    <a href="{{ '/' | relative_url }}" class="logo-link">
-      <img src="{{ '/assets/img/logo_icon.png' | relative_url }}" alt="Q/EST Logo Icon" class="logo-icon">
-      <img src="{{ '/assets/img/logo_text.png' | relative_url }}" alt="Q/EST Logo Text" class="logo-text-img">
+  <header class="site-header" role="banner">
+    <a href="{{ '/' | relative_url }}" class="logo-link" aria-label="Q/EST Home">
+      <img src="{{ '/assets/img/logo_icon.png' | relative_url }}" alt="Q/EST logo icon" class="logo-icon">
+      <img src="{{ '/assets/img/logo_text.png' | relative_url }}" alt="Q/EST logo text" class="logo-text-img">
     </a>
     {% include nav.html %}
-    <!-- 言語スイッチは静的サイトでは動的に切り替えできないため、ここでは削除または手動リンクで対応します -->
+    <!-- 言語スイッチは静的サイトでは動的に切り替えできないため省略 -->
   </header>
 
-  <main>
+  <main id="main-content" tabindex="-1">
     {{ content }}
   </main>
 
-  <footer class="site-footer">© 2025 Q/EST</footer>
+  <footer class="site-footer" role="contentinfo">
+    <small>© 2025 Q/EST</small>
+  </footer>
+
   <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
 </html>

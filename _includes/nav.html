@@ -1,13 +1,10 @@
 <nav class="nav-menu">
-  <!-- ハンバーガーボタン（スマホ幅で表示） -->
   <button class="nav-toggle" aria-label="Toggle navigation">
     <span class="nav-toggle-bar"></span>
     <span class="nav-toggle-bar"></span>
     <span class="nav-toggle-bar"></span>
   </button>
-
-  <!-- ナビゲーションリスト -->
-  <ul id="nav-list" class="nav-horizontal">
+  <ul class="nav-horizontal">
     {%- assign nav_pages = site.pages
          | where_exp: "p", "p.nav_order"
          | sort: "nav_order" -%}

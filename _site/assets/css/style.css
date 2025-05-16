@@ -165,11 +165,11 @@ section {
   margin: 0 auto;
 }
 .card img {
-  width: 100%;          /* カード幅いっぱいに広げる */
-  aspect-ratio: 1 / 1;  /* 正方形でトリミング（好みで 3/2 なども可） */
-  object-fit: cover;    /* はみ出た分をクロップ */
-  border-radius: 8px;
-  margin-bottom: 16px;
+  width: 88px;
+  height: 88px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0 auto 16px auto;
   display: block;
 }
 
@@ -221,29 +221,33 @@ section {
     z-index: 1002;
   }
   .nav-menu ul {
-    display: none;
+    display: none;          /* デフォルトは非表示 */
     position: absolute;
-    top: 60px; right: 8px;
-    background: #181818;
-    color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.26);
-    padding: 12px 16px;
+    top: 60px;
+    left: 0;
+    width: 100vw;           /* 画面幅いっぱい */
+    background: #ffffff;    /* 白背景で見やすく */
+    color: #002040;         /* 本文色を落ち着いた紺に */
+    padding: 20px 0;
     flex-direction: column;
-    gap: 14px;
+    gap: 18px;
     z-index: 999;
-    min-width: 140px;
-    text-align: right;
+    text-align: center;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 12px 12px; /* 下だけ角丸 */
   }
   .nav-menu ul.open {
     display: flex;
   }
   .nav-menu a {
-    color: #fff;
+    color: #002040;
+    font-size: 1.05rem;
+    padding: 6px 16px;
+    text-decoration: none;
   }
   .nav-menu a:hover {
-    color: #ffe760;
-    background: rgba(255,255,255,0.07);
+    color: #40a9ff;
+    background: rgba(64, 169, 255, 0.08);
   }
   .nav-horizontal {
     flex-direction: column;
@@ -288,7 +292,6 @@ section {
     right: calc(14px + 44px + 8px);
   }
 }
-
 /* すべての ul からマーカーを消す */
 ul {
   list-style: none;
@@ -296,10 +299,47 @@ ul {
   margin: 0;
 }
 
-/* ─────────────────────────────
-   追加：ヒーローセクション内の画像縮小
-   ───────────────────────────── */
-.hero img {
-  max-width: 60%;
-  height: auto;
+/* ───── RPG‑style pixel font for headings ───── */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+.rpg-font {
+  font-family: "Press Start 2P", "M PLUS 1 Code", monospace;
+  letter-spacing: 0.05em;
+}
+
+/* ───── Fancy gradient + shimmer for quest heading ───── */
+.quest-heading {
+  font-size: clamp(1.8rem, 5vw + 1rem, 3rem);
+  line-height: 1.25;
+  background: linear-gradient(90deg, #ffcc00 0%, #ff6600 33%, #ffcc00 66%, #ff6600 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: quest-shimmer 4s linear infinite;
+  text-shadow: 0 0 6px rgba(255, 200, 0, 0.6);
+}
+
+@keyframes quest-shimmer {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: -200% 50%; }
+}
+/* quest-heading だけ背景や枠を消す */
+.quest-heading {
+  background: linear-gradient(
+    90deg,
+    #b0b4b8 0%, #ece7c3 30%, #d6bb7b 55%, #b0b4b8 80%, #ece7c3 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: quest-shimmer 4s linear infinite;
+  font-family: "Press Start 2P", "M PLUS 1 Code", monospace;
+  letter-spacing: 0.05em;
+  /* ↓ chapter系の装飾だけ消す */
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  padding: 0 !important;
 }

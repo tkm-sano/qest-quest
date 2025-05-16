@@ -4,7 +4,6 @@ layout: default
 nav_order: 1
 ---
 
- 
 <section class="hero" data-reveal>
   <h1 class="chapter glitch" data-shadow="Chapter I :: VISION ::">
     <span>Chapter&nbsp;I</span><em>:: VISION ::</em>
@@ -21,7 +20,6 @@ nav_order: 1
   {% if lang == "en" %}
     <h2>What is a Quantum Computer?</h2>
     <p class="caption">Experience quantum states through the superposition of color and sound.</p>
-
     <div class="video-container" data-reveal>
       <video controls
              src="{{ '/assets/video/quantum_intro.mp4' | relative_url }}"
@@ -33,7 +31,6 @@ nav_order: 1
   {% else %}
     <h2>量子コンピュータとは？</h2>
     <p class="caption">量子状態を体感しよう</p>
-
     <div class="video-container" data-reveal>
       <video controls
              src="{{ '/assets/video/quantum_intro.mp4' | relative_url }}"
@@ -45,8 +42,8 @@ nav_order: 1
   {% endif %}
 </section>
 
-<section class="Let's embark on a quest!" data-reveal>
-  <h2 class="chapter"><span>Contact</span></h2>
+<section class="quest-contact" data-reveal>
+  <h2 class="chapter">Contact</h2>
   {% if lang == "en" %}
     <p>Please contact us using the form below.</p>
     <ul class="contact-list">
@@ -64,7 +61,7 @@ nav_order: 1
                 border-radius:8px;
                 text-decoration:none;
                 display:inline-block;">
-            {% if lang == "en" %}Contact&nbsp;Us{% else %}<em>Let's embark on a quest!</em>{% endif %}
+        Contact&nbsp;Us
       </a>
     </div>
   {% else %}
@@ -84,8 +81,8 @@ nav_order: 1
                 border-radius:8px;
                 text-decoration:none;
                 display:inline-block;">
-      Contact&nbsp;Us
-    </a>
+        Contact&nbsp;Us
+      </a>
     </div>
   {% endif %}
 </section>

@@ -298,3 +298,48 @@ ul {
   padding-left: 0;
   margin: 0;
 }
+
+/* ───── RPG‑style pixel font for headings ───── */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+.rpg-font {
+  font-family: "Press Start 2P", "M PLUS 1 Code", monospace;
+  letter-spacing: 0.05em;
+}
+
+/* ───── Fancy gradient + shimmer for quest heading ───── */
+.quest-heading {
+  font-size: clamp(1.8rem, 5vw + 1rem, 3rem);
+  line-height: 1.25;
+  background: linear-gradient(90deg, #ffcc00 0%, #ff6600 33%, #ffcc00 66%, #ff6600 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: quest-shimmer 4s linear infinite;
+  text-shadow: 0 0 6px rgba(255, 200, 0, 0.6);
+}
+
+@keyframes quest-shimmer {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: -200% 50%; }
+}
+/* quest-heading だけ背景や枠を消す */
+.quest-heading {
+  background: linear-gradient(
+    90deg,
+    #b0b4b8 0%, #ece7c3 30%, #d6bb7b 55%, #b0b4b8 80%, #ece7c3 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: quest-shimmer 4s linear infinite;
+  font-family: "Press Start 2P", "M PLUS 1 Code", monospace;
+  letter-spacing: 0.05em;
+  /* ↓ chapter系の装飾だけ消す */
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+}

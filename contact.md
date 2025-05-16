@@ -43,6 +43,6 @@ nav_order: 5            # ナビゲーションの並び順
     <li>Q/EST: 7-7 Shinkawasaki, Saiwai-ku, Kawasaki, Kanagawa</li>
   {% else %}
     <li>KMD：横浜市港北区日吉 4-1-1 慶應義塾大学日吉協生館</li>
-    <li>Q/EST：神奈川県川崎市幸区新川崎7-7 かわさき新産業創造センター</li>
+    <li>Q/est：神奈川県川崎市幸区新川崎7-7 かわさき新産業創造センター</li>
   {% endif %}
 </ul>

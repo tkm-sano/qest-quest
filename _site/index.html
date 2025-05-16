@@ -4,33 +4,37 @@
   <meta charset="utf-8">
   <title>Vision | Q/EST Quest</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" href="/qest-quest/assets/img/logo_icon.png">
+  <link rel="stylesheet" href="/qest-quest/assets/css/style.css">
 </head>
-
 <body>
-  <header class="site-header">
-    <a href="/" class="logo-link">
-      <img src="/assets/img/logo_icon.png" alt="Q/EST icon" class="logo-icon">
-      <img src="/assets/img/logo_text.png" alt="Q/EST" class="logo-text-img">
+  <header class="site-header" role="banner">
+    <a href="/qest-quest/" class="logo-link" aria-label="Q/EST Home">
+      <img src="/qest-quest/assets/img/logo_icon.png" alt="Q/EST logo icon" class="logo-icon">
+      <img src="/qest-quest/assets/img/logo_text.png" alt="Q/EST logo text" class="logo-text-img">
     </a>
-
     <nav class="nav-menu">
+  <button class="nav-toggle" aria-label="Toggle navigation">
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+  </button>
   <ul class="nav-horizontal"><li>
-        <a href="/">Vision</a>
+        <a href="/qest-quest/">Vision</a>
       </li><li>
-        <a href="/members.html">Members</a>
+        <a href="/qest-quest/members.html">Members</a>
       </li><li>
-        <a href="/projects.html">Projects</a>
+        <a href="/qest-quest/projects.html">Projects</a>
       </li><li>
-        <a href="/links.html">Links</a>
+        <a href="/qest-quest/links.html">Links</a>
       </li><li>
-        <a href="/contact.html">Contact</a>
+        <a href="/qest-quest/contact.html">Contact</a>
       </li></ul>
 </nav>
-
   </header>
 
-  <main>
+  <main id="main-content" tabindex="-1">
     <section class="hero" data-reveal="">
   <h1 class="chapter glitch" data-shadow="Chapter I :: VISION ::">
     <span>Chapter&nbsp;I</span><em>:: VISION ::</em>
@@ -44,12 +48,17 @@
   
     <h2>量子コンピュータとは？</h2>
     <p class="caption">量子状態を体感しよう</p>
-    
+    <div class="video-container" data-reveal="">
+      <video controls="" src="/qest-quest/assets/video/quantum_intro.mp4" class="quantum-video"></video>
+      <p class="video-description">
+        量子ビットが 0 と 1 を同時に取る&nbsp;―&nbsp;重ね合わせ状態を視覚化したデモ。
+      </p>
+    </div>
   
 </section>
 
-<section class="contact" data-reveal="">
-  <h2 class="chapter"><span>Contact</span></h2>
+<section class="quest-contact" data-reveal="">
+  <h2 class="chapter">Contact</h2>
   
     <p>ご連絡は下記フォームからどうぞ。</p>
     <ul class="contact-list">
@@ -64,16 +73,18 @@
                 border-radius:8px;
                 text-decoration:none;
                 display:inline-block;">
-      <em>Let's embark on a quest with us!</em>
-    </a>
+        Contact&nbsp;Us
+      </a>
     </div>
   
 </section>
 
   </main>
 
-  <footer class="site-footer">© 2025 Q/EST</footer>
+  <footer class="site-footer" role="contentinfo">
+    <small>© 2025 Q/EST</small>
+  </footer>
 
-  <script src="/assets/js/main.js"></script>
+  <script src="/qest-quest/assets/js/main.js"></script>
 </body>
 </html>
