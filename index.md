@@ -21,21 +21,27 @@ nav_order: 1
   {% if lang == "en" %}
     <h2>What is a Quantum Computer?</h2>
     <p class="caption">Experience quantum states through the superposition of color and sound.</p>
-    {% if video_src %}
+
     <div class="video-container" data-reveal>
-      <video controls src="{{ video_src }}" class="quantum-video"></video>
-      <p class="video-description">{{ video_desc }}</p>
+      <video controls
+             src="{{ '/assets/video/quantum_intro.mp4' | relative_url }}"
+             class="quantum-video"></video>
+      <p class="video-description">
+        Quantum Superposition Demo&nbsp;&mdash;&nbsp;visualising how a qubit can be 0 and 1 at the same time.
+      </p>
     </div>
-    {% endif %}
   {% else %}
     <h2>量子コンピュータとは？</h2>
     <p class="caption">量子状態を体感しよう</p>
-    {% if video_src %}
+
     <div class="video-container" data-reveal>
-      <video controls src="{{ video_src }}" class="quantum-video"></video>
-      <p class="video-description">{{ video_desc }}</p>
+      <video controls
+             src="{{ '/assets/video/quantum_intro.mp4' | relative_url }}"
+             class="quantum-video"></video>
+      <p class="video-description">
+        量子ビットが 0 と 1 を同時に取る&nbsp;―&nbsp;重ね合わせ状態を視覚化したデモ。
+      </p>
     </div>
-    {% endif %}
   {% endif %}
 </section>
 
@@ -78,7 +84,7 @@ nav_order: 1
                 border-radius:8px;
                 text-decoration:none;
                 display:inline-block;">
-      {% if lang == "en" %}お問い合わせフォーム{% else %}<em>Get in tourch</em>{% endif %}
+      {% if lang == "en" %}form{% else %}<em>Get in tourch</em>{% endif %}
     </a>
     </div>
   {% endif %}
