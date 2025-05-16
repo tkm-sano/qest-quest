@@ -7,7 +7,7 @@
   </button>
 
   <!-- ナビゲーションリスト -->
-  <ul class="nav-horizontal">
+  <ul id="nav-list" class="nav-horizontal">
     {%- assign nav_pages = site.pages
          | where_exp: "p", "p.nav_order"
          | sort: "nav_order" -%}
