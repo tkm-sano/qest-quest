@@ -355,3 +355,19 @@ ul {
     display: flex !important;
     flex-direction: column;
   }
+
+.quantum-particles {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.quantum-particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: qpMove linear infinite alternate;
+}
+@keyframes qpMove {
+  0% { transform: translateY(0) scale(1);}
+  100% { transform: translateY(-40vh) scale(1.4);}
+}
