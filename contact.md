@@ -16,7 +16,7 @@ nav_order: 5            # ナビゲーションの並び順
   {% endif %}
   <div style="text-align:center; margin:1em 0;">
     <a href="https://forms.gle/WhzwMF4iz6G1PrDf9" target="_blank" rel="noopener" class="btn get-in-touch" style="padding:0.8em 1.6em; background:#0050ff; color:#ffffff; font-size:1.2em; border-radius:8px; text-decoration:none; display:inline-block;">
-      {% if lang == "en" %}Get in touch{% else %}<em>Let's embark on a quest with us!</em>{% endif %}
+      {% if lang == "en" %}Get in touch{% else %}<em>お問い合わせフォーム</em>{% endif %}
     </a>
   </div>
 </section>
@@ -31,7 +31,7 @@ nav_order: 5            # ナビゲーションの並び順
   {% else %}
     <p>
       協業や取材、プロジェクトに関するお問い合わせは、以下のフォームからご連絡ください。<br>
-      このお問合せフォームにご記入いただきました個人情報は、十分プライバシーに配慮し、適正に管理を行います。<br>
+      このお問合せフォームにご記入いただきました個人情報は、十分プライバシーに配慮し適正に管理を行います。<br>
       個人情報は、ご本人の承諾なしに第三者に提供することはありません。
     </p>
   {% endif %}

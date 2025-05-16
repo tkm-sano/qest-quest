@@ -78,7 +78,7 @@ nav_order: 1
                 border-radius:8px;
                 text-decoration:none;
                 display:inline-block;">
-      {% if lang == "en" %}Get in touch{% else %}<em>Let's embark on a quest with us!</em>{% endif %}
+      {% if lang == "en" %}お問い合わせフォーム{% else %}<em>Get in tourch</em>{% endif %}
     </a>
     </div>
   {% endif %}
