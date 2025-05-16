@@ -16,7 +16,7 @@ nav_order: 5            # ナビゲーションの並び順
   {% endif %}
   <div style="text-align:center; margin:1em 0;">
     <a href="https://forms.gle/WhzwMF4iz6G1PrDf9" target="_blank" rel="noopener" class="btn get-in-touch" style="padding:0.8em 1.6em; background:#0050ff; color:#ffffff; font-size:1.2em; border-radius:8px; text-decoration:none; display:inline-block;">
-      {% if lang == "en" %}Get in touch{% else %}<em>form</em>{% endif %}
+      Contact&nbsp;Us
     </a>
   </div>
 </section>

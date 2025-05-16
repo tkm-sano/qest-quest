@@ -45,7 +45,7 @@ nav_order: 1
   {% endif %}
 </section>
 
-<section class="contact" data-reveal>
+<section class="Let's embark on a quest!" data-reveal>
   <h2 class="chapter"><span>Contact</span></h2>
   {% if lang == "en" %}
     <p>Please contact us using the form below.</p>
@@ -64,7 +64,7 @@ nav_order: 1
                 border-radius:8px;
                 text-decoration:none;
                 display:inline-block;">
-            {% if lang == "en" %}Get in touch{% else %}<em>Let's embark on a quest!</em>{% endif %}
+            {% if lang == "en" %}Contact&nbsp;Us{% else %}<em>Let's embark on a quest!</em>{% endif %}
       </a>
     </div>
   {% else %}
@@ -84,7 +84,7 @@ nav_order: 1
                 border-radius:8px;
                 text-decoration:none;
                 display:inline-block;">
-      {% if lang == "en" %}form{% else %}<em>Get in tourch</em>{% endif %}
+      Contact&nbsp;Us
     </a>
     </div>
   {% endif %}
