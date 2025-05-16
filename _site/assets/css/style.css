@@ -220,38 +220,45 @@ section {
     right: 14px;
     z-index: 1002;
   }
-  .nav-menu ul {
+    .nav-menu ul {
     display: none;          /* デフォルトは非表示 */
     position: absolute;
     top: 60px;
-    left: 0;
-    width: 100vw;           /* 画面幅いっぱい */
-    background: #ffffff;    /* 白背景で見やすく */
-    color: #002040;         /* 本文色を落ち着いた紺に */
+    right: 8px;             /* ハンバーガー右端と揃える */
+    left: auto;             /* left 無効化 */
+    transform: none;        /* 不要な中央寄せを解除 */
+    width: 80vw;            /* 画面幅の 80% */
+    max-width: 280px;       /* 大きすぎ防止 */
+    background: #ffffff;
+    color: #002040;
     padding: 20px 0;
     flex-direction: column;
     gap: 18px;
     z-index: 999;
     text-align: center;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
-    border-radius: 0 0 12px 12px; /* 下だけ角丸 */
+    border-radius: 12px;
   }
   .nav-menu ul.open {
     display: flex;
   }
+  /* モバイル時のリンク */
   .nav-menu a {
     color: #002040;
     font-size: 1.05rem;
     padding: 6px 16px;
     text-decoration: none;
+    text-align: center;    /* ← 中央寄せを追加 */
+    width: 100%;           /* 好みで：全行クリックしやすく */
   }
+  
   .nav-menu a:hover {
     color: #40a9ff;
     background: rgba(64, 169, 255, 0.08);
   }
   .nav-horizontal {
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     gap: 8px;
   }
 }
@@ -343,3 +350,8 @@ ul {
   background-color: transparent !important;
   padding: 0 !important;
 }
+  /* nav-horizontal クラス付きの open にも対応 */
+  .nav-horizontal.open {
+    display: flex !important;
+    flex-direction: column;
+  }

@@ -1,23 +1,23 @@
 - name: Takuma Sano
   photo: takuma.png
   comment: >
-    ここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントコメントコメントコメントコメント
-  link: https://example.com/bob
+    
+  link: 
 
 - name: Haruka Shiina
   photo: haruka.png
   comment: >
-    ここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントコメントコメントコメントコメント
-  link: https://example.com/carol
+    
+  link: 
 
 - name: Reiko Iwasaki
   photo: reiko.png
   comment: >
-    ここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントコメントコメントコメントコメント
-  link: https://example.com/carol
+    
+  link: 
 
 - name: Shota Nagayama
   photo: shota.png
   comment: >
-    ここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントここにコメントコメントコメントコメントコメント
+    
   link: https://shota.io/
