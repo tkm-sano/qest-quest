@@ -25,13 +25,9 @@ nav_order: 2     # ナビの並び順。お好みで
     {% else %}
       <p>{{ m.comment }}</p>
     {% endif %}
-    <a href="{{ m.link }}" class="btn-quest" target="_blank">
-      {% if lang == "en" %}
-        More
-      {% else %}
-        詳しく見る
-      {% endif %}
-    </a>
+    {% if m.link %}
+      <a href="{{ m.link }}" class="btn-quest" target="_blank">More</a>
+    {% endif %}
   </div>
   {% endfor %}
 </div>
