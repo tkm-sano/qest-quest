@@ -384,12 +384,27 @@ ul {
   padding-left: 8px;
   padding-right: 8px;
   text-align: center;
+  font-size: 1.09rem;
+  line-height: 1.7;
+  background: none;
 }
+
+.chapter,
+h1.chapter,
+h1.glitch {
+  white-space: nowrap;
+  overflow-x: auto;    /* 長すぎる場合は横スクロール */
+  text-overflow: ellipsis;
+  max-width: 98vw;
+}
+
 @media (max-width: 600px) {
   .caption,
   .lead {
     max-width: 100vw;
     padding-left: 4vw;
     padding-right: 4vw;
+    font-size: 1rem;
+    line-height: 1.7;
   }
 }
