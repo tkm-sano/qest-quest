@@ -1,30 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
   const toggle = document.querySelector(".nav-toggle");
-  const navMenuUl = document.querySelector(".nav-menu ul");
+  const navMenuUl = document.getElementById("nav-list");
 
-  if (toggle && navMenuUl) {
-    toggle.addEventListener("click", function () {
-      navMenuUl.classList.toggle("open");
-      toggle.setAttribute(
-        "aria-expanded",
-        navMenuUl.classList.contains("open") ? "true" : "false"
-      );
-
-  // 開く・閉じる
+  // メニューを開く
   function openMenu() {
     navMenuUl.classList.add("open");
     toggle.setAttribute("aria-expanded", "true");
-    // スクロールロック（任意）
-    document.body.style.overflow = "hidden";
+    // document.body.style.overflow = "hidden"; // スクロールロックを無効化
   }
+
+  // メニューを閉じる
   function closeMenu() {
     navMenuUl.classList.remove("open");
     toggle.setAttribute("aria-expanded", "false");
-    document.body.style.overflow = "";
+    // document.body.style.overflow = ""; // スクロール復帰を無効化
   }
 
   if (toggle && navMenuUl) {
-    // ボタンクリックでトグル
+    // ハンバーガークリックでトグル
     toggle.addEventListener("click", function (e) {
       e.stopPropagation();
       if (navMenuUl.classList.contains("open")) {
@@ -34,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // メニュー内リンククリックで自動的に閉じる
+    // メニュー内リンククリックで閉じる
     navMenuUl.addEventListener("click", function (e) {
       if (e.target.tagName.toLowerCase() === "a") {
         closeMenu();
@@ -52,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Esc キーで閉じる
+    // Escキーで閉じる
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && navMenuUl.classList.contains("open")) {
         closeMenu();
