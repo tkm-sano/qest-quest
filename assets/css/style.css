@@ -165,13 +165,12 @@ section {
   margin: 0 auto;
 }
 .card img {
-  width: 100px;            /* 以前は 88px だったのを小さめ調整 */
-  height: auto;
+  width: 88px;
+  height: 88px;
   object-fit: cover;
-  border-radius: 8px;      /* 丸形 → 角丸 8px に変更（好みで 50% も可） */
+  border-radius: 50%;
   margin: 0 auto 16px auto;
   display: block;
-  max-width: 100%;
 }
 
 /* ─────────────────────────────
@@ -289,18 +288,9 @@ section {
     right: calc(14px + 44px + 8px);
   }
 }
-
 /* すべての ul からマーカーを消す */
 ul {
   list-style: none;
   padding-left: 0;
   margin: 0;
-}
-
-/* ─────────────────────────────
-   追加：ヒーローセクション内の画像縮小
-   ───────────────────────────── */
-.hero img {
-  max-width: 60%;
-  height: auto;
 }
