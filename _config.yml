@@ -1,7 +1,9 @@
 title: Q/EST Quest
 description: 量子インターネットを探求するチーム
-url: ""                 # カスタムドメイン設定後に更新
-baseurl: ""             # GitHub Pages プロジェクトサイトなら "/qest-quest"
+
+url: "https://tkm-sano.github.io"   # 自分のユーザページ URL
+baseurl: "/qest-quest"              # ← ここ超重要!!
+
 timezone: Asia/Tokyo
 markdown: kramdown
 
