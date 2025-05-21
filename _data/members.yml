@@ -1,16 +1,20 @@
 - name: Takuma Sano
   photo: takuma.png
-  comment: > 量子コンピュータおよび量子インターネットが個人の生活へ波及する過程を俯瞰し、その全体像の提示を目指します。これらの技術が社会の前提条件となる次世代において、人々が不確実な未来を肯定的に構想できるよう、ハードウェア層から人間の認知層に至るまでを一貫して捉えた社会デザインを行います。
-  
+  comment: >
+    量子コンピュータおよび量子インターネットが個人の生活へ波及する過程を俯瞰し、
+    その全体像の提示を目指します。これらの技術が社会の前提条件となる次世代において、
+    人々が不確実な未来を肯定的に構想できるよう、
+    ハードウェア層から人間の認知層まで一貫して捉えた社会デザインを行います。
+
 - name: Haruka Shiina
   photo: haruka.png
-  comment: >
- 
+  comment: ""
+
 - name: Reiko Iwasaki
   photo: reiko.png
-  comment: >
+  comment: ""
 
 - name: Shota Nagayama
   photo: shota.png
-  comment: >
+  comment: ""
   link: https://shota.io/
