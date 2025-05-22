@@ -1,0 +1,83 @@
+%%{init: {
+  "theme": "default",
+  "flowchart": { 
+    "htmlLabels": false,
+    "fontFamily": "Arial"
+  }
+}}%%
+flowchart TB
+   A[Start] --> B{Choice?}
+   B -->|Yes| C[Do something]
+   B -->|No| D[Do something else]
+
+  %% Quantum computer diagram
+  subgraph QD["Quantum Computer: Tech Layer × Social Base Layer"]
+    direction TB
+
+    subgraph Q_interplay["Layer Interaction"]
+      QC_compID(("Computer Layer")):::computerLayer
+      QB_baseID(("Base Layer")):::baseLayer
+      QC_compID -- "Technology propagation" --> QB_baseID
+    end
+
+    subgraph compLayer["Computer Layer (Tech Hierarchy)"]
+      direction TB
+      QC1["Layer 1: Physical layer<br/>Classical: Electronic circuits<br/>Quantum: Qubits / Superposition / Entanglement"]:::computerLayer --> QC2["Layer 2: Data Link layer<br/>Classical: Bit transfer<br/>Quantum: Quantum information transfer / Teleportation"]:::computerLayer
+      QC2 --> QC3["Layer 3: Media Access Control sublayer<br/>Classical: MAC protocols<br/>Quantum: Quantum repeaters / Quantum memory"]:::computerLayer
+      QC3 --> QC4["Layer 4: Network layer<br/>Classical: IP / Routing<br/>Quantum: Quantum routing / Multi-point teleportation"]:::computerLayer
+      QC4 --> QC5["Layer 5: Transport layer<br/>Classical: TCP / Reliability<br/>Quantum: Quantum state transfer protocol"]:::computerLayer
+      QC5 --> QC6["Layer 6: Application layer<br/>Classical: HTTP / API<br/>Quantum: Quantum algorithm services / QaaS"]:::computerLayer
+    end
+
+    subgraph baseLayer["Base Layer (Social Hierarchy)"]
+      direction TB
+      QB1["Layer 1: NATURE<br/>Natural laws<br/>Reevaluating quantum physics<br/>New materials science"]:::baseLayer --> QB2["Layer 2: CULTURE<br/>Cultural awareness<br/>Emergence of quantum thinking<br/>Acceptance of uncertainty"]:::baseLayer
+      QB2 --> QB3["Layer 3: GOVERNANCE<br/>Regulations / Institutions<br/>Quantum security standards<br/>Addressing technology gaps"]:::baseLayer
+      QB3 --> QB4["Layer 4: INFRASTRUCTURE<br/>Foundational networks<br/>Quantum communication network<br/>Quantum cloud"]:::baseLayer
+      QB4 --> QB5["Layer 5: COMMERCE<br/>Business / Economy<br/>Quantum computing services<br/>New cryptocurrencies"]:::baseLayer
+      QB5 --> QB6["Layer 6: FASHION<br/>Trends / Phenomena<br/>Quantum apps<br/>Quantum-related consumer goods"]:::baseLayer
+    end
+  end
+
+  %% Classical computer diagram
+  subgraph CD["Computer Tech Layer × Base Layer Evolution (FIXED)"]
+    direction TB
+
+    subgraph C_interplay["Layer Interaction"]
+      CL_compLayerID(("Computer Layer")):::computerLayer
+      CB_baseLayerID(("Base Layer")):::baseLayer
+      CL_compLayerID -- "Technology propagation" --> CB_baseLayerID
+    end
+
+    subgraph compLayerC["Computer Layer (Tech Evolution)"]
+      direction TB
+      CL1["Layer 1: Physical layer<br/>Vacuum tubes (1940s)<br/>Transistors (1950s)<br/>ICs (1960s)<br/>Packet switching (1970s)<br/>Ethernet / Wi-Fi (1990s-2000s)"]:::computerLayer --> CL2["Layer 2: Data Link layer<br/>Bit transfer protocols<br/>Ethernet frames"]:::computerLayer
+      CL2 --> CL3["Layer 3: Media Access Control sublayer<br/>CSMA/CD, CSMA/CA"]:::computerLayer
+      CL3 --> CL4["Layer 4: Network layer<br/>IP, Routing"]:::computerLayer
+      CL4 --> CL5["Layer 5: Transport layer<br/>TCP / Reliability"]:::computerLayer
+      CL5 --> CL6["Layer 6: Application layer<br/>HTTP / API"]:::computerLayer
+
+      %% Dotted lines for cross-layer requirements
+      CL4 -. "Infrastructure demands" .-> CB4
+      CB5 -. "Commercial demands" .-> CL6
+    end
+
+    subgraph baseLayerC["Base Layer (Social Evolution)"]
+      direction TB
+      CB1["Layer 1: NATURE<br/>Natural laws / Physics<br/>Broader energy usage<br/>Digital physics development"]:::baseLayer --> CB2["Layer 2: CULTURE<br/>Cultural awareness<br/>Computational thinking<br/>Global info sharing"]:::baseLayer
+      CB2 --> CB3["Layer 3: GOVERNANCE<br/>Institutions / Policies<br/>E-Government<br/>Data privacy laws<br/>Cybersecurity systems"]:::baseLayer
+      CB3 --> CB4["Layer 4: INFRASTRUCTURE<br/>Foundational networks<br/>Telecom infrastructure<br/>Data centers<br/>Cloud computing"]:::baseLayer
+      CB4 --> CB5["Layer 5: COMMERCE<br/>Business / Economy<br/>E-commerce / Digital payments<br/>Platform economy<br/>Digital advertising"]:::baseLayer
+      CB5 --> CB6["Layer 6: FASHION<br/>Trends / Phenomena<br/>Social media trends<br/>App boom<br/>Web3.0"]:::baseLayer
+    end
+  end
+
+  %% --- Style definitions ---
+  classDef computerLayer fill:#d4f1f9,stroke:#058,stroke-width:1px
+  classDef baseLayer     fill:#e6f9e6,stroke:#292,stroke-width:1px
+  classDef shortTerm     fill:#ffe6cc,stroke:#d79b00,stroke-width:1px
+  classDef midTerm       fill:#fff2cc,stroke:#d6b656,stroke-width:1px
+  classDef longTerm      fill:#e1d5e7,stroke:#9673a6,stroke-width:1px
+  classDef earlyPeriod   fill:#ffe6cc,stroke:#d79b00,stroke-width:1px
+  classDef mainPeriod    fill:#fff2cc,stroke:#d6b656,stroke-width:1px
+  classDef ubiqPeriod    fill:#e1d5e7,stroke:#9673a6,stroke-width:1px

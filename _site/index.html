@@ -1,15 +1,47 @@
-<section class="hero" data-reveal>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title> | Q/EST Quest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" href="/qest-quest/assets/img/logo_icon.png">
+  <link rel="stylesheet" href="/qest-quest/assets/css/style.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <a href="/qest-quest/" class="logo-link" aria-label="Q/EST Home">
+      <img src="/qest-quest/assets/img/logo_icon.png" alt="Q/EST logo icon" class="logo-icon">
+      <img src="/qest-quest/assets/img/logo_text.png" alt="Q/EST logo text" class="logo-text-img">
+    </a>
+    <nav class="nav-menu">
+  <button class="nav-toggle" aria-label="Toggle navigation">
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+  </button>
+  <ul id="nav-list" class="nav-horizontal"><li>
+        <a href="/qest-quest/members.html">Members</a>
+      </li><li>
+        <a href="/qest-quest/projects.html">Projects</a>
+      </li><li>
+        <a href="/qest-quest/links.html">Links</a>
+      </li><li>
+        <a href="/qest-quest/contact.html">Contact</a>
+      </li></ul>
+</nav>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <div class="home"><section class="hero" data-reveal="">
   <h1 class="chapter glitch" data-shadow="Chapter I :: VISION ::">
     <span>Chapter&nbsp;I</span><em>:: VISION ::</em>
   </h1>
-  {% if lang == "en" %}
-    <p class="lead">Designing and realizing the near-future IT paradigm with Quantum Internet</p>
-    <a class="btn-quest" href="/projects/?lang={{ lang }}">Let's embark on a quest →</a>
-  {% else %}
+  
     <p class="lead">量子インターネットによる近未来ITパラダイムの社会デザインと実現</p>
-  {% endif %}
+  
 </section>
-<section class="quantum-demo" data-reveal>
+<section class="quantum-demo" data-reveal="">
   <div id="quantum-visualization" class="complex-viz"></div>
   <script>
     (function(){
@@ -183,39 +215,16 @@
     })();
   </script>
 </section>
-<section class="quest-contact" data-reveal>
+<section class="quest-contact" data-reveal="">
   <h2 class="chapter">Contact</h2>
-  {% if lang == "en" %}
-    <p>Please contact us using the form below.</p>
-    <ul class="contact-list">
-      <li>KMD: 4-1-1 Hiyoshi, Kohoku-ku, Yokohama, Kanagawa</li>
-      <li>Q/EST: 7-7 Shinkawasaki, Saiwai-ku, Kawasaki, Kanagawa</li>
-    </ul>
-    <div style="text-align:center; margin: 2em 0;">
-      <a href="https://forms.gle/WhzwMF4iz6G1PrDf9"
-         target="_blank" rel="noopener"
-         class="btn get-in-touch"
-         style="padding:0.8em 1.6em;
-                background:#0050ff;
-                color:#ffffff;
-                font-size:1.2em;
-                border-radius:8px;
-                text-decoration:none;
-                display:inline-block;">
-        Contact&nbsp;Us
-      </a>
-    </div>
-  {% else %}
+  
     <p>ご連絡は下記フォームからどうぞ。</p>
     <ul class="contact-list">
       <li>KMD：横浜市港北区日吉 4-1-1 慶應義塾大学日吉協生館</li>
       <li>Q/est：神奈川県川崎市幸区新川崎7-7 かわさき新産業創造センター</li>
     </ul>
     <div style="text-align:center; margin: 2em 0;">
-      <a href="https://forms.gle/WhzwMF4iz6G1PrDf9"
-         target="_blank" rel="noopener"
-         class="btn get-in-touch"
-         style="padding:0.8em 1.6em;
+      <a href="https://forms.gle/WhzwMF4iz6G1PrDf9" target="_blank" rel="noopener" class="btn get-in-touch" style="padding:0.8em 1.6em;
                 background:#0050ff;
                 color:#ffffff;
                 font-size:1.2em;
@@ -225,5 +234,16 @@
         Contact&nbsp;Us
       </a>
     </div>
-  {% endif %}
+  
 </section>
+</div>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <small>© 2025 Q/EST</small>
+  </footer>
+
+  <script src="/qest-quest/assets/js/main.js"></script>
+</body>
+</html>
