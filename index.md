@@ -1,5 +1,5 @@
 ---
-title: "Chapter I :: VISION ::"
+title: Vision
 layout: default
 nav_order: 1     # ナビの並び順。お好みで
 ---
