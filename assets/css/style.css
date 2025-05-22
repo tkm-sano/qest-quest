@@ -460,21 +460,7 @@ h1.glitch {
 /* Quantum visualization container */
 #quantum-visualization {
   width: 100%;
-  height: 500px;
-  position: relative;
-  margin: 1em 0;
-}
-
-/* Make embedded SVG fill its container */
-#quantum-visualization svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-/* Quantum visualization container */
-#quantum-visualization {
-  width: 100%;
-  height: 500px;
+  height: 70vh;
   position: relative;
   margin: 1em 0;
 }
