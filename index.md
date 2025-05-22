@@ -1,3 +1,9 @@
+---
+title: "Chapter I :: VISION ::"
+layout: default
+nav_order: 1     # ナビの並び順。お好みで
+---
+
 <section class="hero" data-reveal>
   <h1 class="chapter glitch" data-shadow="Chapter I :: VISION ::">
     <span>Chapter&nbsp;I</span><em>:: VISION ::</em>
