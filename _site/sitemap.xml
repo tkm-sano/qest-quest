@@ -4,6 +4,9 @@
 <loc>http://localhost:4000/qest-quest/contact.html</loc>
 </url>
 <url>
+<loc>http://localhost:4000/qest-quest/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/qest-quest/links.html</loc>
 </url>
 <url>
@@ -11,9 +14,6 @@
 </url>
 <url>
 <loc>http://localhost:4000/qest-quest/projects.html</loc>
-</url>
-<url>
-<loc>http://localhost:4000/qest-quest/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/qest-quest/build/</loc>

@@ -26,7 +26,7 @@ nav_order: 2     # ナビの並び順。お好みで
       <p>{{ m.comment }}</p>
     {% endif %}
     {% if m.link %}
-      <a href="{{ m.link }}" class="btn-quest" target="_blank">More</a>
+      <a href="{{ m.link }}" class="btn-quest" target="_blank">Visit</a>
     {% endif %}
   </div>
   {% endfor %}
