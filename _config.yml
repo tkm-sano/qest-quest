@@ -5,7 +5,7 @@ description: Q/EST Questは、量子インターネットや量子技術の最�
 url: "https://q-est.org"
 
 # Base path for this project site
-baseurl: "/q/est"    # ルート公開用に空文字列
+baseurl: "/q/est"
 
 timezone: Asia/Tokyo
 markdown: kramdown

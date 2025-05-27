@@ -10,7 +10,7 @@ nav_order: 1     # ナビの並び順。お好みで
   </h1>
   {% if lang == "en" %}
     <p class="lead">Designing and realizing the near-future IT paradigm with Quantum Internet</p>
-    <a class="btn-quest" href="/projects/?lang={{ lang }}">Let's embark on a quest →</a>
+    <a class="btn-quest" href="{{ '/projects/' | relative_url }}?lang={{ lang }}">Let's embark on a quest →</a>
   {% else %}
     <p class="lead">量子インターネットによる近未来ITパラダイムの社会デザインと実現</p>
   {% endif %}
