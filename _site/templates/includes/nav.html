@@ -6,10 +6,10 @@
     <span class="nav-toggle-bar"></span>
   </button>
   <ul id="nav-list" class="nav-horizontal">
-    <li><a href="/?lang={{ lang }}">VISION</a></li>
-    <li><a href="/members/?lang={{ lang }}">MEMBER</a></li>
-    <li><a href="/projects/?lang={{ lang }}">PROJECT</a></li>
-    <li><a href="/links/?lang={{ lang }}">LINKS</a></li>
-    <li><a href="/contact/?lang={{ lang }}">CONTACT</a></li>
+    <li><a href="{{ '/' | relative_url }}?lang={{ lang }}">VISION</a></li>
+    <li><a href="{{ '/members/' | relative_url }}?lang={{ lang }}">MEMBER</a></li>
+    <li><a href="{{ '/projects/' | relative_url }}?lang={{ lang }}">PROJECT</a></li>
+    <li><a href="{{ '/links/' | relative_url }}?lang={{ lang }}">LINKS</a></li>
+    <li><a href="{{ '/contact/' | relative_url }}?lang={{ lang }}">CONTACT</a></li>
   </ul>
 </nav>

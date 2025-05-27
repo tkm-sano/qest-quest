@@ -3,17 +3,17 @@
   <meta charset="UTF-8">
   <title>VISION | Q/EST</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="{{ '/static/css/style.css' | relative_url }}">
 </head>
 <body>
 <header class="site-header">
   <div class="logo">Q/EST</div>
   <nav class="nav-menu">
   <ul>
-    <li><a href="/">VISION</a></li>
-    <li><a href="/members">MEMBER</a></li>
-    <li><a href="/projects">PROJECT</a></li>
-    <li><a href="/links">LINKS</a></li>
+    <li><a href="{{ '/' | relative_url }}">VISION</a></li>
+    <li><a href="{{ '/members' | relative_url }}">MEMBER</a></li>
+    <li><a href="{{ '/projects' | relative_url }}">PROJECT</a></li>
+    <li><a href="{{ '/links' | relative_url }}">LINKS</a></li>
   </ul>
 </nav>
 </header>
@@ -21,7 +21,7 @@
 <section class="hero">
   <h1 class="chapter">Chapter I : VISION</h1>
   <p class="lead">量子技術が拓く世界へ——冒険の幕開け</p>
-  <a class="btn-quest" href="/projects">Let's embark on a quest →</a>
+  <a class="btn-quest" href="{{ '/projects' | relative_url }}">Let's embark on a quest →</a>
 </section>
 
 <section class="quantum-demo" data-reveal>
@@ -31,5 +31,5 @@
 </section>
 </main>
 <footer class="site-footer">© 2025 Q/EST</footer>
-<script src="/static/js/main.js"></script>
+<script src="{{ '/static/js/main.js' | relative_url }}"></script>
 </body></html>
