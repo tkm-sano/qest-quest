@@ -1,5 +1,5 @@
 ---
-title: Links   # ページごとに変更
+title: Links 
 layout: default
 nav_order: 4     # ナビの並び順。お好みで
 ---

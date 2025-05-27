@@ -1,11 +1,11 @@
 title: Q/EST Quest - 量子インターネットと未来社会のデザイン・研究チーム
 description: Q/EST Questは、量子インターネットや量子技術の最先端動向、SFプロトタイピング、未来社会デザインに関心を持つ研究者・技術者・クリエイターのための情報プラットフォームです。量子ネットワーク、量子コンピューティング、未来社会設計、最新研究・事例を幅広く発信します。
 
-# URL for your GitHub Pages user/org site
 url: "https://q-est.org"
 
-# Base path for this project site
-baseurl: "/q/est/"
+baseurl: "/q/est"
+permalink: pretty
+
 
 timezone: Asia/Tokyo
 markdown: kramdown
