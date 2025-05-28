@@ -471,3 +471,65 @@ h1.glitch {
   height: 100%;
   display: block;
 }
+# ========= Language switch placement tweaks =========
+/* Hide the mobile‑only language switch by default */
+.lang-switch-mobile {
+  display: none;        /* hidden on desktop */
+}
+
+/* Mobile view (hamburger visible) */
+@media (max-width: 700px) {
+
+  /* Show mobile language switch to the LEFT of the hamburger */
+  .lang-switch-mobile {
+    position: absolute;
+    top: 10px;
+    right: 60px;            /* 14px margin + 44px button width + 2px gap */
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;      /* bigger text */
+  }
+
+  /* Hide the language item inside the drop‑down list */
+  .lang-switch-item {
+    display: none;
+  }
+}
+
+/* Style for language switch links */
+.lang-link {
+  text-decoration: none;      /* remove underline */
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0 0.5rem;
+}
+
+/* ─── Mobile-only fancy badge for language switch ─── */
+@media (max-width: 700px) {
+  .lang-switch-mobile .lang-link {
+    background: rgba(255, 255, 255, 0.25);   /* subtle glass */
+    border: 1px solid rgba(64, 169, 255, 0.25);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 14px;
+    padding: 8px 20px;          /* keep size */
+    font-size: 1.17rem;         /* keep size */
+    font-weight: 600;           /* slightly lighter */
+    letter-spacing: 0.05em;
+    color: #002040;             /* darker text for less glow */
+    text-shadow: none;          /* remove glow */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    text-decoration: none;
+    transition: background 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .lang-switch-mobile .lang-link:hover {
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  }
+
+  /* ハンバーガーとの距離を微調整したい場合はここを調整 */
+  .lang-switch-mobile {
+    right: 75px;   /* ←今の 14+44+2px と一致。好みで ± 数値調整 */
+  }
+}
