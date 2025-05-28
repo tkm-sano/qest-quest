@@ -261,7 +261,23 @@ section {
     align-items: center;
     gap: 8px;
   }
+
+  /* Show mobile language switch to the LEFT of the hamburger */
+  .lang-switch-mobile {
+    position: absolute;
+    top: 10px;
+    right: 60px;            /* 14px margin + 44px button width + 2px gap */
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;      /* bigger text */
+  }
+
+  /* Hide the language item inside the drop‑down list */
+  .lang-switch-item {
+    display: none;
+  }
 }
+
 /* ─────────────────────────────
    言語切替 JP｜EN（ヘッダー右上＆モバイル時ボタン左隣）
 ───────────────────────────── */
@@ -269,36 +285,7 @@ section {
   position: relative; /* ここはすでに設定済みのはず */
 }
 
-/* 共通（すべての幅） */
-.lang-switch {
-  position: absolute;
-  top: 50%;
-  right: 16px;           /* デスクトップ時に画面右端から16px */
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  font-size: 0.9em;
-  background: rgba(255,255,255,0.85);
-  padding: 4px 8px;
-  border-radius: 8px;
-  z-index: 1001;
-}
-.lang-switch a {
-  color: #111;
-  margin: 0 6px;
-  text-decoration: none;
-}
-.lang-switch a:hover {
-  color: #40a9ff;
-}
 
-/* モバイル時：ハンバーガーボタン左隣に移動 */
-@media (max-width: 700px) {
-  .lang-switch {
-    top: 10px;
-    right: calc(14px + 44px + 8px);
-  }
-}
 /* すべての ul からマーカーを消す */
 ul {
   list-style: none;
@@ -531,5 +518,53 @@ h1.glitch {
   /* ハンバーガーとの距離を微調整したい場合はここを調整 */
   .lang-switch-mobile {
     right: 75px;   /* ←今の 14+44+2px と一致。好みで ± 数値調整 */
+  }
+}
+
+/* Desktop language switch badge */
+.lang-switch-item .lang-link {
+  background: rgba(255, 255, 255, 0.25);   /* subtle glass */
+  border: 1px solid rgba(64, 169, 255, 0.25);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 14px;
+  padding: 8px 20px;          /* same size as mobile */
+  font-size: 1.17rem;         /* same size as mobile */
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #002040;
+  text-shadow: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.lang-switch-item .lang-link:hover {
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+}
+
+/* Remove nav underline hover effect specifically for language item */
+.lang-switch-item .lang-link::after {
+  content: none !important;
+}
+/* ----------  Language switch visibility ---------- */
+/* Hide mobile language switch on desktop */
+.lang-switch-mobile {
+  display: none;
+}
+
+/* Mobile view (hamburger visible) */
+@media (max-width: 700px) {
+  .lang-switch-mobile {
+    display: flex;               /* ←スマホで表示 */
+    position: absolute;
+    top: 10px;
+    right: 60px;                 /* ハンバーガー左 */
+    align-items: center;
+    font-size: 1.2rem;
+  }
+  .lang-switch-item {
+    display: none;               /* PC 用バッジをスマホでは隠す */
   }
 }

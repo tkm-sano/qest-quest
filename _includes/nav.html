@@ -4,6 +4,9 @@
     <span class="nav-toggle-bar"></span>
     <span class="nav-toggle-bar"></span>
   </button>
+  <div class="lang-switch-mobile">
+    {% include lang_switch.html %}
+  </div>
   <ul id="nav-list" class="nav-horizontal">
     {%- assign nav_pages = site.pages
          | where_exp: "p", "p.nav_order"
@@ -19,5 +22,8 @@
         {% endif %}
       </li>
     {%- endfor -%}
+        <li class="lang-switch-item">
+      {% include lang_switch.html %}
+    </li>
   </ul>
 </nav>
