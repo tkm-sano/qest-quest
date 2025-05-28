@@ -1,6 +1,7 @@
 ---
 title: Contact          # ページタイトル
-lang: ja
+lang: en
+permalink: /en/contact/
 layout: default
 nav_order: 5            # ナビゲーションの並び順
 ---
@@ -25,7 +26,7 @@ nav_order: 5            # ナビゲーションの並び順
 <section class="contact-description" data-reveal>
   {% if page.lang == "en" %}
     <p>
-      For inquiries regarding collaboration, coverage, or projects, please use the form below.<br>
+      For inquiries regarding collaboration, coverage, or projects, please use the form above.<br>
       Personal information entered in this inquiry form will be managed appropriately with due consideration for privacy.<br>
       Personal information will not be provided to a third party without the consent of the individual.
     </p>

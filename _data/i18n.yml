@@ -1,0 +1,21 @@
+# ============================================================
+#  i18n.yml
+#  共通 UI 文言を日本語 (ja) / 英語 (en) で管理するデータファイル
+#  Liquid からは  {{ site.data.i18n[page.lang].nav_projects }} などと呼び出す
+# ============================================================
+
+ja:
+  # ナビゲーション
+  nav_vision:   "Vision"
+  nav_links:    "Links"
+  nav_members:  "Members"
+  nav_projects: "Projects"
+  nav_contact:  "Contact"
+
+en:
+  # Navigation
+  nav_vision:   "Vision"
+  nav_links:    "Links"
+  nav_members:  "Members"
+  nav_projects: "Projects"
+  nav_contact:  "Contact"

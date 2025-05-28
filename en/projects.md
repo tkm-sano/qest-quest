@@ -1,6 +1,7 @@
 ---
 title: Projects   # ページごとに変更
-lang: ja
+lang: en
+permalink: /en/projects/
 layout: default
 nav_order: 3     # ナビの並び順。お好みで
 ---

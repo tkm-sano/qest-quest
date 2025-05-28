@@ -7,10 +7,16 @@
   <ul id="nav-list" class="nav-horizontal">
     {%- assign nav_pages = site.pages
          | where_exp: "p", "p.nav_order"
+         | where: "lang", page.lang
          | sort: "nav_order" -%}
     {%- for page in nav_pages -%}
       <li>
-        <a href="{{ page.url | relative_url }}">{{ page.title }}</a>
+        {% assign nav_key = 'nav_' | append: page.title | downcase %}
+        {% if site.data.i18n[page.lang][nav_key] %}
+          <a href="{{ page.url | relative_url }}">{{ site.data.i18n[page.lang][nav_key] }}</a>
+        {% else %}
+          <a href="{{ page.url | relative_url }}">{{ page.title }}</a>
+        {% endif %}
       </li>
     {%- endfor -%}
   </ul>

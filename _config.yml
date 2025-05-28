@@ -3,10 +3,18 @@ description: Q/EST Questは、量子インターネットや量子技術の最�
 
 url: "https://q-est.org"
 baseurl: ""
-permalink: pretty
+permalink: /:lang/:slug/
 timezone: Asia/Tokyo
+lang: ja
 markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      lang: ja

@@ -1,0 +1,13 @@
+{% comment %}Language switcher link{% endcomment %}
+{% if page.lang == "en" %}
+  {%- assign alt_url = page.url | remove_first: '/en' | replace: '//', '/' -%}
+  {%- if alt_url == '' or alt_url == '/vision/' -%}{% assign alt_url = '/' %}{% endif -%}
+  <a class="lang-link" href="{{ alt_url | relative_url }}">JP</a>
+{% else %}
+  {%- if page.url == '/' or page.url == '/vision/' -%}
+    {%- assign alt_url = '/en/' -%}
+  {%- else -%}
+    {%- assign alt_url = '/en' | append: page.url | replace: '//', '/' -%}
+  {%- endif -%}
+  <a class="lang-link" href="{{ alt_url | relative_url }}">EN</a>
+{% endif %}

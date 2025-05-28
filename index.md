@@ -1,6 +1,6 @@
 ---
 title: Vision
-permalink: /
+lang: ja
 layout: default
 nav_order: 1     # ナビの並び順。お好みで
 ---
@@ -9,9 +9,9 @@ nav_order: 1     # ナビの並び順。お好みで
   <h1 class="chapter glitch" data-shadow="Chapter I :: VISION ::">
     <span>Chapter&nbsp;I</span><em>:: VISION ::</em>
   </h1>
-  {% if lang == "en" %}
+  {% if page.lang == "en" %}
     <p class="lead">Designing and realizing the near-future IT paradigm with Quantum Internet</p>
-    <a class="btn-quest" href="{{ '/projects/' | relative_url }}?lang={{ lang }}">Let's embark on a quest →</a>
+    <a class="btn-quest" href="{{ '/projects/' | relative_url }}?lang={{ page.lang }}">Let's embark on a quest →</a>
   {% else %}
     <p class="lead">量子インターネットによる近未来ITパラダイムの社会デザインと実現</p>
   {% endif %}
@@ -192,7 +192,7 @@ nav_order: 1     # ナビの並び順。お好みで
 </section>
 <section class="quest-contact" data-reveal>
   <h2 class="chapter">Contact</h2>
-  {% if lang == "en" %}
+  {% if page.lang == "en" %}
     <p>Please contact us using the form below.</p>
     <ul class="contact-list">
       <li>KMD: 4-1-1 Hiyoshi, Kohoku-ku, Yokohama, Kanagawa</li>

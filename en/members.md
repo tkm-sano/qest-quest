@@ -1,6 +1,7 @@
 ---
 title: Members   # ページごとに変更
-lang: ja
+lang: en
+permalink: /en/members/
 layout: default
 nav_order: 2     # ナビの並び順。お好みで
 ---
