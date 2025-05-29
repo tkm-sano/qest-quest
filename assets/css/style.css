@@ -568,3 +568,8 @@ h1.glitch {
     display: none;               /* PC 用バッジをスマホでは隠す */
   }
 }
+.member-role{
+  font-size:0.85em;
+  color:#666;
+  font-weight:normal;
+}

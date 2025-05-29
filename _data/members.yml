@@ -1,9 +1,12 @@
-- name: Takuma Sano
-  photo: takuma.png
+- name: Shota Nagayama
+  role: 准教授
+  role_en: Associate professor
+  photo: shota.png
   comment: >
-    社会は変化し続け、技術は加速度的に進歩しています。一方で、生活に対する課題と不安は尽きません。量子コンピュータが拓く新しいライフスタイルを示し、次世代が希望ある未来を思い描くことに貢献していきます。
+    情報技術が実現できる未来に限界などなく、時間も空間も超えて、人類はいくらでも発展していけることを示し続けていきたいと思います。
   comment_en: >
-    Society is constantly changing and technology is advancing at an accelerating pace, yet challenges and uncertainties in daily life persist. By illustrating new lifestyles enabled by quantum computers, I hope to help the next generation envision a hopeful future.
+    There are no limits to the futures information technology can realize. Across time and space, humanity can keep evolving indefinitely, and I want to continue demonstrating that potential.
+  link: https://shota.io/
 
 - name: Haruka Shiina
   photo: haruka.png
@@ -19,10 +22,9 @@
   comment_en: >
     “Q/est? What an exciting name!” I jumped in with cheerful curiosity. I now design how society might look when quantum technology is fully implemented. With a newcomer’s perspective, I aim to surprise experts with insights they may have overlooked.
 
-- name: Shota Nagayama
-  photo: shota.png
+- name: Takuma Sano
+  photo: takuma.png
   comment: >
-    情報技術が実現できる未来に限界などなく、時間も空間も超えて、人類はいくらでも発展していけることを示し続けていきたいと思います。
+    社会は変化し続け、技術は加速度的に進歩しています。一方で、生活に対する課題と不安は尽きません。量子コンピュータが拓く新しいライフスタイルを示し、次世代が希望ある未来を思い描くことに貢献していきます。
   comment_en: >
-    There are no limits to the futures information technology can realize. Across time and space, humanity can keep evolving indefinitely, and I want to continue demonstrating that potential.
-  link: https://shota.io/
+    Society is constantly changing and technology is advancing at an accelerating pace, yet challenges and uncertainties in daily life persist. By illustrating new lifestyles enabled by quantum computers, I hope to help the next generation envision a hopeful future.

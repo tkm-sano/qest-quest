@@ -20,7 +20,14 @@ nav_order: 2     # ナビの並び順。お好みで
   {% for m in site.data.members %}
   <div class="card" data-reveal>
     <img src="{{ '/assets/img/members/' | append: m.photo | relative_url }}" alt="">
-    <h3>{{ m.name }}</h3>
+    <h3>
+      {{ m.name }}<br>
+      {% if page.lang == 'en' and m.role_en %}
+        <span class="member-role">{{ m.role_en }}</span>
+      {% elsif m.role %}
+        <span class="member-role">{{ m.role }}</span>
+      {% endif %}
+    </h3>
     {% if page.lang == "en" and m.comment_en %}
       <p>{{ m.comment_en }}</p>
     {% else %}
