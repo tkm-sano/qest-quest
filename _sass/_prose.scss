@@ -91,14 +91,21 @@ span.sfx {
   .prose {
     padding-left: 1rem;
     padding-right: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
   }
 
   /* blockquote 全般をコンパクトに */
   .prose blockquote {
+    background: #f8f8f8;   /* ライトテーマ背景 */
+    color: #333;           /* 濃いグレー文字 */
     margin-left: 0;
     margin-right: 0;
-    padding: 0.3rem 0.7rem;
-    line-height: 1.4;
+    padding: 0.4rem 0.8rem;
+    line-height: 1.6;
+    border-left: 3px solid #999;
+    font-family: inherit;  /* monospace → 通常本文フォント */
+    white-space: pre-wrap;
   }
 
   /* バリアント（広告・LIVE 等）の装飾も細くする */
@@ -107,9 +114,11 @@ span.sfx {
   blockquote.live,
   blockquote.feed,
   blockquote.sys {
-    border-left-width: 2px;
-    padding: 0.3rem 0.7rem;
-    font-size: 0.95rem;
+    background: #fafafa;
+    color: #444;
+    border-left-width: 3px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.98rem;
   }
 
   /* 効果音が長い場合でもはみ出さないよう折り返す */
