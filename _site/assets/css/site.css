@@ -29,11 +29,11 @@ blockquote.sys, blockquote[data-label="sys"] { background: #222222; color: #cccc
 span.sfx { font-weight: 700; font-style: italic; letter-spacing: 0.05em; }
 
 /* ============================================ モバイル補正（740px 未満） ============================================ */
-@media (max-width: 739px) { /* 本文左右へ最小限の余白を確保 */
-  .prose { padding-left: 1rem; padding-right: 1rem; }
-  /* blockquote 全般をコンパクトに */
-  .prose blockquote { margin-left: 0; margin-right: 0; padding: 0.3rem 0.7rem; line-height: 1.4; }
-  /* バリアント（広告・LIVE 等）の装飾も細くする */
-  blockquote.ad, blockquote[data-label="ad"], blockquote.live, blockquote.feed, blockquote.sys { border-left-width: 2px; padding: 0.3rem 0.7rem; font-size: 0.95rem; }
+@media (max-width: 739px) { /* 強制的に単語内でも折り返す: スマホで横スクロール防止 */
+  .prose, .prose p, .prose blockquote { overflow-wrap: anywhere; word-break: break-word; }
+  /* 本文左右へ最小限の余白を確保 */
+  .prose { max-width: 100%; /* 横いっぱいに広げて横スクロールを防止 */ padding-left: 1rem; padding-right: 1rem; font-size: 1.1rem; line-height: 1.8; }
+  /* 段落は改行を無視して自動折り返しにする */
+  .prose p { white-space: normal !important; /* ←強制的に pre-line を無効化 */ }
   /* 効果音が長い場合でもはみ出さないよう折り返す */
   span.sfx { word-break: break-all; } }

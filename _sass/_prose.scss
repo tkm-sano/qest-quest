@@ -97,6 +97,7 @@ span.sfx {
 
   /* 本文左右へ最小限の余白を確保 */
   .prose {
+    max-width: 100%;       /* 横いっぱいに広げて横スクロールを防止 */
     padding-left: 1rem;
     padding-right: 1rem;
     font-size: 1.1rem;
@@ -105,33 +106,7 @@ span.sfx {
 
   /* 段落は改行を無視して自動折り返しにする */
   .prose p {
-    white-space: normal;
-  }
-
-  /* blockquote 全般をコンパクトに */
-  .prose blockquote {
-    background: #f8f8f8;   /* ライトテーマ背景 */
-    color: #333;           /* 濃いグレー文字 */
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0.4rem 0.8rem;
-    line-height: 1.6;
-    border-left: 3px solid #999;
-    font-family: inherit;  /* monospace → 通常本文フォント */
-    white-space: pre-wrap;
-  }
-
-  /* バリアント（広告・LIVE 等）の装飾も細くする */
-  blockquote.ad,
-  blockquote[data-label="ad"],
-  blockquote.live,
-  blockquote.feed,
-  blockquote.sys {
-    background: #fafafa;
-    color: #444;
-    border-left-width: 3px;
-    padding: 0.4rem 0.8rem;
-    font-size: 0.98rem;
+   white-space: normal !important;   /* ←強制的に pre-line を無効化 */
   }
 
   /* 効果音が長い場合でもはみ出さないよう折り返す */
