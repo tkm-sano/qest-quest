@@ -1,0 +1,34 @@
+
+
+/* Narrow readable column for story pages */
+.prose {
+  max-width: 60ch;      /* comfortable reading width */
+  margin: 2.5rem auto;
+  line-height: 1.8;
+  font-size: 1.06rem;
+}
+
+.prose h2,
+.prose h3 {
+  margin-top: 2.5rem;
+  line-height: 1.3;
+}
+
+.prose hr {
+  margin: 2.5rem 0;
+}
+
+/* Preserve line breaks in regular paragraphs */
+.prose p {
+  white-space: pre-line;   /* respects \n in Markdown output */
+}
+
+/* Mono‑style chat/console logs */
+.prose blockquote {
+  background: #111;
+  color: #0ff;
+  font-family: monospace;
+  padding: 0.8rem 1rem;
+  border-left: 4px solid #0ff;
+  white-space: pre-wrap;
+}

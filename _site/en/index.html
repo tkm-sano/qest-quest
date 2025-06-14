@@ -7,6 +7,27 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="icon" type="image/png" href="/assets/img/logo_icon.png">
   <link rel="stylesheet" href="/assets/css/style.css">
+<!-- Google Analytics 4 – minimal “read_confirm” only -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PHHQGMRM5V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  /* Disable automatic page_view and ad‑related signals */
+  gtag('js', new Date());
+  gtag('config', 'G-PHHQGMRM5V', {
+    send_page_view: false,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  /* Fire one custom event as soon as the page is opened */
+  gtag('event', 'read_confirm', {
+    page_location: window.location.href,
+    page_title: document.title,
+    page_path: '/en/'
+  });
+</script>
 </head>
 <body>
   <header class="site-header" role="banner">
