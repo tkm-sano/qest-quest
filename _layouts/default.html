@@ -8,14 +8,14 @@
   <link rel="icon" type="image/png" href="{{ '/assets/img/logo_icon.png' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 <!-- Google Analytics 4 – minimal “read_confirm” only -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PHHQGMRM5V"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
 
   /* Disable automatic page_view and ad‑related signals */
   gtag('js', new Date());
-  gtag('config', 'G-REPLACE_ME', {
+  gtag('config', '{{ site.google_analytics }}', {
     send_page_view: false,
     allow_google_signals: false,
     allow_ad_personalization_signals: false
@@ -23,6 +23,8 @@
 
   /* Fire one custom event as soon as the page is opened */
   gtag('event', 'read_confirm', {
+    page_location: window.location.href,
+    page_title: document.title,
     page_path: '{{ page.url }}'
   });
 </script>

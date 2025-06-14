@@ -12,6 +12,7 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
 
+google_analytics: "G-PHHQGMRM5V"   # ← 実際の Measurement ID に置き換えてください
 
 defaults:
   - scope:
