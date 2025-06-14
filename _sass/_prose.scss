@@ -93,7 +93,7 @@ span.sfx {
   .prose blockquote {
     overflow-wrap: anywhere;
     word-break: break-word;
-  }ß
+  }
 
   /* 本文左右へ最小限の余白を確保 */
   .prose {
@@ -101,6 +101,11 @@ span.sfx {
     padding-right: 1rem;
     font-size: 1.1rem;
     line-height: 1.8;
+  }
+
+  /* 段落は改行を無視して自動折り返しにする */
+  .prose p {
+    white-space: normal;
   }
 
   /* blockquote 全般をコンパクトに */
