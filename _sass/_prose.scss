@@ -46,6 +46,7 @@ blockquote[data-label="ad"] {
   color: #e7c37b;        /* softer gold */
   border-left: 3px solid #e7c37b;
   padding: 0.4rem 0.8rem;
+  box-sizing: border-box;
 }
 
 /* ライブウォール［LIVE WALL］ */
@@ -79,4 +80,40 @@ span.sfx {
   font-weight: 700;
   font-style: italic;
   letter-spacing: 0.05em;
+}
+
+/* ============================================
+   モバイル補正（740px 未満）
+   ============================================ */
+@media (max-width: 739px) {
+
+  /* 本文左右へ最小限の余白を確保 */
+  .prose {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* blockquote 全般をコンパクトに */
+  .prose blockquote {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0.3rem 0.7rem;
+    line-height: 1.4;
+  }
+
+  /* バリアント（広告・LIVE 等）の装飾も細くする */
+  blockquote.ad,
+  blockquote[data-label="ad"],
+  blockquote.live,
+  blockquote.feed,
+  blockquote.sys {
+    border-left-width: 2px;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.95rem;
+  }
+
+  /* 効果音が長い場合でもはみ出さないよう折り返す */
+  span.sfx {
+    word-break: break-all;
+  }
 }

@@ -14,7 +14,7 @@
 
 /* ───────────────────────────────────────────── Variant colouring for electronic text blocks 用途：広告 / ライブウォール / フィード / システム通知 使い方： 1) blockquote に .ad .live .feed .sys のクラス 2) もしくは data-label="ad" 等を付与 ──────────────────────────────────────────── */
 /* 広告［広告］ */
-blockquote.ad, blockquote[data-label="ad"] { background: #1a0d00; /* darker, less saturated */ color: #e7c37b; /* softer gold */ border-left: 3px solid #e7c37b; padding: 0.4rem 0.8rem; }
+blockquote.ad, blockquote[data-label="ad"] { background: #1a0d00; /* darker, less saturated */ color: #e7c37b; /* softer gold */ border-left: 3px solid #e7c37b; padding: 0.4rem 0.8rem; box-sizing: border-box; }
 
 /* ライブウォール［LIVE WALL］ */
 blockquote.live, blockquote[data-label="live"] { background: #001122; color: #66ccff; border-left-color: #66ccff; }
@@ -27,3 +27,13 @@ blockquote.sys, blockquote[data-label="sys"] { background: #222222; color: #cccc
 
 /* ───────────────────────────────────────────── SFX (sound‑effect) inline text 太字＋斜体＋字間で効果音を強調 ──────────────────────────────────────────── */
 span.sfx { font-weight: 700; font-style: italic; letter-spacing: 0.05em; }
+
+/* ============================================ モバイル補正（740px 未満） ============================================ */
+@media (max-width: 739px) { /* 本文左右へ最小限の余白を確保 */
+  .prose { padding-left: 1rem; padding-right: 1rem; }
+  /* blockquote 全般をコンパクトに */
+  .prose blockquote { margin-left: 0; margin-right: 0; padding: 0.3rem 0.7rem; line-height: 1.4; }
+  /* バリアント（広告・LIVE 等）の装飾も細くする */
+  blockquote.ad, blockquote[data-label="ad"], blockquote.live, blockquote.feed, blockquote.sys { border-left-width: 2px; padding: 0.3rem 0.7rem; font-size: 0.95rem; }
+  /* 効果音が長い場合でもはみ出さないよう折り返す */
+  span.sfx { word-break: break-all; } }
