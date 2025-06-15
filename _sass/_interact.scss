@@ -1,0 +1,90 @@
+
+
+/* =========================================================
+   _interact.scss
+   SF 小説ページのインタラクション用ユーティリティ
+   ---------------------------------------------------------
+   1. 画像ユーティリティ（中央寄せ＋幅制限）
+   2. 広告 / LIVE / SYS ブロックの開閉アニメ
+   3. 効果音テキスト .sfx の基本スタイル
+   4. セクション .scene のフェードイン初期値
+   ========================================================= */
+
+/* ---------- 1. 画像ユーティリティ ---------- */
+img.center { display: block; margin-left: auto; margin-right: auto; }
+img.w-100  { width: 100%; height: auto; }
+img.w-90   { width: 90%;  height: auto; }
+
+/* ---------- 2. 折りたたみブロック ---------- */
+blockquote.ad,
+blockquote.live,
+blockquote.feed,
+blockquote.sys {
+  max-height: 2.6em;           /* 1 行半だけ見せる */
+  overflow: hidden;
+  cursor: pointer;
+  transition: max-height .25s ease;
+  position: relative;
+}
+
+/* クリックで展開 */
+blockquote.ad.open,
+blockquote.live.open,
+blockquote.feed.open,
+blockquote.sys.open {
+  max-height: 18em;
+}
+
+/* ---------- 3. 効果音テキスト ---------- */
+.sfx {
+  display: inline-block;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- 4. .scene アニメ初期値 ----------
+   （JS で .scene 要素に inView 時 opacity/transform を解除）  */
+.scene {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .6s cubic-bezier(.2,.7,.3,1),
+              transform .6s cubic-bezier(.2,.7,.3,1);
+}
+
+
+/* =========================================================
+   5. アクセシビリティ & レスポンシブ拡張
+   ---------------------------------------------------------
+   5-1. prefers‑reduced‑motion に合わせアニメ無効化
+   5-2. .scene 要素が可視化されたときの inview クラス
+   5-3. モバイル幅での画像 100% 化
+   5-4. Glossary 用語 (.term) の視覚ヒント
+   ========================================================= */
+
+/* 5‑1 ── 動きを控えたいユーザ向け */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+  }
+  .scene {
+    transform: none !important;
+  }
+}
+
+/* 5‑2 ── scene フェードイン完了状態 */
+.scene.inview {
+  opacity: 1;
+  transform: none;
+}
+
+/* 5‑3 ── スマホで img.w-90 を全幅に */
+@media (max-width: 600px) {
+  img.w-90 { width: 100%; }
+}
+
+/* 5‑4 ── Glossary 用語の下線 & カーソル */
+.term {
+  text-decoration: dotted underline;
+  cursor: help;
+}

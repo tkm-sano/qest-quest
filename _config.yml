@@ -19,3 +19,7 @@ defaults:
       path: ""
     values:
       lang: ja
+
+include:
+  - assets/data
+  - assets/.well-known

@@ -68,6 +68,15 @@ blockquote[data-label="ad"] {
   box-sizing: border-box;
 }
 
+blockquote.live,
+blockquote.feed,
+blockquote.sys,
+blockquote[data-label="live"],
+blockquote[data-label="feed"],
+blockquote[data-label="sys"] {
+  box-sizing: border-box;   /* ensure padding + border are included in width */
+}
+
 /* ライブウォール［LIVE WALL］ */
 blockquote.live,
 blockquote[data-label="live"] {
@@ -99,6 +108,12 @@ span.sfx {
   font-weight: 700;
   font-style: italic;
   letter-spacing: 0.05em;
+}
+
+/* ---------- Code block wrap (all viewports) ---------- */
+pre {
+  white-space: pre-wrap;   /* allow wrapping inside ``` fences */
+  word-break: break-word;  /* break long words if necessary    */
 }
 
 /* ============================================

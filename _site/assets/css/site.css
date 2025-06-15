@@ -1,4 +1,9 @@
 @charset "UTF-8";
+/* Glossary tooltip */
+[data-def] { position: relative; cursor: help; }
+
+[data-def]:hover::after, [data-def]:focus::after { content: attr(data-def); position: absolute; top: -2.2em; left: 0; padding: .4em .6em; font-size: .85em; line-height: 1.2; background: rgba(0, 0, 0, 0.8); color: #fff; border-radius: 4px; width: max-content; max-width: 16em; white-space: normal; z-index: 999; }
+
 /* Narrow readable column for story pages */
 .prose { max-width: 60ch; /* comfortable reading width */ margin: 2.5rem auto; line-height: 2.5; font-size: 1.06rem; }
 
@@ -25,6 +30,8 @@
 /* 広告［広告］ */
 blockquote.ad, blockquote[data-label="ad"] { background: #1a0d00; /* darker, less saturated */ color: #e7c37b; /* softer gold */ border-left: 3px solid #e7c37b; padding: 0.4rem 0.8rem; box-sizing: border-box; }
 
+blockquote.live, blockquote.feed, blockquote.sys, blockquote[data-label="live"], blockquote[data-label="feed"], blockquote[data-label="sys"] { box-sizing: border-box; /* ensure padding + border are included in width */ }
+
 /* ライブウォール［LIVE WALL］ */
 blockquote.live, blockquote[data-label="live"] { background: #001122; color: #66ccff; border-left-color: #66ccff; }
 
@@ -37,6 +44,9 @@ blockquote.sys, blockquote[data-label="sys"] { background: #222222; color: #cccc
 /* ───────────────────────────────────────────── SFX (sound‑effect) inline text 太字＋斜体＋字間で効果音を強調 ──────────────────────────────────────────── */
 span.sfx { font-weight: 700; font-style: italic; letter-spacing: 0.05em; }
 
+/* ---------- Code block wrap (all viewports) ---------- */
+pre { white-space: pre-wrap; /* allow wrapping inside ``` fences */ word-break: break-word; /* break long words if necessary    */ }
+
 /* ============================================ モバイル補正（740px 未満） ============================================ */
 @media (max-width: 739px) { /* 強制的に単語内でも折り返す: スマホで横スクロール防止 */
   .prose, .prose p, .prose blockquote { overflow-wrap: anywhere; word-break: break-word; }
@@ -46,3 +56,34 @@ span.sfx { font-weight: 700; font-style: italic; letter-spacing: 0.05em; }
   .prose p { white-space: normal !important; /* ←強制的に pre-line を無効化 */ }
   /* 効果音が長い場合でもはみ出さないよう折り返す */
   span.sfx { word-break: break-all; } }
+/* ========================================================= _interact.scss SF 小説ページのインタラクション用ユーティリティ --------------------------------------------------------- 1. 画像ユーティリティ（中央寄せ＋幅制限） 2. 広告 / LIVE / SYS ブロックの開閉アニメ 3. 効果音テキスト .sfx の基本スタイル 4. セクション .scene のフェードイン初期値 ========================================================= */
+/* ---------- 1. 画像ユーティリティ ---------- */
+img.center { display: block; margin-left: auto; margin-right: auto; }
+
+img.w-100 { width: 100%; height: auto; }
+
+img.w-90 { width: 90%; height: auto; }
+
+/* ---------- 2. 折りたたみブロック ---------- */
+blockquote.ad, blockquote.live, blockquote.feed, blockquote.sys { max-height: 2.6em; /* 1 行半だけ見せる */ overflow: hidden; cursor: pointer; transition: max-height .25s ease; position: relative; }
+
+/* クリックで展開 */
+blockquote.ad.open, blockquote.live.open, blockquote.feed.open, blockquote.sys.open { max-height: 18em; }
+
+/* ---------- 3. 効果音テキスト ---------- */
+.sfx { display: inline-block; font-weight: 600; font-style: italic; letter-spacing: 0.08em; }
+
+/* ---------- 4. .scene アニメ初期値 ---------- （JS で .scene 要素に inView 時 opacity/transform を解除）  */
+.scene { opacity: 0; transform: translateY(40px); transition: opacity 0.6s cubic-bezier(0.2, 0.7, 0.3, 1), transform 0.6s cubic-bezier(0.2, 0.7, 0.3, 1); }
+
+/* ========================================================= 5. アクセシビリティ & レスポンシブ拡張 --------------------------------------------------------- 5-1. prefers‑reduced‑motion に合わせアニメ無効化 5-2. .scene 要素が可視化されたときの inview クラス 5-3. モバイル幅での画像 100% 化 5-4. Glossary 用語 (.term) の視覚ヒント ========================================================= */
+/* 5‑1 ── 動きを控えたいユーザ向け */
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; }
+  .scene { transform: none !important; } }
+/* 5‑2 ── scene フェードイン完了状態 */
+.scene.inview { opacity: 1; transform: none; }
+
+/* 5‑3 ── スマホで img.w-90 を全幅に */
+@media (max-width: 600px) { img.w-90 { width: 100%; } }
+/* 5‑4 ── Glossary 用語の下線 & カーソル */
+.term { text-decoration: dotted underline; cursor: help; }

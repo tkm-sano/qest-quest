@@ -1,0 +1,23 @@
+/* Glossary tooltip */
+[data-def] {
+  position: relative;
+  cursor: help;
+}
+
+[data-def]:hover::after,
+[data-def]:focus::after {
+  content: attr(data-def);
+  position: absolute;
+  top: -2.2em;
+  left: 0;
+  padding: .4em .6em;
+  font-size: .85em;
+  line-height: 1.2;
+  background: rgba(0,0,0,.8);
+  color:#fff;
+  border-radius:4px;
+  width: max-content;
+  max-width: 16em;
+  white-space: normal;
+  z-index: 999;
+}
