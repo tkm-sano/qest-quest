@@ -6,6 +6,25 @@
   font-size: 1.06rem;
 }
 
+/* ============================================
+   画像ユーティリティ
+   .center … 中央寄せ
+   .w‑100  … 幅100%
+   .w‑90   … 幅90%
+   画像は常に縦横比を保持しながら縮小
+   ============================================ */
+.prose img {
+  max-width: 100%;
+  height: auto;
+}
+.prose img.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.prose img.w-100 { width: 100%;  }
+.prose img.w-90  { width: 90%;   }
+
 .prose h2,
 .prose h3 {
   margin-top: 2.5rem;
