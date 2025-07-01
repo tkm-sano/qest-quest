@@ -23,7 +23,17 @@ nav_order: 3     # ナビの並び順。お好みで
     <img src="{{ '/assets/img/projects/' | append: p.image | relative_url }}" alt="">
     <h3>{% if page.lang == "en" and p.title_en %}{{ p.title_en }}{% else %}{{ p.title }}{% endif %}</h3>
     <p>{% if page.lang == "en" and p.desc_en %}{{ p.desc_en }}{% else %}{{ p.desc }}{% endif %}</p>
-    <a href="{{ p.link }}" class="btn-quest" target="_blank">Visit</a>
+    {% if p.link %}
+      <a href="{{ p.link | relative_url }}" class="btn-quest" target="_blank">
+        {% if page.lang == "en" and p.button_en %}
+          {{ p.button_en }}
+        {% elsif p.button %}
+          {{ p.button }}
+        {% else %}
+          {{ p.title }}
+        {% endif %}
+      </a>
+    {% endif %}
   </div>
   {% endfor %}
 </div>
