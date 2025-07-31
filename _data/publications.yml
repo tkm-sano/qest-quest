@@ -33,3 +33,33 @@
   authors: Sho Morishita, Yusuke Nagato, Konomi Higo, Kentaro Teramoto, Shota Nagayama
   venue: CHI Play
   year: 2024
+# _data/publications.yml
+- title: "Workshop on Quantum Network Engineering"
+  authors: Inder Monga, Rodney Van Meter, Shota Nagayama, Joaquin Chung, Wenji Wu
+  venue: Workshop on Quantum Network Engineering
+  year: 2025
+  pdf: assets/papers/WKS_QNE.pdf
+
+- title: "Automatic Configuration Protocols for Optical Quantum Networks"
+  authors: Amin Taherkhani, Andrew Todd, Kentaro Teramoto, Shota Nagayama, Rodney Van Meter
+  venue: IEEE Quantum Engineering
+  year: 2025
+  pdf: assets/papers/QNET_AutoConfig.pdf
+
+- title: "A Tailored Fidelity Estimation and Purification Method for Bootstrapping a Quantum Network"
+  authors: Takafumi Oka, Michal Hajdusek, Shota Nagayama, Rodney Van Meter
+  venue: ACM SIGCOMM
+  year: 2025
+  pdf: assets/papers/QNET_FidelityBootstrap.pdf
+
+- title: "Evaluation of Distimation’s Real-world Performance on a Superconducting Quantum Computer"
+  authors: Hikaru Yokomori, Marii Koyama, Naphan Benchasattabuse, Michal Hajdusek, Rodney Van Meter, Shota Nagayama
+  venue: Quantum Information Processing
+  year: 2024
+  pdf: assets/papers/QNET_Distimation_SCQC.pdf
+
+- title: "Quantum Quest: A Card Game for Understanding Quantum Governance"
+  authors: Sho Morishita, Yusuke Nagato, Konomi Higo, Kentaro Teramoto, Shota Nagayama
+  venue: CHI Play
+  year: 2024
+  pdf: assets/papers/QSEEC_QuantumQuest.pdf

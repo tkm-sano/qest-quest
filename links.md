@@ -23,20 +23,15 @@ nav_order: 4     # ナビの並び順。お好みで
   </h2>
 
   {% assign pubs = site.data.publications | sort: "year" | reverse %}
-  <ul class="pub-list">
+  <ol class="pub-list">
   {% for pub in pubs %}
     <li>
-      <strong>{{ pub.title }}</strong><br/>
-      {{ pub.authors }}<br/>
-      {% if pub.venue or pub.year %}
-        <em>{{ pub.venue }}{% if pub.year %}, {{ pub.year }}{% endif %}</em>
-      {% endif %}
-      {% if pub.pdf %}
-        <br/><a href="{{ pub.pdf | relative_url }}" target="_blank">PDF</a>
-      {% endif %}
+      {{ pub.authors }}.  
+      “{{ pub.title }}.” <em>{{ pub.venue }}</em>{% if pub.year %} {{ pub.year }}.{% endif %}{% if pub.pdf %}
+      <br/><a href="{{ pub.pdf | relative_url }}" target="_blank">PDF</a>{% endif %}
     </li>
   {% endfor %}
-  </ul>
+  </ol>
 </section>
 
 <section class="related-orgs" data-reveal>
