@@ -148,11 +148,12 @@ section {
    カードレイアウト
    ───────────────────────────── */
 .cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
   margin: 24px 0;
+  padding-top: 2rem;
+  justify-items: center;
 }
 .card {
   background: #fff;
@@ -572,4 +573,55 @@ h1.glitch {
   font-size:0.85em;
   color:#666;
   font-weight:normal;
+}
+/* Heading layout standardization */
+.prose h1,
+.prose h2,
+.prose h3 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.prose h1 {
+  font-size: 2em;
+}
+
+.prose h2 {
+  font-size: 1.5em;
+}
+
+.prose h3 {
+  font-size: 1.25em;
+}
+
+.prose p {
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+}
+
+/* Optional: ensure consistent padding for content area */
+main,
+.prose {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+/* Hero section layout fix */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  width: 100%;
+}
+
+.hero .chapter {
+  display: inline-block;
+  margin: 0 auto;
+  font-size: clamp(1.8rem, 3vw + 1rem, 2.6rem);
+  line-height: 1.3;
+  letter-spacing: 0.05em;
 }
