@@ -1,5 +1,5 @@
 ---
-title: Links 
+title: Publications 
 lang: ja
 layout: default
 nav_order: 4     # ナビの並び順。お好みで
@@ -7,8 +7,36 @@ nav_order: 4     # ナビの並び順。お好みで
 
 <section class="hero" data-reveal>
   <h1 class="chapter glitch" data-shadow="Chapter IV :: LINKS ::">
-    <span>Chapter&nbsp;IV</span><em>:: LINKS ::</em>
+    <span>Chapter&nbsp;IV</span><em>:: REFERENCE ::</em>
   </h1>
+</section>
+
+<section class="publications" data-reveal>
+  <h2 class="chapter" data-shadow="Publications">
+    <span>
+      {% if page.lang == "en" %}
+        Publications
+      {% else %}
+        研究成果
+      {% endif %}
+    </span>
+  </h2>
+
+  {% assign pubs = site.data.publications | sort: "year" | reverse %}
+  <ul class="pub-list">
+  {% for pub in pubs %}
+    <li>
+      <strong>{{ pub.title }}</strong><br/>
+      {{ pub.authors }}<br/>
+      {% if pub.venue or pub.year %}
+        <em>{{ pub.venue }}{% if pub.year %}, {{ pub.year }}{% endif %}</em>
+      {% endif %}
+      {% if pub.pdf %}
+        <br/><a href="{{ pub.pdf | relative_url }}" target="_blank">PDF</a>
+      {% endif %}
+    </li>
+  {% endfor %}
+  </ul>
 </section>
 
 <section class="related-orgs" data-reveal>
