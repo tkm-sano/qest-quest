@@ -1,0 +1,9 @@
+- id: sfp
+  name: "SFプロトタイピング"
+  name_en: "SF Prototyping"
+- id: ccw
+  name: "共創ワークショップ"
+  name_en: "Co-creation Workshops"
+- id: bcsp
+  name: "行動変容シナリオプランニング"
+  name_en: "Behavior Change Scenario Planning"

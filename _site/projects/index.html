@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <title>Projects | Q/EST Quest - 量子インターネットと未来社会のデザイン・研究チーム</title>
+  <title>Activities | Q/EST Quest - 量子インターネットと未来社会のデザイン・研究チーム</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="icon" type="image/png" href="/assets/img/logo_icon.png">
@@ -30,6 +30,7 @@
 </script>
 </head>
 <body>
+  <canvas id="quantum-bubbles"></canvas>
   <header class="site-header" role="banner">
     <a
       
@@ -64,7 +65,7 @@
       </li><li>
         
         
-          <a href="/projects/">Projects</a>
+          <a href="/projects/">Activities</a>
         
       </li><li>
         
@@ -88,39 +89,163 @@
   <main id="main-content" tabindex="-1">
     <div class="prose">
       <section class="hero" data-reveal="">
-  <h1 class="chapter glitch" data-shadow="Chapter III :: PROJECT ::">
-    <span>Chapter&nbsp;III</span><em>:: PROJECT ::</em>
+  <h1 class="chapter glitch" data-shadow="Chapter III :: ACTIVITIES ::">
+    <span>Chapter&nbsp;III</span><em>:: ACTIVITIES ::</em>
   </h1>
   
-    <p class="lead">量子インターネットによる近未来ITパラダイムの実現を目指し、量子コンピュータ・量子インターネットで変革された社会の姿をデザインします。<br />
-    AI社会の後に来る、量子技術が当たり前となった社会における生活、現在の量子技術と近未来の社会システムとの融合、そこに至るテクノロジーの研究開発に取り組みます。</p>
+    <p class="lead">このページでは、プロジェクトの活動報告とニュースを掲載します。<br />
+    現在の量子情報技術と近未来の社会をつなぐ取り組みを紹介します。</p>
+  
+<style>
+  /* Force grid layout for Activities & News even if theme styles conflict */
+  #activities .cards,
+  #news .cards {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  #activities .cards .card,
+  #news .cards .card {
+    width: auto !important;
+    max-width: 100%;
+  }
+  #activities .card,
+  #news .card {
+    flex: initial;
+  }
+
+  /* Make NEWS cards slightly larger */
+  #news .cards {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+  /* NEWS images: show original aspect, larger, not circular */
+  #news .card img {
+    display: block;
+    width: 100%;
+    height: auto;             /* no fixed height */
+    object-fit: contain;      /* do not crop */
+    background: transparent;  /* remove gray bg */
+    border-radius: 0 !important; /* never circular */
+    box-shadow: none;
+  }
+  @media (min-width: 640px) {
+    #activities .cards,
+    #news .cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 960px) {
+    #activities .cards {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    #news .cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr)); /* prefer 2 columns for larger images */
+    }
+  }
+  @media (min-width: 1280px) {
+    #activities .cards,
+    #news .cards {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1440px) {
+    #news .cards {
+      grid-template-columns: repeat(3, minmax(0, 1fr)); /* three columns only on very wide screens */
+    }
+  }
+  /* Flex fallback if CSS Grid is not supported */
+  @supports not (display: grid) {
+    #activities .cards,
+    #news .cards {
+      display: flex !important;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+    #activities .cards .card,
+    #news .cards .card {
+      flex: 1 1 280px;
+    }
+  }
+</style>
+</section>
+
+<!-- Activities Section -->
+<section id="activities" data-reveal="">
+  <h2>活動報告</h2>
+  
+  
+  
+    <h3 class="cat-title">SFプロトタイピング</h3>
+    
+    
+      
+      <div class="cards">
+        
+        <div class="card" data-reveal="">
+          <img src="/assets/img/activities/sample.jpg" alt="" />
+          <h4>Coming soon</h4>
+          <p> </p>
+          
+        </div>
+        
+      </div>
+    
+  
+    <h3 class="cat-title">共創ワークショップ</h3>
+    
+    
+      
+      <div class="cards">
+        
+        <div class="card" data-reveal="">
+          <img src="/assets/img/activities/sample.jpg" alt="" />
+          <h4>Coming soon</h4>
+          <p> </p>
+          
+        </div>
+        
+      </div>
+    
+  
+    <h3 class="cat-title">行動変容シナリオプランニング</h3>
+    
+    
+      
+      <div class="cards">
+        
+        <div class="card" data-reveal="">
+          <img src="/assets/img/activities/sample.jpg" alt="" />
+          <h4>Coming soon</h4>
+          <p> </p>
+          
+        </div>
+        
+      </div>
+    
+  
   
 </section>
-<div class="cards">
+
+<!-- News Section -->
+<section id="news" data-reveal="">
+  <h2>NEWS</h2>
   
-  <div class="card" data-reveal="">
-    <img src="/assets/img/projects/chip.png" alt="" />
-    <h3>SFプロトタイピング</h3>
-    <p>量子コンピュータが実現した未来社会を自由に想像し、その世界をストーリーとして表現
-</p>
+  
     
-  </div>
-  
-  <div class="card" data-reveal="">
-    <img src="/assets/img/projects/" alt="" />
-    <h3>Coming Soon...</h3>
-    <p></p>
     
-  </div>
-  
-  <div class="card" data-reveal="">
-    <img src="/assets/img/projects/" alt="" />
-    <h3>Coming Soon...</h3>
-    <p></p>
+      <h4 class="news-title">
+        <a href="/news/qnet-award-2025">
+          QNET Best Paper Award 2nd Place 受賞
+        </a>
+      </h4>
+      
+      <p class="news-desc">IEEE Quantum Week 2025において、永山翔太准教授の論文「Automatic Configuration Protocols for Optical Quantum Networks」が、QNET Best Paper Award 2nd Placeを受賞しました。</p>
+      
+      
+      
     
-  </div>
   
-</div>
+</section>
 
     </div>
   </main>
@@ -128,5 +253,6 @@
   <footer class="site-footer" role="contentinfo">
     <small>© 2025 Q/EST</small>
   </footer>
+  <script src="/assets/js/bubbles.js"></script>
 </body>
 </html>

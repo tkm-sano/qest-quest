@@ -23,3 +23,8 @@ defaults:
 include:
   - assets/data
   - assets/.well-known
+
+collections:
+  news:
+    output: true
+    permalink: /news/:name/
