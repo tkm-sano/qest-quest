@@ -28,6 +28,16 @@
     page_path: '/projects/toppema/'
   });
 </script>
+  <style>
+    /* Keep background canvas behind and non-interactive */
+    #quantum-bubbles{
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      pointer-events: none; /* do not block clicks on header/menu */
+    }
+  </style>
 </head>
 <body>
   <canvas id="quantum-bubbles"></canvas>
@@ -41,8 +51,8 @@
       <img src="/assets/img/logo_icon.png" alt="Q/EST logo icon" class="logo-icon">
       <img src="/assets/img/logo_text.png" alt="Q/EST logo text" class="logo-text-img">
     </a>
-    <nav class="nav-menu">
-  <button class="nav-toggle" aria-label="Toggle navigation">
+    <nav id="site-nav" class="nav-menu">
+  <button class="nav-toggle" aria-label="Toggle navigation" aria-controls="nav-list" aria-expanded="false">
     <span class="nav-toggle-bar"></span>
     <span class="nav-toggle-bar"></span>
     <span class="nav-toggle-bar"></span>
@@ -84,6 +94,38 @@
     </li>
   </ul>
 </nav>
+<style>
+  /* Mobile-only visibility: hide list until opened, show toggle */
+  @media (max-width: 900px) {
+    #site-nav .nav-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+    }
+    #site-nav #nav-list {
+      display: none;
+    }
+    #site-nav #nav-list.is-open {
+      display: block;
+    }
+  }
+</style>
+<script>
+  (function () {
+    var nav = document.getElementById('site-nav');
+    if (!nav) return;
+    var btn = nav.querySelector('.nav-toggle');
+    var list = nav.querySelector('#nav-list');
+    if (!btn || !list) return;
+    btn.addEventListener('click', function () {
+      var open = list.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  })();
+</script>
   </header>
 
   <main id="main-content" tabindex="-1">

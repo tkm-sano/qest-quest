@@ -7,7 +7,7 @@ nav_order: 4     # ナビの並び順。お好みで
 
 <section class="hero" data-reveal>
   <h1 class="chapter glitch" data-shadow="Chapter IV :: LINKS ::">
-    <span>Chapter&nbsp;IV</span><em>:: REFERENCE ::</em>
+    <em>:: REFERENCE ::</em>
   </h1>
 </section>
 

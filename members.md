@@ -8,7 +8,7 @@ nav_order: 2     # ナビの並び順。お好みで
 <section class="hero" data-reveal>
   <div class="container">
     <h1 class="chapter glitch" data-shadow="Chapter II :: MEMBER ::">
-    <span>Chapter&nbsp;II</span><em>:: MEMBER ::</em>
+    <em>:: MEMBER ::</em>
     </h1>
   </div>
   {% if page.lang == "en" %}

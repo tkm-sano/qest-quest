@@ -7,7 +7,7 @@ nav_order: 3     # ナビの並び順。お好みで
 
 <section class="hero" data-reveal>
   <h1 class="chapter glitch" data-shadow="Chapter III :: ACTIVITIES ::">
-    <span>Chapter&nbsp;III</span><em>:: ACTIVITIES ::</em>
+    <em>:: ACTIVITIES ::</em>
   </h1>
   {% if page.lang == "en" %}
     <p class="lead">This page showcases our latest activities and news.<br />
