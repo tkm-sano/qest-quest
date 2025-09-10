@@ -1,7 +1,8 @@
 - date: "2025-09-09"
   slug: "qnet-award-2025"
-  title: "QNET Best Paper Award 2nd Place 受賞"
+  title: "QNET Best Paper Award 2nd Place"
   title_en: "QNET Best Paper Award 2nd Place"
   desc: 'IEEE Quantum Week 2025において、永山翔太准教授の論文「Automatic Configuration Protocols for Optical Quantum Networks」が、QNET Best Paper Award 2nd Placeを受賞しました。'
   desc_en: "At IEEE Quantum Week, our paper on automatic configuration protocols for optical quantum networks received the QNET Best Paper Award (2nd Place). Associate Professor Shota Nagayama (Keio University) was also a co-author and contributed to this award."
   image: "award-2ndplace.jpg"
+  thumbnail: "assets/img/news/qce25_award_certificate.jpg"

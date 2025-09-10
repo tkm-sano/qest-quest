@@ -1,30 +1,93 @@
 ---
-title: Projects   # ページごとに変更
+title: News   # ページごとに変更
 lang: en
-permalink: /en/projects/
+permalink: /en/news/
 layout: default
 nav_order: 3     # ナビの並び順。お好みで
 ---
 
 <section class="hero" data-reveal>
-  <h1 class="chapter glitch" data-shadow="Chapter III :: PROJECT ::">
-    <span>Chapter&nbsp;III</span><em>:: PROJECT ::</em>
+  <h1 class="chapter glitch" data-shadow="Chapter III :: NEWS ::">
+    <span>Chapter&nbsp;III</span><em>:: NEWS ::</em>
   </h1>
   {% if page.lang == "en" %}
-    <p class="lead">Aiming to realize a near‑future IT paradigm driven by the Quantum Internet, we design a society transformed by quantum computers and quantum‑network technologies.<br />
-    We work on R&amp;D that bridges today’s quantum technology with tomorrow’s social systems, envisioning daily life in an age where quantum is as commonplace as AI is today.</p>
+    <p class="lead">This page showcases our latest news and updates.<br />
+    We share information on projects, events, and publications related to quantum technologies and their social applications.</p>
   {% else %}
-    <p class="lead">量子インターネットによる近未来ITパラダイムの実現を目指し、量子コンピュータ・量子インターネットで変革された社会の姿をデザインします。<br />
-    AI社会の後に来る、量子技術が当たり前となった社会における生活、現在の量子技術と近未来の社会システムとの融合、そこに至るテクノロジーの研究開発に取り組みます。</p>
+    <p class="lead">このページでは、プロジェクトの最新ニュースを掲載します。<br />
+    関連する研究・イベント・出版など量子技術と社会応用に関する情報をお届けします。</p>
   {% endif %}
 </section>
-<div class="cards">
-  {% for p in site.data.projects %}
-  <div class="card" data-reveal>
-    <img src="{{ '/assets/img/projects/' | append: p.image | relative_url }}" alt="">
-    <h3>{% if page.lang == "en" and p.title_en %}{{ p.title_en }}{% else %}{{ p.title }}{% endif %}</h3>
-    <p>{% if page.lang == "en" and p.desc_en %}{{ p.desc_en }}{% else %}{{ p.desc }}{% endif %}</p>
-    <a href="{{ p.link }}" class="btn-quest" target="_blank">Visit</a>
-  </div>
-  {% endfor %}
-</div>
+
+<!-- News Section -->
+<section id="news" data-reveal>
+  <h2>NEWS</h2>
+  <style>
+    /* Simple grid for news cards */
+    #news .cards{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      align-items: stretch;
+    }
+    #news .card{
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--c-border, #e5e5e5);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    }
+    #news .card img{
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+    #news .card h4{
+      margin: 0.75rem 1rem 0.25rem;
+      font-size: 1.05rem;
+      line-height: 1.35;
+    }
+    #news .card p{
+      margin: 0 1rem 1rem;
+    }
+    #news .card .btn-quest{
+      margin: 0 1rem 1rem;
+      align-self: flex-start;
+    }
+    @media (max-width: 600px){
+      #news .card img{ height: 140px; }
+    }
+  </style>
+  {% assign news = site.data.news %}
+  {% if news %}
+    {% assign news = news | sort: "date" | reverse %}
+    <div class="cards">
+    {% for n in news %}
+      <div class="card" data-reveal>
+        {% if n.thumbnail or n.image %}
+          {% assign thumb = n.thumbnail | default: n.image %}
+          {% if thumb contains '/' %}
+            <img src="{{ thumb | relative_url }}" alt="">
+          {% else %}
+            <img src="{{ '/assets/img/news/' | append: thumb | relative_url }}" alt="">
+          {% endif %}
+        {% endif %}
+        <h4 class="news-title">
+          <a href="{{ '/news/' | append: n.slug | relative_url }}">
+            {% if n.title_en %}{{ n.title_en }}{% else %}{{ n.title }}{% endif %}
+          </a>
+        </h4>
+        {% if n.desc or n.desc_en %}
+        <p class="news-desc">{% if n.desc_en %}{{ n.desc_en }}{% else %}{{ n.desc }}{% endif %}</p>
+        {% endif %}
+        <a href="{{ '/news/' | append: n.slug | relative_url }}" class="btn-quest">See more</a>
+      </div>
+    {% endfor %}
+    </div>
+  {% else %}
+    <p>No news yet.</p>
+  {% endif %}
+</section>

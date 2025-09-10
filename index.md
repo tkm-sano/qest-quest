@@ -16,105 +16,6 @@ nav_order: 1     # ナビの並び順。お好みで
     <p class="lead">量子インターネットによる近未来ITパラダイムの社会デザインと実現</p>
   {% endif %}
 </section>
-<section id="latest-news" class="news-band" data-reveal>
-  <style>
-    /* LP Latest News band */
-    .news-band{
-      margin: 2rem 0;
-      padding: 1.25rem 1.25rem 0.75rem;
-      border: 1px solid var(--c-border, #eaeef3);
-      border-radius: 12px;
-      background: linear-gradient(180deg,#f5fbff 0%, #ffffff 100%);
-    }
-    .news-band h2{
-      margin: 0 0 .5rem;
-      font-size: 1.1rem;
-      letter-spacing: .08em;
-    }
-    .news-band .news-list{
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    .news-band .news-item{
-      display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: .75rem;
-      padding: .5rem 0;
-      border-top: 1px dashed #dbe7f3;
-    }
-    .news-band .news-item:first-child{
-      border-top: 0;
-    }
-    .news-band time{
-      color: #6b7c93;
-      font-size: .9rem;
-      white-space: nowrap;
-    }
-    .news-band a{
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-    }
-    .news-band a:hover{
-      border-bottom-color: currentColor;
-    }
-    .news-band .view-all{
-      display: inline-block;
-      margin: .75rem 0 1rem;
-      font-size: .95rem;
-    }
-    @media (max-width: 520px){
-      .news-band .news-item{
-        grid-template-columns: 1fr;
-      }
-      .news-band time{
-        order: 2;
-      }
-    }
-  </style>
-
-  <h2>{% if page.lang == "en" %}Latest News{% else %}最新ニュース{% endif %}</h2>
-
-  {% comment %}
-    Prefer collection-based news (_news), fallback to data file (_data/news.yml)
-  {% endcomment %}
-
-  {% assign coll = site.news %}
-  {% if coll and coll.size > 0 %}
-    {% assign news_sorted = coll | sort: "date" | reverse %}
-    <ul class="news-list">
-      {% for item in news_sorted limit:3 %}
-        <li class="news-item">
-          <time datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: "%Y-%m-%d" }}</time>
-          <a href="{{ item.url | relative_url }}">
-            {% if page.lang == "en" and item.title_en %}{{ item.title_en }}{% else %}{{ item.title }}{% endif %}
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    {% assign data_news = site.data.news %}
-    {% if data_news %}
-      {% assign news_sorted = data_news | sort: "date" | reverse %}
-      <ul class="news-list">
-        {% for n in news_sorted limit:3 %}
-          <li class="news-item">
-            <time datetime="{{ n.date | date_to_xmlschema }}">{{ n.date | date: "%Y-%m-%d" }}</time>
-            <a href="{% if n.slug %}{{ '/news/' | append: n.slug | append: '/' | relative_url }}{% elsif n.link %}{{ n.link }}{% else %}#{% endif %}">
-              {% if page.lang == "en" and n.title_en %}{{ n.title_en }}{% else %}{{ n.title }}{% endif %}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>{% if page.lang == "en" %}No news yet.{% else %}ニュースはまだありません。{% endif %}</p>
-    {% endif %}
-  {% endif %}
-
-  <a class="view-all" href="{{ '/projects/#news' | relative_url }}">
-    {% if page.lang == "en" %}View all news →{% else %}すべてのNEWSを見る →{% endif %}
-  </a>
-</section>
 <section class="quantum-demo" data-reveal>
   <div id="quantum-visualization" class="complex-viz"></div>
   <script>
@@ -186,7 +87,7 @@ nav_order: 1     # ナビの並び順。お好みで
       for(let i=0;i<8;i++){
         const poly = document.createElementNS(svgNS, 'polygon');
         const pts=[];
-        for(let a=0;a<360;a+=45){
+        for(let a=0; a<360; a+=45){
           const rad=(a+i*5)*Math.PI/180;
           const r= (i+1)*50 + 20;
           pts.push([w/2 + Math.cos(rad)*r, h/2 + Math.sin(rad)*r].join(','));
@@ -289,6 +190,204 @@ nav_order: 1     # ナビの並び順。お好みで
     })();
   </script>
 </section>
+<section id="latest-news" class="news-band" data-reveal>
+  <style>
+    /* LP Latest News band */
+    .news-band{
+      margin: 2rem 0;
+      padding: 1.25rem 1.25rem 0.75rem;
+      border: 1px solid var(--c-border, #eaeef3);
+      border-radius: 12px;
+      background: linear-gradient(180deg,#f5fbff 0%, #ffffff 100%);
+    }
+    .news-band h2{
+      margin: 0 0 .5rem;
+      font-size: 1.1rem;
+      letter-spacing: .08em;
+    }
+    .news-band .news-list{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .news-band .news-item{
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: .75rem;
+      padding: .5rem 0;
+      border-top: 1px dashed #dbe7f3;
+    }
+    .news-band .news-item:first-child{
+      border-top: 0;
+    }
+    .news-band time{
+      color: #6b7c93;
+      font-size: .9rem;
+      white-space: nowrap;
+    }
+    .news-band a{
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    .news-band a:hover{
+      border-bottom-color: currentColor;
+    }
+    .news-band .view-all{
+      display: inline-block;
+      margin: .75rem 0 1rem;
+      font-size: .95rem;
+    }
+    @media (max-width: 520px){
+      .news-band .news-item{
+        grid-template-columns: 1fr;
+      }
+      .news-band time{
+        order: 2;
+      }
+    }
+  </style>
+
+  <h2>{% if page.lang == "en" %}Latest News{% else %}最新ニュース{% endif %}</h2>
+
+  {% comment %}
+    Prefer collection-based news (_news), fallback to data file (_data/news.yml)
+  {% endcomment %}
+
+  {% assign coll = site.news %}
+  {% if coll and coll.size > 0 %}
+    {% assign news_sorted = coll | sort: "date" | reverse %}
+    <ul class="news-list">
+      {% for item in news_sorted limit:3 %}
+        <li class="news-item">
+          <time datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: "%Y-%m-%d" }}</time>
+          <a href="{{ item.url | relative_url }}">
+            {% if page.lang == "en" and item.title_en %}{{ item.title_en }}{% else %}{{ item.title }}{% endif %}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    {% assign data_news = site.data.news %}
+    {% if data_news %}
+      {% assign news_sorted = data_news | sort: "date" | reverse %}
+      <ul class="news-list">
+        {% for n in news_sorted limit:3 %}
+          <li class="news-item">
+            <time datetime="{{ n.date | date_to_xmlschema }}">{{ n.date | date: "%Y-%m-%d" }}</time>
+            <a href="{% if n.slug %}{{ '/news/' | append: n.slug | append: '/' | relative_url }}{% elsif n.link %}{{ n.link }}{% else %}#{% endif %}">
+              {% if page.lang == "en" and n.title_en %}{{ n.title_en }}{% else %}{{ n.title }}{% endif %}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>{% if page.lang == "en" %}No news yet.{% else %}ニュースはまだありません。{% endif %}</p>
+    {% endif %}
+  {% endif %}
+
+  <a class="view-all" href="{{ '/projects/#news' | relative_url }}">
+    {% if page.lang == "en" %}View all news →{% else %}すべてのNEWSを見る →{% endif %}
+  </a>
+</section>
+<section id="activities-preview" class="activities-band" data-reveal>
+  <style>
+    /* LP Activities preview */
+    .activities-band{
+      margin: 2rem 0;
+    }
+    .activities-band h2{
+      margin: 0 0 .5rem;
+      font-size: 1.1rem;
+      letter-spacing: .08em;
+    }
+    .activities-band .cat-title{
+      margin: 1rem 0 .5rem;
+      font-size: 1rem;
+      opacity: .85;
+    }
+    .activities-band .cards{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      align-items: stretch;
+    }
+    .activities-band .card{
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--c-border, #eaeef3);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .activities-band .card img{
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+    }
+    .activities-band .card h4{
+      margin: .75rem 1rem .25rem;
+      font-size: 1.02rem;
+      line-height: 1.35;
+    }
+    .activities-band .card p{
+      margin: 0 1rem 1rem;
+    }
+    .activities-band .btn-quest{
+      margin: 0 1rem 1rem;
+      align-self: flex-start;
+    }
+    .activities-band .view-all{
+      margin-top: .75rem;
+    }
+  </style>
+
+  <h2>{% if page.lang == "en" %}Activities{% else %}活動報告{% endif %}</h2>
+
+  {% assign categories = site.data.activity_categories %}
+  {% if categories %}
+    {% for cat in categories %}
+      <h3 class="cat-title">{% if page.lang == "en" and cat.name_en %}{{ cat.name_en }}{% else %}{{ cat.name }}{% endif %}</h3>
+      {% assign base = site.data.activities %}
+      {% if base %}
+        {% assign items = base | where: "category", cat.id | sort: "date" | reverse %}
+        <div class="cards">
+          {% for a in items limit:3 %}
+          <div class="card" data-reveal>
+            {% if a.image %}
+              <img src="{{ '/assets/img/activities/' | append: a.image | relative_url }}" alt="">
+            {% endif %}
+            <h4>{% if page.lang == "en" and a.title_en %}{{ a.title_en }}{% else %}{{ a.title }}{% endif %}</h4>
+            {% if a.desc or a.desc_en %}
+            <p>{% if page.lang == "en" and a.desc_en %}{{ a.desc_en }}{% else %}{{ a.desc }}{% endif %}</p>
+            {% endif %}
+            {% if a.link %}
+            <a href="{{ a.link | relative_url }}" class="btn-quest" target="_blank" rel="noopener">
+              {% if page.lang == "en" and a.button_en %}
+                {{ a.button_en }}
+              {% elsif a.button %}
+                {{ a.button }}
+              {% else %}
+                {% if page.lang == "en" and a.title_en %}{{ a.title_en }}{% else %}{{ a.title }}{% endif %}
+              {% endif %}
+            </a>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>{% if page.lang == "en" %}Preparing activity data...{% else %}活動データを準備中です。{% endif %}</p>
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    <p>{% if page.lang == "en" %}No categories yet.{% else %}カテゴリがまだありません。{% endif %}</p>
+  {% endif %}
+
+  <p class="view-all">
+    <a href="{{ '/projects/#activities' | relative_url }}">
+      {% if page.lang == "en" %}View all activities →{% else %}すべての活動を見る →{% endif %}
+    </a>
+  </p>
 <section class="quest-contact" data-reveal>
   <h2 class="chapter">Contact</h2>
   {% if page.lang == "en" %}

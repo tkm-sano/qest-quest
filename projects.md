@@ -1,20 +1,20 @@
 ---
-title: Activities   # ページごとに変更
+title: News   # ページごとに変更
 lang: ja
 layout: default
 nav_order: 3     # ナビの並び順。お好みで
 ---
 
 <section class="hero" data-reveal>
-  <h1 class="chapter glitch" data-shadow="Chapter III :: ACTIVITIES ::">
-    <em>:: ACTIVITIES ::</em>
+  <h1 class="chapter glitch" data-shadow="Chapter III :: NEWS ::">
+    <em>:: NEWS ::</em>
   </h1>
   {% if page.lang == "en" %}
-    <p class="lead">This page showcases our latest activities and news.<br />
-    We document SF prototyping, co‑creation workshops, and behavior‑change scenario planning that connect today’s quantum technologies with tomorrow’s social systems.</p>
+    <p class="lead">This page showcases our latest news and updates.<br />
+    We share information on projects, events, and publications related to quantum technologies and their social applications.</p>
   {% else %}
-    <p class="lead">このページでは、プロジェクトの活動報告とニュースを掲載します。<br />
-    現在の量子情報技術と近未来の社会をつなぐ取り組みを紹介します。</p>
+    <p class="lead">このページでは、プロジェクトの最新ニュースを掲載します。<br />
+    関連する研究・イベント・出版など量子技術と社会応用に関する情報をお届けします。</p>
   {% endif %}
 <style>
   /* Force grid layout for Activities & News even if theme styles conflict */
@@ -47,6 +47,16 @@ nav_order: 3     # ナビの並び順。お好みで
     background: transparent;  /* remove gray bg */
     border-radius: 0 !important; /* never circular */
     box-shadow: none;
+  }
+  #news .single-news{
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  #news .single-news img{
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
   }
   @media (min-width: 640px) {
     #activities .cards,
@@ -89,71 +99,62 @@ nav_order: 3     # ナビの並び順。お好みで
 </style>
 </section>
 
-<!-- Activities Section -->
-<section id="activities" data-reveal>
-  <h2>{% if page.lang == "en" %}Activities{% else %}活動報告{% endif %}</h2>
-  {% assign categories = site.data.activity_categories %}
-  {% if categories %}
-  {% for cat in categories %}
-    <h3 class="cat-title">{% if page.lang == "en" and cat.name_en %}{{ cat.name_en }}{% else %}{{ cat.name }}{% endif %}</h3>
-    {% assign base = site.data.activities %}
-    {% if base %}
-      {% assign items = base | where: "category", cat.id | sort: "date" | reverse %}
-      <div class="cards">
-        {% for a in items %}
-        <div class="card" data-reveal>
-          <img src="{{ '/assets/img/activities/' | append: a.image | relative_url }}" alt="">
-          <h4>{% if page.lang == "en" and a.title_en %}{{ a.title_en }}{% else %}{{ a.title }}{% endif %}</h4>
-          <p>{% if page.lang == "en" and a.desc_en %}{{ a.desc_en }}{% else %}{{ a.desc }}{% endif %}</p>
-          {% if a.link %}
-          <a href="{{ a.link | relative_url }}" class="btn-quest" target="_blank">
-            {% if page.lang == "en" and a.button_en %}
-              {{ a.button_en }}
-            {% elsif a.button %}
-              {{ a.button }}
-            {% else %}
-              {% if page.lang == "en" and a.title_en %}{{ a.title_en }}{% else %}{{ a.title }}{% endif %}
-            {% endif %}
-          </a>
-          {% endif %}
-        </div>
-        {% endfor %}
-      </div>
-    {% else %}
-      <p>活動データを準備中です。</p>
-    {% endif %}
-  {% endfor %}
-  {% else %}
-    <p>活動データを準備中です。</p>
-  {% endif %}
-</section>
-
 <!-- News Section -->
 <section id="news" data-reveal>
   <h2>NEWS</h2>
   {% assign news = site.data.news %}
   {% if news %}
     {% assign news = news | sort: "date" | reverse %}
-    {% for n in news %}
-      <h4 class="news-title">
-        <a href="{{ '/news/' | append: n.slug | relative_url }}">
-          {% if page.lang == "en" and n.title_en %}{{ n.title_en }}{% else %}{{ n.title }}{% endif %}
+    {% if news.size == 1 %}
+      {% assign n = news[0] %}
+      <div class="card single-news" data-reveal>
+        {% if n.thumbnail or n.image %}
+          {% assign thumb = n.thumbnail | default: n.image %}
+          {% if thumb contains '/' %}
+            <img src="{{ thumb | relative_url }}" alt="">
+          {% else %}
+            <img src="{{ '/assets/img/news/' | append: thumb | relative_url }}" alt="">
+          {% endif %}
+        {% endif %}
+        <h3 class="news-title">
+          <a href="{{ '/news/' | append: n.slug | relative_url }}">
+            {% if page.lang == "en" and n.title_en %}{{ n.title_en }}{% else %}{{ n.title }}{% endif %}
+          </a>
+        </h3>
+        {% if n.desc or n.desc_en %}
+        <p class="news-desc">{% if page.lang == "en" and n.desc_en %}{{ n.desc_en }}{% else %}{{ n.desc }}{% endif %}</p>
+        {% endif %}
+        <a href="{{ '/news/' | append: n.slug | relative_url }}" class="btn-quest">
+          {% if page.lang == "en" %}See more{% else %}もっと見る{% endif %}
         </a>
-      </h4>
-      {% if n.desc or n.desc_en %}
-      <p class="news-desc">{% if page.lang == "en" and n.desc_en %}{{ n.desc_en }}{% else %}{{ n.desc }}{% endif %}</p>
-      {% endif %}
-      {% if n.paper or n.paper_en %}
-      <p class="meta">
-        {% if page.lang == "en" and n.paper_en %}{{ n.paper_en }}{% else %}{{ n.paper }}{% endif %}
-      </p>
-      {% endif %}
-      {% if n.link %}
-      <a href="{{ n.link }}" class="btn-quest" target="_blank" rel="noopener">
-        {% if page.lang == "en" and n.button_en %}{{ n.button_en }}{% elsif n.button %}{{ n.button }}{% else %}{% if page.lang == "en" %}Details{% else %}詳細{% endif %}{% endif %}
-      </a>
-      {% endif %}
-    {% endfor %}
+      </div>
+    {% else %}
+      <div class="cards">
+      {% for n in news %}
+        <div class="card" data-reveal>
+          {% if n.thumbnail or n.image %}
+            {% assign thumb = n.thumbnail | default: n.image %}
+            {% if thumb contains '/' %}
+              <img src="{{ thumb | relative_url }}" alt="">
+            {% else %}
+              <img src="{{ '/assets/img/news/' | append: thumb | relative_url }}" alt="">
+            {% endif %}
+          {% endif %}
+          <h4 class="news-title">
+            <a href="{{ '/news/' | append: n.slug | relative_url }}">
+              {% if page.lang == "en" and n.title_en %}{{ n.title_en }}{% else %}{{ n.title }}{% endif %}
+            </a>
+          </h4>
+          {% if n.desc or n.desc_en %}
+          <p class="news-desc">{% if page.lang == "en" and n.desc_en %}{{ n.desc_en }}{% else %}{{ n.desc }}{% endif %}</p>
+          {% endif %}
+          <a href="{{ '/news/' | append: n.slug | relative_url }}" class="btn-quest">
+            {% if page.lang == "en" %}See more{% else %}もっと見る{% endif %}
+          </a>
+        </div>
+      {% endfor %}
+      </div>
+    {% endif %}
   {% else %}
     <p>ニュースはまだありません。</p>
   {% endif %}
