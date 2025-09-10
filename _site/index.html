@@ -138,6 +138,86 @@
     <p class="lead">量子インターネットによる近未来ITパラダイムの社会デザインと実現</p>
   
 </section>
+<section id="latest-news" class="news-band" data-reveal="">
+  <style>
+    /* LP Latest News band */
+    .news-band{
+      margin: 2rem 0;
+      padding: 1.25rem 1.25rem 0.75rem;
+      border: 1px solid var(--c-border, #eaeef3);
+      border-radius: 12px;
+      background: linear-gradient(180deg,#f5fbff 0%, #ffffff 100%);
+    }
+    .news-band h2{
+      margin: 0 0 .5rem;
+      font-size: 1.1rem;
+      letter-spacing: .08em;
+    }
+    .news-band .news-list{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .news-band .news-item{
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: .75rem;
+      padding: .5rem 0;
+      border-top: 1px dashed #dbe7f3;
+    }
+    .news-band .news-item:first-child{
+      border-top: 0;
+    }
+    .news-band time{
+      color: #6b7c93;
+      font-size: .9rem;
+      white-space: nowrap;
+    }
+    .news-band a{
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    .news-band a:hover{
+      border-bottom-color: currentColor;
+    }
+    .news-band .view-all{
+      display: inline-block;
+      margin: .75rem 0 1rem;
+      font-size: .95rem;
+    }
+    @media (max-width: 520px){
+      .news-band .news-item{
+        grid-template-columns: 1fr;
+      }
+      .news-band time{
+        order: 2;
+      }
+    }
+  </style>
+
+  <h2>最新ニュース</h2>
+
+  
+
+  
+  
+    
+    <ul class="news-list">
+      
+        <li class="news-item">
+          <time datetime="2025-09-10T14:45:02+09:00">2025-09-10</time>
+          <a href="/news/pre-qnet-award-2025/">
+            QNET Best Paper Award 2nd Place 受賞
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  <a class="view-all" href="/projects/#news">
+    すべてのNEWSを見る →
+  </a>
+</section>
 <section class="quantum-demo" data-reveal="">
   <div id="quantum-visualization" class="complex-viz"></div>
   <script>

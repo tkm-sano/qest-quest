@@ -16,6 +16,105 @@ nav_order: 1     # ナビの並び順。お好みで
     <p class="lead">量子インターネットによる近未来ITパラダイムの社会デザインと実現</p>
   {% endif %}
 </section>
+<section id="latest-news" class="news-band" data-reveal>
+  <style>
+    /* LP Latest News band */
+    .news-band{
+      margin: 2rem 0;
+      padding: 1.25rem 1.25rem 0.75rem;
+      border: 1px solid var(--c-border, #eaeef3);
+      border-radius: 12px;
+      background: linear-gradient(180deg,#f5fbff 0%, #ffffff 100%);
+    }
+    .news-band h2{
+      margin: 0 0 .5rem;
+      font-size: 1.1rem;
+      letter-spacing: .08em;
+    }
+    .news-band .news-list{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .news-band .news-item{
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: .75rem;
+      padding: .5rem 0;
+      border-top: 1px dashed #dbe7f3;
+    }
+    .news-band .news-item:first-child{
+      border-top: 0;
+    }
+    .news-band time{
+      color: #6b7c93;
+      font-size: .9rem;
+      white-space: nowrap;
+    }
+    .news-band a{
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    .news-band a:hover{
+      border-bottom-color: currentColor;
+    }
+    .news-band .view-all{
+      display: inline-block;
+      margin: .75rem 0 1rem;
+      font-size: .95rem;
+    }
+    @media (max-width: 520px){
+      .news-band .news-item{
+        grid-template-columns: 1fr;
+      }
+      .news-band time{
+        order: 2;
+      }
+    }
+  </style>
+
+  <h2>{% if page.lang == "en" %}Latest News{% else %}最新ニュース{% endif %}</h2>
+
+  {% comment %}
+    Prefer collection-based news (_news), fallback to data file (_data/news.yml)
+  {% endcomment %}
+
+  {% assign coll = site.news %}
+  {% if coll and coll.size > 0 %}
+    {% assign news_sorted = coll | sort: "date" | reverse %}
+    <ul class="news-list">
+      {% for item in news_sorted limit:3 %}
+        <li class="news-item">
+          <time datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: "%Y-%m-%d" }}</time>
+          <a href="{{ item.url | relative_url }}">
+            {% if page.lang == "en" and item.title_en %}{{ item.title_en }}{% else %}{{ item.title }}{% endif %}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    {% assign data_news = site.data.news %}
+    {% if data_news %}
+      {% assign news_sorted = data_news | sort: "date" | reverse %}
+      <ul class="news-list">
+        {% for n in news_sorted limit:3 %}
+          <li class="news-item">
+            <time datetime="{{ n.date | date_to_xmlschema }}">{{ n.date | date: "%Y-%m-%d" }}</time>
+            <a href="{% if n.slug %}{{ '/news/' | append: n.slug | append: '/' | relative_url }}{% elsif n.link %}{{ n.link }}{% else %}#{% endif %}">
+              {% if page.lang == "en" and n.title_en %}{{ n.title_en }}{% else %}{{ n.title }}{% endif %}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>{% if page.lang == "en" %}No news yet.{% else %}ニュースはまだありません。{% endif %}</p>
+    {% endif %}
+  {% endif %}
+
+  <a class="view-all" href="{{ '/projects/#news' | relative_url }}">
+    {% if page.lang == "en" %}View all news →{% else %}すべてのNEWSを見る →{% endif %}
+  </a>
+</section>
 <section class="quantum-demo" data-reveal>
   <div id="quantum-visualization" class="complex-viz"></div>
   <script>
