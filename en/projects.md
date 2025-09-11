@@ -3,7 +3,7 @@ title: News
 lang: en
 layout: default
 nav_order: 3
-permalink: /en/news/
+permalink: /en/projects/
 ---
 
 <section class="hero" data-reveal>
