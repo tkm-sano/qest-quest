@@ -4,7 +4,7 @@ title: "QNET Best Paper Award 2nd Place"
 slug: "qnet-award-2025"
 lang: en
 date: 2025-09-09
-i18n_jp: /news/qnet-award-2025/
+i18n_en: /news/qnet-award-2025/
 ---
 
 # QNET Best Paper Award 2nd Place
