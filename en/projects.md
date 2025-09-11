@@ -1,22 +1,17 @@
 ---
-title: News   # ページごとに変更
+title: News
 lang: en
-permalink: /en/news/
 layout: default
-nav_order: 3     # ナビの並び順。お好みで
+nav_order: 3
+permalink: /en/news/
 ---
 
 <section class="hero" data-reveal>
   <h1 class="chapter glitch" data-shadow="Chapter III :: NEWS ::">
-    <span>Chapter&nbsp;III</span><em>:: NEWS ::</em>
+    <em>:: NEWS ::</em>
   </h1>
-  {% if page.lang == "en" %}
-    <p class="lead">This page showcases our latest news and updates.<br />
-    We share information on projects, events, and publications related to quantum technologies and their social applications.</p>
-  {% else %}
-    <p class="lead">このページでは、プロジェクトの最新ニュースを掲載します。<br />
-    関連する研究・イベント・出版など量子技術と社会応用に関する情報をお届けします。</p>
-  {% endif %}
+  <p class="lead">This page showcases our latest news and updates.<br />
+  We share information on projects, events, and publications related to quantum technologies and their social applications.</p>
 </section>
 
 <!-- News Section -->
@@ -61,6 +56,7 @@ nav_order: 3     # ナビの並び順。お好みで
       #news .card img{ height: 140px; }
     }
   </style>
+
   {% assign news = site.data.news %}
   {% if news %}
     {% assign news = news | sort: "date" | reverse %}
@@ -76,14 +72,16 @@ nav_order: 3     # ナビの並び順。お好みで
           {% endif %}
         {% endif %}
         <h4 class="news-title">
-          <a href="{{ '/news/' | append: n.slug | relative_url }}">
+          <a href="{% if n.i18n_en %}{{ n.i18n_en | relative_url }}{% else %}{{ '/news/' | append: n.slug | relative_url }}{% endif %}">
             {% if n.title_en %}{{ n.title_en }}{% else %}{{ n.title }}{% endif %}
           </a>
         </h4>
         {% if n.desc or n.desc_en %}
         <p class="news-desc">{% if n.desc_en %}{{ n.desc_en }}{% else %}{{ n.desc }}{% endif %}</p>
         {% endif %}
-        <a href="{{ '/news/' | append: n.slug | relative_url }}" class="btn-quest">See more</a>
+        <a href="{% if n.i18n_en %}{{ n.i18n_en | relative_url }}{% else %}{{ '/news/' | append: n.slug | relative_url }}{% endif %}" class="btn-quest">
+          See more
+        </a>
       </div>
     {% endfor %}
     </div>

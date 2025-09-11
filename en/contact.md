@@ -9,7 +9,7 @@ nav_order: 5            # ナビゲーションの並び順
 
 <section class="hero" data-reveal>
   <h1 class="chapter glitch" data-shadow="Chapter V :: CONTACT ::">
-    <span>Chapter&nbsp;V</span><em>:: CONTACT ::</em>
+    <em>:: CONTACT ::</em>
   </h1>
   {% if page.lang == "en" %}
     <p class="lead" style="font-size:1.8em;">Contact Q/est</p>

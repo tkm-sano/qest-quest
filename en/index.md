@@ -8,7 +8,7 @@ nav_order: 1     # ナビの並び順。お好みで
 
 <section class="hero" data-reveal>
   <h1 class="chapter glitch" data-shadow="Chapter I :: VISION ::">
-    <span>Chapter&nbsp;I</span><em>:: VISION ::</em>
+    <em>:: VISION ::</em>
   </h1>
   {% if page.lang == "en" %}
     <p class="lead">Designing and realizing the near-future IT paradigm with Quantum Internet</p>
