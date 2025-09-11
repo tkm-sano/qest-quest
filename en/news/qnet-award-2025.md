@@ -13,7 +13,7 @@ i18n_en: /news/qnet-award-2025/
   <img src="/assets/img/news/award-2ndplace.jpg" alt="Award Photo" style="max-width: 500px; height: auto; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,.15);" />
 </p>
 
-At IEEE Quantum Week 2025, Associate Professor Shota Nagayama (Keio University) co-authored the paper  
+At IEEE Quantum Week 2025, Associate Professor Shota Nagayama co-authored the paper  
 **"Automatic Configuration Protocols for Optical Quantum Networks"**,  
 which received the *QNET Best Paper Award (2nd Place)*.
 
