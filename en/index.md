@@ -280,7 +280,7 @@ nav_order: 1     # ナビの並び順。お好みで
       <p>No news yet.</p>
     {% endif %}
   {% endif %}
-  <a class="view-all" href="{{ '/news/#news' | relative_url }}">View all news →</a>
+  <a class="view-all" href="{{ '/en/news/#news' | relative_url }}">View all news →</a>
 </section>
 
 <section id="activities-preview" class="activities-band" data-reveal>
@@ -375,7 +375,7 @@ nav_order: 1     # ナビの並び順。お好みで
     <p>No categories yet.</p>
   {% endif %}
   <p class="view-all">
-    <a href="{{ '/news/#activities' | relative_url }}">View all activities →</a>
+    <a href="{{ '/en/news/#activities' | relative_url }}">View all activities →</a>
   </p>
 </section>
 
