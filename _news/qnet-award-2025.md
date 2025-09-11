@@ -1,13 +1,13 @@
 ---
 layout: default
-title: "QNET Best Paper Award 2nd Place"
+title: "IEEE Quantum Week (QCE) 2025 QNET Best Paper Award 2nd Place"
 slug: "qnet-award-2025"
 lang: ja
 date: 2025-09-09
 i18n_en: /en/news/en-qnet-award-2025/
 ---
 
-# QNET Best Paper Award 2nd Place
+# IEEE Quantum Week (QCE) 2025 QNET Best Paper Award 2nd Place
 
 <p align="center">
   <img src="/assets/img/news/award-2ndplace.jpg" alt="受賞写真" style="max-width: 500px; height: auto; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,.15);" />
