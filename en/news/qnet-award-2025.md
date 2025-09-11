@@ -28,9 +28,6 @@ See more details on the [official site](https://qce.quantum.ieee.org/2025/).
 ### Best Paper Award List
 (Source: [QCE25 Technical Paper Sessions PDF](https://qce.quantum.ieee.org/2025/wp-content/uploads/sites/12/2025/09/QCE25-Technical-Paper-Sessions.pdf))
 
-- 1st Place: [Not listed]  
-- 2nd Place: **Automatic Configuration Protocols for Optical Quantum Networks**
-
 ### Paper Information
 - **Title**: Automatic Configuration Protocols for Optical Quantum Networks  
 - **Authors**: Amin Taherkhani, Andrew Todd, Kentaro Teramoto, Rodney Van Meter, Shota Nagayama  
