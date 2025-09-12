@@ -69,7 +69,7 @@ permalink: /activities/
       {% assign items = base | sort: "date" | reverse %}
       {% for a in items %}
         {% assign thumb = a.thumbnail | default: a.image %}
-        {% assign slug_key = a.slug %} {# JP uses JP slug #}
+        {% assign slug_key = a.slug %} {% comment %} JP uses JP slug {% endcomment %}
         {% assign post = site.activities | where: "slug", slug_key | where: "lang", "ja" | first %}
         {% if post or a.link %}
           {% if a.link %}
