@@ -736,3 +736,19 @@ main,
   #activities-list{ max-width: 1200px !important; width: 100% !important; }
   #activities-list .cards{ grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
 }
+
+@media (max-width: 600px) {
+  .approach-overlay .panel {
+    max-width: 94vw;
+    max-height: 85vh;
+    overflow-y: auto;
+    font-size: .9rem;
+    line-height: 1.5;
+    padding: 1rem;
+    text-align: left;
+
+    white-space: normal;        /* ← 折り返し許可 */
+    word-break: break-word;     /* ← 長い単語を折り返す */
+    overflow-wrap: anywhere;    /* ← 強制的に改行可能 */
+  }
+}
