@@ -705,9 +705,9 @@ nav_order: 1     # ナビの並び順。お好みで
 
       document.querySelectorAll('#approach .tile').forEach(bindTile);
 
-      // モバイル対応: タイルをタップで開き、背景をタップで閉じる
+      // 背景（枠外）をタップしたら閉じる（モバイル対応）
       overlay.addEventListener('click', function(e){
-        if(e.target === overlay){
+        if(e.target === overlay || e.target === overlay.firstChild){
           overlay.classList.remove('pinned','show');
           overlay.setAttribute('aria-hidden','true');
         }

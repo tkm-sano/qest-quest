@@ -626,9 +626,9 @@ nav_order: 1     # ナビの並び順。お好みで
         });
       }
       document.querySelectorAll('#approach .tile').forEach(bindTile);
-      // Mobile-friendly: tap outside (dimmed background) to close
+      // Close when tapping outside the panel (background)
       overlay.addEventListener('click', function(e){
-        if(e.target === overlay){
+        if(e.target === overlay || e.target === overlay.firstChild){
           overlay.classList.remove('pinned','show');
           overlay.setAttribute('aria-hidden','true');
         }
