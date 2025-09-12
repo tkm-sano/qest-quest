@@ -737,18 +737,24 @@ main,
   #activities-list .cards{ grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
 }
 
+.approach-overlay .caption-body {
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+/* モバイル対応 */
 @media (max-width: 600px) {
   .approach-overlay .panel {
     max-width: 94vw;
     max-height: 85vh;
-    overflow-y: auto;
+    overflow-y: auto;   /* 縦スクロール可 */
+    overflow-x: hidden; /* 横スクロール禁止 */
     font-size: .9rem;
     line-height: 1.5;
     padding: 1rem;
     text-align: left;
-
-    white-space: normal;        /* ← 折り返し許可 */
-    word-break: break-word;     /* ← 長い単語を折り返す */
-    overflow-wrap: anywhere;    /* ← 強制的に改行可能 */
   }
 }

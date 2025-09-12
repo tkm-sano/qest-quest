@@ -341,7 +341,7 @@ nav_order: 1     # ナビの並び順。お好みで
     .c1{fill:#5AD1FF;}.c2{fill:#A477FF;}.c3{fill:#9CF36B;}.stroke{stroke:#111;stroke-width:1.5;fill:none}
 
 
-    /* Center caption overlay (refined: dim vignette, blur, subtle pop) */
+    /* Center caption overlay (refined: direct dim, solid background, pointer-events toggle) */
     .approach-overlay{
       position: fixed;
       inset: 0;
@@ -351,16 +351,9 @@ nav_order: 1     # ナビの並び順。お好みで
       pointer-events: none;
       transition: opacity .18s ease;
       z-index: 9999;
+      background: rgba(0,0,0,.65);
     }
-    /* soft dim behind panel */
-    .approach-overlay::before{
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(120% 120% at 50% 50%, rgba(0,0,0,.28) 0%, rgba(0,0,0,.38) 60%, rgba(0,0,0,.48) 100%);
-    }
-    .approach-overlay.show{ opacity: 1; }
-    .approach-overlay.pinned{ pointer-events: auto; }
+    .approach-overlay.show{ opacity: 1; pointer-events: auto; }
     .approach-overlay .panel{
       max-width: min(84vw, 920px);
       margin: 0 3vw;
@@ -385,22 +378,7 @@ nav_order: 1     # ナビの並び順。お好みで
       hyphens: auto;
       transform: translateY(6px) scale(.985);
       transition: transform .2s ease, filter .2s ease;
-    }
-    @media (max-width: 600px){
-      .approach-overlay .panel{
-        max-width: 94vw;
-        max-height: 85vh;
-        overflow-y: auto;
-        font-size: .9rem;
-        line-height: 1.5;
-        padding: 1rem;
-        text-align: left;
-      }
-      .approach-overlay .panel::-webkit-scrollbar{ width:6px; }
-      .approach-overlay .panel::-webkit-scrollbar-thumb{
-        background: rgba(255,255,255,.3);
-        border-radius: 3px;
-      }
+      position: relative;
     }
     .approach-overlay.show .panel{
       transform: translateY(0) scale(1);
@@ -418,9 +396,32 @@ nav_order: 1     # ナビの並び順。お好みで
     }
     /* readable whites on dark */
     .approach-overlay .panel .line{ display:block; margin: 0 0 .35em; }
+    .approach-overlay .caption-body {
+      white-space: normal;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+      margin-top: 2rem;
+      text-align: left;
+    }
+    @media (max-width: 600px){
+      .approach-overlay .panel{
+        max-width: 94vw;
+        max-height: 85vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        font-size: .9rem;
+        line-height: 1.5;
+        padding: 1rem;
+        text-align: left;
+      }
+      .approach-overlay .panel::-webkit-scrollbar{ width:6px; }
+      .approach-overlay .panel::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.3); border-radius: 3px; }
+    }
     @media (prefers-reduced-motion: no-preference){
       .approach-overlay { transition: opacity .18s ease; }
     }
+    .approach-overlay .close-btn { position:absolute; top:.5rem; right:.5rem; background:transparent; border:none; font-size:1.5rem; color:#fff; cursor:pointer; line-height:1; z-index:10001; }
+    .approach-overlay .close-btn:hover { color:#f88; }
     /* Dim tile icon on hover/focus for context */
     .methods-band .tile:hover .icon,
     .methods-band .tile:focus-within .icon{
@@ -614,14 +615,12 @@ nav_order: 1     # ナビの並び順。お好みで
       overlay.appendChild(panel);
       document.body.appendChild(overlay);
 
-      // ✕ボタンだけで閉じる（背景・パネル・Escでは閉じない）
+      // ✕ボタンでのみ閉じる
       closeBtn.addEventListener('click', function(){
         overlay.classList.remove('pinned','show');
         overlay.setAttribute('aria-hidden','true');
       });
     }
-
-    // 既存DOMから参照（上で作った場合はそのまま）
     var panel = overlay.querySelector('.panel');
 
     // ===== Captions (load from JSON) =====
@@ -630,35 +629,30 @@ nav_order: 1     # ナビの並び順。お好みで
       if(CAP) return Promise.resolve(CAP);
       if(capPromise) return capPromise;
       var url = '{{ "/assets/data/approach_captions.json" | relative_url }}';
-      capPromise = fetch(url, {cache:'no-store'})
+      capPromise = fetch(url,{cache:'no-store'})
         .then(function(r){ return r.ok ? r.json() : {}; })
         .catch(function(){ return {}; })
         .then(function(json){ CAP = json || {}; return CAP; });
       return capPromise;
     }
 
-    // 言語判定（ページの <html lang> または front matter の page.lang）
+    // 言語
     var lang = (document.documentElement.getAttribute('lang') || '{{ page.lang | default: "ja" }}').slice(0,2);
 
-    // ===== Tile binding =====
     function bindTile(tile){
       if(!tile.hasAttribute('tabindex')) tile.setAttribute('tabindex','0');
-
       var key = tile.getAttribute('data-cap-key');
-      var fallback = (tile.querySelector('figcaption') ? tile.querySelector('figcaption').textContent : '') || '';
-
-      var showTimer=null;
+      var fallback = tile.querySelector('figcaption') ? tile.querySelector('figcaption').textContent : '';
 
       function doShow(){
         loadCaptions().then(function(map){
           var cap = fallback;
           if(key && map && map[key]) cap = map[key][lang] || map[key]['en'] || map[key]['ja'] || fallback;
-          panel.firstChild && panel.firstChild.classList && panel.firstChild.classList.contains('close-btn');
-          // ✕ボタンは panel の最初の子要素、本文はボタンの後に描画
-          // 既存本文ノードを除去
+
+          // ✕以外の子要素を削除して本文を差し替え
           var keepBtn = panel.querySelector('.close-btn');
           Array.from(panel.childNodes).forEach(function(n){ if(n !== keepBtn) panel.removeChild(n); });
-          // 本文を追加（プレーンテキスト）
+
           var body = document.createElement('div');
           body.className = 'caption-body';
           body.textContent = cap;
@@ -669,37 +663,13 @@ nav_order: 1     # ナビの並び順。お好みで
         });
       }
 
-      // Hoverで開く（PC）／タップで開く（モバイル）
-      tile.addEventListener('mouseenter', function(){
-        clearTimeout(showTimer);
-        showTimer = setTimeout(doShow, 60);
-      });
-      tile.addEventListener('focus', function(){
-        clearTimeout(showTimer);
-        showTimer = setTimeout(doShow, 60);
-      });
-      tile.addEventListener('mouseleave', function(){
-        // ✕ボタンでのみ閉じる仕様のため、ここでは閉じない
-        clearTimeout(showTimer);
-      });
-      tile.addEventListener('blur', function(){
-        clearTimeout(showTimer);
-      });
-
-      tile.addEventListener('click', function(e){
-        e.preventDefault();
-        doShow();
-      });
+      // クリック（タップ）で開く。閉じるのは✕のみ
+      tile.addEventListener('click', function(e){ e.preventDefault(); doShow(); });
     }
 
-    // bind all tiles
     document.querySelectorAll('#approach .tile').forEach(bindTile);
 
-    // ▼「✕でのみ閉じる」仕様のため、以下は入れない
-    // - 背景クリックで閉じる overlay.addEventListener('click', ...)
-    // - パネルクリックで閉じる panel.addEventListener('click', ...)
-    // - Escキーで閉じる document.addEventListener('keydown', ...)
-
+    // 背景クリック / パネルクリック / Esc では閉じない（✕のみ）
   })();
   </script>
 </section>
