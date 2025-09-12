@@ -68,24 +68,24 @@ layout: default
       {% assign items = base | sort: "date" | reverse %}
       {% for a in items %}
         {% assign thumb = a.thumbnail | default: a.image %}
-        {% capture href %}
+        {% assign slug_key = a.slug %} {# JP uses JP slug #}
+        {% assign post = site.activities | where: "slug", slug_key | where: "lang", "ja" | first %}
+        {% if post or a.link %}
           {% if a.link %}
-            {{ a.link | relative_url }}
-          {% elsif a.slug %}
-            {{ '/activities/' | append: a.slug | relative_url }}
+            {% assign href = a.link | relative_url %}
           {% else %}
-            #
+            {% assign href = post.url | relative_url %}
           {% endif %}
-        {% endcapture %}
-        <li class="card" data-type="{{ a.type | default: 'activity' }}">
-          {% if thumb %}<img src="{{ '/assets/img/activities/' | append: thumb | relative_url }}" alt="{{ a.title }}" loading="lazy">{% endif %}
-          <h3><a href="{{ href }}">{{ a.title }}</a></h3>
-          <div class="meta">
-            <span>{{ a.date | date: "%Y-%m-%d" }}</span>
-            {% if a.location %}<span>· {{ a.location }}</span>{% endif %}
-            {% if a.method %}<span>· {{ a.method | join: ', ' }}</span>{% endif %}
-          </div>
-        </li>
+          <li class="card" data-type="{{ a.type | default: 'activity' }}">
+            {% if thumb %}<img src="{{ '/assets/img/activities/' | append: thumb | relative_url }}" alt="{{ post.title | default: a.title }}" loading="lazy">{% endif %}
+            <h3><a href="{{ href }}">{{ post.title | default: a.title }}</a></h3>
+            <div class="meta">
+              <span>{{ a.date | date: "%Y-%m-%d" }}</span>
+              {% if a.location %}<span>· {{ a.location }}</span>{% endif %}
+              {% if a.method %}<span>· {{ a.method | join: ', ' }}</span>{% endif %}
+            </div>
+          </li>
+        {% endif %}
       {% endfor %}
     </ul>
     <script>
