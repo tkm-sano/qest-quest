@@ -705,6 +705,13 @@ nav_order: 1     # ナビの並び順。お好みで
 
       document.querySelectorAll('#approach .tile').forEach(bindTile);
 
+      // パネル自体をタップしたら閉じる（モバイル対応）
+      panel.addEventListener('click', function(e){
+        e.stopPropagation(); // 背景クリック処理に伝播させない
+        overlay.classList.remove('pinned','show');
+        overlay.setAttribute('aria-hidden','true');
+      });
+
       // 背景（枠外）をタップしたら閉じる（モバイル対応）
       overlay.addEventListener('click', function(e){
         if(e.target === overlay || e.target === overlay.firstChild){
@@ -713,23 +720,9 @@ nav_order: 1     # ナビの並び順。お好みで
         }
       });
 
-      // パネル自体をタップしたら閉じる（モバイル対応）
-      panel.addEventListener('click', function(){
-        overlay.classList.remove('pinned','show');
-        overlay.setAttribute('aria-hidden','true');
-      });
-
-      // Hide overlay on Escape or click on the dimmed background
+      // Hide overlay on Escape
       document.addEventListener('keydown', function(e){
         if(e.key === 'Escape') {
-          pinned = false;
-          overlay.classList.remove('pinned');
-          overlay.classList.remove('show');
-          overlay.setAttribute('aria-hidden','true');
-        }
-      });
-      overlay.addEventListener('click', function(e){
-        if(e.target === overlay){ // only when clicking dim area, not the panel
           pinned = false;
           overlay.classList.remove('pinned');
           overlay.classList.remove('show');
