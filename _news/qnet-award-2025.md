@@ -7,6 +7,8 @@ date: 2025-09-09
 i18n_en: /en/news/en-qnet-award-2025/
 ---
 
+<div class="news-article">
+
 # IEEE Quantum Week (QCE) 2025 QNET Best Paper Award 2nd Place
 
 <p align="center">
@@ -32,3 +34,5 @@ QNET トラックにおいて *Best Paper Award 2nd Place* を受賞しました
 - **タイトル**: Automatic Configuration Protocols for Optical Quantum Networks  
 - **著者**: Amin Taherkhani, Andrew Todd, Kentaro Teramoto, Rodney Van Meter, Shota Nagayama  
 - **arXiv**: [arXiv:2504.19613](https://arxiv.org/abs/2504.19613)
+
+</div>
