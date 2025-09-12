@@ -2,6 +2,7 @@
 title: 活動報告
 lang: ja
 layout: default
+permalink: /activities/
 ---
 
 <section class="hero" data-reveal>
