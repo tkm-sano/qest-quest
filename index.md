@@ -603,7 +603,18 @@ nav_order: 1     # ナビの並び順。お好みで
         overlay.setAttribute('aria-hidden','true');
         var panel = document.createElement('div');
         panel.className = 'panel';
+        // ✕ ボタンを追加
+        var closeBtn = document.createElement('button');
+        closeBtn.className = 'close-btn';
+        closeBtn.setAttribute('aria-label','Close');
+        closeBtn.innerHTML = '✕';
+        panel.appendChild(closeBtn);
         overlay.appendChild(panel);
+        // ✕ ボタンで閉じる処理
+        closeBtn.addEventListener('click', function(){
+          overlay.classList.remove('pinned','show');
+          overlay.setAttribute('aria-hidden','true');
+        });
         document.body.appendChild(overlay);
       }
       var panel = overlay.querySelector('.panel');

@@ -758,3 +758,19 @@ main,
     border-radius: 3px;
   }
 }
+
+.approach-overlay .close-btn {
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 10001;
+}
+.approach-overlay .close-btn:hover {
+  color: #f88;
+}

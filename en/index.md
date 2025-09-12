@@ -25,8 +25,21 @@ nav_order: 1     # ナビの並び順。お好みで
       overlay.setAttribute('aria-hidden','true');
       var panel = document.createElement('div');
       panel.className = 'panel';
+
+      // ✕ close button
+      var closeBtn = document.createElement('button');
+      closeBtn.className = 'close-btn';
+      closeBtn.setAttribute('aria-label','Close');
+      closeBtn.innerHTML = '✕';
+      panel.appendChild(closeBtn);
+
       overlay.appendChild(panel);
       document.body.appendChild(overlay);
+
+      closeBtn.addEventListener('click', function(){
+        overlay.classList.remove('pinned','show');
+        overlay.setAttribute('aria-hidden','true');
+      });
     }
     var panel = overlay.querySelector('.panel');
 
@@ -460,6 +473,21 @@ nav_order: 1     # ナビの並び順。お好みで
       opacity: .9;
     }
     .approach-overlay .panel .line{ display:block; margin: 0 0 .35em; }
+    .approach-overlay .close-btn {
+      position: absolute;
+      top: .5rem;
+      right: .5rem;
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      color: #fff;
+      cursor: pointer;
+      line-height: 1;
+      z-index: 10001;
+    }
+    .approach-overlay .close-btn:hover {
+      color: #f88;
+    }
   </style>
 
   <h2>Approach</h2>
@@ -627,7 +655,7 @@ nav_order: 1     # ナビの並び順。お好みで
       }
       document.querySelectorAll('#approach .tile').forEach(bindTile);
 
-      // Close when tapping outside the panel (background)
+      // 背景（枠外）をタップしたら閉じる（モバイル対応）
       overlay.addEventListener('click', function(e){
         if(e.target === overlay || e.target === overlay.firstChild){
           overlay.classList.remove('pinned','show');
@@ -635,24 +663,9 @@ nav_order: 1     # ナビの並び順。お好みで
         }
       });
 
-      // Allow tapping the panel itself to close (mobile-friendly)
+      // パネル自体をタップしたら閉じる（モバイル対応）
       panel.addEventListener('click', function(e){
-        e.stopPropagation(); // prevent bubbling
-        overlay.classList.remove('pinned','show');
-        overlay.setAttribute('aria-hidden','true');
-      });
-
-      // Close when tapping outside the panel (background)
-      overlay.addEventListener('click', function(e){
-        if(e.target === overlay || e.target === overlay.firstChild){
-          overlay.classList.remove('pinned','show');
-          overlay.setAttribute('aria-hidden','true');
-        }
-      });
-
-      // Allow tapping the panel itself to close (mobile-friendly)
-      panel.addEventListener('click', function(e){
-        e.stopPropagation(); // prevent bubbling
+        e.stopPropagation(); // 背景クリック処理に伝播させない
         overlay.classList.remove('pinned','show');
         overlay.setAttribute('aria-hidden','true');
       });
