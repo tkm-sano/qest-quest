@@ -63,7 +63,10 @@ nav_order: 3
               <img src="{{ '/assets/img/news/' | append: thumb | relative_url }}" alt="">
             {% endif %}
           {% endif %}
-          {% if n.link %}
+          {% assign post = site.news | where: "slug", n.slug | first %}
+          {% if post %}
+            {% assign href = post.url %}
+          {% elsif n.link %}
             {% assign href = n.link %}
           {% else %}
             {% assign href = '/projects/' | append: n.slug %}

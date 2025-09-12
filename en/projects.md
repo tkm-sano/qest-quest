@@ -71,15 +71,25 @@ permalink: /en/projects/
             <img src="{{ '/assets/img/news/' | append: thumb | relative_url }}" alt="">
           {% endif %}
         {% endif %}
+        {% assign post = site.news | where: "slug", n.slug | first %}
+        {% if n.i18n_en %}
+          {% assign href = n.i18n_en %}
+        {% elsif post %}
+          {% assign href = post.url %}
+        {% elsif n.link %}
+          {% assign href = n.link %}
+        {% else %}
+          {% assign href = '/en/projects/' | append: n.slug %}
+        {% endif %}
         <h4 class="news-title">
-          <a href="{% if n.i18n_en %}{{ n.i18n_en | relative_url }}{% else %}{{ '/en/projects/' | append: n.slug | relative_url }}{% endif %}">
+          <a href="{{ href | relative_url }}">
             {{ n.title_en | default: n.title }}
           </a>
         </h4>
         {% if n.desc or n.desc_en %}
         <p class="news-desc">{% if n.desc_en %}{{ n.desc_en }}{% else %}{{ n.desc }}{% endif %}</p>
         {% endif %}
-        <a href="{% if n.i18n_en %}{{ n.i18n_en | relative_url }}{% else %}{{ '/en/projects/' | append: n.slug | relative_url }}{% endif %}" class="btn-quest">
+        <a href="{{ href | relative_url }}" class="btn-quest">
           See more
         </a>
       </div>
