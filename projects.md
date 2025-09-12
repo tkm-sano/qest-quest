@@ -78,6 +78,9 @@ permalink: /projects/
           {% if n.desc or n.desc_en %}
             <p class="news-desc">{{ n.desc | default: n.desc_en }}</p>
           {% endif %}
+          <a href="{{ href | relative_url }}" class="btn-quest">
+            もっと見る
+          </a>
         </div>
       {% endfor %}
     </div>
