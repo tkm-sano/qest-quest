@@ -768,6 +768,8 @@ main,
   word-wrap: break-word;
   overflow-wrap: anywhere;
   box-sizing: border-box;
+  white-space: normal;
+  overflow-x: hidden;
 }
 
 .news-article img {
@@ -791,6 +793,7 @@ main,
 .news-article li {
   margin-bottom: 1rem;
   word-break: break-word;
+  white-space: normal;
 }
 
 @media (max-width: 600px) {
