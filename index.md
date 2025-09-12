@@ -285,7 +285,7 @@ nav_order: 1     # ナビの並び順。お好みで
     {% endif %}
   {% endif %}
 
-  <a class="view-all" href="{{ '/projects/#news' | relative_url }}">
+  <a class="view-all" href="{{ '/projects/' | relative_url }}">
     {% if page.lang == "en" %}View all news →{% else %}すべてのNEWSを見る →{% endif %}
   </a>
 </section>

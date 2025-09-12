@@ -280,7 +280,7 @@ nav_order: 1     # ナビの並び順。お好みで
       <p>No news yet.</p>
     {% endif %}
   {% endif %}
-  <a class="view-all" href="{{ '/projects/#news' | relative_url }}">View all news →</a>
+  <a class="view-all" href="{{ '/projects/' | relative_url }}">View all news →</a>
 </section>
 
 <section id="approach" class="methods-band" data-reveal>
