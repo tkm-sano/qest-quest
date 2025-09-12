@@ -736,3 +736,15 @@ main,
   #activities-list{ max-width: 1200px !important; width: 100% !important; }
   #activities-list .cards{ grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
 }
+
+/* ───────── Approach overlay: mobile adjustments ───────── */
+@media (max-width: 600px) {
+  .approach-overlay .panel {
+    max-width: 94vw;
+    font-size: .9rem;
+    line-height: 1.4;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    padding: 1rem;
+  }
+}

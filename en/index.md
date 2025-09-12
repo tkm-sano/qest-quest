@@ -626,6 +626,11 @@ nav_order: 1     # ナビの並び順。お好みで
         });
       }
       document.querySelectorAll('#approach .tile').forEach(bindTile);
+      // Allow tapping the panel itself to close (mobile-friendly)
+      panel.addEventListener('click', function(){
+        overlay.classList.remove('pinned','show');
+        overlay.setAttribute('aria-hidden','true');
+      });
       document.addEventListener('keydown',function(e){
         if(e.key==='Escape'){
           overlay.classList.remove('pinned','show');

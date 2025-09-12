@@ -689,6 +689,12 @@ nav_order: 1     # ナビの並び順。お好みで
 
       document.querySelectorAll('#approach .tile').forEach(bindTile);
 
+      // パネル自体をタップしたら閉じる（モバイル対応）
+      panel.addEventListener('click', function(){
+        overlay.classList.remove('pinned','show');
+        overlay.setAttribute('aria-hidden','true');
+      });
+
       // Hide overlay on Escape or click on the dimmed background
       document.addEventListener('keydown', function(e){
         if(e.key === 'Escape') {
