@@ -63,13 +63,17 @@ nav_order: 3
               <img src="{{ '/assets/img/news/' | append: thumb | relative_url }}" alt="">
             {% endif %}
           {% endif %}
+          {% if n.link %}
+            {% assign href = n.link %}
+          {% else %}
+            {% assign href = '/projects/' | append: n.slug %}
+          {% endif %}
           <h4 class="news-title">
-            <a href="{{ '/news/' | append: n.slug | relative_url }}">{{ n.title | default: n.title_en }}</a>
+            <a href="{{ href | relative_url }}">{{ n.title | default: n.title_en }}</a>
           </h4>
           {% if n.desc or n.desc_en %}
             <p class="news-desc">{{ n.desc | default: n.desc_en }}</p>
           {% endif %}
-          <a href="{{ '/news/' | append: n.slug | relative_url }}" class="btn-quest">もっと見る</a>
         </div>
       {% endfor %}
     </div>

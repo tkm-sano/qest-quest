@@ -4,7 +4,8 @@ title: "IEEE Quantum Week (QCE) 2025 QNET Best Paper Award 2nd Place"
 slug: "qnet-award-2025"
 lang: en
 date: 2025-09-09
-i18n_en: /news/qnet-award-2025/
+permalink: /en/projects/qnet-award-2025/
+i18n_en: /projects/qnet-award-2025/
 ---
 
 # IEEE Quantum Week (QCE) 2025 QNET Best Paper Award 2nd Place
@@ -22,7 +23,7 @@ which received the *QNET Best Paper Award (2nd Place)*.
 ## About IEEE Quantum Week (QCE) 2025
 
 This research was presented at **IEEE Quantum Week (QCE) 2025**,  
-where it was honored with the *IEEE Quantum Week (QCE) 2025 IEEE Quantum Week (QCE) 2025 QNET Best Paper Award 2nd Place*.  
+where it received the *QNET Best Paper Award (2nd Place)*.  
 See more details on the [official site](https://qce.quantum.ieee.org/2025/).
 
 ### Best Paper Award List

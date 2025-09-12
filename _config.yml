@@ -27,9 +27,7 @@ include:
 collections:
   news:
     output: true
-    permalink: /news/:name/
-
-collections:
+    permalink: /projects/:slug/
   activities:
     output: true
     permalink: /activities/:slug/

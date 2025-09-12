@@ -2,9 +2,10 @@
 layout: default
 title: "IEEE Quantum Week (QCE) 2025 QNET Best Paper Award 2nd Place"
 slug: "qnet-award-2025"
+permalink: /projects/qnet-award-2025/
 lang: ja
 date: 2025-09-09
-i18n_en: /en/news/en-qnet-award-2025/
+i18n_en: /en/projects/en-qnet-award-2025/
 ---
 
 # IEEE Quantum Week (QCE) 2025 QNET Best Paper Award 2nd Place

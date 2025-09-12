@@ -72,14 +72,14 @@ permalink: /en/projects/
           {% endif %}
         {% endif %}
         <h4 class="news-title">
-          <a href="{% if n.i18n_en %}{{ n.i18n_en | relative_url }}{% else %}{{ '/news/' | append: n.slug | relative_url }}{% endif %}">
+          <a href="{% if n.i18n_en %}{{ n.i18n_en | relative_url }}{% else %}{{ '/en/projects/' | append: n.slug | relative_url }}{% endif %}">
             {% if n.title_en %}{{ n.title_en }}{% else %}{{ n.title }}{% endif %}
           </a>
         </h4>
         {% if n.desc or n.desc_en %}
         <p class="news-desc">{% if n.desc_en %}{{ n.desc_en }}{% else %}{{ n.desc }}{% endif %}</p>
         {% endif %}
-        <a href="{% if n.i18n_en %}{{ n.i18n_en | relative_url }}{% else %}{{ '/news/' | append: n.slug | relative_url }}{% endif %}" class="btn-quest">
+        <a href="{% if n.i18n_en %}{{ n.i18n_en | relative_url }}{% else %}{{ '/en/projects/' | append: n.slug | relative_url }}{% endif %}" class="btn-quest">
           See more
         </a>
       </div>
