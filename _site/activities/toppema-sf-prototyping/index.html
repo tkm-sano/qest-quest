@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>SFプロトタイピング活動報告 - トッペマ | Q/EST Quest - 量子インターネットと未来社会のデザイン・研究チーム</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" href="/assets/img/logo_icon.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+<!-- Google Analytics 4 – minimal “read_confirm” only -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PHHQGMRM5V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  /* Disable automatic page_view and ad‑related signals */
+  gtag('js', new Date());
+  gtag('config', 'G-PHHQGMRM5V', {
+    send_page_view: false,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  /* Fire one custom event as soon as the page is opened */
+  gtag('event', 'read_confirm', {
+    page_location: window.location.href,
+    page_title: document.title,
+    page_path: '/activities/toppema-sf-prototyping/'
+  });
+</script>
+  <style>
+    /* Keep background canvas behind and non-interactive */
+    #quantum-bubbles{
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      pointer-events: none; /* do not block clicks on header/menu */
+    }
+  </style>
+</head>
+<body>
+  <canvas id="quantum-bubbles"></canvas>
+  <header class="site-header" role="banner">
+    <a
+      
+        href="/"
+      
+      class="logo-link"
+      aria-label="Q/EST Home">
+      <img src="/assets/img/logo_icon.png" alt="Q/EST logo icon" class="logo-icon">
+      <img src="/assets/img/logo_text.png" alt="Q/EST logo text" class="logo-text-img">
+    </a>
+    <nav id="site-nav" class="nav-menu">
+  <button class="nav-toggle" aria-label="Toggle navigation" aria-controls="nav-list" aria-expanded="false">
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+  </button>
+  <div class="lang-switch-mobile">
+    
+<a class="lang-link" href="/en/activities/toppema-sf-prototyping/">EN</a>
+
+  </div>
+  <ul id="nav-list" class="nav-horizontal"><li>
+        
+        
+          <a href="/">Vision</a>
+        
+      </li><li>
+        
+        
+          <a href="/members/">Members</a>
+        
+      </li><li>
+        
+        
+          <a href="/projects/">News</a>
+        
+      </li><li>
+        
+        
+          <a href="/links/">Publications</a>
+        
+      </li><li>
+        
+        
+          <a href="/contact/">Contact</a>
+        
+      </li><li class="lang-switch-item">
+      
+<a class="lang-link" href="/en/activities/toppema-sf-prototyping/">EN</a>
+
+    </li>
+  </ul>
+</nav>
+<style>
+  /* Mobile-only visibility: hide list until opened, show toggle */
+  @media (max-width: 900px) {
+    #site-nav .nav-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+    }
+    #site-nav #nav-list {
+      display: none;
+    }
+    #site-nav #nav-list.is-open {
+      display: block;
+    }
+  }
+</style>
+<script>
+  (function () {
+    var nav = document.getElementById('site-nav');
+    if (!nav) return;
+    var btn = nav.querySelector('.nav-toggle');
+    var list = nav.querySelector('#nav-list');
+    if (!btn || !list) return;
+    btn.addEventListener('click', function () {
+      var open = list.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  })();
+</script>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <div class="prose">
+      <h1 id="作品">作品</h1>
+
+<style>
+.pdf-embed-wrap {
+  position: relative;
+  width: 100%;
+  /* 16:9 をデフォに。縦長PDFなら 4/3=75% などに調整 */
+  padding-top: 62.5%;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f9f9fb;
+}
+.pdf-embed-wrap iframe,
+.pdf-embed-wrap object,
+.pdf-embed-wrap embed {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: 0;
+}
+.pdf-embed-fallback {
+  margin-top: .5rem;
+  font-size: .95rem;
+}
+.pdf-embed-actions {
+  margin: .75rem 0 0;
+}
+.pdf-embed-actions a {
+  display: inline-block;
+  padding: .5rem .75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  text-decoration: none;
+}
+</style>
+
+<div class="pdf-embed" aria-label="PDFプレビュー">
+  
+
+  <div class="pdf-embed-wrap">
+    <!-- 1) ネイティブ表示（対応ブラウザはこれで表示） -->
+    <object data="/assets/docs/toppema_full.pdf#view=FitH&amp;zoom=page-width" type="application/pdf">
+      <!-- 2) Fallback: iframe（ブラウザがobject非対応の時） -->
+      <iframe src="/assets/docs/toppema_full.pdf#view=FitH&amp;zoom=page-width"></iframe>
+    </object>
+  </div>
+
+  <div class="pdf-embed-actions">
+    <a href="/assets/docs/toppema_full.pdf" target="_blank" rel="noopener">PDFを開く</a>
+  </div>
+
+  <div class="pdf-embed-fallback">
+  </div>
+</div>
+
+<h3 id="sfプロトタイピングの手法検証---トッペマ事例">SFプロトタイピングの手法検証 - トッペマ事例</h3>
+
+<p>本活動は、具体的な物語（トッペマ）を素材にしつつも、手法の検証に主眼を置いたSFプロトタイピングの実践です。<br />
+物語の詳細説明ではなく、世界観設計、シナリオワーク、ELSIという再現可能な手順に分解し、将来の社会実装・展示・対話に転用できるフレームを整備しました。</p>
+
+<h3 id="制作手順">制作手順</h3>
+<ul>
+  <li>Step 1: 既存研究・制度・市場動向を推測し、仮説的タイムラインを作成</li>
+  <li>Step 2: マイクロな生活シーン・マクロな社会背景を行き来し物語を作成</li>
+  <li>Step 3: ELSI観点・包摂性・実装可能性の観点から物語をレビュー</li>
+</ul>
+
+<h3 id="応募内容">応募内容</h3>
+<p>本活動は、株式会社QunaSys主催「量子×SFプロトタイピングNEXT〜万博編〜」に応募しました。</p>
+
+<p>詳細はこちら：<a href="https://qunasys.notion.site/SF-NEXT-1d0983a78bc980849aa3e2fb6f88afbe">公募ページ</a></p>
+
+<h3 id="応募作品あらすじ">応募作品あらすじ</h3>
+<p>遺伝子改造実験の失敗から生まれた猫「トッペマ」は、量子的なネットワークとつながる特別な存在として目覚め、都市で典子と出会います。<br />
+夢を操作するデバイス「DreamSphere」をめぐり、典子の記憶と眠りが危機にさらされる中、トッペマは量子もつれを通じて彼女を救おうと奮闘します。<br />
+猫の視点から描かれるこの物語は、量子技術が人間の知性や夢、死生観に与える影響を問うSFプロトタイピング作品です。</p>
+
+<h3 id="今後の展開">今後の展開</h3>
+<p>今後は、トッペマ事例に留まらず、SFプロトタイピングをさらに体系化していくことを目指します。</p>
+
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <small>© 2025 Q/EST</small>
+  </footer>
+  <script src="/assets/js/bubbles.js"></script>
+</body>
+</html>
