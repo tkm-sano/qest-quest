@@ -741,10 +741,20 @@ main,
 @media (max-width: 600px) {
   .approach-overlay .panel {
     max-width: 94vw;
-    font-size: .9rem;
-    line-height: 1.4;
+    max-height: 85vh;       /* 高さを制限してスクロール可能に */
+    overflow-y: auto;       /* 縦スクロールを許可 */
+    font-size: .85rem;      /* 文字を小さめに */
+    line-height: 1.5;
     word-break: break-word;
     overflow-wrap: anywhere;
     padding: 1rem;
+    text-align: left;       /* 左揃えで読みやすく */
+  }
+  .approach-overlay .panel::-webkit-scrollbar {
+    width: 6px;
+  }
+  .approach-overlay .panel::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,.3);
+    border-radius: 3px;
   }
 }
