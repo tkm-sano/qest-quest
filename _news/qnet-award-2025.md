@@ -4,26 +4,25 @@ title: "IEEE Quantum Week (QCE) 2025 QNET Best Paper Award 2nd Place"
 slug: "qnet-award-2025"
 lang: ja
 date: 2025-09-09
-i18n_en: /en/news/en-qnet-award-2025/
+permalink: /projects/qnet-award-2025/
 ---
 
-<div class="news-article">
+<div class="news-article" markdown="1">
 
-# IEEE Quantum Week (QCE) 2025 QNET Best Paper Award 2nd Place
+## IEEE Quantum Week (QCE) 2025 QNET Best Paper Award 2nd Place
 
-<p align="center">
+<div style="text-align:center">
   <img src="/assets/img/news/award-2ndplace.jpg" alt="受賞写真" style="max-width: 500px; height: auto; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,.15);" />
-</p>
+</div>
 
 IEEE Quantum Week 2025 において、永山翔太准教授が共著した論文  
-**「Automatic Configuration Protocols for Optical Quantum Networks」** が、  
-*QNET Best Paper Award (2nd Place)* を受賞しました。
+「Automatic Configuration Protocols for Optical Quantum Networks」が、QNET Best Paper Award (2nd Place) を受賞しました。
 
----
+<hr>
 
 ## IEEE Quantum Week (QCE) 2025 について
 
-本研究成果は **IEEE Quantum Week (QCE) 2025** にて発表され、  
+本研究成果は IEEE Quantum Week (QCE) 2025 にて発表され、  
 QNET トラックにおいて *Best Paper Award 2nd Place* を受賞しました。  
 詳細は [公式サイト](https://qce.quantum.ieee.org/2025/) をご覧ください。
 
