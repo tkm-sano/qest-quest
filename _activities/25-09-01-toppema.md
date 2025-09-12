@@ -10,8 +10,10 @@ thumbnail: "assets/img/activities/cat.png"
 desc: "SFプロトタイピングの手法検証に焦点を当て、世界観設計・未来ガジェット・ELSI観点を統合した実験的取り組みの報告です。"
 slug: "toppema-sf-prototyping"
 permalink: /activities/toppema-sf-prototyping/
-
+i18n_en: /en/activities/toppema-sf-prototyping-en/
 ---
+
+<div class="news-article" markdown="1" style="padding:1rem; margin:0 auto; max-width:90%; width:90%; box-sizing:border-box; overflow-x:hidden; word-wrap:break-word; overflow-wrap:anywhere; word-break:break-word; white-space:normal;">
 
 # 作品
 
@@ -45,3 +47,4 @@ permalink: /activities/toppema-sf-prototyping/
 
 ### 今後の展開
 今後は、トッペマ事例に留まらず、SFプロトタイピングをさらに体系化していくことを目指します。
+</div>

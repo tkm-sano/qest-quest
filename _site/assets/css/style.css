@@ -758,41 +758,46 @@ main,
     text-align: left;
   }
 }
-
+/* ───────── NEWS article readability & no‑clipping ───────── */
 .news-article {
-  max-width: 100% !important;
+  max-width: min(900px, 96vw) !important;
   width: 100% !important;
   margin: 0 auto !important;
-  padding: 1rem !important;
-  line-height: 1.7 !important;
-  font-size: 1.05rem !important;
-
-  /* 強制的に折り返す */
-  word-wrap: break-word !important;
-  overflow-wrap: anywhere !important;
-  word-break: break-word !important;
-  white-space: normal !important;
-
+  padding-left: 4vw !important;
+  padding-right: 4vw !important;
   box-sizing: border-box !important;
+  text-align: left !important;
+  line-height: 1.8 !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  white-space: normal !important;
   overflow-x: hidden !important;
 }
-
+.news-article h1,
+.news-article h2,
+.news-article h3 {
+  text-align: left !important;
+  margin-top: 1.4rem !important;
+  margin-bottom: .8rem !important;
+}
+.news-article p { margin: 0 0 1rem 0 !important; }
+.news-article ul,
+.news-article ol {
+  margin: 0 0 1rem 0 !important;
+  padding-left: 1.2rem !important;
+}
+.news-article ul { list-style: disc inside !important; }
+.news-article ol { list-style: decimal inside !important; }
+.news-article img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 1rem auto !important;
+}
 @media (max-width: 600px) {
   .news-article {
-    font-size: 1rem !important;
-    line-height: 1.6 !important;
-    padding: 0.8rem !important;
-
-    /* モバイルでは全幅に拡張 */
-    max-width: 100% !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-
-    /* 強制折返し */
-    overflow-x: hidden !important;
-    white-space: normal !important;
+    padding-left: 5vw !important;
+    padding-right: 5vw !important;
+    line-height: 1.7 !important;
   }
-  .news-article h1 { font-size: 1.4rem !important; }
-  .news-article h2 { font-size: 1.2rem !important; }
-  .news-article h3 { font-size: 1.05rem !important; }
 }

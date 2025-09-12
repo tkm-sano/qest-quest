@@ -249,7 +249,7 @@ nav_order: 1     # ナビの並び順。お好みで
   </style>
   <h2>Latest News</h2>
   {% comment %} Prefer _news collection, fallback to _data/news.yml {% endcomment %}
-  {% assign coll = site.news %}
+  {% assign coll = site.news | where: 'lang', 'en' %}
   {% if coll and coll.size > 0 %}
     {% assign news_sorted = coll | sort: "date" | reverse %}
     <ul class="news-list">

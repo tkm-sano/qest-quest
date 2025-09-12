@@ -10,7 +10,9 @@ thumbnail: "assets/img/activities/cat.png"
 desc: "An experimental SF prototyping initiative focusing on method validation, integrating worldbuilding, diegetic prototyping, and ELSI perspectives."
 slug: "toppema-sf-prototyping-en"
 permalink: /en/activities/toppema-sf-prototyping-en/
+i18n_ja: /activities/toppema-sf-prototyping/
 ---
+<div class="news-article" markdown="1" style="padding:1rem; margin:0 auto; max-width:90%; width:90%; box-sizing:border-box; overflow-x:hidden; word-wrap:break-word; overflow-wrap:anywhere; word-break:break-word; white-space:normal;">
 
 # Work
 
@@ -42,3 +44,5 @@ Told from the perspective of a cat, this narrative questions how quantum technol
 
 ### Future Development
 Going forward, we aim not only to explore the Toppema case, but also to further systematize **SF prototyping as a methodology**.
+
+</div>
