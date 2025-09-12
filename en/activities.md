@@ -2,6 +2,7 @@
 title: Activities
 lang: en
 layout: default
+permalink: /en/activities/
 ---
 
 <section class="hero" data-reveal>
@@ -70,14 +71,11 @@ layout: default
         {% assign thumb = a.thumbnail | default: a.image %}
         {% assign slug_key = a.slug_en | default: a.slug %}
         {% assign post = site.activities | where: "slug", slug_key | where: "lang", "en" | first %}
-        {% assign has_en = post or a.link_en %}
-        {% if has_en %}
+        {% if post or a.link_en %}
           {% if a.link_en %}
             {% assign href = a.link_en | relative_url %}
-          {% elsif post %}
-            {% assign href = post.url | relative_url %}
           {% else %}
-            {% assign href = '#' %}
+            {% assign href = post.url | relative_url %}
           {% endif %}
           <li class="card" data-type="{{ a.type | default: 'activity' }}">
             {% if thumb %}<img src="{{ '/assets/img/activities/' | append: thumb | relative_url }}" alt="{{ post.title | default: a.title_en | default: a.title }}" loading="lazy">{% endif %}
