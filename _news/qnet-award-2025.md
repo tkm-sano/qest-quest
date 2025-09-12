@@ -12,15 +12,28 @@ i18n_en: /en/projects/en-qnet-award-2025/
   .news-article {
     max-width: 800px;
     margin: 0 auto;
+    padding: 1rem;
     line-height: 1.8;
     font-size: 1.05rem;
   }
-  .news-article h1, 
-  .news-article h2, 
-  .news-article h3 {
+  .news-article h1 {
+    font-size: 1.8rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
-    line-height: 1.4;
+    border-bottom: 2px solid #eee;
+    padding-bottom: .5rem;
+  }
+  .news-article h2 {
+    font-size: 1.4rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #007acc;
+    padding-left: .5rem;
+  }
+  .news-article h3 {
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    margin-bottom: .75rem;
   }
   .news-article blockquote {
     border-left: 4px solid #007acc;
@@ -29,6 +42,7 @@ i18n_en: /en/projects/en-qnet-award-2025/
     color: #444;
     background: #f9f9f9;
     border-radius: 4px;
+    font-style: italic;
   }
   .news-article img {
     display: block;
@@ -40,9 +54,11 @@ i18n_en: /en/projects/en-qnet-award-2025/
   }
   .news-article ul {
     margin: 1rem 0 1rem 1.5rem;
+    padding-left: 1rem;
   }
   .news-article li {
     margin-bottom: .5rem;
+    list-style-type: disc;
   }
 </style>
 
