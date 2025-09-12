@@ -66,18 +66,29 @@ permalink: /en/projects/
         {% if n.thumbnail or n.image %}
           {% assign thumb = n.thumbnail | default: n.image %}
           {% if thumb contains '/' %}
-            <img src="{{ thumb | relative_url }}" alt="">
+            <img src="{{ thumb | relative_url }}" alt="{{ n.title_en | default: n.title }}" loading="lazy">
           {% else %}
-            <img src="{{ '/assets/img/news/' | append: thumb | relative_url }}" alt="">
+            <img src="{{ '/assets/img/news/' | append: thumb | relative_url }}" alt="{{ n.title_en | default: n.title }}" loading="lazy">
           {% endif %}
         {% endif %}
-        {% assign post = site.news | where: "slug", n.slug | first %}
+        {% assign post = nil %}
+        {% if n.slug_en %}
+          {% assign post = site.news | where: "slug", n.slug_en | where: "lang", "en" | first %}
+        {% endif %}
+        {% if post == nil %}
+          {% assign post = site.news | where: "slug", n.slug | where: "lang", "en" | first %}
+        {% endif %}
+
         {% if n.i18n_en %}
           {% assign href = n.i18n_en %}
+        {% elsif n.link_en %}
+          {% assign href = n.link_en %}
         {% elsif post %}
           {% assign href = post.url %}
         {% elsif n.link %}
           {% assign href = n.link %}
+        {% elsif n.slug_en %}
+          {% assign href = '/en/projects/' | append: n.slug_en %}
         {% else %}
           {% assign href = '/en/projects/' | append: n.slug %}
         {% endif %}

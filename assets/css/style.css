@@ -758,3 +758,46 @@ main,
     text-align: left;
   }
 }
+/* ───────── NEWS article readability & no‑clipping ───────── */
+.news-article {
+  max-width: min(900px, 96vw) !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding-left: 4vw !important;
+  padding-right: 4vw !important;
+  box-sizing: border-box !important;
+  text-align: left !important;
+  line-height: 1.8 !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  white-space: normal !important;
+  overflow-x: hidden !important;
+}
+.news-article h1,
+.news-article h2,
+.news-article h3 {
+  text-align: left !important;
+  margin-top: 1.4rem !important;
+  margin-bottom: .8rem !important;
+}
+.news-article p { margin: 0 0 1rem 0 !important; }
+.news-article ul,
+.news-article ol {
+  margin: 0 0 1rem 0 !important;
+  padding-left: 1.2rem !important;
+}
+.news-article ul { list-style: disc inside !important; }
+.news-article ol { list-style: decimal inside !important; }
+.news-article img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 1rem auto !important;
+}
+@media (max-width: 600px) {
+  .news-article {
+    padding-left: 5vw !important;
+    padding-right: 5vw !important;
+    line-height: 1.7 !important;
+  }
+}

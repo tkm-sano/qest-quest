@@ -270,7 +270,21 @@ nav_order: 1     # ナビの並び順。お好みで
         {% for n in news_sorted limit:3 %}
           <li class="news-item">
             <time datetime="{{ n.date | date_to_xmlschema }}">{{ n.date | date: "%Y-%m-%d" }}</time>
-            <a href="{% if n.slug %}{{ '/en/projects/' | append: n.slug | append: '/' | relative_url }}{% elsif n.link %}{{ n.link }}{% else %}#{% endif %}">
+            {% assign href = nil %}
+            {% if n.i18n_en %}
+              {% assign href = n.i18n_en %}
+            {% elsif n.link_en %}
+              {% assign href = n.link_en %}
+            {% elsif n.slug_en %}
+              {% assign href = '/en/projects/' | append: n.slug_en | append: '/' %}
+            {% elsif n.link %}
+              {% assign href = n.link %}
+            {% elsif n.slug %}
+              {% assign href = '/en/projects/' | append: n.slug | append: '/' %}
+            {% else %}
+              {% assign href = '#' %}
+            {% endif %}
+            <a href="{{ href | relative_url }}">
               {% if n.title_en %}{{ n.title_en }}{% else %}{{ n.title }}{% endif %}
             </a>
           </li>
