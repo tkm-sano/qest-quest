@@ -15,6 +15,7 @@ i18n_en: /en/projects/en-qnet-award-2025/
     padding: 1rem;
     line-height: 1.8;
     font-size: 1.05rem;
+    white-space: pre-line;
   }
   .news-article h1 {
     font-size: 1.8rem;
