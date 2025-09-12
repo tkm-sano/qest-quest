@@ -776,23 +776,3 @@ main,
   box-sizing: border-box !important;
   overflow-x: hidden !important;
 }
-
-@media (max-width: 600px) {
-  .news-article {
-    font-size: 1rem !important;
-    line-height: 1.6 !important;
-    padding: 0.8rem !important;
-
-    /* モバイルでは全幅に拡張 */
-    max-width: 100% !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-
-    /* 強制折返し */
-    overflow-x: hidden !important;
-    white-space: normal !important;
-  }
-  .news-article h1 { font-size: 1.4rem !important; }
-  .news-article h2 { font-size: 1.2rem !important; }
-  .news-article h3 { font-size: 1.05rem !important; }
-}
