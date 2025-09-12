@@ -7,7 +7,7 @@ date: 2025-09-09
 permalink: /projects/qnet-award-2025/
 ---
 
-<div class="news-article" markdown="1">
+<div class="news-article" markdown="1" style="padding-left:1rem; padding-right:1rem; box-sizing:border-box; overflow-x:hidden;">
 
 ## IEEE Quantum Week (QCE) 2025 QNET Best Paper Award 2nd Place
 
