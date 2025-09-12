@@ -15,6 +15,71 @@ nav_order: 1     # ナビの並び順。お好みで
   {% else %}
     <p class="lead">量子インターネットによる近未来ITパラダイムの社会デザインと実現</p>
   {% endif %}
+  <script>
+  (function(){
+    var overlay = document.getElementById('approach-caption-overlay');
+    if(!overlay){
+      overlay = document.createElement('div');
+      overlay.id = 'approach-caption-overlay';
+      overlay.className = 'approach-overlay';
+      overlay.setAttribute('aria-hidden','true');
+      var panel = document.createElement('div');
+      panel.className = 'panel';
+      overlay.appendChild(panel);
+      document.body.appendChild(overlay);
+    }
+    var panel = overlay.querySelector('.panel');
+
+    var CAP = null, capPromise = null;
+    function loadCaptions(){
+      if(CAP) return Promise.resolve(CAP);
+      if(capPromise) return capPromise;
+      var url = '{{ "/assets/data/approach_captions.json" | relative_url }}';
+      capPromise = fetch(url,{cache:'no-store'})
+        .then(r=> r.ok ? r.json() : {})
+        .catch(()=>({}))
+        .then(json=>{ CAP=json||{}; return CAP; });
+      return capPromise;
+    }
+
+    var lang = (document.documentElement.getAttribute('lang') || '{{ page.lang | default: "ja" }}').slice(0,2);
+
+    function bindTile(tile){
+      if(!tile.hasAttribute('tabindex')) tile.setAttribute('tabindex','0');
+      var key = tile.getAttribute('data-cap-key');
+      var fallback = tile.querySelector('figcaption') ? tile.querySelector('figcaption').textContent : '';
+      var showTimer=null, hideTimer=null, pinned=false;
+
+      function doShow(){
+        loadCaptions().then(map=>{
+          var cap=fallback;
+          if(key && map && map[key]) cap=map[key][lang]||map[key]['en']||fallback;
+          panel.textContent=cap;
+          overlay.classList.add('show');
+          overlay.classList.remove('pinned');
+          overlay.setAttribute('aria-hidden','false');
+        });
+      }
+      function doHide(){
+        if(pinned) return;
+        overlay.classList.remove('show','pinned');
+        overlay.setAttribute('aria-hidden','true');
+      }
+      tile.addEventListener('mouseenter',()=>{ clearTimeout(hideTimer); showTimer=setTimeout(doShow,60); });
+      tile.addEventListener('mouseleave',()=>{ clearTimeout(showTimer); hideTimer=setTimeout(doHide,200); });
+      tile.addEventListener('click',function(e){
+        e.preventDefault();
+        if(!overlay.classList.contains('show')||!overlay.classList.contains('pinned')){
+          pinned=true; overlay.classList.add('show','pinned'); doShow();
+        } else {
+          pinned=false; overlay.classList.remove('pinned','show'); overlay.setAttribute('aria-hidden','true');
+        }
+      });
+    }
+
+    document.querySelectorAll('#approach .tile').forEach(bindTile);
+  })();
+  </script>
 </section>
 <section class="quantum-demo" data-reveal>
   <div id="quantum-visualization" class="complex-viz"></div>
@@ -195,8 +260,8 @@ nav_order: 1     # ナビの並び順。お好みで
   <style>
     /* LP Latest News band (EN) */
     .news-band{
-      margin: 2rem 0;
-      padding: 1.25rem 1.25rem 0.75rem;
+      margin: 1.5rem 0;
+      padding: 0.75rem 0.75rem 0.75rem;
       border: 1px solid var(--c-border, #eaeef3);
       border-radius: 12px;
       background: linear-gradient(180deg,#f5fbff 0%, #ffffff 100%);
@@ -214,8 +279,8 @@ nav_order: 1     # ナビの並び順。お好みで
     .news-band .news-item{
       display: grid;
       grid-template-columns: 110px 1fr;
-      gap: .75rem;
-      padding: .5rem 0;
+      gap: .6rem;
+      padding: .6rem 0;
       border-top: 1px dashed #dbe7f3;
     }
     .news-band .news-item:first-child{
@@ -280,102 +345,345 @@ nav_order: 1     # ナビの並び順。お好みで
       <p>No news yet.</p>
     {% endif %}
   {% endif %}
-  <a class="view-all" href="{{ '/en/news/#news' | relative_url }}">View all news →</a>
+  <a class="view-all" href="{{ '/projects/#news' | relative_url }}">View all news →</a>
+</section>
+
+<section id="approach" class="methods-band" data-reveal>
+  <style>
+    .methods-band{ margin:1.5rem 0; }
+    .methods-band h2{ margin:0 0 .5rem; font-size:1.1rem; letter-spacing:.08em; }
+    .methods-band .tiles{ display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:.9rem; align-items:stretch; }
+    .methods-band .tile{
+      position:relative;
+      text-align:center;
+      border:1px solid var(--c-border,#eaeef3);
+      border-radius:14px;
+      background:#fff;
+      padding:1.2rem 1.4rem;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:150px;
+    }
+    .methods-band .tile .icon{
+      position:relative;
+      z-index:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:.6rem;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .methods-band .tile svg{ width:56px; height:56px; display:block; margin:0; flex:0 0 auto; }
+    .methods-band .tile figcaption{
+      font-weight:600;
+      font-size:.8rem;
+      line-height:1.6;          /* more vertical spacing for word-per-line */
+      letter-spacing:.02em;
+      margin:0;
+      text-align:center;
+      white-space:normal;
+      word-break:keep-all;
+      overflow-wrap:break-word;
+      max-width:100%;
+      padding:0 .2rem;
+      display:block;
+    }
+    .methods-band .tile figcaption br {
+      display:block;
+      content:"";
+    }
+    @media (max-width: 560px){
+      .methods-band .tile{ min-height:84px; }
+      .methods-band .tile .icon{ gap:.6rem; flex-direction:column; }
+      .methods-band .tile figcaption{ max-width:100%; white-space:normal; }
+    }
+    .methods-band .view-all{ margin-top:.75rem; }
+    .c1{fill:#5AD1FF;}.c2{fill:#A477FF;}.c3{fill:#9CF36B;}.stroke{stroke:#111;stroke-width:1.5;fill:none}
+
+    /* Center caption overlay (same as Japanese version) */
+    .approach-overlay{
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease;
+      z-index: 9999;
+    }
+    .approach-overlay::before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(120% 120% at 50% 50%, rgba(0,0,0,.28) 0%, rgba(0,0,0,.38) 60%, rgba(0,0,0,.48) 100%);
+    }
+    .approach-overlay.show{ opacity: 1; }
+    .approach-overlay.pinned{ pointer-events: auto; }
+    .approach-overlay .panel{
+      max-width: min(84vw, 920px);
+      margin: 0 3vw;
+      color: #fff;
+      background: linear-gradient(180deg, rgba(8,10,16,.72), rgba(8,10,16,.72)) padding-box;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 16px;
+      padding: clamp(1rem, 2.6vw, 1.6rem) clamp(1.1rem, 3vw, 2rem);
+      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      font-size: clamp(0.98rem, 1.9vw, 1.22rem);
+      line-height: 1.8;
+      letter-spacing: .01em;
+      text-align: center;
+      font-family: 'Inter', 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      font-feature-settings: "liga" 1, "calt" 1;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      word-break: keep-all;
+      hyphens: auto;
+      transform: translateY(6px) scale(.985);
+      transition: transform .2s ease, filter .2s ease;
+    }
+    .approach-overlay.show .panel{
+      transform: translateY(0) scale(1);
+    }
+    .approach-overlay .panel::after{
+      content:"";
+      display:block;
+      height: 3px;
+      margin: .75rem auto 0;
+      width: min(180px, 40%);
+      border-radius: 2px;
+      background: linear-gradient(90deg, #5AD1FF, #A477FF 60%, #9CF36B);
+      opacity: .9;
+    }
+    .approach-overlay .panel .line{ display:block; margin: 0 0 .35em; }
+  </style>
+
+  <h2>Approach</h2>
+  <div class="tiles">
+    <figure class="tile" data-cap-key="sf">
+      <div class="icon">
+        <svg viewBox="0 0 120 120" role="img" aria-label="SF Prototyping">
+          <title>SF Prototyping</title>
+          <circle cx="60" cy="60" r="28" class="c1" opacity=".25"/>
+          <path d="M40 80 L60 30 L80 80 Z" class="stroke"/>
+          <circle cx="60" cy="60" r="4" class="c2"/>
+        </svg>
+        <figcaption>SF<br>Prototyping</figcaption>
+      </div>
+    </figure>
+    <figure class="tile" data-cap-key="cocreation">
+      <div class="icon">
+        <svg viewBox="0 0 120 120" role="img" aria-label="Co-creation Workshops">
+          <title>Co-creation Workshops</title>
+          <circle cx="40" cy="50" r="8" class="c1"/>
+          <circle cx="80" cy="50" r="8" class="c2"/>
+          <circle cx="60" cy="80" r="8" class="c3"/>
+          <path d="M40 50 L80 50 L60 80 Z" class="stroke"/>
+        </svg>
+        <figcaption>Co-creation<br>Workshops</figcaption>
+      </div>
+    </figure>
+    <figure class="tile" data-cap-key="behavior">
+      <div class="icon">
+        <svg viewBox="0 0 120 120" role="img" aria-label="Behavior-Change Scenario Planning">
+          <title>Behavior-Change Scenario Planning</title>
+          <path d="M30 85 C45 75, 55 60, 60 45 C65 30, 80 30, 90 40" class="stroke"/>
+          <circle cx="30" cy="85" r="5" class="c1"/>
+          <circle cx="60" cy="45" r="5" class="c2"/>
+          <circle cx="90" cy="40" r="6" class="c3"/>
+        </svg>
+        <figcaption>Behavior-Change<br>Scenario</figcaption>
+      </div>
+    </figure>
+    <figure class="tile" data-cap-key="consensus">
+      <div class="icon">
+        <svg viewBox="0 0 120 120" role="img" aria-label="Consensus Building">
+          <title>Consensus Building</title>
+          <circle cx="60" cy="60" r="28" class="c1" opacity=".18"/>
+          <path d="M40 60 L54 72 L82 44" class="stroke"/>
+          <circle cx="40" cy="60" r="4" class="c2"/>
+          <circle cx="54" cy="72" r="4" class="c3"/>
+          <circle cx="82" cy="44" r="4" class="c2"/>
+        </svg>
+        <figcaption>Consensus<br>Building</figcaption>
+      </div>
+    </figure>
+    <figure class="tile" data-cap-key="social">
+      <div class="icon">
+        <svg viewBox="0 0 120 120" role="img" aria-label="Social-Transformation Scenarios">
+          <title>Social-Transformation Scenarios</title>
+          <path d="M60 90 V60 M60 60 C60 45 75 45 80 40 M60 60 C60 45 45 45 40 40" class="stroke"/>
+          <circle cx="60" cy="90" r="5" class="c1"/>
+          <circle cx="80" cy="40" r="6" class="c2"/>
+          <circle cx="40" cy="40" r="6" class="c3"/>
+        </svg>
+        <figcaption>Social-<br>Transformation</figcaption>
+      </div>
+    </figure>
+    <figure class="tile" data-cap-key="collab">
+      <div class="icon">
+        <svg viewBox="0 0 120 120" role="img" aria-label="Collaborative Research">
+          <title>Collaborative Research</title>
+          <circle cx="60" cy="60" r="28" class="c1" opacity=".25"/>
+          <path d="M30 60 L60 30 L90 60 L60 90 Z" class="stroke"/>
+        </svg>
+        <figcaption>Collaborative<br>Research</figcaption>
+      </div>
+    </figure>
+    <figure class="tile" data-cap-key="implementation">
+      <div class="icon">
+        <svg viewBox="0 0 120 120" role="img" aria-label="Social Implementation">
+          <title>Social Implementation</title>
+          <circle cx="60" cy="60" r="28" class="c2" opacity=".25"/>
+          <path d="M40 80 L60 40 L80 80" class="stroke"/>
+          <path d="M50 70 H70 V90 H50 Z" class="stroke"/>
+        </svg>
+        <figcaption>Social<br>Implementation</figcaption>
+      </div>
+    </figure>
+    <figure class="tile" data-cap-key="speculative">
+      <div class="icon">
+        <svg viewBox="0 0 120 120" role="img" aria-label="Speculative Design">
+          <title>Speculative Design</title>
+          <circle cx="60" cy="60" r="28" class="c3" opacity=".25"/>
+          <path d="M30 70 Q60 20 90 70" class="stroke"/>
+          <circle cx="60" cy="40" r="6" class="c2"/>
+        </svg>
+        <figcaption>Speculative<br>Design</figcaption>
+      </div>
+    </figure>
+  </div>
+  <script>
+    (function(){
+      var overlay = document.getElementById('approach-caption-overlay');
+      if(!overlay){
+        overlay = document.createElement('div');
+        overlay.id = 'approach-caption-overlay';
+        overlay.className = 'approach-overlay';
+        overlay.setAttribute('aria-hidden','true');
+        var panel = document.createElement('div');
+        panel.className = 'panel';
+        overlay.appendChild(panel);
+        document.body.appendChild(overlay);
+      }
+      var panel = overlay.querySelector('.panel');
+      var CAP = null, capPromise = null;
+      function loadCaptions(){
+        if(CAP) return Promise.resolve(CAP);
+        if(capPromise) return capPromise;
+        var url = '{{ "/assets/data/approach_captions.json" | relative_url }}';
+        capPromise = fetch(url,{cache:'no-store'})
+          .then(r=> r.ok ? r.json() : {})
+          .catch(()=>({}))
+          .then(json=>{ CAP=json||{}; return CAP; });
+        return capPromise;
+      }
+      var lang = (document.documentElement.getAttribute('lang') || '{{ page.lang | default: "ja" }}').slice(0,2);
+      function bindTile(tile){
+        if(!tile.hasAttribute('tabindex')) tile.setAttribute('tabindex','0');
+        var key = tile.getAttribute('data-cap-key');
+        var fallback = tile.querySelector('figcaption')? tile.querySelector('figcaption').textContent : '';
+        var showTimer=null, hideTimer=null, pinned=false;
+        function doShow(){
+          loadCaptions().then(map=>{
+            var cap=fallback;
+            if(key && map && map[key]) cap=map[key][lang]||map[key]['en']||fallback;
+            panel.textContent=cap;
+            overlay.classList.add('show');
+            overlay.classList.remove('pinned');
+            overlay.setAttribute('aria-hidden','false');
+          });
+        }
+        function doHide(){
+          if(pinned) return;
+          overlay.classList.remove('show');
+          overlay.classList.remove('pinned');
+          overlay.setAttribute('aria-hidden','true');
+        }
+        function showDebounced(){
+          clearTimeout(hideTimer); clearTimeout(showTimer);
+          showTimer=setTimeout(doShow,60);
+        }
+        function hideDebounced(){
+          clearTimeout(showTimer); clearTimeout(hideTimer);
+          hideTimer=setTimeout(doHide,200);
+        }
+        tile.addEventListener('mouseenter',showDebounced);
+        tile.addEventListener('mouseleave',hideDebounced);
+        tile.addEventListener('focus',showDebounced);
+        tile.addEventListener('blur',hideDebounced);
+        tile.addEventListener('click',function(e){
+          e.preventDefault();
+          if(!overlay.classList.contains('show')||!overlay.classList.contains('pinned')){
+            pinned=true; overlay.classList.add('show','pinned'); doShow();
+          } else {
+            pinned=false; overlay.classList.remove('pinned','show'); overlay.setAttribute('aria-hidden','true');
+          }
+        });
+      }
+      document.querySelectorAll('#approach .tile').forEach(bindTile);
+      document.addEventListener('keydown',function(e){
+        if(e.key==='Escape'){
+          overlay.classList.remove('pinned','show');
+          overlay.setAttribute('aria-hidden','true');
+        }
+      });
+      overlay.addEventListener('click',function(e){
+        if(e.target===overlay){
+          overlay.classList.remove('pinned','show');
+          overlay.setAttribute('aria-hidden','true');
+        }
+      });
+    })();
+  </script>
 </section>
 
 <section id="activities-preview" class="activities-band" data-reveal>
   <style>
-    /* LP Activities preview (EN) */
-    .activities-band{
-      margin: 2rem 0;
-    }
-    .activities-band h2{
-      margin: 0 0 .5rem;
-      font-size: 1.1rem;
-      letter-spacing: .08em;
-    }
-    .activities-band .cat-title{
-      margin: 1rem 0 .5rem;
-      font-size: 1rem;
-      opacity: .85;
-    }
-    .activities-band .cards{
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
-      align-items: stretch;
-    }
-    .activities-band .card{
-      display: flex;
-      flex-direction: column;
-      border: 1px solid var(--c-border, #eaeef3);
-      border-radius: 10px;
-      overflow: hidden;
-      background: #fff;
-    }
-    .activities-band .card img{
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      display: block;
-    }
-    .activities-band .card h4{
-      margin: .75rem 1rem .25rem;
-      font-size: 1.02rem;
-      line-height: 1.35;
-    }
-    .activities-band .card p{
-      margin: 0 1rem 1rem;
-    }
-    .activities-band .btn-quest{
-      margin: 0 1rem 1rem;
-      align-self: flex-start;
-    }
-    .activities-band .view-all{
-      margin-top: .75rem;
-    }
+    /* LP Activities preview */
+    .activities-band{ margin: 1.5rem 0; }
+    .activities-band h2{ margin: 0 0 .5rem; font-size: 1.1rem; letter-spacing: .08em; }
+    .activities-band .tiles{ display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .6rem; }
+    .activities-band .tile{ position:relative; border:1px solid var(--c-border,#eaeef3); border-radius:10px; overflow:hidden; background:#fff; }
+    .activities-band .tile img{ width:100%; height:160px; object-fit:cover; display:block; }
+    .activities-band .tile h4{ position:absolute; left:0; right:0; bottom:0; margin:0; padding:.5rem .6rem; font-size:.98rem; color:#fff; background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.65) 100%); }
+    .activities-band .view-all{ margin-top:.75rem; }
   </style>
-  <h2>Activities</h2>
-  {% assign categories = site.data.activity_categories %}
-  {% if categories %}
-    {% for cat in categories %}
-      <h3 class="cat-title">{% if cat.name_en %}{{ cat.name_en }}{% else %}{{ cat.name }}{% endif %}</h3>
-      {% assign base = site.data.activities %}
-      {% if base %}
-        {% assign items = base | where: "category", cat.id | sort: "date" | reverse %}
-        <div class="cards">
-          {% for a in items limit:3 %}
-          <div class="card" data-reveal>
-            {% if a.image %}
-              <img src="{{ '/assets/img/activities/' | append: a.image | relative_url }}" alt="">
-            {% endif %}
-            <h4>{% if a.title_en %}{{ a.title_en }}{% else %}{{ a.title }}{% endif %}</h4>
-            {% if a.desc or a.desc_en %}
-            <p>{% if a.desc_en %}{{ a.desc_en }}{% else %}{{ a.desc }}{% endif %}</p>
-            {% endif %}
-            {% if a.link %}
-            <a href="{{ a.link | relative_url }}" class="btn-quest" target="_blank" rel="noopener">
-              {% if a.button_en %}
-                {{ a.button_en }}
-              {% elsif a.button %}
-                {{ a.button }}
-              {% else %}
-                {% if a.title_en %}{{ a.title_en }}{% else %}{{ a.title }}{% endif %}
-              {% endif %}
-            </a>
-            {% endif %}
-          </div>
-          {% endfor %}
-        </div>
-      {% else %}
-        <p>Preparing activity data...</p>
-      {% endif %}
-    {% endfor %}
+
+  <h2>{% if page.lang == "en" %}Activities{% else %}活動報告{% endif %}</h2>
+
+  {% assign base = site.data.activities %}
+  {% if base %}
+    {% assign featured = base | where_exp: 'a','a.featured_order' | sort: 'featured_order' %}
+    {% if featured and featured.size > 0 %}
+      {% assign items = featured | slice: 0, 5 %}
+    {% else %}
+      {% assign items = base | sort: 'date' | reverse | slice: 0, 5 %}
+    {% endif %}
+    <div class="tiles">
+      {% for a in items %}
+        {% assign thumb = a.thumbnail | default: a.image %}
+        {% capture href %}
+          {% if a.slug %}{{ '/activities/' | append: a.slug | relative_url }}{% elsif a.link %}{{ a.link }}{% else %}#{% endif %}
+        {% endcapture %}
+        <a class="tile" href="{{ href | strip }}">
+          {% if thumb %}<img src="{{ '/assets/img/activities/' | append: thumb | relative_url }}" alt="">{% endif %}
+          <h4>{% if page.lang == "en" and a.title_en %}{{ a.title_en }}{% else %}{{ a.title }}{% endif %}</h4>
+        </a>
+      {% endfor %}
+    </div>
   {% else %}
-    <p>No categories yet.</p>
+    <p>{% if page.lang == "en" %}Preparing activities...{% else %}活動データを準備中です。{% endif %}</p>
   {% endif %}
+
   <p class="view-all">
-    <a href="{{ '/en/news/#activities' | relative_url }}">View all activities →</a>
+    <a href="{{ '/en/activities/' | relative_url }}">
+      {% if page.lang == "en" %}View all activities →{% else %}すべての活動を見る →{% endif %}
+    </a>
   </p>
 </section>
 

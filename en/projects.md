@@ -11,7 +11,7 @@ permalink: /en/projects/
     <em>:: NEWS ::</em>
   </h1>
   <p class="lead">This page showcases our latest news and updates.<br />
-  We share information on projects, events, and publications related to quantum technologies and their social applications.</p>
+  We share information on projects, events, and productions related to quantum technologies and their social applications.</p>
 </section>
 
 <!-- News Section -->

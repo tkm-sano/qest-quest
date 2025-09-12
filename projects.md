@@ -7,10 +7,10 @@ nav_order: 3
 
 <section class="hero" data-reveal>
   <h1 class="chapter glitch" data-shadow="Chapter III :: NEWS ::">
-   <em>:: NEWS ::</em>
+    <em>:: NEWS ::</em>
   </h1>
   <p class="lead">このページでは、プロジェクトの最新ニュースを掲載します。<br />
-  関連する研究・イベント・出版など量子技術と社会応用に関する情報をお届けします。</p>
+  関連する研究・イベント・制作など量子技術と社会応用に関する情報をお届けします。</p>
 </section>
 
 <!-- News Section -->
@@ -44,42 +44,34 @@ nav_order: 3
       font-size: 1.05rem;
       line-height: 1.35;
     }
-    #news .card p{
-      margin: 0 1rem 1rem;
-    }
-    #news .card .btn-quest{
-      margin: 0 1rem 1rem;
-      align-self: flex-start;
-    }
-    @media (max-width: 600px){
-      #news .card img{ height: 140px; }
-    }
+    #news .card p{ margin: 0 1rem 1rem; }
+    #news .card .btn-quest{ margin: 0 1rem 1rem; align-self: flex-start; }
+    @media (max-width: 600px){ #news .card img{ height: 140px; } }
   </style>
+
   {% assign news = site.data.news %}
   {% if news %}
     {% assign news = news | sort: "date" | reverse %}
     <div class="cards">
-    {% for n in news %}
-      <div class="card" data-reveal>
-        {% if n.thumbnail or n.image %}
-          {% assign thumb = n.thumbnail | default: n.image %}
-          {% if thumb contains '/' %}
-            <img src="{{ thumb | relative_url }}" alt="">
-          {% else %}
-            <img src="{{ '/assets/img/news/' | append: thumb | relative_url }}" alt="">
+      {% for n in news %}
+        <div class="card" data-reveal>
+          {% if n.thumbnail or n.image %}
+            {% assign thumb = n.thumbnail | default: n.image %}
+            {% if thumb contains '/' %}
+              <img src="{{ thumb | relative_url }}" alt="">
+            {% else %}
+              <img src="{{ '/assets/img/news/' | append: thumb | relative_url }}" alt="">
+            {% endif %}
           {% endif %}
-        {% endif %}
-        <h4 class="news-title">
-          <a href="{{ '/news/' | append: n.slug | relative_url }}">
-            {% if n.title %}{{ n.title }}{% else %}{{ n.title_en }}{% endif %}
-          </a>
-        </h4>
-        {% if n.desc or n.desc_en %}
-        <p class="news-desc">{% if n.desc %}{{ n.desc }}{% else %}{{ n.desc_en }}{% endif %}</p>
-        {% endif %}
-        <a href="{{ '/news/' | append: n.slug | relative_url }}" class="btn-quest">もっと見る</a>
-      </div>
-    {% endfor %}
+          <h4 class="news-title">
+            <a href="{{ '/news/' | append: n.slug | relative_url }}">{{ n.title | default: n.title_en }}</a>
+          </h4>
+          {% if n.desc or n.desc_en %}
+            <p class="news-desc">{{ n.desc | default: n.desc_en }}</p>
+          {% endif %}
+          <a href="{{ '/news/' | append: n.slug | relative_url }}" class="btn-quest">もっと見る</a>
+        </div>
+      {% endfor %}
     </div>
   {% else %}
     <p>ニュースはまだありません。</p>
