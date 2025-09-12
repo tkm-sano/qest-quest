@@ -758,21 +758,3 @@ main,
     text-align: left;
   }
 }
-
-.news-article {
-  max-width: 100% !important;
-  width: 100% !important;
-  margin: 0 auto !important;
-  padding: 1rem !important;
-  line-height: 1.7 !important;
-  font-size: 1.05rem !important;
-
-  /* 強制的に折り返す */
-  word-wrap: break-word !important;
-  overflow-wrap: anywhere !important;
-  word-break: break-word !important;
-  white-space: normal !important;
-
-  box-sizing: border-box !important;
-  overflow-x: hidden !important;
-}

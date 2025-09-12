@@ -5,10 +5,10 @@ slug: "qnet-award-2025-en"
 lang: en
 date: 2025-09-09
 permalink: /en/projects/qnet-award-2025-en/
-i18n_en: /projects/qnet-award-2025/
+i18n_ja: /projects/qnet-award-2025/
 ---
 
-<div class="news-article" markdown="1" style="padding-left:1rem; padding-right:1rem; margin:0 auto; max-width:100%; width:100%; box-sizing:border-box; overflow-x:hidden;">
+<div class="news-article" markdown="1" style="padding:1rem; margin:0 auto; max-width:80%; width:80%; box-sizing:border-box; overflow-x:hidden;">
 
 # IEEE Quantum Week (QCE) 2025 QNET Best Paper Award 2nd Place
 
