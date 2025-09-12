@@ -1,14 +1,15 @@
 ---
 layout: default
 title: "SF Prototyping Activity Report - Toppema"
+title_en: "SF Prototyping - Toppema"
 lang: en
 date: 2025-09-01
 category: activities
 image: "assets/img/activities/cat.png"
 thumbnail: "assets/img/activities/cat.png"
 desc: "An experimental SF prototyping initiative focusing on method validation, integrating worldbuilding, diegetic prototyping, and ELSI perspectives."
-slug: "toppema-sf-prototyping"
-permalink: /en/activities/toppema-sf-prototyping/
+slug: "toppema-sf-prototyping-en"
+permalink: /en/activities/toppema-sf-prototyping-en/
 ---
 
 # Work

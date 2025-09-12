@@ -1,29 +1,31 @@
-title: Q/EST Quest - 量子インターネットと未来社会のデザイン・研究チーム
-description: Q/EST Questは、量子インターネットや量子技術の最先端動向、SFプロトタイピング、未来社会デザインに関心を持つ研究者・技術者・クリエイターのための情報プラットフォームです。量子ネットワーク、量子コンピューティング、未来社会設計、最新研究・事例を幅広く発信します。
+# Site config
+url: "https://q-est.org"      # production URL (leave empty for local)
+baseurl: ""                    # if served from a subpath, set like "/qest-quest_jekyll"
 
-url: "https://q-est.org"
-baseurl: ""
-permalink: /:lang/:slug/
+# Locale / build
 timezone: Asia/Tokyo
 lang: ja
 markdown: kramdown
+
+# Theme & plugins
 theme: minima
 plugins:
   - jekyll-feed
   - jekyll-sitemap
 
-google_analytics: "G-PHHQGMRM5V"   # ← 実際の Measurement ID に置き換えてください
-
+# Defaults
 defaults:
   - scope:
       path: ""
     values:
       lang: ja
 
+# Include additional static paths
 include:
   - assets/data
   - assets/.well-known
 
+# Collections
 collections:
   news:
     output: true

@@ -73,7 +73,7 @@ permalink: /en/projects/
         {% endif %}
         <h4 class="news-title">
           <a href="{% if n.i18n_en %}{{ n.i18n_en | relative_url }}{% else %}{{ '/en/projects/' | append: n.slug | relative_url }}{% endif %}">
-            {% if n.title_en %}{{ n.title_en }}{% else %}{{ n.title }}{% endif %}
+            {{ n.title_en | default: n.title }}
           </a>
         </h4>
         {% if n.desc or n.desc_en %}

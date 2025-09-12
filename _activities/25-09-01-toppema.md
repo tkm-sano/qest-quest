@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "SFプロトタイピング活動報告 - トッペマ"
+title_en: "SF Prototyping Activity Report - Toppema"
 lang: ja
 date: 2025-09-01
 category: activities
@@ -8,6 +9,8 @@ image: "assets/img/activities/cat.png"
 thumbnail: "assets/img/activities/cat.png"
 desc: "SFプロトタイピングの手法検証に焦点を当て、世界観設計・未来ガジェット・ELSI観点を統合した実験的取り組みの報告です。"
 slug: "toppema-sf-prototyping"
+permalink: /activities/toppema-sf-prototyping/
+
 ---
 
 # 作品

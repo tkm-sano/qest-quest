@@ -274,7 +274,7 @@ nav_order: 1     # ナビの並び順。お好みで
         {% for n in news_sorted limit:3 %}
           <li class="news-item">
             <time datetime="{{ n.date | date_to_xmlschema }}">{{ n.date | date: "%Y-%m-%d" }}</time>
-            <a href="{% if n.slug %}{{ '/news/' | append: n.slug | append: '/' | relative_url }}{% elsif n.link %}{{ n.link }}{% else %}#{% endif %}">
+            <a href="{% if n.slug %}{{ '/projects/' | append: n.slug | append: '/' | relative_url }}{% elsif n.link %}{{ n.link }}{% else %}#{% endif %}">
               {% if page.lang == "en" and n.title_en %}{{ n.title_en }}{% else %}{{ n.title }}{% endif %}
             </a>
           </li>
@@ -698,11 +698,34 @@ nav_order: 1     # ナビの並び順。お好みで
     <div class="tiles">
       {% for a in items %}
         {% assign thumb = a.thumbnail | default: a.image %}
+        {% if page.lang == "en" %}
+          {% assign slug_key = a.slug_en | default: a.slug %}
+        {% else %}
+          {% assign slug_key = a.slug %}
+        {% endif %}
         {% capture href %}
-          {% if a.slug %}{{ '/activities/' | append: a.slug | relative_url }}{% elsif a.link %}{{ a.link }}{% else %}#{% endif %}
+          {% if page.lang == "en" %}
+            {% if a.link_en %}
+              {{ a.link_en | relative_url }}
+            {% elsif slug_key %}
+              {{ '/en/activities/' | append: slug_key | relative_url }}
+            {% elsif a.link %}
+              {{ a.link | relative_url }}
+            {% else %}
+              #
+            {% endif %}
+          {% else %}
+            {% if a.link %}
+              {{ a.link | relative_url }}
+            {% elsif slug_key %}
+              {{ '/activities/' | append: slug_key | relative_url }}
+            {% else %}
+              #
+            {% endif %}
+          {% endif %}
         {% endcapture %}
         <a class="tile" href="{{ href | strip }}">
-          {% if thumb %}<img src="{{ '/assets/img/activities/' | append: thumb | relative_url }}" alt="">{% endif %}
+          {% if thumb %}<img src="{{ '/assets/img/activities/' | append: thumb | relative_url }}" alt="{% if page.lang == 'en' and a.title_en %}{{ a.title_en }}{% else %}{{ a.title }}{% endif %}">{% endif %}
           <h4>{% if page.lang == "en" and a.title_en %}{{ a.title_en }}{% else %}{{ a.title }}{% endif %}</h4>
         </a>
       {% endfor %}

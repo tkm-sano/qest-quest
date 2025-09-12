@@ -40,7 +40,7 @@ layout: default
     .cards > li{ position:relative !important; min-width:0; float:none !important; clear:none !important; }
     .card{ display:flex !important; position:relative !important; flex-direction:column; height:auto; width:100%; box-shadow:0 2px 6px rgba(0,0,0,.05); transition:box-shadow .2s ease; }
     .card:hover{ box-shadow:0 8px 18px rgba(0,0,0,.10); }
-    .card img{ width:100%; height:130px; object-fit:cover; display:block; }
+    .card img{ width:100%; height:auto; object-fit:contain; display:block; }
     .card h3{ margin:.6rem .8rem .3rem; font-size:1rem; line-height:1.35; }
     .meta{ margin:0 .8rem .8rem; font-size:.85rem; color:#666; display:flex; gap:.4rem; flex-wrap:wrap; }
     /* Full-bleed layout on desktop to guarantee 3 columns */
@@ -68,16 +68,27 @@ layout: default
       {% assign items = base | sort: "date" | reverse %}
       {% for a in items %}
         {% assign thumb = a.thumbnail | default: a.image %}
-        {% capture href %}{% if a.slug %}{{ '/activities/' | append: a.slug | relative_url }}{% elsif a.link %}{{ a.link }}{% else %}#{% endif %}{% endcapture %}
-        <li class="card" data-type="{{ a.type | default: 'activity' }}">
-          {% if thumb %}<a href="{{ href }}"><img src="{{ '/assets/img/activities/' | append: thumb | relative_url }}" alt=""></a>{% endif %}
-          <h3><a href="{{ href }}">{{ a.title_en | default: a.title }}</a></h3>
-          <div class="meta">
-            <span>{{ a.date | date: "%Y-%m-%d" }}</span>
-            {% if a.location %}<span>· {{ a.location }}</span>{% endif %}
-            {% if a.method %}<span>· {{ a.method | join: ', ' }}</span>{% endif %}
-          </div>
-        </li>
+        {% assign slug_key = a.slug_en | default: a.slug %}
+        {% assign post = site.activities | where: "slug", slug_key | where: "lang", "en" | first %}
+        {% assign has_en = post or a.link_en %}
+        {% if has_en %}
+          {% if a.link_en %}
+            {% assign href = a.link_en | relative_url %}
+          {% elsif post %}
+            {% assign href = post.url | relative_url %}
+          {% else %}
+            {% assign href = '#' %}
+          {% endif %}
+          <li class="card" data-type="{{ a.type | default: 'activity' }}">
+            {% if thumb %}<img src="{{ '/assets/img/activities/' | append: thumb | relative_url }}" alt="{{ post.title | default: a.title_en | default: a.title }}" loading="lazy">{% endif %}
+            <h3><a href="{{ href }}">{{ post.title | default: a.title_en | default: a.title }}</a></h3>
+            <div class="meta">
+              <span>{{ a.date | date: "%Y-%m-%d" }}</span>
+              {% if a.location %}<span>· {{ a.location }}</span>{% endif %}
+              {% if a.method %}<span>· {{ a.method | join: ', ' }}</span>{% endif %}
+            </div>
+          </li>
+        {% endif %}
       {% endfor %}
     </ul>
     <script>
