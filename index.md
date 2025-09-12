@@ -591,156 +591,116 @@ nav_order: 1     # ナビの並び順。お好みで
       </figure>
     </div>
   {% endif %}
-
   <script>
-    (function(){
-      // Create a single, global overlay for captions
-      var overlay = document.getElementById('approach-caption-overlay');
-      if(!overlay){
-        overlay = document.createElement('div');
-        overlay.id = 'approach-caption-overlay';
-        overlay.className = 'approach-overlay';
-        overlay.setAttribute('aria-hidden','true');
-        var panel = document.createElement('div');
-        panel.className = 'panel';
-        // ✕ ボタンを追加
-        var closeBtn = document.createElement('button');
-        closeBtn.className = 'close-btn';
-        closeBtn.setAttribute('aria-label','Close');
-        closeBtn.innerHTML = '✕';
-        panel.appendChild(closeBtn);
-        overlay.appendChild(panel);
-        // ✕ ボタンで閉じる処理
-        closeBtn.addEventListener('click', function(){
-          overlay.classList.remove('pinned','show');
-          overlay.setAttribute('aria-hidden','true');
-        });
-        document.body.appendChild(overlay);
-      }
-      var panel = overlay.querySelector('.panel');
+  (function(){
+    // ===== Overlay & Panel (with X button) =====
+    var overlay = document.getElementById('approach-caption-overlay');
+    if(!overlay){
+      overlay = document.createElement('div');
+      overlay.id = 'approach-caption-overlay';
+      overlay.className = 'approach-overlay';
+      overlay.setAttribute('aria-hidden','true');
 
-      // Lazy-load captions from external JSON generated from _data/approach_captions.yml
-      var CAP = null, capPromise = null;
-      function loadCaptions(){
-        if(CAP) return Promise.resolve(CAP);
-        if(capPromise) return capPromise;
-        var url = '{{ "/assets/data/approach_captions.json" | relative_url }}';
-        capPromise = fetch(url, {cache:'no-store'})
-          .then(function(r){ return r.ok ? r.json() : {}; })
-          .catch(function(){ return {}; })
-          .then(function(json){ CAP = json || {}; return CAP; });
-        return capPromise;
-      }
+      var panel = document.createElement('div');
+      panel.className = 'panel';
 
-      var lang = (document.documentElement.getAttribute('lang') || '{{ page.lang | default: "ja" }}').slice(0,2);
+      // ✕ close button
+      var closeBtn = document.createElement('button');
+      closeBtn.className = 'close-btn';
+      closeBtn.setAttribute('aria-label','Close');
+      closeBtn.innerHTML = '✕';
+      panel.appendChild(closeBtn);
 
-      function bindTile(tile){
-        if(!tile.hasAttribute('tabindex')) tile.setAttribute('tabindex','0');
-        var key = tile.getAttribute('data-cap-key');
-        var fallback = (tile.querySelector('figcaption') ? tile.querySelector('figcaption').textContent : '') || '';
-        var showTimer = null, hideTimer = null, pinned = false;
+      overlay.appendChild(panel);
+      document.body.appendChild(overlay);
 
-        function doShow(){
-          loadCaptions().then(function(map){
-            var cap = fallback;
-            if(key && map && map[key]) cap = map[key][lang] || map[key]['ja'] || fallback;
-            // Format sentences: split by punctuation and render line-by-line
-            function formatSentences(txt, lang){
-              if(!txt) return '';
-              var sents=[];
-              if(lang === 'ja'){
-                // Split by Japanese punctuation while keeping it
-                var parts = txt.split(/([。！？])/);
-                for(var i=0;i<parts.length;i+=2){
-                  var body = (parts[i]||'').trim();
-                  var punct = parts[i+1]||'';
-                  var s = (body+punct).trim();
-                  if(s) sents.push(s);
-                }
-              }else{
-                var partsEn = txt.split(/([.!?])+/);
-                for(var j=0;j<partsEn.length;j+=2){
-                  var bodyEn = (partsEn[j]||'').trim();
-                  var punctEn = partsEn[j+1]||'';
-                  var sEn = (bodyEn+punctEn).trim();
-                  if(sEn) sents.push(sEn);
-                }
-              }
-              return sents.map(function(s){ return '<span class="line">'+s+'</span>'; }).join('');
-            }
-            panel.innerHTML = formatSentences(cap, lang);
-            overlay.classList.add('show');
-            overlay.classList.remove('pinned');
-            overlay.setAttribute('aria-hidden','false');
-          });
-        }
-        function doHide(){
-          if(pinned) return;
-          overlay.classList.remove('show');
-          overlay.classList.remove('pinned');
-          overlay.setAttribute('aria-hidden','true');
-        }
-        function showDebounced(){
-          clearTimeout(hideTimer);
-          clearTimeout(showTimer);
-          showTimer = setTimeout(doShow, 60);
-        }
-        function hideDebounced(){
-          clearTimeout(showTimer);
-          clearTimeout(hideTimer);
-          hideTimer = setTimeout(doHide, 200);
-        }
-
-        // hover/focus
-        tile.addEventListener('mouseenter', showDebounced);
-        tile.addEventListener('mouseleave', hideDebounced);
-        tile.addEventListener('focus', showDebounced);
-        tile.addEventListener('blur', hideDebounced);
-
-        // tap/click to pin/unpin overlay (mobile-friendly)
-        tile.addEventListener('click', function(e){
-          e.preventDefault();
-          if(!overlay.classList.contains('show') || !overlay.classList.contains('pinned')){
-            pinned = true;
-            overlay.classList.add('show');
-            overlay.classList.add('pinned');
-            doShow();
-          }else{
-            pinned = false;
-            overlay.classList.remove('pinned');
-            overlay.classList.remove('show');
-            overlay.setAttribute('aria-hidden','true');
-          }
-        });
-      }
-
-      document.querySelectorAll('#approach .tile').forEach(bindTile);
-
-      // パネル自体をタップしたら閉じる（モバイル対応）
-      panel.addEventListener('click', function(e){
-        e.stopPropagation(); // 背景クリック処理に伝播させない
+      // ✕ボタンだけで閉じる（背景・パネル・Escでは閉じない）
+      closeBtn.addEventListener('click', function(){
         overlay.classList.remove('pinned','show');
         overlay.setAttribute('aria-hidden','true');
       });
+    }
 
-      // 背景（枠外）をタップしたら閉じる（モバイル対応）
-      overlay.addEventListener('click', function(e){
-        if(e.target === overlay || e.target === overlay.firstChild){
-          overlay.classList.remove('pinned','show');
-          overlay.setAttribute('aria-hidden','true');
-        }
+    // 既存DOMから参照（上で作った場合はそのまま）
+    var panel = overlay.querySelector('.panel');
+
+    // ===== Captions (load from JSON) =====
+    var CAP = null, capPromise = null;
+    function loadCaptions(){
+      if(CAP) return Promise.resolve(CAP);
+      if(capPromise) return capPromise;
+      var url = '{{ "/assets/data/approach_captions.json" | relative_url }}';
+      capPromise = fetch(url, {cache:'no-store'})
+        .then(function(r){ return r.ok ? r.json() : {}; })
+        .catch(function(){ return {}; })
+        .then(function(json){ CAP = json || {}; return CAP; });
+      return capPromise;
+    }
+
+    // 言語判定（ページの <html lang> または front matter の page.lang）
+    var lang = (document.documentElement.getAttribute('lang') || '{{ page.lang | default: "ja" }}').slice(0,2);
+
+    // ===== Tile binding =====
+    function bindTile(tile){
+      if(!tile.hasAttribute('tabindex')) tile.setAttribute('tabindex','0');
+
+      var key = tile.getAttribute('data-cap-key');
+      var fallback = (tile.querySelector('figcaption') ? tile.querySelector('figcaption').textContent : '') || '';
+
+      var showTimer=null;
+
+      function doShow(){
+        loadCaptions().then(function(map){
+          var cap = fallback;
+          if(key && map && map[key]) cap = map[key][lang] || map[key]['en'] || map[key]['ja'] || fallback;
+          panel.firstChild && panel.firstChild.classList && panel.firstChild.classList.contains('close-btn');
+          // ✕ボタンは panel の最初の子要素、本文はボタンの後に描画
+          // 既存本文ノードを除去
+          var keepBtn = panel.querySelector('.close-btn');
+          Array.from(panel.childNodes).forEach(function(n){ if(n !== keepBtn) panel.removeChild(n); });
+          // 本文を追加（プレーンテキスト）
+          var body = document.createElement('div');
+          body.className = 'caption-body';
+          body.textContent = cap;
+          panel.appendChild(body);
+
+          overlay.classList.add('show','pinned');
+          overlay.setAttribute('aria-hidden','false');
+        });
+      }
+
+      // Hoverで開く（PC）／タップで開く（モバイル）
+      tile.addEventListener('mouseenter', function(){
+        clearTimeout(showTimer);
+        showTimer = setTimeout(doShow, 60);
+      });
+      tile.addEventListener('focus', function(){
+        clearTimeout(showTimer);
+        showTimer = setTimeout(doShow, 60);
+      });
+      tile.addEventListener('mouseleave', function(){
+        // ✕ボタンでのみ閉じる仕様のため、ここでは閉じない
+        clearTimeout(showTimer);
+      });
+      tile.addEventListener('blur', function(){
+        clearTimeout(showTimer);
       });
 
-      // Hide overlay on Escape
-      document.addEventListener('keydown', function(e){
-        if(e.key === 'Escape') {
-          pinned = false;
-          overlay.classList.remove('pinned');
-          overlay.classList.remove('show');
-          overlay.setAttribute('aria-hidden','true');
-        }
+      tile.addEventListener('click', function(e){
+        e.preventDefault();
+        doShow();
       });
-    })();
+    }
+
+    // bind all tiles
+    document.querySelectorAll('#approach .tile').forEach(bindTile);
+
+    // ▼「✕でのみ閉じる」仕様のため、以下は入れない
+    // - 背景クリックで閉じる overlay.addEventListener('click', ...)
+    // - パネルクリックで閉じる panel.addEventListener('click', ...)
+    // - Escキーで閉じる document.addEventListener('keydown', ...)
+
+  })();
   </script>
 </section>
 <section id="activities-preview" class="activities-band" data-reveal>
