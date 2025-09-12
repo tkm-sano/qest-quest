@@ -801,7 +801,7 @@ main,
     font-size: 1rem;
     line-height: 1.6;
     padding: 0.8rem;
-    max-width: 150vw;   /* allow full screen width */
+    max-width: 80vw;   /* allow full screen width */
     box-sizing: border-box;
     overflow-x: hidden;
   }
