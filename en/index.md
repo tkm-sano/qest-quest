@@ -642,6 +642,21 @@ nav_order: 1     # ナビの並び順。お好みで
         overlay.setAttribute('aria-hidden','true');
       });
 
+      // Close when tapping outside the panel (background)
+      overlay.addEventListener('click', function(e){
+        if(e.target === overlay || e.target === overlay.firstChild){
+          overlay.classList.remove('pinned','show');
+          overlay.setAttribute('aria-hidden','true');
+        }
+      });
+
+      // Allow tapping the panel itself to close (mobile-friendly)
+      panel.addEventListener('click', function(e){
+        e.stopPropagation(); // prevent bubbling
+        overlay.classList.remove('pinned','show');
+        overlay.setAttribute('aria-hidden','true');
+      });
+
       document.addEventListener('keydown',function(e){
         if(e.key==='Escape'){
           overlay.classList.remove('pinned','show');
