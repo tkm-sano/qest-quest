@@ -386,6 +386,22 @@ nav_order: 1     # ナビの並び順。お好みで
       transform: translateY(6px) scale(.985);
       transition: transform .2s ease, filter .2s ease;
     }
+    @media (max-width: 600px){
+      .approach-overlay .panel{
+        max-width: 94vw;
+        max-height: 85vh;
+        overflow-y: auto;
+        font-size: .9rem;
+        line-height: 1.5;
+        padding: 1rem;
+        text-align: left;
+      }
+      .approach-overlay .panel::-webkit-scrollbar{ width:6px; }
+      .approach-overlay .panel::-webkit-scrollbar-thumb{
+        background: rgba(255,255,255,.3);
+        border-radius: 3px;
+      }
+    }
     .approach-overlay.show .panel{
       transform: translateY(0) scale(1);
     }
@@ -688,6 +704,14 @@ nav_order: 1     # ナビの並び順。お好みで
       }
 
       document.querySelectorAll('#approach .tile').forEach(bindTile);
+
+      // モバイル対応: タイルをタップで開き、背景をタップで閉じる
+      overlay.addEventListener('click', function(e){
+        if(e.target === overlay){
+          overlay.classList.remove('pinned','show');
+          overlay.setAttribute('aria-hidden','true');
+        }
+      });
 
       // パネル自体をタップしたら閉じる（モバイル対応）
       panel.addEventListener('click', function(){

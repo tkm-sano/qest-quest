@@ -626,6 +626,13 @@ nav_order: 1     # ナビの並び順。お好みで
         });
       }
       document.querySelectorAll('#approach .tile').forEach(bindTile);
+      // Mobile-friendly: tap outside (dimmed background) to close
+      overlay.addEventListener('click', function(e){
+        if(e.target === overlay){
+          overlay.classList.remove('pinned','show');
+          overlay.setAttribute('aria-hidden','true');
+        }
+      });
       // Allow tapping the panel itself to close (mobile-friendly)
       panel.addEventListener('click', function(){
         overlay.classList.remove('pinned','show');
@@ -633,12 +640,6 @@ nav_order: 1     # ナビの並び順。お好みで
       });
       document.addEventListener('keydown',function(e){
         if(e.key==='Escape'){
-          overlay.classList.remove('pinned','show');
-          overlay.setAttribute('aria-hidden','true');
-        }
-      });
-      overlay.addEventListener('click',function(e){
-        if(e.target===overlay){
           overlay.classList.remove('pinned','show');
           overlay.setAttribute('aria-hidden','true');
         }
