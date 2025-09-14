@@ -200,80 +200,71 @@ section {
 }
 
 /* ─────────────────────────────
-   レスポンシブ：スマホでハンバーガー＆メニュー展開
+   レスポンシブ：タブレット・スマホでハンバーガー＆メニュー展開
    ───────────────────────────── */
-@media (max-width: 700px) {
+@media (max-width: 1024px) {
   .site-header {
-    /* 固定高さやpaddingのまま横並び */
     flex-direction: row;
     align-items: flex-start;
-    padding: 0 6px;
+    padding: 0 10px;
     height: auto;
   }
   .logo-link {
-    margin: 6px 0;
+    margin: 8px 0;
   }
   .nav-toggle,
   .nav-toggle--fixed {
     display: flex;
     position: absolute;
-    top: 10px;
-    right: 14px;
+    top: 12px;
+    right: 16px;
     z-index: 1002;
   }
-    .nav-menu ul {
-    display: none;          /* デフォルトは非表示 */
+  .nav-menu ul {
+    display: none;
     position: absolute;
     top: 60px;
-    right: 8px;             /* ハンバーガー右端と揃える */
-    left: auto;             /* left 無効化 */
-    transform: none;        /* 不要な中央寄せを解除 */
-    width: 80vw;            /* 画面幅の 80% */
-    max-width: 280px;       /* 大きすぎ防止 */
+    right: 8px;
+    width: 80vw;
+    max-width: 360px;
     background: #ffffff;
     color: #002040;
-    padding: 20px 0;
+    padding: 24px 0;
     flex-direction: column;
-    gap: 18px;
+    gap: 20px;
     z-index: 999;
     text-align: center;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.1);
     border-radius: 12px;
   }
   .nav-menu ul.open {
     display: flex;
   }
-  /* モバイル時のリンク */
   .nav-menu a {
     color: #002040;
-    font-size: 1.05rem;
-    padding: 6px 16px;
+    font-size: 1.1rem;
+    padding: 8px 18px;
     text-decoration: none;
-    text-align: center;    /* ← 中央寄せを追加 */
-    width: 100%;           /* 好みで：全行クリックしやすく */
+    text-align: center;
+    width: 100%;
   }
-  
   .nav-menu a:hover {
     color: #40a9ff;
-    background: rgba(64, 169, 255, 0.08);
+    background: rgba(64,169,255,0.08);
   }
   .nav-horizontal {
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
-
-  /* Show mobile language switch to the LEFT of the hamburger */
   .lang-switch-mobile {
+    display: flex !important;  /* ensure visible on mobile/tablet */
     position: absolute;
-    top: 10px;
-    right: 60px;            /* 14px margin + 44px button width + 2px gap */
-    display: flex;
+    top: 12px;
+    right: 70px;
     align-items: center;
-    font-size: 1.2rem;      /* bigger text */
+    font-size: 1.1rem;
   }
-
-  /* Hide the language item inside the drop‑down list */
   .lang-switch-item {
     display: none;
   }
@@ -466,23 +457,7 @@ h1.glitch {
 }
 
 /* Mobile view (hamburger visible) */
-@media (max-width: 700px) {
-
-  /* Show mobile language switch to the LEFT of the hamburger */
-  .lang-switch-mobile {
-    position: absolute;
-    top: 10px;
-    right: 60px;            /* 14px margin + 44px button width + 2px gap */
-    display: flex;
-    align-items: center;
-    font-size: 1.2rem;      /* bigger text */
-  }
-
-  /* Hide the language item inside the drop‑down list */
-  .lang-switch-item {
-    display: none;
-  }
-}
+/* (handled in max-width: 1024px above) */
 
 /* Style for language switch links */
 .lang-link {
@@ -493,32 +468,30 @@ h1.glitch {
 }
 
 /* ─── Mobile-only fancy badge for language switch ─── */
-@media (max-width: 700px) {
+@media (max-width: 1024px) {
   .lang-switch-mobile .lang-link {
-    background: rgba(255, 255, 255, 0.25);   /* subtle glass */
+    background: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(64, 169, 255, 0.25);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     border-radius: 14px;
-    padding: 8px 20px;          /* keep size */
-    font-size: 1.17rem;         /* keep size */
-    font-weight: 600;           /* slightly lighter */
+    padding: 8px 20px;
+    font-size: 1.17rem;
+    font-weight: 600;
     letter-spacing: 0.05em;
-    color: #002040;             /* darker text for less glow */
-    text-shadow: none;          /* remove glow */
+    color: #002040;
+    text-shadow: none;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
     text-decoration: none;
     transition: background 0.15s ease, box-shadow 0.15s ease;
   }
-
   .lang-switch-mobile .lang-link:hover {
     background: rgba(255, 255, 255, 0.35);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
   }
-
   /* ハンバーガーとの距離を微調整したい場合はここを調整 */
   .lang-switch-mobile {
-    right: 75px;   /* ←今の 14+44+2px と一致。好みで ± 数値調整 */
+    right: 75px;
   }
 }
 
@@ -556,19 +529,7 @@ h1.glitch {
 }
 
 /* Mobile view (hamburger visible) */
-@media (max-width: 700px) {
-  .lang-switch-mobile {
-    display: flex;               /* ←スマホで表示 */
-    position: absolute;
-    top: 10px;
-    right: 60px;                 /* ハンバーガー左 */
-    align-items: center;
-    font-size: 1.2rem;
-  }
-  .lang-switch-item {
-    display: none;               /* PC 用バッジをスマホでは隠す */
-  }
-}
+/* (handled in max-width: 1024px above) */
 .member-role{
   font-size:0.85em;
   color:#666;
