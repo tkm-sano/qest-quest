@@ -1,9 +1,11 @@
 ---
 title: Contact          # ページタイトル
 lang: en
-permalink: /en/contact/
+permalink: /en/contact.html
 layout: default
 nav_order: 5            # ナビゲーションの並び順
+slug: contact
+slug_en: contact
 ---
 
 

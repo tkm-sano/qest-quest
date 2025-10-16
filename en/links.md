@@ -1,9 +1,11 @@
 ---
 title: Publications
 lang: en
-permalink: /en/links/
+permalink: /en/links.html
 layout: default
 nav_order: 4     # ナビの並び順。お好みで
+slug: links
+slug_en: links
 ---
 
 <section class="hero" data-reveal>
@@ -29,7 +31,7 @@ nav_order: 4     # ナビの並び順。お好みで
     <li>
       {{ pub.authors }}.  
       “{{ pub.title }}.” <em>{{ pub.venue }}</em>{% if pub.year %} {{ pub.year }}.{% endif %}{% if pub.pdf %}
-      <br/><a href="{{ pub.pdf | relative_url }}" target="_blank">PDF</a>{% endif %}
+      <br/><a href="{{ pub.pdf | relative_url }}" target="_blank" rel="noopener">PDF</a>{% endif %}
     </li>
   {% endfor %}
   </ol>
@@ -46,21 +48,21 @@ nav_order: 4     # ナビの並び順。お好みで
     </span>
   </h2>
   <ul class="org-list">
-    <li><a href="https://www.kmd.keio.ac.jp/" target="_blank">
+    <li><a href="https://www.kmd.keio.ac.jp/" target="_blank" rel="noopener">
       {% if page.lang == "en" %}
         RIKEN Center for Quantum Computing
       {% else %}
         慶應義塾大学メディアデザイン研究科
       {% endif %}
     </a></li>
-    <li><a href="https://www.jst.go.jp/moonshot/program/goal6/6C_nagayama.html" target="_blank">
+    <li><a href="https://www.jst.go.jp/moonshot/program/goal6/6C_nagayama.html" target="_blank" rel="noopener">
       {% if page.lang == "en" %}
         The University of Tokyo Quantum Information Technology Project
       {% else %}
         ムーンショット目標6 スケーラブルで強靭な統合的量子通信システム
       {% endif %}
     </a></li>
-    <li><a href="https://qitf.org/" target="_blank">
+    <li><a href="https://qitf.org/" target="_blank" rel="noopener">
       {% if page.lang == "en" %}
         Keio University Quantum Computing Research
       {% else %}
@@ -83,7 +85,7 @@ nav_order: 4     # ナビの並び順。お好みで
   </h2>
 <ul class="link-list">
   <li>
-    <a href="https://q-portal.riken.jp/poster-quantum/" target="_blank">
+    <a href="https://q-portal.riken.jp/poster-quantum/" target="_blank" rel="noopener">
       {% if page.lang == "en" %}
         "Quantum Technology Poster for Every Home" (RIKEN Q‑PORTAL)
       {% else %}
@@ -92,7 +94,7 @@ nav_order: 4     # ナビの並び順。お好みで
     </a>
   </li>
   <li>
-    <a href="https://youtu.be/9Ef8ZId58WY?si=vsv0n-jMd4pRGDGW" target="_blank">
+    <a href="https://youtu.be/9Ef8ZId58WY?si=vsv0n-jMd4pRGDGW" target="_blank" rel="noopener">
       {% if page.lang == "en" %}
         Hikaru Utada "Electricity" (Music Video)
       {% else %}
@@ -101,7 +103,7 @@ nav_order: 4     # ナビの並び順。お好みで
     </a>
   </li>
   <li>
-    <a href="https://www.nhk.jp/p/special/ts/2NY2QQLPM3/episode/te/BX6PWY3N59/" target="_blank">
+    <a href="https://www.nhk.jp/p/special/ts/2NY2QQLPM3/episode/te/BX6PWY3N59/" target="_blank" rel="noopener">
       {% if page.lang == "en" %}
         NHK Special "Quantum Entanglement: Einstein's Ultimate Riddle" (2024)
       {% else %}
@@ -110,7 +112,7 @@ nav_order: 4     # ナビの並び順。お好みで
     </a>
   </li>
   <li>
-    <a href="https://bnn.co.jp/products/9784802511964" target="_blank">
+    <a href="https://bnn.co.jp/products/9784802511964" target="_blank" rel="noopener">
       {% if page.lang == "en" %}
         Hisato Ogata, "Convivial Technology — Designing a Society Where Humans and Technology Coexist" (BNN, 2022)
       {% else %}
@@ -119,7 +121,7 @@ nav_order: 4     # ナビの並び順。お好みで
     </a>
   </li>
   <li>
-    <a href="https://book.cm-marketing.jp/books/9784295410065/" target="_blank">
+    <a href="https://book.cm-marketing.jp/books/9784295410065/" target="_blank" rel="noopener">
       {% if page.lang == "en" %}
         Akihito Inoue, "Designing Worldviews: Techniques for Imagining Future Societies" (Shoeisha, 2021)
       {% else %}
@@ -128,7 +130,7 @@ nav_order: 4     # ナビの並び順。お好みで
     </a>
   </li>
   <li>
-    <a href="https://www.amazon.co.jp/dp/4088727754" target="_blank">
+    <a href="https://www.amazon.co.jp/dp/4088727754" target="_blank" rel="noopener">
       {% if page.lang == "en" %}
         Osamu Tezuka, "The Glass Brain" (Jump Comics)
       {% else %}
@@ -137,7 +139,7 @@ nav_order: 4     # ナビの並び順。お好みで
     </a>
   </li>
   <li>
-    <a href="https://www.imdb.com/title/tt0212720/" target="_blank">
+    <a href="https://www.imdb.com/title/tt0212720/" target="_blank" rel="noopener">
       {% if page.lang == "en" %}
         Steven Spielberg (Director) "A.I. Artificial Intelligence" (Warner Bros., 2001)
       {% else %}
