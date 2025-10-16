@@ -4,6 +4,8 @@ lang: en
 permalink: /en/members.html
 layout: default
 nav_order: 2     # ナビの並び順。お好みで
+link: /members.html
+link_en: /en/members.html
 slug: members
 slug_en: members
 ---
