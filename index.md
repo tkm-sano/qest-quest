@@ -3,6 +3,38 @@ title: Vision
 lang: ja
 layout: default
 nav_order: 1     # ナビの並び順。お好みで
+hero_slider_interval: 5000   # 自動切替ミリ秒
+hero_slides:
+  - src: /assets/img/approach/sf.jpg
+    link: /projects/
+    alt_jp: "SFプロトタイピングのイメージ"
+    alt_en: "SF Prototyping"
+    caption_jp: "SFプロトタイピング — 未来像の素描から議論をはじめる"
+    caption_en: "SF Prototyping — Start from vivid future sketches"
+    cta_text_jp: "プロジェクトを見る"
+    cta_text_en: "See projects"
+    cta_url_jp: /projects/
+    cta_url_en: /en/projects/
+  - src: /assets/img/approach/cocreation.jpg
+    link: /activities/
+    alt_jp: "共創ワークショップの様子"
+    alt_en: "Co-creation workshop"
+    caption_jp: "共創ワークショップ — 2040/2050のユースケース創出"
+    caption_en: "Co-creation Workshops — Generate 2040/2050 use cases"
+    cta_text_jp: "活動を見る"
+    cta_text_en: "See activities"
+    cta_url_jp: /activities/
+    cta_url_en: /en/activities/
+  - src: /assets/img/approach/behavior.jpg
+    link: /method/
+    alt_jp: "行動変容シナリオの図"
+    alt_en: "Behavior-change scenario"
+    caption_jp: "行動変容シナリオ — 日常から考える"
+    caption_en: "Behavior-change scenarios — From everyday life"
+    cta_text_jp: "方法論"
+    cta_text_en: "Method"
+    cta_url_jp: /method/
+    cta_url_en: /en/method/
 ---
 
 <section class="hero" data-reveal>
@@ -16,179 +48,157 @@ nav_order: 1     # ナビの並び順。お好みで
     <p class="lead">量子インターネットによる近未来ITパラダイムの社会デザインと実現</p>
   {% endif %}
 </section>
-<section class="quantum-demo" data-reveal>
-  <div id="quantum-visualization" class="complex-viz"></div>
-  <script>
+<section class="hero-slideshow" data-reveal aria-labelledby="hero-slideshow-title">
+  <style>
+    /* ===== Q/est Hero Slideshow (vanilla, accessible) ===== */
+    .qest-hero{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--c-border,#eaeef3);background:#000;isolation:isolate}
+    .qest-hero .track{position:relative;aspect-ratio:16/9}
+    .qest-hero .slide{position:absolute;inset:0;opacity:0;transition:opacity .7s ease;display:block}
+    .qest-hero .slide.is-active{opacity:1}
+    .qest-hero .slide a{display:block;height:100%}
+    .qest-hero img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 10s ease}
+    .qest-hero .slide.is-active img{transform:scale(1.02)}
+    .qest-hero .veil{position:absolute;inset:0;background:
+      radial-gradient(120% 120% at 10% 10%, rgba(90,209,255,.25), transparent 40%),
+      radial-gradient(100% 100% at 90% 0%, rgba(164,119,255,.25), transparent 46%),
+      radial-gradient(100% 120% at 50% 100%, rgba(0,0,0,.55), rgba(0,0,0,.65) 60%, rgba(0,0,0,.75) 100%);
+      pointer-events:none}
+    .qest-hero .caption{
+      position:absolute;left: clamp(12px,3vw,24px); right: clamp(12px,3vw,24px); bottom: clamp(12px,3vw,24px);
+      color:#fff; z-index:2;
+      display:grid; gap:.4rem;
+      text-shadow: 0 4px 16px rgba(0,0,0,.5);
+    }
+    .qest-hero .caption h2{ margin:0; font-size: clamp(1.05rem, 1.8vw, 1.6rem); font-weight:700; letter-spacing:.02em }
+    .qest-hero .caption p{ margin:0; font-size: clamp(.92rem, 1.4vw, 1.1rem); opacity:.95 }
+    .qest-hero .cta-row{display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.4rem}
+    .qest-hero .btn{display:inline-block; padding:.55em .9em; border-radius:12px; border:1px solid rgba(255,255,255,.75); color:#fff; text-decoration:none; backdrop-filter:saturate(120%) blur(2px)}
+    .qest-hero .btn.primary{background:rgba(255,255,255,.12)}
+    .qest-hero .nav{position:absolute;inset-inline:0;bottom:8px;display:flex;justify-content:center;gap:8px;z-index:3}
+    .qest-hero .dot{width:10px;height:10px;border-radius:50%;border:1px solid #fff;background:transparent;opacity:.75}
+    .qest-hero .dot[aria-current="true"]{background:#fff;opacity:1}
+    .qest-hero .prev,.qest-hero .next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);color:#fff;border:none;border-radius:999px;width:38px;height:38px;cursor:pointer;z-index:3}
+    .qest-hero .prev{left:8px}.qest-hero .next{right:8px}
+    .qest-hero .pause{position:absolute;right:8px;top:8px;background:rgba(0,0,0,.45);color:#fff;border:none;border-radius:10px;padding:.35em .55em;cursor:pointer;z-index:3}
+    @media (max-width: 720px){ .qest-hero .caption h2{font-size:1.05rem} .qest-hero .caption p{font-size:.95rem} }
+    @media (prefers-reduced-motion: reduce){
+      .qest-hero img{transition:none; transform:none}
+      .qest-hero .slide{transition:none}
+    }
+  </style>
+
+  <h2 id="hero-slideshow-title" class="visually-hidden">{% if page.lang == "en" %}Featured{% else %}注目コンテンツ{% endif %}</h2>
+
+  {% assign slides = page.hero_slides %}
+  {% assign slides_size = 0 %}
+  {% if slides %}{% assign slides_size = slides | size %}{% endif %}
+
+  {% if slides_size > 0 %}
+    <div class="qest-hero" role="region" aria-roledescription="carousel" aria-label="{% if page.lang == 'en' %}Featured carousel{% else %}注目スライド{% endif %}">
+      <div class="track" id="qestHeroTrack" tabindex="0">
+        {% for s in slides %}
+          {% assign alt_txt = '' %}
+          {% if page.lang == 'ja' and s.alt_jp and s.alt_jp != '' %}{% assign alt_txt = s.alt_jp %}{% endif %}
+          {% if page.lang == 'en' and s.alt_en and s.alt_en != '' %}{% assign alt_txt = s.alt_en %}{% endif %}
+          {% if alt_txt == '' and s.alt and s.alt != '' %}{% assign alt_txt = s.alt %}{% endif %}
+
+          {% assign cap_txt = '' %}
+          {% if page.lang == 'ja' and s.caption_jp and s.caption_jp != '' %}{% assign cap_txt = s.caption_jp %}{% endif %}
+          {% if page.lang == 'en' and s.caption_en and s.caption_en != '' %}{% assign cap_txt = s.caption_en %}{% endif %}
+          {% if cap_txt == '' and s.caption and s.caption != '' %}{% assign cap_txt = s.caption %}{% endif %}
+
+          {% assign cta_text = '' %}
+          {% assign cta_url = '' %}
+          {% if page.lang == 'ja' and s.cta_text_jp and s.cta_text_jp != '' %}{% assign cta_text = s.cta_text_jp %}{% endif %}
+          {% if page.lang == 'en' and s.cta_text_en and s.cta_text_en != '' %}{% assign cta_text = s.cta_text_en %}{% endif %}
+          {% if page.lang == 'ja' and s.cta_url_jp and s.cta_url_jp != '' %}{% assign cta_url = s.cta_url_jp %}{% endif %}
+          {% if page.lang == 'en' and s.cta_url_en and s.cta_url_en != '' %}{% assign cta_url = s.cta_url_en %}{% endif %}
+          {% if cta_url == '' and s.link and s.link != '' %}{% assign cta_url = s.link %}{% endif %}
+
+          <figure class="slide{% if forloop.first %} is-active{% endif %}" data-index="{{ forloop.index0 }}">
+            {% if s.link and s.link != '' %}
+              <a href="{{ s.link | relative_url }}" tabindex="-1">
+                <img src="{{ s.src | relative_url }}" alt="{{ alt_txt | escape }}" {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %} decoding="async">
+              </a>
+            {% else %}
+              <img src="{{ s.src | relative_url }}" alt="{{ alt_txt | escape }}" {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %} decoding="async">
+            {% endif %}
+            <div class="veil" aria-hidden="true"></div>
+            {% if cap_txt != '' %}
+            <figcaption class="caption">
+              <h2>{{ cap_txt }}</h2>
+              {% if cta_url != '' and cta_text != '' %}
+                <div class="cta-row">
+                  <a class="btn primary" href="{{ cta_url | relative_url }}">{{ cta_text }}</a>
+                </div>
+              {% endif %}
+            </figcaption>
+            {% endif %}
+          </figure>
+        {% endfor %}
+
+        <button class="prev" type="button" aria-label="{% if page.lang == 'en' %}Previous slide{% else %}前のスライド{% endif %}">‹</button>
+        <button class="next" type="button" aria-label="{% if page.lang == 'en' %}Next slide{% else %}次のスライド{% endif %}">›</button>
+        <button class="pause" type="button" aria-pressed="false" aria-label="{% if page.lang == 'en' %}Pause autoplay{% else %}自動再生を一時停止{% endif %}">❚❚</button>
+      </div>
+
+      <div class="nav" role="tablist" aria-label="{% if page.lang == 'en' %}Slides{% else %}スライド{% endif %}">
+        {% for s in slides %}
+          <button class="dot" type="button" role="tab" data-index="{{ forloop.index0 }}" {% if forloop.first %}aria-current="true"{% endif %} aria-label="{% if page.lang == 'en' %}Slide {{ forloop.index }}{% else %}{{ forloop.index }}枚目{% endif %}"></button>
+        {% endfor %}
+      </div>
+    </div>
+
+    <script>
     (function(){
-      const container = document.getElementById('quantum-visualization');
-      container.innerHTML = '';
-      const svgNS = 'http://www.w3.org/2000/svg';
-      const w = 800, h = 500;
-      const svg = document.createElementNS(svgNS, 'svg');
-      svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
-      svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-      svg.setAttribute('width', '100%');
-      svg.setAttribute('height', '100%');
-      container.appendChild(svg);
+      var track=document.getElementById('qestHeroTrack'); if(!track) return;
+      var slides=[].slice.call(track.querySelectorAll('.slide'));
+      var dots=[].slice.call(document.querySelectorAll('.hero-slideshow .dot'));
+      var prev=track.querySelector('.prev');
+      var next=track.querySelector('.next');
+      var pauseBtn=track.querySelector('.pause');
+      var idx=0, timer=null, interval={{ page.hero_slider_interval | default: 5000 }};
 
-      // Section titles inside SVG
-      const styleTitle = (text, y) => {
-        const lbl = document.createElementNS(svgNS,'text');
-        lbl.setAttribute('x', w/2);
-        lbl.setAttribute('y', y);
-        lbl.setAttribute('text-anchor','middle');
-        lbl.setAttribute('fill','url(#textGrad)');
-        lbl.setAttribute('font-size','24');
-        lbl.setAttribute('letter-spacing','2');
-        lbl.setAttribute('filter','url(#glow)');
-        lbl.setAttribute('font-weight','bold');
-        lbl.setAttribute('font-family','sans-serif');
-        lbl.textContent = text;
-        svg.appendChild(lbl);
-      };
-      styleTitle('TECHNOLOGY', 40);
-      styleTitle('SOCIETY', h - 20);
-
-      // Filters for glow
-      const defs = document.createElementNS(svgNS, 'defs');
-      const glow = document.createElementNS(svgNS, 'filter');
-      glow.setAttribute('id', 'glow');
-      glow.innerHTML = '<feGaussianBlur stdDeviation="4" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>';
-      defs.appendChild(glow);
-      // Gradient for section titles
-      const textGradient = document.createElementNS(svgNS, 'linearGradient');
-      textGradient.setAttribute('id', 'textGrad');
-      textGradient.setAttribute('x1', '0%');
-      textGradient.setAttribute('y1', '0%');
-      textGradient.setAttribute('x2', '100%');
-      textGradient.setAttribute('y2', '0%');
-      let stop1 = document.createElementNS(svgNS, 'stop');
-      stop1.setAttribute('offset', '0%');
-      stop1.setAttribute('stop-color', '#5A9CF9');
-      stop1.setAttribute('stop-opacity', '1');
-      let stop2 = document.createElementNS(svgNS, 'stop');
-      stop2.setAttribute('offset', '100%');
-      stop2.setAttribute('stop-color', '#A8D1FF');
-      stop2.setAttribute('stop-opacity', '1');
-      textGradient.appendChild(stop1);
-      textGradient.appendChild(stop2);
-      defs.appendChild(textGradient);
-
-      // Radial gradients for tech nodes
-      ['#D1F0FF','#A8E6CF','#FFD1DC'].forEach((col, i) => {
-        const grad = document.createElementNS(svgNS, 'radialGradient');
-        grad.setAttribute('id', `techGrad${i}`);
-        grad.innerHTML = `<stop offset="0%" stop-color="${col}" stop-opacity="0.8"/><stop offset="100%" stop-color="${col}" stop-opacity="0"/>`;
-        defs.appendChild(grad);
-      });
-      svg.appendChild(defs);
-
-      // Background polygons swirl
-      for(let i=0;i<8;i++){
-        const poly = document.createElementNS(svgNS, 'polygon');
-        const pts=[];
-        for(let a=0; a<360; a+=45){
-          const rad=(a+i*5)*Math.PI/180;
-          const r= (i+1)*50 + 20;
-          pts.push([w/2 + Math.cos(rad)*r, h/2 + Math.sin(rad)*r].join(','));
-        }
-        poly.setAttribute('points', pts.join(' '));
-        poly.setAttribute('fill', 'none');
-        poly.setAttribute('stroke', '#CCC');
-        poly.setAttribute('stroke-width', 1);
-        poly.setAttribute('transform', `rotate(${i*15} ${w/2} ${h/2})`);
-        svg.appendChild(poly);
+      function show(i){
+        slides.forEach(function(el){ el.classList.remove('is-active'); });
+        dots.forEach(function(d){ d.removeAttribute('aria-current'); });
+        idx=(i+slides.length)%slides.length;
+        slides[idx].classList.add('is-active');
+        if(dots[idx]) dots[idx].setAttribute('aria-current','true');
       }
+      function play(){ stop(); timer=setInterval(function(){ show(idx+1); }, interval); pauseBtn.setAttribute('aria-pressed','false'); pauseBtn.textContent='❚❚'; }
+      function stop(){ if(timer){ clearInterval(timer); timer=null; } pauseBtn.setAttribute('aria-pressed','true'); pauseBtn.textContent='▶'; }
 
-      // Technology nodes
-      const techNodes = [
-        { x: 160, y: 120, label: 'Quantum Hardware',   colorGrad: '#D1F0FF' },
-        { x: 400, y: 80,  label: 'Quantum Protocol',   colorGrad: '#A8E6CF' },
-        { x: 640, y: 120, label: 'Quantum Software',   colorGrad: '#FFD1DC' },
-      ];
-      techNodes.forEach((n,i)=>{
-        const c=document.createElementNS(svgNS,'circle');
-        c.setAttribute('cx',n.x);
-        c.setAttribute('cy',n.y);
-        c.setAttribute('r',40);
-        c.setAttribute('fill',`url(#techGrad${i})`);
-        c.setAttribute('filter','url(#glow)');
-        svg.appendChild(c);
-        const t=document.createElementNS(svgNS,'text');
-        t.setAttribute('x',n.x);
-        t.setAttribute('y',n.y+60);
-        t.setAttribute('text-anchor','middle');
-        t.setAttribute('fill','#333');
-        t.setAttribute('font-size','14');
-        t.textContent=n.label;
-        svg.appendChild(t);
+      prev.addEventListener('click', function(){ show(idx-1); });
+      next.addEventListener('click', function(){ show(idx+1); });
+      dots.forEach(function(d){ d.addEventListener('click', function(){ show(parseInt(d.getAttribute('data-index'),10)); }); });
+      pauseBtn.addEventListener('click', function(){ if(timer){ stop(); } else { play(); } });
+
+      // Pause on hover/focus and keyboard navigation
+      track.addEventListener('mouseenter', stop);
+      track.addEventListener('mouseleave', play);
+      track.addEventListener('focusin', stop);
+      track.addEventListener('focusout', play);
+      track.addEventListener('keydown', function(e){
+        if(e.key==='ArrowLeft'){ e.preventDefault(); show(idx-1); }
+        if(e.key==='ArrowRight'){ e.preventDefault(); show(idx+1); }
       });
 
-      // Expanded social design nodes
-      const socialNodes = [
-        { x: 80,  y: 380, label: 'Community',   color: '#FF8C94' },
-        { x: 240, y: 420, label: 'Education & Outreach',    color: '#FFAAA6' },
-        { x: 400, y: 400, label: 'User Experience',         color: '#D1FFD6' },
-        { x: 560, y: 420, label: 'Policy & Regulation',     color: '#FFD1DC' },
-        { x: 720, y: 380, label: 'Ethics & Governance',     color: '#A8E6CF' },
-        { x: 160, y: 320, label: 'Business Model',          color: '#FFDAB9' },
-        { x: 640, y: 320, label: 'Infrastructure Design',   color: '#E6E6FA' },
-        { x: 320, y: 350, label: 'Sustainability',          color: '#C8E6C9' },
-        { x: 480, y: 350, label: 'Data Privacy',            color: '#FFECB3' },
-        { x: 560, y: 300, label: 'Inclusive Design',        color: '#D1C4E9' },
-        { x: 240, y: 300, label: 'Supply Chain',            color: '#B2DFDB' }
-      ];
-      socialNodes.forEach((n) => {
-        const blob = document.createElementNS(svgNS, 'path');
-        const wobble = 20;
-        const pts = [
-          [n.x,         n.y - wobble],
-          [n.x + wobble, n.y],
-          [n.x,         n.y + wobble],
-          [n.x - wobble, n.y]
-        ].map(p => p.join(',')).join(' ');
-        blob.setAttribute('d', `M ${pts} Z`);
-        blob.setAttribute('fill', n.color);
-        blob.setAttribute('fill-opacity', '0.7');
-        svg.appendChild(blob);
-        const t = document.createElementNS(svgNS, 'text');
-        t.setAttribute('x', n.x);
-        t.setAttribute('y', n.y + 10);
-        t.setAttribute('text-anchor', 'middle');
-        t.setAttribute('fill', '#333');
-        t.setAttribute('font-size', '14');
-        t.textContent = n.label;
-        svg.appendChild(t);
-      });
-
-      // Curved gradient links
-      socialNodes.forEach((sn)=>{
-        techNodes.forEach((tn)=>{
-          const link= document.createElementNS(svgNS,'path');
-          const d=`M ${tn.x} ${tn.y+40} C ${tn.x} ${(tn.y+sn.y)/2} ${sn.x} ${(tn.y+sn.y)/2} ${sn.x} ${sn.y-40}`;
-          link.setAttribute('d',d);
-          link.setAttribute('fill','none');
-          link.setAttribute('stroke','#AAA');
-          link.setAttribute('stroke-width','2');
-          link.setAttribute('stroke-dasharray','4 4');
-          svg.appendChild(link);
-        });
-      });
-
-      // Central glowing title
-      const title=document.createElementNS(svgNS,'text');
-      title.setAttribute('x',w/2);
-      title.setAttribute('y',h/2);
-      title.setAttribute('text-anchor','middle');
-      title.setAttribute('fill','#222');
-      title.setAttribute('font-size','22');
-      title.setAttribute('font-weight','bold');
-      title.setAttribute('filter','url(#glow)');
-      title.textContent='Quantum Internet Society Design';
-      svg.appendChild(title);
-
+      if(slides.length > 1){ play(); }
+      else{
+        // Hide controls if only one slide
+        if(prev) prev.style.display='none';
+        if(next) next.style.display='none';
+        if(pauseBtn) pauseBtn.style.display='none';
+        var nav=document.querySelector('.hero-slideshow .nav'); if(nav) nav.style.display='none';
+      }
     })();
-  </script>
+    </script>
+  {% else %}
+    <div class="qest-hero" style="aspect-ratio:16/9;display:grid;place-items:center;color:#fff;background:#111;border-radius:16px;border:1px dashed #333;">
+      <p style="margin:0;padding:1rem;text-align:center">{% if page.lang == "en" %}Add `hero_slides` to front matter to enable the hero slideshow.{% else %}front matter に `hero_slides` を追加するとスライドショーが表示されます。{% endif %}</p>
+    </div>
+  {% endif %}
 </section>
 <section id="latest-news" class="news-band" data-reveal>
   <style>
