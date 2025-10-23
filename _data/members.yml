@@ -46,6 +46,6 @@
 - name: Ruizhe Zhu 
   photo: ruizhe.png 
   comment: >
-    I simply believe brute force computation is the ultimate path to truth. Intuition may falter, but computation never lies. The true answer of perfection awaits deep within quantum, not the limit but just the headstart.
-  comment: >
     "brute force computation" こそが真実にたどり着く最終的な方法だと思っています。直感は間違うことがあっても、計算は裏切らない。「完璧な答え」は、限界の先ではなく、量子という新しい出発点の奥深くにあるのだと思います。
+  comment_en: >
+    I simply believe brute force computation is the ultimate path to truth. Intuition may falter, but computation never lies. The true answer of perfection awaits deep within quantum, not the limit but just the headstart.

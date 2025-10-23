@@ -682,6 +682,8 @@ hero_slides:
     // 背景クリック / パネルクリック / Esc では閉じない（✕のみ）
   })();
   </script>
+  <div id="sd-root" data-mode="compact"></div>
+  <script src="{{ '/assets/js/index.js' | relative_url }}"></script>
 </section>
 <section id="activities-preview" class="activities-band" data-reveal>
   <style>
