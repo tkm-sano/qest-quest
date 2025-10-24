@@ -1,4 +1,5 @@
 ---
+title: Vision
 lang: en
 permalink: /en/
 nav_order: 1    
