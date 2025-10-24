@@ -1,5 +1,6 @@
 ---
-title: Vision
+title: "VISION"
+hide_title: true
 lang: en
 permalink: /en/
 nav_order: 1    
@@ -38,6 +39,19 @@ hero_slides:
 ---
 
 <section class="hero" data-reveal>
+  <style>
+    /* Hide automatic page title on this page (cover common theme patterns) */
+    .page-header h1,
+    .post-header h1,
+    h1.page-title,
+    h1.post-title,
+    #page-title,
+    .page-title-wrap h1,
+    main > h1:first-child,
+    .main > h1:first-child,
+    .page-content > h1:first-child,
+    .container > h1:first-child { display:none !important; }
+  </style>
   {% if page.lang == "en" %}
   {% else %}
   {% endif %}

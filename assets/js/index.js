@@ -29,7 +29,9 @@
       #sd-root.sd-overlay-host{position:relative;}
       .sd-line{max-width:1200px;margin-left:auto;margin-right:auto;font-size:clamp(1.6rem, 3vw, 2.6rem);line-height:1.55;letter-spacing:.25px;opacity:0;transform:translateY(6px);transition:opacity .8s ease, transform .8s ease;padding:0 1.2rem}
       .sd-line.show{opacity:1;transform:translateY(0)}
-      .sd-badges{margin-top:1rem;display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;opacity:.9;transform:scale(1.1)}
+      .sd-line + .sd-line{margin-top:.35rem;font-size:clamp(1.35rem,2.5vw,2.2rem)}
+      .sd-badges{margin-top:.5rem;display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;opacity:.9;transform:scale(1.1)}
+      .sd-label{margin-top:.6rem;display:block;font-size:1rem;opacity:.9;letter-spacing:.2px;text-decoration:underline;text-underline-offset:3px}
       .sd-badge{display:inline-block;border-radius:999px;padding:.18rem .6rem;border:1px solid color-mix(in oklab, CanvasText 30%, transparent);font-size:.82rem;white-space:nowrap;background:color-mix(in oklab, Canvas 92%, CanvasText 8%)}
       .sd-cloud{position:absolute;inset:-10%;overflow:visible;z-index:-1}
       .sd-cloud span{position:absolute;font-size:clamp(1rem,1.5vw,1.25rem);opacity:.3;color:color-mix(in oklab, CanvasText 75%, transparent);user-select:none;filter:blur(.3px);white-space:nowrap;}
@@ -151,6 +153,8 @@
     root.innerHTML = `
       <div class="sd-ambient" aria-live="off">
         <div class="sd-line" id="sd-line"></div>
+        <div class="sd-line" id="sd-line-system"></div>
+        <div class="sd-label" id="sd-label" aria-hidden="true">related areas</div>
         <div class="sd-badges" id="sd-badges"></div>
         <div class="sd-cloud" id="sd-cloud" aria-hidden="true"></div>
       </div>
@@ -159,6 +163,73 @@
     const lineEl = $("#sd-line", root);
     const badgesEl = $("#sd-badges", root);
     const cloudEl = $("#sd-cloud", root);
+    const labelEl = $("#sd-label", root);
+    const sysEl = $("#sd-line-system", root);
+    const DEFAULT_QUESTION = "How will the development of quantum technologies reshape human behavior, everyday life, and society through changes in individual and collective actions?";
+    const DEFAULT_SYSTEM_QUESTION = "What system‑level milestones and architectures are needed to achieve reliable connections between quantum computers and scalable, secure quantum networks?";
+    const providedQuestion = (root.dataset.question || "").trim();
+    const providedSystemQuestion = (root.dataset.systemQuestion || "").trim();
+    const FIXED_QUESTION = (providedQuestion || DEFAULT_QUESTION);
+    const FIXED_SYSTEM_QUESTION = (providedSystemQuestion || DEFAULT_SYSTEM_QUESTION);
+    // Always fixed: disable random question generation entirely
+    const useFixedQuestion = true;
+    if (labelEl) labelEl.textContent = "related areas";
+
+    // Alternate between two fixed questions (main/system)
+    let qIndex = 0;
+    function showQuestion(index) {
+      const isMain = (index % 2 === 0);
+      // fade out both
+      lineEl.classList.remove("show");
+      if (sysEl) sysEl.classList.remove("show");
+      setTimeout(() => {
+        // badges: random each cycle unless data-* fixed values are provided
+        const p = hasFixedBadges
+          ? {
+              layer: fixedLayer || "Sensing",
+              tech:  fixedTech  || "Gyroscope",
+              mid:   fixedMid   || "Behavior change",
+              final: fixedFinal || "Societal impact"
+            }
+          : buildPromptObj();
+        badgesEl.innerHTML = `
+          <span class="sd-badge">${p.layer}</span>
+          <span class="sd-badge">${p.tech}</span>
+          <span class="sd-badge">${p.mid}</span>
+          <span class="sd-badge">${p.final}</span>
+        `;
+        if (isMain) {
+          // show main question, hide system
+          lineEl.textContent = FIXED_QUESTION;
+          lineEl.style.display = "";
+          if (sysEl) sysEl.style.display = "none";
+          void lineEl.offsetWidth; // reflow
+          lineEl.classList.add("show");
+        } else {
+          // show system question, hide main
+          if (sysEl) {
+            sysEl.textContent = FIXED_SYSTEM_QUESTION;
+            sysEl.style.display = "";
+            lineEl.style.display = "none";
+            void sysEl.offsetWidth; // reflow
+            sysEl.classList.add("show");
+          } else {
+            // fallback: render on main line if system element is absent
+            lineEl.textContent = FIXED_SYSTEM_QUESTION;
+            lineEl.style.display = "";
+            void lineEl.offsetWidth;
+            lineEl.classList.add("show");
+          }
+        }
+      }, 90);
+    }
+
+    const fixedLayer = (root.dataset.layer || "").trim();
+    const fixedTech  = (root.dataset.tech  || "").trim();
+    const fixedMid   = (root.dataset.mid   || "").trim();
+    const fixedFinal = (root.dataset.final || "").trim();
+    const hasFixedBadges = !!(fixedLayer || fixedTech || fixedMid || fixedFinal);
+
     const mode = (root.dataset.mode || "compact").toLowerCase();
     const ambient = root.querySelector(".sd-ambient");
     ambient.classList.add(`sd-${mode}`);
@@ -197,29 +268,24 @@
       cloudEl.appendChild(span);
     }
 
+    const firstPrompt = useFixedQuestion
+      ? {
+          layer: fixedLayer || "Sensing",
+          tech:  fixedTech  || "Gyroscope",
+          mid:   fixedMid   || "Behavior change",
+          final: fixedFinal || "Societal impact"
+        }
+      : buildPromptObj();
+
     function renderOnce() {
-      const p = buildPromptObj();
-      // fade out
-      lineEl.classList.remove("show");
-      // update text after a small delay to sync with CSS
-      setTimeout(() => {
-        lineEl.textContent = promptText(p);
-        badgesEl.innerHTML = `
-          <span class="sd-badge">${p.layer}</span>
-          <span class="sd-badge">${p.tech}</span>
-          <span class="sd-badge">${p.mid}</span>
-          <span class="sd-badge">${p.final}</span>
-        `;
-        // force reflow then fade in
-        void lineEl.offsetWidth;
-        lineEl.classList.add("show");
-      }, 90);
+      showQuestion(qIndex);
+      qIndex = (qIndex + 1) % 2;
     }
 
     // first render
     renderOnce();
 
-    // respects prefers-reduced-motion: stop rotation
+    // Alternate between two fixed questions (respect prefers-reduced-motion)
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (!mq.matches) {
       setInterval(renderOnce, ROTATE_MS);
