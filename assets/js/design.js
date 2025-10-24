@@ -101,7 +101,7 @@
     // Additional creative layout styles
     const creativeStyles = `
     .sdw-weave{position:relative;display:grid;grid-template-columns:1fr 1fr;column-gap:3rem;row-gap:2.4rem;margin-top:2rem}
-    .sdw-weave::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:repeating-linear-gradient(to bottom,#000 0 9px,transparent 9px 18px);opacity:.2;transform:translateX(-1px)}
+    .sdw-weave::before{display:none}
     .sdw-pillar{position:relative;padding-left:1.35rem;border-left:4px solid #000;padding-block:.6rem 1.4rem}
     .sdw-pillar::before{content:"";position:absolute;left:-1.35rem;top:-.6rem;width:36px;height:22px;border-top:2px solid #000;border-left:2px solid #000}
     .sdw-pillar::after{content:"";position:absolute;right:-.6rem;bottom:-.6rem;width:36px;height:22px;border-right:2px solid #000;border-bottom:2px solid #000}
@@ -223,21 +223,6 @@
     section.setAttribute('aria-label', 'Q/est Subprojects');
     section.innerHTML = `
         <div class="sd-container sdw-stage">
-          <section class="sdw-axis-box" aria-label="Social to (Information) Technical axis">
-            <svg class="sdw-axis-svg" viewBox="0 0 1200 120" preserveAspectRatio="none" role="img" aria-labelledby="sdw-axis-title">
-              <title id="sdw-axis-title">Social to (Information) Technical</title>
-              <defs>
-                <linearGradient id="sdw-axis-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#000" stop-opacity="0"/>
-                  <stop offset="50%" stop-color="#000" stop-opacity="0.15"/>
-                  <stop offset="100%" stop-color="#000" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <rect class="axis-shape" x="0" y="55" width="1200" height="10" rx="5" ry="5"/>
-              <text x="5%" y="50%" dominant-baseline="middle" text-anchor="start">Social</text>
-              <text x="95%" y="50%" dominant-baseline="middle" text-anchor="end">(Information) Technical</text>
-            </svg>
-          </section>
           <div class="sdw-weave">
             <div class="sdw-pillar">
                 <div class="sdw-bubbles"><span class="b a"></span><span class="b b"></span><span class="b c"></span><span class="b d"></span></div>
@@ -273,7 +258,6 @@
               <div class="sdw-sep"></div>
             </div>
           </div>
-          <svg class="sdw-overlay" aria-hidden="true" focusable="false"></svg>
         </div>
       `;
     return section;
@@ -349,37 +333,15 @@
       const x1 = (rL.right - R.left) + gap;
       const x2 = (rR.left - R.left) - gap;
 
-      // Ensure defs & markers (arrow head on right, dot on left)
-      let defs = svg.querySelector('defs');
-      if (!defs) {
-        defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
-        svg.prepend(defs);
-      }
-      let arrow = defs.querySelector('#sdw-arrow');
-      if (!arrow) {
-        arrow = document.createElementNS('http://www.w3.org/2000/svg','marker');
-        arrow.setAttribute('id', 'sdw-arrow');
-        arrow.setAttribute('markerWidth', '12');
-        arrow.setAttribute('markerHeight', '8');
-        arrow.setAttribute('refX', '10');
-        arrow.setAttribute('refY', '4');
-        arrow.setAttribute('orient', 'auto-start-reverse');
-        arrow.setAttribute('markerUnits', 'strokeWidth');
-        const ap = document.createElementNS('http://www.w3.org/2000/svg','path');
-        ap.setAttribute('d', 'M0,0 L10,4 L0,8 Z');
-        ap.setAttribute('fill', '#000');
-        arrow.appendChild(ap);
-        defs.appendChild(arrow);
-      }
-
       let path = svg.querySelector('path.sdw-wire');
       if(!path){
         path = document.createElementNS('http://www.w3.org/2000/svg','path');
         path.setAttribute('class','sdw-wire');
         svg.appendChild(path);
       }
-      path.setAttribute('marker-start', 'url(#sdw-arrow)');
-      path.setAttribute('marker-end', 'url(#sdw-arrow)');
+      // ensure no arrowheads are present
+      path.removeAttribute('marker-start');
+      path.removeAttribute('marker-end');
       path.setAttribute('d', `M ${x1},${y} L ${x2},${y}`);
     }catch(e){/* no-op */}
   }
@@ -395,8 +357,7 @@
       if (mount) {
         const work = buildDesignWork();
         mount.appendChild(work);
-        drawWire(work);
-        window.addEventListener('resize', () => drawWire(work));
+        // no connector wire (horizontal dashed line) is drawn
       }
     } catch (e) { /* no-op */ }
     addParallax(hero);
