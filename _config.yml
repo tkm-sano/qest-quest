@@ -1,5 +1,5 @@
 # Site config
-titile: "Q/est"
+title: "Q/est"
 url: "https://q-est.org"      # production URL (leave empty for local)
 baseurl: ""                    # if served from a subpath, set like "/qest-quest_jekyll"
 
