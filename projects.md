@@ -39,6 +39,9 @@ permalink: /projects/
       height: 160px;
       object-fit: cover;
       display: block;
+      border: none;
+      outline: none;
+      border-radius: 0;
     }
     #news .card h4{
       margin: 0.75rem 1rem 0.25rem;
