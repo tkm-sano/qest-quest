@@ -38,14 +38,10 @@ hero_slides:
 ---
 
 <section class="hero" data-reveal>
-  <h1 class="chapter glitch" data-shadow="Chapter I :: VISION ::">
-    <em>:: VISION ::</em>
-  </h1>
   {% if page.lang == "en" %}
     <p class="lead">Designing and realizing the near-future IT paradigm with Quantum Internet</p>
     <a class="btn-quest" href="{{ '/projects/' | relative_url }}?lang={{ page.lang }}">Let's embark on a quest →</a>
   {% else %}
-    <p class="lead">量子インターネットによる近未来ITパラダイムの社会デザインと実現</p>
   {% endif %}
 </section>
 <section class="hero-slideshow" data-reveal aria-labelledby="hero-slideshow-title">
@@ -86,15 +82,21 @@ hero_slides:
       .qest-hero .slide{transition:none}
     }
   </style>
-
-  <h2 id="hero-slideshow-title" class="visually-hidden">{% if page.lang == "en" %}Featured{% else %}注目コンテンツ{% endif %}</h2>
+  <script defer src="{{ '/assets/js/design.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/index.js' | relative_url }}"></script>
+  <div style="text-align:center;">
+    <div id="sd-root" data-mode="compact" style="display:inline-block; text-align:center;"></div>
+  </div>
+  <h2 id="hero-slideshow-title" style="font-size:2.8rem; text-align:center; margin:3rem 0 1.2rem; font-weight:700;">
+    Contents
+  </h2>
 
   {% assign slides = page.hero_slides %}
   {% assign slides_size = 0 %}
   {% if slides %}{% assign slides_size = slides | size %}{% endif %}
 
   {% if slides_size > 0 %}
-    <div class="qest-hero" role="region" aria-roledescription="carousel" aria-label="{% if page.lang == 'en' %}Featured carousel{% else %}注目スライド{% endif %}">
+    <div class="qest-hero" role="region" aria-roledescription="carousel" aria-label="{% if page.lang == 'en' %}Featured carousel{% else %}Contents{% endif %}">
       <div class="track" id="qestHeroTrack" tabindex="0">
         {% for s in slides %}
           {% assign alt_txt = '' %}
@@ -259,9 +261,6 @@ hero_slides:
 
   <h2>{% if page.lang == "en" %}Latest News{% else %}最新ニュース{% endif %}</h2>
 
-  {% comment %}
-    Prefer collection-based news (_news), fallback to data file (_data/news.yml)
-  {% endcomment %}
 
   {% assign coll = site.news %}
   {% if coll and coll.size > 0 %}
@@ -299,6 +298,7 @@ hero_slides:
     {% if page.lang == "en" %}View all news →{% else %}すべてのNEWSを見る →{% endif %}
   </a>
 </section>
+{% comment %}
 <section id="approach" class="methods-band" data-reveal>
   <style>
     .methods-band{ margin:1.5rem 0; }
@@ -310,12 +310,12 @@ hero_slides:
       border:1px solid var(--c-border,#eaeef3);
       border-radius:14px;
       background:#fff;
-      padding:1.2rem 1.4rem;
+      padding:1.6rem 1.6rem;
       overflow:hidden;
       display:flex;
       align-items:center;
       justify-content:center;
-      min-height:150px;
+      min-height:260px; /* enlarged to approach hero (near 16:9) */
     }
     .methods-band .tile .icon{
       position:relative;
@@ -327,22 +327,23 @@ hero_slides:
       gap:.6rem;
       transition: transform .2s ease, opacity .2s ease;
     }
-    .methods-band .tile svg{ width:56px; height:56px; display:block; margin:0; flex:0 0 auto; }
+    .methods-band .tile svg{ width:84px; height:84px; display:block; margin:0; flex:0 0 auto; }
     .methods-band .tile figcaption{
       font-weight:600;
-      font-size:.85rem;        /* smaller font to fit long words */
-      line-height:1.5;          /* more vertical space */
+      font-size:.95rem;        /* slightly larger for hero-like emphasis */
+      line-height:1.5;
       letter-spacing:.02em;
       margin:0;
       text-align:center;
-      white-space:normal;       /* allow wrapping */
-      word-break:break-word;    /* break long words */
-      overflow-wrap:anywhere;   /* modern browsers */
+      white-space:normal;
+      word-break:break-word;
+      overflow-wrap:anywhere;
       max-width:100%;
       padding:0 .2rem;
     }
     @media (max-width: 560px){
-      .methods-band .tile{ min-height:84px; }
+      .methods-band .tile{ min-height:120px; }
+      .methods-band .tile svg{ width:64px; height:64px; }
       .methods-band .tile .icon{ gap:.6rem; flex-direction:column; }
       .methods-band .tile figcaption{ max-width:100%; white-space:normal; }
     }
@@ -441,7 +442,7 @@ hero_slides:
   </style>
 
   {% if page.lang == "en" %}
-    <h2>Approach</h2>
+    <h2 style="font-size:2.1rem; text-align:center; margin:1rem 0; font-weight:700;">Approach</h2>
     <div class="tiles">
       <figure class="tile" data-img="/assets/img/approach/sf.jpg" data-cap-key="sf">
         <div class="icon">
@@ -506,7 +507,7 @@ hero_slides:
     </div>
     <p class="view-all"><a href="{{ '/projects/' | relative_url }}">See latest in NEWS →</a></p>
   {% else %}
-    <h2>Approach</h2>
+    <h2 style="font-size:2.1rem; text-align:center; margin:1rem 0; font-weight:700;">Approach</h2>
     <div class="tiles">
       <figure class="tile" data-img="/assets/img/approach/sf.jpg" data-cap-key="sf">
         <div class="icon">
@@ -682,9 +683,8 @@ hero_slides:
     // 背景クリック / パネルクリック / Esc では閉じない（✕のみ）
   })();
   </script>
-  <div id="sd-root" data-mode="compact"></div>
-  <script src="{{ '/assets/js/index.js' | relative_url }}"></script>
 </section>
+ 
 <section id="activities-preview" class="activities-band" data-reveal>
   <style>
     /* LP Activities preview */
@@ -796,3 +796,4 @@ hero_slides:
     </div>
   {% endif %}
 </section>
+{% endcomment %}

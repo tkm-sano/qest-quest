@@ -1,199 +1,207 @@
 ---
-title: Vision
 lang: en
 permalink: /en/
-layout: default
-nav_order: 1     # ナビの並び順。お好みで
+nav_order: 1    
+hero_slider_interval: 5000   # 自動切替ミリ秒
+hero_slides:
+  - src: /assets/img/approach/sf.jpg
+    link: /projects/
+    alt_jp: "SFプロトタイピングのイメージ"
+    alt_en: "SF Prototyping"
+    caption_jp: "SFプロトタイピング — 未来像の素描から議論をはじめる"
+    caption_en: "SF Prototyping — Start from vivid future sketches"
+    cta_text_jp: "プロジェクトを見る"
+    cta_text_en: "See projects"
+    cta_url_jp: /projects/
+    cta_url_en: /en/projects/
+  - src: /assets/img/approach/cocreation.jpg
+    link: /activities/
+    alt_jp: "共創ワークショップの様子"
+    alt_en: "Co-creation workshop"
+    caption_jp: "共創ワークショップ — 2040/2050のユースケース創出"
+    caption_en: "Co-creation Workshops — Generate 2040/2050 use cases"
+    cta_text_jp: "活動を見る"
+    cta_text_en: "See activities"
+    cta_url_jp: /activities/
+    cta_url_en: /en/activities/
+  - src: /assets/img/approach/behavior.jpg
+    link: /method/
+    alt_jp: "行動変容シナリオの図"
+    alt_en: "Behavior-change scenario"
+    caption_jp: "行動変容シナリオ — 日常から考える"
+    caption_en: "Behavior-change scenarios — From everyday life"
+    cta_text_jp: "方法論"
+    cta_text_en: "Method"
+    cta_url_jp: /method/
+    cta_url_en: /en/method/
 ---
 
 <section class="hero" data-reveal>
-  <h1 class="chapter glitch" data-shadow="Chapter I :: VISION ::">
-    <em>:: VISION ::</em>
-  </h1>
   {% if page.lang == "en" %}
-    <p class="lead">Designing and realizing the near-future IT paradigm with Quantum Internet</p>
   {% else %}
-    <p class="lead">量子インターネットによる近未来ITパラダイムの社会デザインと実現</p>
   {% endif %}
 </section>
-<section class="quantum-demo" data-reveal>
-  <div id="quantum-visualization" class="complex-viz"></div>
-  <script>
+<section class="hero-slideshow" data-reveal aria-labelledby="hero-slideshow-title">
+  <style>
+    /* ===== Q/est Hero Slideshow (vanilla, accessible) ===== */
+    .qest-hero{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--c-border,#eaeef3);background:#000;isolation:isolate}
+    .qest-hero .track{position:relative;aspect-ratio:16/9}
+    .qest-hero .slide{position:absolute;inset:0;opacity:0;transition:opacity .7s ease;display:block}
+    .qest-hero .slide.is-active{opacity:1}
+    .qest-hero .slide a{display:block;height:100%}
+    .qest-hero img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 10s ease}
+    .qest-hero .slide.is-active img{transform:scale(1.02)}
+    .qest-hero .veil{position:absolute;inset:0;background:
+      radial-gradient(120% 120% at 10% 10%, rgba(90,209,255,.25), transparent 40%),
+      radial-gradient(100% 100% at 90% 0%, rgba(164,119,255,.25), transparent 46%),
+      radial-gradient(100% 120% at 50% 100%, rgba(0,0,0,.55), rgba(0,0,0,.65) 60%, rgba(0,0,0,.75) 100%);
+      pointer-events:none}
+    .qest-hero .caption{
+      position:absolute;left: clamp(12px,3vw,24px); right: clamp(12px,3vw,24px); bottom: clamp(12px,3vw,24px);
+      color:#fff; z-index:2;
+      display:grid; gap:.4rem;
+      text-shadow: 0 4px 16px rgba(0,0,0,.5);
+    }
+    .qest-hero .caption h2{ margin:0; font-size: clamp(1.05rem, 1.8vw, 1.6rem); font-weight:700; letter-spacing:.02em }
+    .qest-hero .caption p{ margin:0; font-size: clamp(.92rem, 1.4vw, 1.1rem); opacity:.95 }
+    .qest-hero .cta-row{display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.4rem}
+    .qest-hero .btn{display:inline-block; padding:.55em .9em; border-radius:12px; border:1px solid rgba(255,255,255,.75); color:#fff; text-decoration:none; backdrop-filter:saturate(120%) blur(2px)}
+    .qest-hero .btn.primary{background:rgba(255,255,255,.12)}
+    .qest-hero .nav{position:absolute;inset-inline:0;bottom:8px;display:flex;justify-content:center;gap:8px;z-index:3}
+    .qest-hero .dot{width:10px;height:10px;border-radius:50%;border:1px solid #fff;background:transparent;opacity:.75}
+    .qest-hero .dot[aria-current="true"]{background:#fff;opacity:1}
+    .qest-hero .prev,.qest-hero .next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);color:#fff;border:none;border-radius:999px;width:38px;height:38px;cursor:pointer;z-index:3}
+    .qest-hero .prev{left:8px}.qest-hero .next{right:8px}
+    .qest-hero .pause{position:absolute;right:8px;top:8px;background:rgba(0,0,0,.45);color:#fff;border:none;border-radius:10px;padding:.35em .55em;cursor:pointer;z-index:3}
+    @media (max-width: 720px){ .qest-hero .caption h2{font-size:1.05rem} .qest-hero .caption p{font-size:.95rem} }
+    @media (prefers-reduced-motion: reduce){
+      .qest-hero img{transition:none; transform:none}
+      .qest-hero .slide{transition:none}
+    }
+  </style>
+  <script defer src="{{ '/assets/js/design.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/index.js' | relative_url }}"></script>
+  <div style="text-align:center;">
+    <div id="sd-root" data-mode="compact" style="display:inline-block; text-align:center;"></div>
+  </div>
+  <h2 id="hero-slideshow-title" style="font-size:2.8rem; text-align:center; margin:3rem 0 1.2rem; font-weight:700;">
+    Contents
+  </h2>
+
+  {% assign slides = page.hero_slides %}
+  {% assign slides_size = 0 %}
+  {% if slides %}{% assign slides_size = slides | size %}{% endif %}
+
+  {% if slides_size > 0 %}
+    <div class="qest-hero" role="region" aria-roledescription="carousel" aria-label="{% if page.lang == 'en' %}Featured carousel{% else %}Contents{% endif %}">
+      <div class="track" id="qestHeroTrack" tabindex="0">
+        {% for s in slides %}
+          {% assign alt_txt = '' %}
+          {% if page.lang == 'ja' and s.alt_jp and s.alt_jp != '' %}{% assign alt_txt = s.alt_jp %}{% endif %}
+          {% if page.lang == 'en' and s.alt_en and s.alt_en != '' %}{% assign alt_txt = s.alt_en %}{% endif %}
+          {% if alt_txt == '' and s.alt and s.alt != '' %}{% assign alt_txt = s.alt %}{% endif %}
+
+          {% assign cap_txt = '' %}
+          {% if page.lang == 'ja' and s.caption_jp and s.caption_jp != '' %}{% assign cap_txt = s.caption_jp %}{% endif %}
+          {% if page.lang == 'en' and s.caption_en and s.caption_en != '' %}{% assign cap_txt = s.caption_en %}{% endif %}
+          {% if cap_txt == '' and s.caption and s.caption != '' %}{% assign cap_txt = s.caption %}{% endif %}
+
+          {% assign cta_text = '' %}
+          {% assign cta_url = '' %}
+          {% if page.lang == 'ja' and s.cta_text_jp and s.cta_text_jp != '' %}{% assign cta_text = s.cta_text_jp %}{% endif %}
+          {% if page.lang == 'en' and s.cta_text_en and s.cta_text_en != '' %}{% assign cta_text = s.cta_text_en %}{% endif %}
+          {% if page.lang == 'ja' and s.cta_url_jp and s.cta_url_jp != '' %}{% assign cta_url = s.cta_url_jp %}{% endif %}
+          {% if page.lang == 'en' and s.cta_url_en and s.cta_url_en != '' %}{% assign cta_url = s.cta_url_en %}{% endif %}
+          {% if cta_url == '' and s.link and s.link != '' %}{% assign cta_url = s.link %}{% endif %}
+
+          <figure class="slide{% if forloop.first %} is-active{% endif %}" data-index="{{ forloop.index0 }}">
+            {% if s.link and s.link != '' %}
+              <a href="{{ s.link | relative_url }}" tabindex="-1">
+                <img src="{{ s.src | relative_url }}" alt="{{ alt_txt | escape }}" {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %} decoding="async">
+              </a>
+            {% else %}
+              <img src="{{ s.src | relative_url }}" alt="{{ alt_txt | escape }}" {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %} decoding="async">
+            {% endif %}
+            <div class="veil" aria-hidden="true"></div>
+            {% if cap_txt != '' %}
+            <figcaption class="caption">
+              <h2>{{ cap_txt }}</h2>
+              {% if cta_url != '' and cta_text != '' %}
+                <div class="cta-row">
+                  <a class="btn primary" href="{{ cta_url | relative_url }}">{{ cta_text }}</a>
+                </div>
+              {% endif %}
+            </figcaption>
+            {% endif %}
+          </figure>
+        {% endfor %}
+
+        <button class="prev" type="button" aria-label="{% if page.lang == 'en' %}Previous slide{% else %}前のスライド{% endif %}">‹</button>
+        <button class="next" type="button" aria-label="{% if page.lang == 'en' %}Next slide{% else %}次のスライド{% endif %}">›</button>
+        <button class="pause" type="button" aria-pressed="false" aria-label="{% if page.lang == 'en' %}Pause autoplay{% else %}自動再生を一時停止{% endif %}">❚❚</button>
+      </div>
+
+      <div class="nav" role="tablist" aria-label="{% if page.lang == 'en' %}Slides{% else %}スライド{% endif %}">
+        {% for s in slides %}
+          <button class="dot" type="button" role="tab" data-index="{{ forloop.index0 }}" {% if forloop.first %}aria-current="true"{% endif %} aria-label="{% if page.lang == 'en' %}Slide {{ forloop.index }}{% else %}{{ forloop.index }}枚目{% endif %}"></button>
+        {% endfor %}
+      </div>
+    </div>
+
+    <script>
     (function(){
-      const container = document.getElementById('quantum-visualization');
-      container.innerHTML = '';
-      const svgNS = 'http://www.w3.org/2000/svg';
-      const w = 800, h = 500;
-      const svg = document.createElementNS(svgNS, 'svg');
-      svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
-      svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-      svg.setAttribute('width', '100%');
-      svg.setAttribute('height', '100%');
-      container.appendChild(svg);
+      var track=document.getElementById('qestHeroTrack'); if(!track) return;
+      var slides=[].slice.call(track.querySelectorAll('.slide'));
+      var dots=[].slice.call(document.querySelectorAll('.hero-slideshow .dot'));
+      var prev=track.querySelector('.prev');
+      var next=track.querySelector('.next');
+      var pauseBtn=track.querySelector('.pause');
+      var idx=0, timer=null, interval={{ page.hero_slider_interval | default: 5000 }};
 
-      // Section titles inside SVG
-      const styleTitle = (text, y) => {
-        const lbl = document.createElementNS(svgNS,'text');
-        lbl.setAttribute('x', w/2);
-        lbl.setAttribute('y', y);
-        lbl.setAttribute('text-anchor','middle');
-        lbl.setAttribute('fill','url(#textGrad)');
-        lbl.setAttribute('font-size','24');
-        lbl.setAttribute('letter-spacing','2');
-        lbl.setAttribute('filter','url(#glow)');
-        lbl.setAttribute('font-weight','bold');
-        lbl.setAttribute('font-family','sans-serif');
-        lbl.textContent = text;
-        svg.appendChild(lbl);
-      };
-      styleTitle('TECHNOLOGY', 40);
-      styleTitle('SOCIETY', h - 20);
-
-      // Filters for glow
-      const defs = document.createElementNS(svgNS, 'defs');
-      const glow = document.createElementNS(svgNS, 'filter');
-      glow.setAttribute('id', 'glow');
-      glow.innerHTML = '<feGaussianBlur stdDeviation="4" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>';
-      defs.appendChild(glow);
-      // Gradient for section titles
-      const textGradient = document.createElementNS(svgNS, 'linearGradient');
-      textGradient.setAttribute('id', 'textGrad');
-      textGradient.setAttribute('x1', '0%');
-      textGradient.setAttribute('y1', '0%');
-      textGradient.setAttribute('x2', '100%');
-      textGradient.setAttribute('y2', '0%');
-      let stop1 = document.createElementNS(svgNS, 'stop');
-      stop1.setAttribute('offset', '0%');
-      stop1.setAttribute('stop-color', '#5A9CF9');
-      stop1.setAttribute('stop-opacity', '1');
-      let stop2 = document.createElementNS(svgNS, 'stop');
-      stop2.setAttribute('offset', '100%');
-      stop2.setAttribute('stop-color', '#A8D1FF');
-      stop2.setAttribute('stop-opacity', '1');
-      textGradient.appendChild(stop1);
-      textGradient.appendChild(stop2);
-      defs.appendChild(textGradient);
-
-      // Radial gradients for tech nodes
-      ['#D1F0FF','#A8E6CF','#FFD1DC'].forEach((col, i) => {
-        const grad = document.createElementNS(svgNS, 'radialGradient');
-        grad.setAttribute('id', `techGrad${i}`);
-        grad.innerHTML = `<stop offset="0%" stop-color="${col}" stop-opacity="0.8"/><stop offset="100%" stop-color="${col}" stop-opacity="0"/>`;
-        defs.appendChild(grad);
-      });
-      svg.appendChild(defs);
-
-      // Background polygons swirl
-      for(let i=0;i<8;i++){
-        const poly = document.createElementNS(svgNS, 'polygon');
-        const pts=[];
-        for(let a=0;a<360;a+=45){
-          const rad=(a+i*5)*Math.PI/180;
-          const r= (i+1)*50 + 20;
-          pts.push([w/2 + Math.cos(rad)*r, h/2 + Math.sin(rad)*r].join(','));
-        }
-        poly.setAttribute('points', pts.join(' '));
-        poly.setAttribute('fill', 'none');
-        poly.setAttribute('stroke', '#CCC');
-        poly.setAttribute('stroke-width', 1);
-        poly.setAttribute('transform', `rotate(${i*15} ${w/2} ${h/2})`);
-        svg.appendChild(poly);
+      function show(i){
+        slides.forEach(function(el){ el.classList.remove('is-active'); });
+        dots.forEach(function(d){ d.removeAttribute('aria-current'); });
+        idx=(i+slides.length)%slides.length;
+        slides[idx].classList.add('is-active');
+        if(dots[idx]) dots[idx].setAttribute('aria-current','true');
       }
+      function play(){ stop(); timer=setInterval(function(){ show(idx+1); }, interval); pauseBtn.setAttribute('aria-pressed','false'); pauseBtn.textContent='❚❚'; }
+      function stop(){ if(timer){ clearInterval(timer); timer=null; } pauseBtn.setAttribute('aria-pressed','true'); pauseBtn.textContent='▶'; }
 
-      // Technology nodes
-      const techNodes = [
-        { x: 160, y: 120, label: 'Quantum Hardware',   colorGrad: '#D1F0FF' },
-        { x: 400, y: 80,  label: 'Quantum Protocol',   colorGrad: '#A8E6CF' },
-        { x: 640, y: 120, label: 'Quantum Software',   colorGrad: '#FFD1DC' },
-      ];
-      techNodes.forEach((n,i)=>{
-        const c=document.createElementNS(svgNS,'circle');
-        c.setAttribute('cx',n.x);
-        c.setAttribute('cy',n.y);
-        c.setAttribute('r',40);
-        c.setAttribute('fill',`url(#techGrad${i})`);
-        c.setAttribute('filter','url(#glow)');
-        svg.appendChild(c);
-        const t=document.createElementNS(svgNS,'text');
-        t.setAttribute('x',n.x);
-        t.setAttribute('y',n.y+60);
-        t.setAttribute('text-anchor','middle');
-        t.setAttribute('fill','#333');
-        t.setAttribute('font-size','14');
-        t.textContent=n.label;
-        svg.appendChild(t);
+      prev.addEventListener('click', function(){ show(idx-1); });
+      next.addEventListener('click', function(){ show(idx+1); });
+      dots.forEach(function(d){ d.addEventListener('click', function(){ show(parseInt(d.getAttribute('data-index'),10)); }); });
+      pauseBtn.addEventListener('click', function(){ if(timer){ stop(); } else { play(); } });
+
+      // Pause on hover/focus and keyboard navigation
+      track.addEventListener('mouseenter', stop);
+      track.addEventListener('mouseleave', play);
+      track.addEventListener('focusin', stop);
+      track.addEventListener('focusout', play);
+      track.addEventListener('keydown', function(e){
+        if(e.key==='ArrowLeft'){ e.preventDefault(); show(idx-1); }
+        if(e.key==='ArrowRight'){ e.preventDefault(); show(idx+1); }
       });
 
-      // Expanded social design nodes
-      const socialNodes = [
-        { x: 80,  y: 380, label: 'Community',   color: '#FF8C94' },
-        { x: 240, y: 420, label: 'Education & Outreach',    color: '#FFAAA6' },
-        { x: 400, y: 400, label: 'User Experience',         color: '#D1FFD6' },
-        { x: 560, y: 420, label: 'Policy & Regulation',     color: '#FFD1DC' },
-        { x: 720, y: 380, label: 'Ethics & Governance',     color: '#A8E6CF' },
-        { x: 160, y: 320, label: 'Business Model',          color: '#FFDAB9' },
-        { x: 640, y: 320, label: 'Infrastructure Design',   color: '#E6E6FA' },
-        { x: 320, y: 350, label: 'Sustainability',          color: '#C8E6C9' },
-        { x: 480, y: 350, label: 'Data Privacy',            color: '#FFECB3' },
-        { x: 560, y: 300, label: 'Inclusive Design',        color: '#D1C4E9' },
-        { x: 240, y: 300, label: 'Supply Chain',            color: '#B2DFDB' }
-      ];
-      socialNodes.forEach((n) => {
-        const blob = document.createElementNS(svgNS, 'path');
-        const wobble = 20;
-        const pts = [
-          [n.x,         n.y - wobble],
-          [n.x + wobble, n.y],
-          [n.x,         n.y + wobble],
-          [n.x - wobble, n.y]
-        ].map(p => p.join(',')).join(' ');
-        blob.setAttribute('d', `M ${pts} Z`);
-        blob.setAttribute('fill', n.color);
-        blob.setAttribute('fill-opacity', '0.7');
-        svg.appendChild(blob);
-        const t = document.createElementNS(svgNS, 'text');
-        t.setAttribute('x', n.x);
-        t.setAttribute('y', n.y + 10);
-        t.setAttribute('text-anchor', 'middle');
-        t.setAttribute('fill', '#333');
-        t.setAttribute('font-size', '14');
-        t.textContent = n.label;
-        svg.appendChild(t);
-      });
-
-      // Curved gradient links
-      socialNodes.forEach((sn)=>{
-        techNodes.forEach((tn)=>{
-          const link= document.createElementNS(svgNS,'path');
-          const d=`M ${tn.x} ${tn.y+40} C ${tn.x} ${(tn.y+sn.y)/2} ${sn.x} ${(tn.y+sn.y)/2} ${sn.x} ${sn.y-40}`;
-          link.setAttribute('d',d);
-          link.setAttribute('fill','none');
-          link.setAttribute('stroke','#AAA');
-          link.setAttribute('stroke-width','2');
-          link.setAttribute('stroke-dasharray','4 4');
-          svg.appendChild(link);
-        });
-      });
-
-      // Central glowing title
-      const title=document.createElementNS(svgNS,'text');
-      title.setAttribute('x',w/2);
-      title.setAttribute('y',h/2);
-      title.setAttribute('text-anchor','middle');
-      title.setAttribute('fill','#222');
-      title.setAttribute('font-size','22');
-      title.setAttribute('font-weight','bold');
-      title.setAttribute('filter','url(#glow)');
-      title.textContent='Quantum Internet Society Design';
-      svg.appendChild(title);
-
+      if(slides.length > 1){ play(); }
+      else{
+        // Hide controls if only one slide
+        if(prev) prev.style.display='none';
+        if(next) next.style.display='none';
+        if(pauseBtn) pauseBtn.style.display='none';
+        var nav=document.querySelector('.hero-slideshow .nav'); if(nav) nav.style.display='none';
+      }
     })();
-  </script>
+    </script>
+  {% else %}
+    <div class="qest-hero" style="aspect-ratio:16/9;display:grid;place-items:center;color:#fff;background:#111;border-radius:16px;border:1px dashed #333;">
+      <p style="margin:0;padding:1rem;text-align:center">{% if page.lang == "en" %}Add `hero_slides` to front matter to enable the hero slideshow.{% else %}front matter に `hero_slides` を追加するとスライドショーが表示されます。{% endif %}</p>
+    </div>
+  {% endif %}
 </section>
-
 <section id="latest-news" class="news-band" data-reveal>
   <style>
-    /* LP Latest News band (EN) */
+    /* LP Latest News band */
     .news-band{
       margin: 1.5rem 0;
       padding: 0.75rem 0.75rem 0.75rem;
@@ -247,9 +255,11 @@ nav_order: 1     # ナビの並び順。お好みで
       }
     }
   </style>
-  <h2>Latest News</h2>
-  {% comment %} Prefer _news collection, fallback to _data/news.yml {% endcomment %}
-  {% assign coll = site.news | where: 'lang', 'en' %}
+
+  <h2>{% if page.lang == "en" %}Latest News{% else %}最新ニュース{% endif %}</h2>
+
+
+  {% assign coll = site.news %}
   {% if coll and coll.size > 0 %}
     {% assign news_sorted = coll | sort: "date" | reverse %}
     <ul class="news-list">
@@ -257,7 +267,7 @@ nav_order: 1     # ナビの並び順。お好みで
         <li class="news-item">
           <time datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: "%Y-%m-%d" }}</time>
           <a href="{{ item.url | relative_url }}">
-            {% if item.title_en %}{{ item.title_en }}{% else %}{{ item.title }}{% endif %}
+            {% if page.lang == "en" and item.title_en %}{{ item.title_en }}{% else %}{{ item.title }}{% endif %}
           </a>
         </li>
       {% endfor %}
@@ -270,33 +280,22 @@ nav_order: 1     # ナビの並び順。お好みで
         {% for n in news_sorted limit:3 %}
           <li class="news-item">
             <time datetime="{{ n.date | date_to_xmlschema }}">{{ n.date | date: "%Y-%m-%d" }}</time>
-            {% assign href = nil %}
-            {% if n.i18n_en %}
-              {% assign href = n.i18n_en %}
-            {% elsif n.link_en %}
-              {% assign href = n.link_en %}
-            {% elsif n.slug_en %}
-              {% assign href = '/en/projects/' | append: n.slug_en | append: '/' %}
-            {% elsif n.link %}
-              {% assign href = n.link %}
-            {% elsif n.slug %}
-              {% assign href = '/en/projects/' | append: n.slug | append: '/' %}
-            {% else %}
-              {% assign href = '#' %}
-            {% endif %}
-            <a href="{{ href | relative_url }}">
-              {% if n.title_en %}{{ n.title_en }}{% else %}{{ n.title }}{% endif %}
+            <a href="{% if n.slug %}{{ '/projects/' | append: n.slug | append: '/' | relative_url }}{% elsif n.link %}{{ n.link }}{% else %}#{% endif %}">
+              {% if page.lang == "en" and n.title_en %}{{ n.title_en }}{% else %}{{ n.title }}{% endif %}
             </a>
           </li>
         {% endfor %}
       </ul>
     {% else %}
-      <p>No news yet.</p>
+      <p>{% if page.lang == "en" %}No news yet.{% else %}ニュースはまだありません。{% endif %}</p>
     {% endif %}
   {% endif %}
-  <a class="view-all" href="{{ '/en/projects/' | relative_url }}">View all news →</a>
-</section>
 
+  <a class="view-all" href="{{ '/projects/' | relative_url }}">
+    {% if page.lang == "en" %}View all news →{% else %}すべてのNEWSを見る →{% endif %}
+  </a>
+</section>
+{% comment %}
 <section id="approach" class="methods-band" data-reveal>
   <style>
     .methods-band{ margin:1.5rem 0; }
@@ -308,12 +307,12 @@ nav_order: 1     # ナビの並び順。お好みで
       border:1px solid var(--c-border,#eaeef3);
       border-radius:14px;
       background:#fff;
-      padding:1.2rem 1.4rem;
+      padding:1.6rem 1.6rem;
       overflow:hidden;
       display:flex;
       align-items:center;
       justify-content:center;
-      min-height:150px;
+      min-height:260px; /* enlarged to approach hero (near 16:9) */
     }
     .methods-band .tile .icon{
       position:relative;
@@ -325,34 +324,32 @@ nav_order: 1     # ナビの並び順。お好みで
       gap:.6rem;
       transition: transform .2s ease, opacity .2s ease;
     }
-    .methods-band .tile svg{ width:56px; height:56px; display:block; margin:0; flex:0 0 auto; }
+    .methods-band .tile svg{ width:84px; height:84px; display:block; margin:0; flex:0 0 auto; }
     .methods-band .tile figcaption{
       font-weight:600;
-      font-size:.8rem;
-      line-height:1.6;          /* more vertical spacing for word-per-line */
+      font-size:.95rem;        /* slightly larger for hero-like emphasis */
+      line-height:1.5;
       letter-spacing:.02em;
       margin:0;
       text-align:center;
       white-space:normal;
-      word-break:keep-all;
-      overflow-wrap:break-word;
+      word-break:break-word;
+      overflow-wrap:anywhere;
       max-width:100%;
       padding:0 .2rem;
-      display:block;
-    }
-    .methods-band .tile figcaption br {
-      display:block;
-      content:"";
     }
     @media (max-width: 560px){
-      .methods-band .tile{ min-height:84px; }
+      .methods-band .tile{ min-height:120px; }
+      .methods-band .tile svg{ width:64px; height:64px; }
       .methods-band .tile .icon{ gap:.6rem; flex-direction:column; }
       .methods-band .tile figcaption{ max-width:100%; white-space:normal; }
     }
     .methods-band .view-all{ margin-top:.75rem; }
+    /* brand-ish colors */
     .c1{fill:#5AD1FF;}.c2{fill:#A477FF;}.c3{fill:#9CF36B;}.stroke{stroke:#111;stroke-width:1.5;fill:none}
 
-    /* Center caption overlay (updated rules) */
+
+    /* Center caption overlay (refined: direct dim, solid background, pointer-events toggle) */
     .approach-overlay{
       position: fixed;
       inset: 0;
@@ -369,6 +366,7 @@ nav_order: 1     # ナビの並び順。お好みで
       max-width: min(84vw, 920px);
       margin: 0 3vw;
       color: #fff;
+      /* glassy black */
       background: linear-gradient(180deg, rgba(8,10,16,.72), rgba(8,10,16,.72)) padding-box;
       border: 1px solid rgba(255,255,255,.18);
       border-radius: 16px;
@@ -393,6 +391,7 @@ nav_order: 1     # ナビの並び順。お好みで
     .approach-overlay.show .panel{
       transform: translateY(0) scale(1);
     }
+    /* accent underline */
     .approach-overlay .panel::after{
       content:"";
       display:block;
@@ -403,22 +402,8 @@ nav_order: 1     # ナビの並び順。お好みで
       background: linear-gradient(90deg, #5AD1FF, #A477FF 60%, #9CF36B);
       opacity: .9;
     }
+    /* readable whites on dark */
     .approach-overlay .panel .line{ display:block; margin: 0 0 .35em; }
-    .approach-overlay .close-btn {
-      position: absolute;
-      top: .5rem;
-      right: .5rem;
-      background: transparent;
-      border: none;
-      font-size: 1.5rem;
-      color: #fff;
-      cursor: pointer;
-      line-height: 1;
-      z-index: 10001;
-    }
-    .approach-overlay .close-btn:hover {
-      color: #f88;
-    }
     .approach-overlay .caption-body {
       white-space: normal;
       word-break: break-word;
@@ -426,8 +411,8 @@ nav_order: 1     # ナビの並び順。お好みで
       margin-top: 2rem;
       text-align: left;
     }
-    @media (max-width: 600px) {
-      .approach-overlay .panel {
+    @media (max-width: 600px){
+      .approach-overlay .panel{
         max-width: 94vw;
         max-height: 85vh;
         overflow-y: auto;
@@ -437,106 +422,187 @@ nav_order: 1     # ナビの並び順。お好みで
         padding: 1rem;
         text-align: left;
       }
+      .approach-overlay .panel::-webkit-scrollbar{ width:6px; }
+      .approach-overlay .panel::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.3); border-radius: 3px; }
+    }
+    @media (prefers-reduced-motion: no-preference){
+      .approach-overlay { transition: opacity .18s ease; }
+    }
+    .approach-overlay .close-btn { position:absolute; top:.5rem; right:.5rem; background:transparent; border:none; font-size:1.5rem; color:#fff; cursor:pointer; line-height:1; z-index:10001; }
+    .approach-overlay .close-btn:hover { color:#f88; }
+    /* Dim tile icon on hover/focus for context */
+    .methods-band .tile:hover .icon,
+    .methods-band .tile:focus-within .icon{
+      transform: scale(.95);
+      opacity:.12;
     }
   </style>
 
-  <h2>Approach</h2>
-  <div class="tiles">
-    <figure class="tile" data-cap-key="sf">
-      <div class="icon">
-        <svg viewBox="0 0 120 120" role="img" aria-label="SF Prototyping">
-          <title>SF Prototyping</title>
-          <circle cx="60" cy="60" r="28" class="c1" opacity=".25"/>
-          <path d="M40 80 L60 30 L80 80 Z" class="stroke"/>
-          <circle cx="60" cy="60" r="4" class="c2"/>
-        </svg>
-        <figcaption>SF<br>Prototyping</figcaption>
-      </div>
-    </figure>
-    <figure class="tile" data-cap-key="cocreation">
-      <div class="icon">
-        <svg viewBox="0 0 120 120" role="img" aria-label="Co-creation Workshops">
-          <title>Co-creation Workshops</title>
-          <circle cx="40" cy="50" r="8" class="c1"/>
-          <circle cx="80" cy="50" r="8" class="c2"/>
-          <circle cx="60" cy="80" r="8" class="c3"/>
-          <path d="M40 50 L80 50 L60 80 Z" class="stroke"/>
-        </svg>
-        <figcaption>Co-creation<br>Workshops</figcaption>
-      </div>
-    </figure>
-    <figure class="tile" data-cap-key="behavior">
-      <div class="icon">
-        <svg viewBox="0 0 120 120" role="img" aria-label="Behavior-Change Scenario Planning">
-          <title>Behavior-Change Scenario Planning</title>
-          <path d="M30 85 C45 75, 55 60, 60 45 C65 30, 80 30, 90 40" class="stroke"/>
-          <circle cx="30" cy="85" r="5" class="c1"/>
-          <circle cx="60" cy="45" r="5" class="c2"/>
-          <circle cx="90" cy="40" r="6" class="c3"/>
-        </svg>
-        <figcaption>Behavior-Change<br>Scenario</figcaption>
-      </div>
-    </figure>
-    <figure class="tile" data-cap-key="consensus">
-      <div class="icon">
-        <svg viewBox="0 0 120 120" role="img" aria-label="Consensus Building">
-          <title>Consensus Building</title>
-          <circle cx="60" cy="60" r="28" class="c1" opacity=".18"/>
-          <path d="M40 60 L54 72 L82 44" class="stroke"/>
-          <circle cx="40" cy="60" r="4" class="c2"/>
-          <circle cx="54" cy="72" r="4" class="c3"/>
-          <circle cx="82" cy="44" r="4" class="c2"/>
-        </svg>
-        <figcaption>Consensus<br>Building</figcaption>
-      </div>
-    </figure>
-    <figure class="tile" data-cap-key="social">
-      <div class="icon">
-        <svg viewBox="0 0 120 120" role="img" aria-label="Social-Transformation Scenarios">
-          <title>Social-Transformation Scenarios</title>
-          <path d="M60 90 V60 M60 60 C60 45 75 45 80 40 M60 60 C60 45 45 45 40 40" class="stroke"/>
-          <circle cx="60" cy="90" r="5" class="c1"/>
-          <circle cx="80" cy="40" r="6" class="c2"/>
-          <circle cx="40" cy="40" r="6" class="c3"/>
-        </svg>
-        <figcaption>Social-<br>Transformation</figcaption>
-      </div>
-    </figure>
-    <figure class="tile" data-cap-key="collab">
-      <div class="icon">
-        <svg viewBox="0 0 120 120" role="img" aria-label="Collaborative Research">
-          <title>Collaborative Research</title>
-          <circle cx="60" cy="60" r="28" class="c1" opacity=".25"/>
-          <path d="M30 60 L60 30 L90 60 L60 90 Z" class="stroke"/>
-        </svg>
-        <figcaption>Collaborative<br>Research</figcaption>
-      </div>
-    </figure>
-    <figure class="tile" data-cap-key="implementation">
-      <div class="icon">
-        <svg viewBox="0 0 120 120" role="img" aria-label="Social Implementation">
-          <title>Social Implementation</title>
-          <circle cx="60" cy="60" r="28" class="c2" opacity=".25"/>
-          <path d="M40 80 L60 40 L80 80" class="stroke"/>
-          <path d="M50 70 H70 V90 H50 Z" class="stroke"/>
-        </svg>
-        <figcaption>Social<br>Implementation</figcaption>
-      </div>
-    </figure>
-    <figure class="tile" data-cap-key="speculative">
-      <div class="icon">
-        <svg viewBox="0 0 120 120" role="img" aria-label="Speculative Design">
-          <title>Speculative Design</title>
-          <circle cx="60" cy="60" r="28" class="c3" opacity=".25"/>
-          <path d="M30 70 Q60 20 90 70" class="stroke"/>
-          <circle cx="60" cy="40" r="6" class="c2"/>
-        </svg>
-        <figcaption>Speculative<br>Design</figcaption>
-      </div>
-    </figure>
-  </div>
+  {% if page.lang == "en" %}
+    <h2 style="font-size:2.1rem; text-align:center; margin:1rem 0; font-weight:700;">Approach</h2>
+    <div class="tiles">
+      <figure class="tile" data-img="/assets/img/approach/sf.jpg" data-cap-key="sf">
+        <div class="icon">
+          <svg viewBox="0 0 120 120" role="img" aria-label="SF Prototyping">
+            <title>SF Prototyping</title>
+            <circle cx="60" cy="60" r="28" class="c1" opacity=".25"/>
+            <path d="M40 80 L60 30 L80 80 Z" class="stroke"/>
+            <circle cx="60" cy="60" r="4" class="c2"/>
+          </svg>
+          <figcaption>SF Prototyping</figcaption>
+        </div>
+      </figure>
+      <figure class="tile" data-img="/assets/img/approach/cocreation.jpg" data-cap-key="cocreation">
+        <div class="icon">
+          <svg viewBox="0 0 120 120" role="img" aria-label="Co-creation Workshops">
+            <title>Co-creation Workshops</title>
+            <circle cx="40" cy="50" r="8" class="c1"/>
+            <circle cx="80" cy="50" r="8" class="c2"/>
+            <circle cx="60" cy="80" r="8" class="c3"/>
+            <path d="M40 50 L80 50 L60 80 Z" class="stroke"/>
+          </svg>
+          <figcaption>Co-creation Workshops</figcaption>
+        </div>
+      </figure>
+      <figure class="tile" data-img="/assets/img/approach/behavior.jpg" data-cap-key="behavior">
+        <div class="icon">
+          <svg viewBox="0 0 120 120" role="img" aria-label="Behavior-Change Scenario Planning">
+            <title>Behavior-Change Scenario Planning</title>
+            <path d="M30 85 C45 75, 55 60, 60 45 C65 30, 80 30, 90 40" class="stroke"/>
+            <circle cx="30" cy="85" r="5" class="c1"/>
+            <circle cx="60" cy="45" r="5" class="c2"/>
+            <circle cx="90" cy="40" r="6" class="c3"/>
+          </svg>
+          <figcaption>Behavior-Change Scenario</figcaption>
+        </div>
+      </figure>
+      <figure class="tile" data-img="/assets/img/approach/consensus.jpg" data-cap-key="consensus">
+        <div class="icon">
+          <svg viewBox="0 0 120 120" role="img" aria-label="Consensus Building">
+            <title>Consensus Building</title>
+            <circle cx="60" cy="60" r="28" class="c1" opacity=".18"/>
+            <path d="M40 60 L54 72 L82 44" class="stroke"/>
+            <circle cx="40" cy="60" r="4" class="c2"/>
+            <circle cx="54" cy="72" r="4" class="c3"/>
+            <circle cx="82" cy="44" r="4" class="c2"/>
+          </svg>
+          <figcaption>Consensus Building</figcaption>
+        </div>
+      </figure>
+      <figure class="tile" data-img="/assets/img/approach/social.jpg" data-cap-key="social">
+        <div class="icon">
+          <svg viewBox="0 0 120 120" role="img" aria-label="Social-Transformation Scenarios">
+            <title>Social-Transformation Scenarios</title>
+            <path d="M60 90 V60 M60 60 C60 45 75 45 80 40 M60 60 C60 45 45 45 40 40" class="stroke"/>
+            <circle cx="60" cy="90" r="5" class="c1"/>
+            <circle cx="80" cy="40" r="6" class="c2"/>
+            <circle cx="40" cy="40" r="6" class="c3"/>
+          </svg>
+          <figcaption>Social-Transformation</figcaption>
+        </div>
+      </figure>
+    </div>
+    <p class="view-all"><a href="{{ '/projects/' | relative_url }}">See latest in NEWS →</a></p>
+  {% else %}
+    <h2 style="font-size:2.1rem; text-align:center; margin:1rem 0; font-weight:700;">Approach</h2>
+    <div class="tiles">
+      <figure class="tile" data-img="/assets/img/approach/sf.jpg" data-cap-key="sf">
+        <div class="icon">
+          <svg viewBox="0 0 120 120" role="img" aria-label="SFプロトタイピング">
+            <title>SFプロトタイピング</title>
+            <circle cx="60" cy="60" r="28" class="c1" opacity=".25"/>
+            <path d="M40 80 L60 30 L80 80 Z" class="stroke"/>
+            <circle cx="60" cy="60" r="4" class="c2"/>
+          </svg>
+          <figcaption>SFプロトタイピング</figcaption>
+        </div>
+      </figure>
+      <figure class="tile" data-img="/assets/img/approach/cocreation.jpg" data-cap-key="cocreation">
+        <div class="icon">
+          <svg viewBox="0 0 120 120" role="img" aria-label="共創ワークショップ">
+            <title>共創ワークショップ</title>
+            <circle cx="40" cy="50" r="8" class="c1"/>
+            <circle cx="80" cy="50" r="8" class="c2"/>
+            <circle cx="60" cy="80" r="8" class="c3"/>
+            <path d="M40 50 L80 50 L60 80 Z" class="stroke"/>
+          </svg>
+          <figcaption>共創ワークショップ</figcaption>
+        </div>
+      </figure>
+      <figure class="tile" data-img="/assets/img/approach/behavior.jpg" data-cap-key="behavior">
+        <div class="icon">
+          <svg viewBox="0 0 120 120" role="img" aria-label="行動変容シナリオプランニング">
+            <title>行動変容シナリオプランニング</title>
+            <path d="M30 85 C45 75, 55 60, 60 45 C65 30, 80 30, 90 40" class="stroke"/>
+            <circle cx="30" cy="85" r="5" class="c1"/>
+            <circle cx="60" cy="45" r="5" class="c2"/>
+            <circle cx="90" cy="40" r="6" class="c3"/>
+          </svg>
+          <figcaption>行動変容シナリオ</figcaption>
+        </div>
+      </figure>
+      <figure class="tile" data-img="/assets/img/approach/consensus.jpg" data-cap-key="consensus">
+        <div class="icon">
+          <svg viewBox="0 0 120 120" role="img" aria-label="未来社会デザインの合意形成">
+            <title>未来社会デザインの合意形成</title>
+            <circle cx="60" cy="60" r="28" class="c1" opacity=".18"/>
+            <path d="M40 60 L54 72 L82 44" class="stroke"/>
+            <circle cx="40" cy="60" r="4" class="c2"/>
+            <circle cx="54" cy="72" r="4" class="c3"/>
+            <circle cx="82" cy="44" r="4" class="c2"/>
+          </svg>
+          <figcaption>合意形成</figcaption>
+        </div>
+      </figure>
+      <figure class="tile" data-img="/assets/img/approach/social.jpg" data-cap-key="social">
+        <div class="icon">
+          <svg viewBox="0 0 120 120" role="img" aria-label="社会変革シナリオプランニング">
+            <title>社会変革シナリオプランニング</title>
+            <path d="M60 90 V60 M60 60 C60 45 75 45 80 40 M60 60 C60 45 45 45 40 40" class="stroke"/>
+            <circle cx="60" cy="90" r="5" class="c1"/>
+            <circle cx="80" cy="40" r="6" class="c2"/>
+            <circle cx="40" cy="40" r="6" class="c3"/>
+          </svg>
+          <figcaption>社会変革シナリオ</figcaption>
+        </div>
+      </figure>
+      <figure class="tile" data-cap-key="collab">
+        <div class="icon">
+          <svg viewBox="0 0 120 120" role="img" aria-label="共同研究">
+            <title>共同研究</title>
+            <circle cx="60" cy="60" r="28" class="c1" opacity=".25"/>
+            <path d="M30 60 L60 30 L90 60 L60 90 Z" class="stroke"/>
+          </svg>
+          <figcaption>共同研究</figcaption>
+        </div>
+      </figure>
+      <figure class="tile" data-cap-key="implementation">
+        <div class="icon">
+          <svg viewBox="0 0 120 120" role="img" aria-label="社会実装">
+            <title>社会実装</title>
+            <circle cx="60" cy="60" r="28" class="c2" opacity=".25"/>
+            <path d="M40 80 L60 40 L80 80" class="stroke"/>
+            <path d="M50 70 H70 V90 H50 Z" class="stroke"/>
+          </svg>
+          <figcaption>社会実装</figcaption>
+        </div>
+      </figure>
+      <figure class="tile" data-cap-key="speculative">
+        <div class="icon">
+          <svg viewBox="0 0 120 120" role="img" aria-label="スペキュラティブデザイン">
+            <title>スペキュラティブデザイン</title>
+            <circle cx="60" cy="60" r="28" class="c3" opacity=".25"/>
+            <path d="M30 70 Q60 20 90 70" class="stroke"/>
+            <circle cx="60" cy="40" r="6" class="c2"/>
+          </svg>
+          <figcaption>スペキュラティブデザイン</figcaption>
+        </div>
+      </figure>
+    </div>
+  {% endif %}
   <script>
   (function(){
+    // ===== Overlay & Panel (with X button) =====
     var overlay = document.getElementById('approach-caption-overlay');
     if(!overlay){
       overlay = document.createElement('div');
@@ -557,6 +623,7 @@ nav_order: 1     # ナビの並び順。お好みで
       overlay.appendChild(panel);
       document.body.appendChild(overlay);
 
+      // ✕ボタンでのみ閉じる
       closeBtn.addEventListener('click', function(){
         overlay.classList.remove('pinned','show');
         overlay.setAttribute('aria-hidden','true');
@@ -577,6 +644,7 @@ nav_order: 1     # ナビの並び順。お好みで
       return capPromise;
     }
 
+    // 言語
     var lang = (document.documentElement.getAttribute('lang') || '{{ page.lang | default: "ja" }}').slice(0,2);
 
     function bindTile(tile){
@@ -589,11 +657,10 @@ nav_order: 1     # ナビの並び順。お好みで
           var cap = fallback;
           if(key && map && map[key]) cap = map[key][lang] || map[key]['en'] || map[key]['ja'] || fallback;
 
-          // ✕ボタン以外の子要素を削除
+          // ✕以外の子要素を削除して本文を差し替え
           var keepBtn = panel.querySelector('.close-btn');
           Array.from(panel.childNodes).forEach(function(n){ if(n !== keepBtn) panel.removeChild(n); });
 
-          // 本文を caption-body に挿入
           var body = document.createElement('div');
           body.className = 'caption-body';
           body.textContent = cap;
@@ -604,17 +671,17 @@ nav_order: 1     # ナビの並び順。お好みで
         });
       }
 
-      tile.addEventListener('click', function(e){
-        e.preventDefault();
-        doShow();
-      });
+      // クリック（タップ）で開く。閉じるのは✕のみ
+      tile.addEventListener('click', function(e){ e.preventDefault(); doShow(); });
     }
 
     document.querySelectorAll('#approach .tile').forEach(bindTile);
+
+    // 背景クリック / パネルクリック / Esc では閉じない（✕のみ）
   })();
   </script>
 </section>
-
+ 
 <section id="activities-preview" class="activities-band" data-reveal>
   <style>
     /* LP Activities preview */
@@ -640,7 +707,11 @@ nav_order: 1     # ナビの並び順。お好みで
     <div class="tiles">
       {% for a in items %}
         {% assign thumb = a.thumbnail | default: a.image %}
-        {% assign slug_key = a.slug_en | default: a.slug %}
+        {% if page.lang == "en" %}
+          {% assign slug_key = a.slug_en | default: a.slug %}
+        {% else %}
+          {% assign slug_key = a.slug %}
+        {% endif %}
         {% capture href %}
           {% if page.lang == "en" %}
             {% if a.link_en %}
@@ -655,15 +726,15 @@ nav_order: 1     # ナビの並び順。お好みで
           {% else %}
             {% if a.link %}
               {{ a.link | relative_url }}
-            {% elsif a.slug %}
-              {{ '/activities/' | append: a.slug | relative_url }}
+            {% elsif slug_key %}
+              {{ '/activities/' | append: slug_key | relative_url }}
             {% else %}
               #
             {% endif %}
           {% endif %}
         {% endcapture %}
         <a class="tile" href="{{ href | strip }}">
-          {% if thumb %}<img src="{{ '/assets/img/activities/' | append: thumb | relative_url }}" alt="{{ a.title_en | default: a.title }}">{% endif %}
+          {% if thumb %}<img src="{{ '/assets/img/activities/' | append: thumb | relative_url }}" alt="{% if page.lang == 'en' and a.title_en %}{{ a.title_en }}{% else %}{{ a.title }}{% endif %}">{% endif %}
           <h4>{% if page.lang == "en" and a.title_en %}{{ a.title_en }}{% else %}{{ a.title }}{% endif %}</h4>
         </a>
       {% endfor %}
@@ -673,12 +744,11 @@ nav_order: 1     # ナビの並び順。お好みで
   {% endif %}
 
   <p class="view-all">
-    <a href="{{ '/en/activities/' | relative_url }}">
+    <a href="{{ '/activities/' | relative_url }}">
       {% if page.lang == "en" %}View all activities →{% else %}すべての活動を見る →{% endif %}
     </a>
   </p>
 </section>
-
 <section class="quest-contact" data-reveal>
   <h2 class="chapter">Contact</h2>
   {% if page.lang == "en" %}
@@ -723,3 +793,4 @@ nav_order: 1     # ナビの並び順。お好みで
     </div>
   {% endif %}
 </section>
+{% endcomment %}

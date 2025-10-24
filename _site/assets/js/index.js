@@ -14,7 +14,7 @@
 */
 (function () {
   const ROTATE_MS = 6000; // change here if you want slower/faster rotation
-  const MAX_CLOUD_WORDS = 14;
+  const MAX_CLOUD_WORDS = 28;
 
   const $ = (sel, root = document) => root.querySelector(sel);
 
@@ -27,12 +27,12 @@
       .sd-ambient.sd-compact{min-height:16vh;margin:.75rem 0}
       .sd-ambient.sd-overlay{position:absolute;inset:0;min-height:0;margin:0}
       #sd-root.sd-overlay-host{position:relative;}
-      .sd-line{max-width:1100px;margin-left:auto;margin-right:auto;font-size:clamp(1.2rem, 2.2vw, 2rem);line-height:1.45;letter-spacing:.2px;opacity:0;transform:translateY(6px);transition:opacity .8s ease, transform .8s ease;padding:0 1rem}
+      .sd-line{max-width:1200px;margin-left:auto;margin-right:auto;font-size:clamp(1.6rem, 3vw, 2.6rem);line-height:1.55;letter-spacing:.25px;opacity:0;transform:translateY(6px);transition:opacity .8s ease, transform .8s ease;padding:0 1.2rem}
       .sd-line.show{opacity:1;transform:translateY(0)}
-      .sd-badges{margin-top:.6rem;display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;opacity:.85}
+      .sd-badges{margin-top:1rem;display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;opacity:.9;transform:scale(1.1)}
       .sd-badge{display:inline-block;border-radius:999px;padding:.18rem .6rem;border:1px solid color-mix(in oklab, CanvasText 30%, transparent);font-size:.82rem;white-space:nowrap;background:color-mix(in oklab, Canvas 92%, CanvasText 8%)}
-      .sd-cloud{position:absolute;inset:0;overflow:hidden;z-index:-1}
-      .sd-cloud span{position:absolute;font-size:clamp(.7rem,1.1vw,.95rem);opacity:.18;user-select:none;filter:blur(.2px)}
+      .sd-cloud{position:absolute;inset:-10%;overflow:visible;z-index:-1}
+      .sd-cloud span{position:absolute;font-size:clamp(1rem,1.5vw,1.25rem);opacity:.3;color:color-mix(in oklab, CanvasText 75%, transparent);user-select:none;filter:blur(.3px);white-space:nowrap;}
       @keyframes sdFloat { from { transform:translateY(0px) } to { transform:translateY(-20px) } }
       .sd-cloud span.a{animation:sdFloat 14s ease-in-out infinite alternate}
       .sd-cloud span.b{animation:sdFloat 18s ease-in-out infinite alternate}
@@ -176,9 +176,24 @@
     for (let i = 0; i < Math.min(MAX_CLOUD_WORDS, words.length); i++) {
       const span = document.createElement("span");
       span.textContent = pick(words);
-      span.style.top = Math.round(Math.random() * 90) + "%";
-      span.style.left = Math.round(Math.random() * 90) + "%";
-      span.className = ["a","b","c"][Math.floor(Math.random()*3)];
+      let placed = false;
+      let attempts = 0;
+      while (!placed && attempts < 50) {
+        const x = 50 + (Math.random() - 0.5) * 120; // allow spill outside (−10% to 110%)
+        const y = 50 + (Math.random() - 0.5) * 100; // allow vertical overflow
+        span.style.left = x + "%";
+        span.style.top = y + "%";
+        placed = true;
+        // simple overlap check
+        for (const other of cloudEl.children) {
+          if (other === span) continue;
+          const dx = parseFloat(other.style.left) - x;
+          const dy = parseFloat(other.style.top) - y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 8) { placed = false; break; } // 8% apart minimum
+        }
+        attempts++;
+      }
       cloudEl.appendChild(span);
     }
 
