@@ -34,25 +34,37 @@ slug_en: links
       {% endif %}
     </span>
   </h2>
+  <p class="pub-note" style="font-style: italic; margin-bottom: 1.5em;">
+    {% if page.lang == "en" %}
+      Publications from 2021 onward; earlier years include Journal Papers only.
+    {% else %}
+      2021年より過去の発表については Journal Paper のみ掲載しています。
+    {% endif %}
+  </p>
 
   {% assign pubs = site.data.publications | sort: "year" | reverse %}
   {% assign groups = pubs | group_by: "year" %}
 
   {% for g in groups %}
     <h3 class="pub-year">{{ g.name }}</h3>
-    <ul class="pub-list">
-    {% for pub in g.items %}
-      <li>
-        {% if pub.link %}
-          <strong class="pub-title"><a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a></strong><br/>
-        {% else %}
-          <strong class="pub-title">{{ pub.title }}</strong><br/>
-        {% endif %}
-        <span class="pub-authors">{{ pub.authors }}</span><br/>
-        <em class="pub-venue">{{ pub.publication }}</em>
-      </li>
+
+    {% assign types = g.items | group_by: "type" %}
+    {% for t in types %}
+      <h4 class="pub-type">{{ t.name | capitalize }}</h4>
+      <ul class="pub-list">
+      {% for pub in t.items %}
+        <li>
+          {% if pub.link %}
+            <strong class="pub-title"><a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a></strong><br/>
+          {% else %}
+            <strong class="pub-title">{{ pub.title }}</strong><br/>
+          {% endif %}
+          <span class="pub-authors">{{ pub.authors }}</span><br/>
+          <em class="pub-venue">{{ pub.publication }}</em>
+        </li>
+      {% endfor %}
+      </ul>
     {% endfor %}
-    </ul>
   {% endfor %}
 </section>
 
