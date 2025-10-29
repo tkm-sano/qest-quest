@@ -8,6 +8,16 @@ slug: links
 slug_en: links
 ---
 
+<style>
+.pub-list li {
+  margin-bottom: 1.2em;
+  line-height: 1.6;
+}
+.pub-year {
+  margin-top: 2em;
+}
+</style>
+
 <section class="hero" data-reveal>
   <h1 class="chapter glitch" data-shadow="Chapter IV :: LINKS ::">
     <em>:: REFERENCE ::</em>
@@ -26,15 +36,20 @@ slug_en: links
   </h2>
 
   {% assign pubs = site.data.publications | sort: "year" | reverse %}
-  <ol class="pub-list">
-  {% for pub in pubs %}
-    <li>
-      {{ pub.authors }}.  
-      “{{ pub.title }}.” <em>{{ pub.venue }}</em>{% if pub.year %} {{ pub.year }}.{% endif %}{% if pub.pdf %}
-      <br/><a href="{{ pub.pdf | relative_url }}" target="_blank" rel="noopener">PDF</a>{% endif %}
-    </li>
+  {% assign groups = pubs | group_by: "year" %}
+
+  {% for g in groups %}
+    <h3 class="pub-year">{{ g.name }}</h3>
+    <ul class="pub-list">
+    {% for pub in g.items %}
+      <li>
+        <strong class="pub-title">{{ pub.title }}</strong><br/>
+        <span class="pub-authors">{{ pub.authors }}</span><br/>
+        <em class="pub-venue">{{ pub.publication }}</em>
+      </li>
+    {% endfor %}
+    </ul>
   {% endfor %}
-  </ol>
 </section>
 
 <section class="related-orgs" data-reveal>
