@@ -43,7 +43,11 @@ slug_en: links
     <ul class="pub-list">
     {% for pub in g.items %}
       <li>
-        <strong class="pub-title">{{ pub.title }}</strong><br/>
+        {% if pub.link %}
+          <strong class="pub-title"><a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a></strong><br/>
+        {% else %}
+          <strong class="pub-title">{{ pub.title }}</strong><br/>
+        {% endif %}
         <span class="pub-authors">{{ pub.authors }}</span><br/>
         <em class="pub-venue">{{ pub.publication }}</em>
       </li>

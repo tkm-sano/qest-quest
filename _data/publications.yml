@@ -1,11 +1,11 @@
 - title: "Connecting the Dots: Technology, People, and Society in the Quantum Era"
   authors: "Reiko Iwasaki, Takuma Sano, Haruka Shiina, Sho Morishita, Akihito Soeda, Shota Nagayama"
-  publication: "to appear in IEEE QCNC 2026[Workshop]"
+  publication: "to appear in IEEE QCNC 2026[Workshop paper]"
   year: 2026
 
 - title: "量子技術を前提とした未来社会デザインのプロトタイピング"
   authors: "椎名遥, 岩崎怜子, 佐野巧馬, 永山翔太"
-  publication: "to appear in 科学技術社会論学会"
+  publication: "to appear in 科学技術社会論学会[オーガナイズドセッション]"
   year: 2025
 
 # ====== 以下、Markdownだった部分をYAML化 ======
@@ -125,6 +125,7 @@
 - title: "Ruleset-based recursive quantum internetworking"
   authors: "Kentaro Teramoto, Michal Hajdušek, Toshihiko Sasaki, Rodney Van Meter, Shota Nagayama"
   publication: "Proceedings of the 1st Workshop on Quantum Networks and Distributed Quantum Computing"
+  link: "https://dl.acm.org/doi/10.1145/3610251.3610556"
   year: 2023
 
 - title: "QuISP: a Quantum Internet Simulation Package"
