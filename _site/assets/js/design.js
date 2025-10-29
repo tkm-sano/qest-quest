@@ -30,11 +30,14 @@
     if (document.getElementById('sd-hero-style')) return;
     const css = `
 :root { --sd-gap: clamp(1.25rem, 5vw, 2rem); }
-.sd-container { max-width: min(1080px, 92vw); padding-left: clamp(12px, 3vw, 24px); padding-right: clamp(12px, 3vw, 24px); margin-inline:auto; }
+.sd-container { max-width: min(1080px, 92vw); padding-left: clamp(12px, 3vw, 24px); padding-right: clamp(12px, 3vw, 24px); margin-inline:auto; width:100%; box-sizing:border-box; }
 #${CSS.escape(CFG.mountId)} { margin: 0; }
 .sd-hero, .sd-hero * { font-family: ${CFG.fontStack}; }
-.sd-hero { position: relative; display: block; margin: calc(var(--sd-gap)*1.6) 0 calc(var(--sd-gap)*1.2); line-height: 1; text-rendering:optimizeLegibility; -webkit-font-smoothing:antialiased; }
-.sd-hero__stack { position: relative; display: inline-block; line-height: 1; filter: saturate(110%); }
+.sd-hero { position: relative; display: block; margin: calc(var(--sd-gap)*1.2) 0; line-height: 1; text-rendering:optimizeLegibility; -webkit-font-smoothing:antialiased; text-align:center; }
+.sd-hero .sd-container{display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+.sd-hero__stack{margin-top:.4rem}
+.sd-hero__tag{margin-top:.6rem}
+.sd-hero__stack { position: relative; display: inline-block; line-height: 1; filter: saturate(110%); max-width:min(28ch,92vw); width:100%; }
 .sd-hero__stack::before {
   content: attr(data-text); font-weight: 900;
   font-size: clamp(2rem, 8vw, 5.5rem);
@@ -50,7 +53,7 @@
   position: relative; margin-top: clamp(2rem, 7vw, 3rem); font-weight: 600; letter-spacing: .02em; text-transform: none; font-size: clamp(1rem, 2.6vw, 1.25rem); color: #000; opacity: .95; z-index: 2;
 }
 .sd-hero__meta{ font-weight: 500; letter-spacing: .16em; opacity: .7; }
-.sd-hero__tag{ position: relative; margin-top:.35em; font-weight:800; letter-spacing:.005em; word-spacing:.03em; color:#000; font-size: clamp(2rem, 5.6vw, 3.2rem); line-height:1.15; opacity:.98; max-width:min(28ch,92vw); margin-left:auto; margin-right:auto; text-align:center; }
+.sd-hero__tag{ position: relative; font-weight:800; letter-spacing:.005em; word-spacing:.03em; color:#000; font-size: clamp(2rem, 5.6vw, 3.2rem); line-height:1.15; opacity:.98; max-width:min(28ch,92vw); margin-left:auto; margin-right:auto; text-align:center; }
 .sd-hero__sr{ position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 @media (prefers-color-scheme: dark){
@@ -100,9 +103,9 @@
     }
     // Additional creative layout styles
     const creativeStyles = `
-    .sdw-weave{position:relative;display:grid;grid-template-columns:1fr 1fr;column-gap:3rem;row-gap:2.4rem;margin-top:2rem}
+    .sdw-weave{position:relative;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;column-gap:3rem;row-gap:2.4rem;margin-top:2rem;justify-items:stretch;align-items:stretch}
     .sdw-weave::before{display:none}
-    .sdw-pillar{position:relative;padding-left:1.35rem;border-left:4px solid #000;padding-block:.6rem 1.4rem}
+    .sdw-pillar{position:relative;display:flex;flex-direction:column;justify-content:flex-start;min-height:100%;padding-left:1.35rem;border-left:4px solid #000;padding-block:1rem 1.4rem}
     .sdw-pillar::before{content:"";position:absolute;left:-1.35rem;top:-.6rem;width:36px;height:22px;border-top:2px solid #000;border-left:2px solid #000}
     .sdw-pillar::after{content:"";position:absolute;right:-.6rem;bottom:-.6rem;width:36px;height:22px;border-right:2px solid #000;border-bottom:2px solid #000}
     .sdw-pillar>*{position:relative;z-index:1}
@@ -112,12 +115,13 @@
     .sdw-bubbles .b{width:108px;height:108px;right:10%;top:6px}
     .sdw-bubbles .c{width:146px;height:146px;right:-34px;bottom:-20px}
     .sdw-bubbles .d{width:78px;height:78px;left:14%;bottom:2px}
-    .sdw-num{position:absolute;left:-1.15rem;top:-1.2rem;font-weight:800;font-size:4.4rem;line-height:1;opacity:.16;transform:rotate(-3deg)}
-    .sdw-title{margin:.35rem 0 .25rem;font-weight:900;letter-spacing:.005em;font-size:clamp(2rem,5vw,3rem);line-height:1.06}
+    .sdw-num{display:none}
+    .sdw-title{margin:.35rem 0 .25rem;font-weight:900;letter-spacing:.005em;font-size:clamp(2rem,5vw,3rem);line-height:1.06;max-width:min(32ch,100%)}
     .sdw-title::after{content:"";display:block;width:78px;height:2px;background:#000;margin:.38rem 0 .6rem}
     .sdw-tags{margin:.25rem 0 .7rem;font-weight:700;letter-spacing:.05em;word-spacing:.22em;line-height:1.4;font-size:clamp(1rem,2.6vw,1.25rem)}
     .sdw-verse{display:flex;flex-wrap:wrap;gap:.55rem .66rem;max-width:min(74ch,92vw)}
     .sdw-verse .word{display:inline-block;border:2px solid #000;border-radius:999px;padding:.24rem .68rem;font-weight:800;letter-spacing:.01em}
+    .sdw-pillar .sdw-verse{max-width:min(64ch,100%)}
     /* manifesto band */
     .sdw-manifesto{position:relative;display:flex;align-items:center;justify-content:center;min-height:120px;margin:1.8rem 0 2.2rem}
     .sdw-manifesto::before,.sdw-manifesto::after{display:none}
@@ -134,9 +138,9 @@
     .sdw-stage{position:relative}
     .sdw-overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
     .sdw-wire{stroke:#000;stroke-width:3;fill:none;stroke-dasharray:12 8;opacity:.95;stroke-linecap:round;vector-effect:non-scaling-stroke;shape-rendering:geometricPrecision}
-    .sdw-sep{height:0;background:transparent;margin:.6rem 0 1rem}
+    .sdw-sep{height:0;background:transparent;margin-top:auto;margin-bottom:1rem}
     @media (max-width:780px){
-      .sdw-weave{grid-template-columns:1fr;column-gap:0;row-gap:1.4rem;margin-top:1.2rem}
+      .sdw-weave{grid-template-columns:1fr;grid-auto-rows:auto;column-gap:0;row-gap:1.2rem;margin-top:1.2rem}
       .sdw-weave::before{display:none}
       .sdw-vlabel.left{left:-.42rem}.sdw-vlabel.right{right:-.42rem}
       .sdw-num{font-size:3.6rem}
@@ -159,17 +163,20 @@
     root.setAttribute('role', 'banner');
     root.setAttribute('aria-label', 'Q/EST Projects');
 
+    const wrap = document.createElement('div');
+    wrap.className = 'sd-container';
+
     // Accessible <h1> (screen-reader only)
     const sr = document.createElement('h1');
     sr.className = 'sd-hero__sr';
     sr.textContent = CFG.heading;
-    root.appendChild(sr);
+    wrap.appendChild(sr);
 
     if (CFG.taglineJp) {
       const tag = document.createElement('p');
       tag.className = 'sd-hero__tag';
       tag.textContent = CFG.taglineJp;
-      root.appendChild(tag);
+      wrap.appendChild(tag);
     }
 
     // Visual stack (only when heading exists and showStack is true)
@@ -190,7 +197,7 @@
         span.style.transform = `translate(${ox}rem, ${oy}rem)`;
         stack.appendChild(span);
       }
-      root.appendChild(stack);
+      wrap.appendChild(stack);
     }
 
     if (CFG.showSubline) {
@@ -210,9 +217,10 @@
         meta.textContent = '\u2014 ' + CFG.meta;
         sub.appendChild(meta);
       }
-      root.appendChild(sub);
+      wrap.appendChild(sub);
     }
 
+    root.appendChild(wrap);
     return root;
   }
 
