@@ -103,7 +103,7 @@
     }
     // Additional creative layout styles
     const creativeStyles = `
-    .sdw-weave{position:relative;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;column-gap:3rem;row-gap:2.4rem;margin-top:2rem;justify-items:stretch;align-items:stretch}
+    .sdw-weave{position:relative;display:flex;flex-direction:column;row-gap:2.4rem;margin-top:2rem;width:100%;align-items:center;justify-content:center}
     .sdw-weave::before{display:none}
     .sdw-pillar{position:relative;display:flex;flex-direction:column;justify-content:flex-start;min-height:100%;padding-left:1.35rem;border-left:4px solid #000;padding-block:1rem 1.4rem}
     .sdw-pillar::before{content:"";position:absolute;left:-1.35rem;top:-.6rem;width:36px;height:22px;border-top:2px solid #000;border-left:2px solid #000}
@@ -116,7 +116,7 @@
     .sdw-bubbles .c{width:146px;height:146px;right:-34px;bottom:-20px}
     .sdw-bubbles .d{width:78px;height:78px;left:14%;bottom:2px}
     .sdw-num{display:none}
-    .sdw-title{margin:.35rem 0 .25rem;font-weight:900;letter-spacing:.005em;font-size:clamp(2rem,5vw,3rem);line-height:1.06;max-width:min(32ch,100%)}
+    .sdw-title{margin:.35rem 0 .25rem;font-weight:900;letter-spacing:.005em;font-size:clamp(2rem,5vw,3rem);line-height:1.08;max-width:min(32ch,100%)}
     .sdw-title::after{content:"";display:block;width:78px;height:2px;background:#000;margin:.38rem 0 .6rem}
     .sdw-tags{margin:.25rem 0 .7rem;font-weight:700;letter-spacing:.05em;word-spacing:.22em;line-height:1.4;font-size:clamp(1rem,2.6vw,1.25rem)}
     .sdw-verse{display:flex;flex-wrap:wrap;gap:.55rem .66rem;max-width:min(74ch,92vw)}
