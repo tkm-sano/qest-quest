@@ -20,7 +20,7 @@ slug_en: links
 
 <section class="hero" data-reveal>
   <h1 class="chapter glitch" data-shadow="Chapter IV :: LINKS ::">
-    <em>:: REFERENCE ::</em>
+    <em>:: Publications ::</em>
   </h1>
 </section>
 
