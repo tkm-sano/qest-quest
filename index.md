@@ -244,6 +244,9 @@ hero_slides:
     .news-band a:hover{
       border-bottom-color: currentColor;
     }
+    .news-band .news-text{
+      font-size: .95rem;
+    }
     .news-band .view-all{
       display: inline-block;
       margin: .75rem 0 1rem;
@@ -262,36 +265,34 @@ hero_slides:
   <h2>{% if page.lang == "en" %}Latest News{% else %}最新ニュース{% endif %}</h2>
 
 
+  {% assign data_news = site.data.news %}
   {% assign coll = site.news %}
-  {% if coll and coll.size > 0 %}
+  {% if data_news and data_news.size > 0 %}
+    {% assign news_sorted = data_news | sort: "date" | reverse %}
+    <ul class="news-list">
+      {% for n in news_sorted limit:3 %}
+        <li class="news-item">
+          <time datetime="{{ n.date | date_to_xmlschema }}">{{ n.date | date: "%Y-%m-%d" }}</time>
+          <span class="news-text">
+            {% if page.lang == "en" and n.title_en %}{{ n.title_en }}{% else %}{{ n.title }}{% endif %}
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% elsif coll and coll.size > 0 %}
     {% assign news_sorted = coll | sort: "date" | reverse %}
     <ul class="news-list">
       {% for item in news_sorted limit:3 %}
         <li class="news-item">
           <time datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: "%Y-%m-%d" }}</time>
-          <a href="{{ item.url | relative_url }}">
+          <span class="news-text">
             {% if page.lang == "en" and item.title_en %}{{ item.title_en }}{% else %}{{ item.title }}{% endif %}
-          </a>
+          </span>
         </li>
       {% endfor %}
     </ul>
   {% else %}
-    {% assign data_news = site.data.news %}
-    {% if data_news %}
-      {% assign news_sorted = data_news | sort: "date" | reverse %}
-      <ul class="news-list">
-        {% for n in news_sorted limit:3 %}
-          <li class="news-item">
-            <time datetime="{{ n.date | date_to_xmlschema }}">{{ n.date | date: "%Y-%m-%d" }}</time>
-            <a href="{% if n.slug %}{{ '/projects/' | append: n.slug | append: '/' | relative_url }}{% elsif n.link %}{{ n.link }}{% else %}#{% endif %}">
-              {% if page.lang == "en" and n.title_en %}{{ n.title_en }}{% else %}{{ n.title }}{% endif %}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>{% if page.lang == "en" %}No news yet.{% else %}ニュースはまだありません。{% endif %}</p>
-    {% endif %}
+    <p>{% if page.lang == "en" %}No news yet.{% else %}ニュースはまだありません。{% endif %}</p>
   {% endif %}
 
   <a class="view-all" href="{{ '/projects/' | relative_url }}">

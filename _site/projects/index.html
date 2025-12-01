@@ -146,67 +146,130 @@
 <section id="news" data-reveal="">
   <h2>NEWS</h2>
   <style>
-    /* Simple grid for news cards */
-    #news .cards{
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
-      align-items: stretch;
-    }
-    #news .card{
+    #news .news-list{
+      list-style: none;
+      margin: 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
-      border: 1px solid var(--c-border, #e5e5e5);
-      border-radius: 12px;
-      overflow: hidden;
-      background: #fff;
-      box-shadow: 0 1px 2px rgba(0,0,0,.04);
+      gap: 2rem;
+      max-width: 960px;
+      margin-inline: auto;
     }
-    #news .card img{
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
+    #news .news-item{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--c-border, #e5e5e5);
+    }
+    #news .news-item:last-child{
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    #news .news-thumb{
+      flex: 0 0 260px;
+      max-width: 260px;
+    }
+    #news .news-thumb img{
       display: block;
-      border: none;
-      outline: none;
-      border-radius: 0;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
     }
-    #news .card h4{
-      margin: 0.75rem 1rem 0.25rem;
-      font-size: 1.05rem;
-      line-height: 1.35;
+    #news .news-body{
+      flex: 1 1 260px;
+      min-width: 0;
     }
-    #news .card p{ margin: 0 1rem 1rem; }
-    #news .card .btn-quest{ margin: 0 1rem 1rem; align-self: flex-start; }
-    @media (max-width: 600px){ #news .card img{ height: 140px; } }
+    #news .news-title{
+      margin: 0 0 .5rem;
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+    #news .news-meta{
+      margin: 0 0 .25rem;
+      font-size: .9rem;
+      opacity: .7;
+    }
+    #news .news-desc{
+      margin: 0 0 .75rem;
+    }
+    #news .btn-quest{
+      margin-top: .25rem;
+    }
+    @media (max-width: 640px){
+      #news .news-item{
+        flex-direction: column;
+      }
+      #news .news-thumb{
+        flex-basis: auto;
+        max-width: 100%;
+      }
+    }
   </style>
 
   
   
     
-    <div class="cards">
+    <ul class="news-list">
       
-        <div class="card" data-reveal="">
+        <li class="news-item" data-reveal="">
           
+            <div class="news-thumb">
+              
+              
+                <img src="/assets/img/news/Plug-and-Play-Quantum-Network-Devices.jpg" alt="量子ネットワーク構築を自動化へ－“挿せば使える”量子ネットワークデバイスの自動設定技術－" loading="lazy" />
+              
+            </div>
+          
+          <div class="news-body">
             
             
-              <img src="/assets/img/news/qce25_award_certificate.jpg" alt="" />
             
-          
-          
-          
-          <h4 class="news-title">
-            <a href="/projects/qnet-award-2025/">QNET Best Paper Award 2nd Place</a>
-          </h4>
-          
-            <p class="news-desc">IEEE Quantum Week 2025において、永山翔太准教授の論文「Automatic Configuration Protocols for Optical Quantum Networks」が、QNET Best Paper Award 2nd Placeを受賞しました。</p>
-          
-          <a href="/projects/qnet-award-2025/" class="btn-quest">
-            もっと見る
-          </a>
-        </div>
+              <p class="news-meta">2025-11-17</p>
+            
+            <h4 class="news-title">
+              <a href="https://www.keio.ac.jp/ja/press-releases/2025/11/17/28-170839/">量子ネットワーク構築を自動化へ－“挿せば使える”量子ネットワークデバイスの自動設定技術－</a>
+            </h4>
+            
+              <p class="news-desc">慶應義塾大学大学院メディアデザイン研究科の永山翔太准教授らは、株式会社メルカリと共同で量子ネットワークの構成・接続状態を自動把握可能にする手法を開発し、自動設定の効率化を実現しました。本研究成果は2025年9月5日に開催された国際会議「IEEE Quantum Week 2025」において発表され、論文「Automatic Configuration Protocols for Optical Quantum Networks」がQuantum Networking &amp; Communications（QNET）部門においてBest Paper Award 2nd placeを受賞しました。</p>
+            
+            <a href="https://www.keio.ac.jp/ja/press-releases/2025/11/17/28-170839/" class="btn-quest">
+              もっと見る
+            </a>
+          </div>
+        </li>
       
-    </div>
+        <li class="news-item" data-reveal="">
+          
+            <div class="news-thumb">
+              
+              
+                <img src="/assets/img/news/qce25_award_certificate.jpg" alt="QNET Best Paper Award 第2位受賞" loading="lazy" />
+              
+            </div>
+          
+          <div class="news-body">
+            
+            
+            
+              <p class="news-meta">2025-09-09</p>
+            
+            <h4 class="news-title">
+              <a href="/projects/qnet-award-2025/">QNET Best Paper Award 第2位受賞</a>
+            </h4>
+            
+              <p class="news-desc">IEEE Quantum Week 2025において、永山翔太准教授の論文「Automatic Configuration Protocols for Optical Quantum Networks」が、QNET Best Paper Award 2nd Placeを受賞しました。</p>
+            
+            <a href="/projects/qnet-award-2025/" class="btn-quest">
+              もっと見る
+            </a>
+          </div>
+        </li>
+      
+    </ul>
   
 </section>
 
