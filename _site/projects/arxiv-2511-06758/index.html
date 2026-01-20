@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>surface code論文紹介 | Q/est</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" href="/assets/img/logo_icon.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+<!-- Google Analytics 4 – minimal “read_confirm” only -->
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  /* Disable automatic page_view and ad‑related signals */
+  gtag('js', new Date());
+  gtag('config', '', {
+    send_page_view: false,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  /* Fire one custom event as soon as the page is opened */
+  gtag('event', 'read_confirm', {
+    page_location: window.location.href,
+    page_title: document.title,
+    page_path: '/projects/arxiv-2511-06758/'
+  });
+</script>
+  <style>
+    /* Keep background canvas behind and non-interactive */
+    #quantum-bubbles{
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      pointer-events: none; /* do not block clicks on header/menu */
+    }
+  </style>
+</head>
+<body>
+  <canvas id="quantum-bubbles"></canvas>
+  <header class="site-header" role="banner">
+    <a
+      
+        href="/"
+      
+      class="logo-link"
+      aria-label="Q/EST Home">
+      <img src="/assets/img/logo_icon.png" alt="Q/EST logo icon" class="logo-icon">
+      <img src="/assets/img/logo_text.png" alt="Q/EST logo text" class="logo-text-img">
+    </a>
+    <nav id="site-nav" class="nav-menu">
+  <button class="nav-toggle" aria-label="Toggle navigation" aria-controls="nav-list" aria-expanded="false">
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+  </button>
+  <div class="lang-switch-mobile">
+    
+
+  
+    <a class="lang-link" href="/en/projects/arxiv-2511-06758-en/">EN</a>
+  
+
+  </div>
+  <ul id="nav-list" class="nav-horizontal"><li>
+        
+        
+          <a href="/">Vision</a>
+        
+      </li><li>
+        
+        
+          <a href="/members.html">Members</a>
+        
+      </li><li>
+        
+        
+          <a href="/projects/">News</a>
+        
+      </li><li>
+        
+        
+          <a href="/links.html">Publications</a>
+        
+      </li><li>
+        
+        
+          <a href="/contact.html">Contact</a>
+        
+      </li><li class="lang-switch-item">
+      
+
+  
+    <a class="lang-link" href="/en/projects/arxiv-2511-06758-en/">EN</a>
+  
+
+    </li>
+  </ul>
+</nav>
+<style>
+  /* Mobile-only visibility: hide list until opened, show toggle */
+  @media (max-width: 900px) {
+    #site-nav .nav-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+    }
+    #site-nav #nav-list {
+      display: none;
+    }
+    #site-nav #nav-list.is-open {
+      display: block;
+    }
+  }
+</style>
+<script>
+  (function () {
+    var nav = document.getElementById('site-nav');
+    if (!nav) return;
+    var btn = nav.querySelector('.nav-toggle');
+    var list = nav.querySelector('#nav-list');
+    if (!btn || !list) return;
+    btn.addEventListener('click', function () {
+      var open = list.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  })();
+</script>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <div class="prose">
+      <div class="news-article" style="padding:1rem; margin:0 auto; max-width:80%; width:80%; box-sizing:border-box; overflow-x:hidden;">
+
+  <h2 id="surface-codearxiv">surface codeに関する論文がarXivに掲載されました。</h2>
+
+  <p><strong>論文タイトル：Dense packing of the surface code: code deformation procedures and hook-error-avoiding gate scheduling</strong></p>
+
+  <p>surface codeは、誤り耐性のある汎用量子コンピューター（FTQC）を実現するための主要な量子誤り訂正符号です。しかし、FTQCでは必要な量子ビット数が非常に多いことが課題です。この問題を緩和するため、複数の表面符号パッチを融合して高密度に配置する方法が提案されています。高密度配置により、論理量子ビットあたりの物理量子ビット数は、隣接配置に比べて約3/4に削減できます。しかし、具体的な変形手順や誤り率解析は十分に検討されていませんでした。</p>
+
+  <p>本研究では、複数の標準表面符号パッチを高密度に連結する符号変形手順と、それを活用する概念的マイクロアーキテクチャを示します。また、フック誤りを抑制するCNOTゲートスケジューリングを提案し、回路レベルモンテカルロシミュレーションを実施しました。結果として、コード距離の増大と物理誤り率の低下により、高密度表面符号の論理誤り率は標準表面符号より低くなることが分かりました。特に、フック誤り回避型シンドローム抽出を用いる場合にのみ、論理誤り率の低下と空間オーバーヘッドの削減が同時に達成されます。</p>
+
+  <ul>
+    <li>著者</li>
+  </ul>
+
+  <p>　Kohei Fujiu, Shota Nagayama, Shin Nishio, Hideaki Kawaguchi, Takahiko Satoh</p>
+  <ul>
+    <li>URL</li>
+  </ul>
+
+  <p>　https://arxiv.org/abs/2511.06758</p>
+
+</div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <small>© 2025 Q/EST</small>
+  </footer>
+  <script src="/assets/js/bubbles.js"></script>
+</body>
+</html>
