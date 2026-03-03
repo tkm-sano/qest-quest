@@ -237,14 +237,6 @@
               <span class="sdw-num">1</span>
               <h3 class="sdw-title">Dream Future World with Quantum</h3>
               <div class="sdw-verse">
-                <span class="word">#FutureDesignWithQuantum</span>
-                <span class="word">#200YearLifespan</span>
-                <span class="word">#LogisticsRevolution</span>
-                <span class="word">#UnbreakableSecurity</span>
-                <span class="word">#ConsensusComputation</span>
-                <span class="word">#UltraFineSensing</span>
-                <span class="word">#EarlyWarning</span>
-                <span class="word">#QuantumLiteracy</span>
               </div>
               <div class="sdw-sep"></div>
             </div>
@@ -253,16 +245,7 @@
               <span class="sdw-num">2</span>
               <h3 class="sdw-title">Prototype Quantum Computer/Internet Systems</h3>
               <div class="sdw-verse">
-                <span class="word">#QKD</span>
-                <span class="word">#DistributedQC</span>
-                <span class="word">#QuantumSensorNetworks</span>
-                <span class="word">#ClockSync</span>
-                <span class="word">#QuantumTeleportation</span>
-                <span class="word">#QuantumSwitch</span>
-                <span class="word">#QuantumRouter</span>
-                <span class="word">#DeviceDrivers</span>
-                <span class="word">#QMPI</span>
-              </div>
+                </div>
               <div class="sdw-sep"></div>
             </div>
           </div>
