@@ -56,6 +56,35 @@
 .sd-hero__tag{ position: relative; font-weight:800; letter-spacing:.005em; word-spacing:.03em; color:#000; font-size: clamp(2rem, 5.6vw, 3.2rem); line-height:1.15; opacity:.98; max-width:min(28ch,92vw); margin-left:auto; margin-right:auto; text-align:center; }
 .sd-hero__sr{ position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+@media (max-width: 900px){
+  #${CSS.escape(CFG.mountId)}{
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1.25rem, 5vw, 2rem);
+  }
+  .sd-hero{
+    width: 100%;
+    margin: 1rem 0 0;
+  }
+  .sd-hero__tag{
+    max-width: min(18ch, 100%);
+    font-size: clamp(1.6rem, 8vw, 2.55rem);
+    line-height: 1.18;
+  }
+}
+@media (max-width: 640px){
+  .sd-container{
+    max-width: min(100%, 94vw);
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .sd-hero__tag{
+    max-width: 12ch;
+    font-size: clamp(1.25rem, 7.2vw, 2rem);
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+}
 @media (prefers-color-scheme: dark){
   .sd-hero__stack span[data-level="1"]{ color: #000; }
   .sd-hero__sub{ color: #000; }
@@ -101,30 +130,41 @@
 `;
       document.head.appendChild(ax);
     }
-    // Subproject category styles
+    // Project category styles
     const creativeStyles = `
     .sdw{width:100%; margin:2rem 0 1.25rem}
     .sdw-stage{width:100%}
-    .sdw-header{display:flex;align-items:center;gap:1rem;margin-bottom:clamp(1.6rem,3vw,2.4rem)}
+    .sdw-header{display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:clamp(1.6rem,3vw,2.4rem)}
     .sdw-header::before{content:"";display:block;width:10px;height:clamp(2.2rem,5vw,3.9rem);background:#21b3f3;border-radius:999px}
-    .sdw-heading{margin:0;font-size:clamp(2rem,5vw,4.2rem);line-height:1.06;font-weight:900;letter-spacing:-.03em}
+    .sdw-heading{margin:0;max-width:12ch;font-size:clamp(2rem,5vw,4.2rem);line-height:1.06;font-weight:900;letter-spacing:-.03em;text-align:center}
     .sdw-axis-box{display:none}
-    .sdw-grid-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.5rem,7vw,8rem);align-items:start}
+    .sdw-grid-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.5rem,7vw,8rem);align-items:start;justify-items:center}
     .sdw-block{display:flex;gap:clamp(1rem,2vw,1.6rem);align-items:flex-start}
     .sdw-num{flex:0 0 auto;font-weight:900;font-size:clamp(2.4rem,4.6vw,4rem);line-height:1;color:#202020}
-    .sdw-copy{max-width:18ch}
-    .sdw-title{margin:0;font-weight:900;font-size:clamp(2.2rem,4.8vw,4rem);line-height:1.12;letter-spacing:-.03em;color:#1f1f1f}
+    .sdw-copy{max-width:18ch;text-align:center}
+    .sdw-title{margin:0;font-weight:900;font-size:clamp(2.2rem,4.8vw,4rem);line-height:1.12;letter-spacing:-.03em;color:#1f1f1f;text-align:center}
     .sdw-block--right{justify-self:end}
     .sdw-block--right .sdw-copy{max-width:17ch}
     @media (max-width:900px){
       .sdw-grid-two{grid-template-columns:1fr;gap:1.8rem}
-      .sdw-block--right{justify-self:start}
+      .sdw-block--right{justify-self:center}
+      .sdw-block,
+      .sdw-block--right{justify-content:center;width:min(100%,22rem)}
+      .sdw-copy,
+      .sdw-block--right .sdw-copy{max-width:22ch}
       .sdw-heading{font-size:clamp(1.8rem,8vw,3rem)}
     }
     @media (max-width:640px){
-      .sdw-header{gap:.75rem}
-      .sdw-header::before{width:8px}
-      .sdw-block{gap:.8rem}
+      .sdw{margin:1.25rem 0 1rem}
+      .sdw-header{flex-direction:column;gap:.9rem}
+      .sdw-header,
+      .sdw-block{justify-content:center}
+      .sdw-header{margin-bottom:1rem}
+      .sdw-header::before{width:56px;height:8px}
+      .sdw-block{flex-direction:column;align-items:center;gap:.55rem}
+      .sdw-num{font-size:clamp(2rem,10vw,3rem)}
+      .sdw-copy,
+      .sdw-block--right .sdw-copy{max-width:11ch}
       .sdw-title{font-size:clamp(1.7rem,8vw,2.4rem)}
       .sdw-axis-box{margin-bottom:1.8rem}
     }
@@ -209,11 +249,11 @@
   function buildDesignWork() {
     const section = document.createElement('section');
     section.className = 'sdw';
-    section.setAttribute('aria-label', 'Q/est Subprojects');
+    section.setAttribute('aria-label', 'Q/est Projects');
     section.innerHTML = `
         <div class="sd-container sdw-stage">
           <div class="sdw-header">
-            <h2 class="sdw-heading">Q/est Subproject Categories</h2>
+            <h2 class="sdw-heading">Q/est Project Categories</h2>
           </div>
           <div class="sdw-grid-two">
             <div class="sdw-block">
