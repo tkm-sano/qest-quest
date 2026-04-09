@@ -31,7 +31,7 @@
     const css = `
 :root { --sd-gap: clamp(1.25rem, 5vw, 2rem); }
 .sd-container { max-width: min(1080px, 92vw); padding-left: clamp(12px, 3vw, 24px); padding-right: clamp(12px, 3vw, 24px); margin-inline:auto; width:100%; box-sizing:border-box; }
-#${CSS.escape(CFG.mountId)} { margin: 0; }
+#${CSS.escape(CFG.mountId)} { margin: 0 auto; width: 100%; display: flex; justify-content: center; }
 .sd-hero, .sd-hero * { font-family: ${CFG.fontStack}; }
 .sd-hero { position: relative; display: block; margin: calc(var(--sd-gap)*1.2) 0; line-height: 1; text-rendering:optimizeLegibility; -webkit-font-smoothing:antialiased; text-align:center; }
 .sd-hero .sd-container{display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
@@ -101,52 +101,33 @@
 `;
       document.head.appendChild(ax);
     }
-    // Additional creative layout styles
+    // Subproject category styles
     const creativeStyles = `
-    .sdw-weave{position:relative;display:flex;flex-direction:column;row-gap:2.4rem;margin-top:2rem;width:100%;align-items:center;justify-content:center}
-    .sdw-weave::before{display:none}
-    .sdw-pillar{position:relative;display:flex;flex-direction:column;justify-content:flex-start;min-height:100%;padding-left:1.35rem;border-left:4px solid #000;padding-block:1rem 1.4rem}
-    .sdw-pillar::before{content:"";position:absolute;left:-1.35rem;top:-.6rem;width:36px;height:22px;border-top:2px solid #000;border-left:2px solid #000}
-    .sdw-pillar::after{content:"";position:absolute;right:-.6rem;bottom:-.6rem;width:36px;height:22px;border-right:2px solid #000;border-bottom:2px solid #000}
-    .sdw-pillar>*{position:relative;z-index:1}
-    .sdw-bubbles{position:absolute;inset:-10px -10px -10px -10px;z-index:0;pointer-events:none}
-    .sdw-bubbles .b{position:absolute;border:2px solid #000;border-radius:999px;opacity:.12}
-    .sdw-bubbles .a{width:170px;height:170px;left:-42px;top:-28px;transform:rotate(-6deg)}
-    .sdw-bubbles .b{width:108px;height:108px;right:10%;top:6px}
-    .sdw-bubbles .c{width:146px;height:146px;right:-34px;bottom:-20px}
-    .sdw-bubbles .d{width:78px;height:78px;left:14%;bottom:2px}
-    .sdw-num{display:none}
-    .sdw-title{margin:.35rem 0 .25rem;font-weight:900;letter-spacing:.005em;font-size:clamp(2rem,5vw,3rem);line-height:1.08;max-width:min(32ch,100%)}
-    .sdw-title::after{content:"";display:block;width:78px;height:2px;background:#000;margin:.38rem 0 .6rem}
-    .sdw-tags{margin:.25rem 0 .7rem;font-weight:700;letter-spacing:.05em;word-spacing:.22em;line-height:1.4;font-size:clamp(1rem,2.6vw,1.25rem)}
-    .sdw-verse{display:flex;flex-wrap:wrap;gap:.55rem .66rem;max-width:min(74ch,92vw)}
-    .sdw-verse .word{display:inline-block;border:2px solid #000;border-radius:999px;padding:.24rem .68rem;font-weight:800;letter-spacing:.01em}
-    .sdw-pillar .sdw-verse{max-width:min(64ch,100%)}
-    /* manifesto band */
-    .sdw-manifesto{position:relative;display:flex;align-items:center;justify-content:center;min-height:120px;margin:1.8rem 0 2.2rem}
-    .sdw-manifesto::before,.sdw-manifesto::after{display:none}
-    .sdw-manifesto::before{top:0}.sdw-manifesto::after{bottom:0}
-    .sdw-vlabel{position:absolute;inset-block:0;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;transform:rotate(180deg);font-weight:800;letter-spacing:.18em;font-size:clamp(.8rem,2vw,1rem)}
-    .sdw-vlabel.left{left:-1rem}.sdw-vlabel.right{right:-1rem}
-    .sdw-vlabel::before,.sdw-vlabel::after{content:"";position:absolute;width:10px;height:10px;border:2px solid #000;border-radius:999px;opacity:.5}
-    .sdw-vlabel::before{top:6px}.sdw-vlabel::after{bottom:6px}
-    .sdw-strap{text-align:center}
-    .sdw-strapline{display:block}
-    .sdw-strapline.top{font-weight:900;letter-spacing:.18em;text-transform:uppercase;font-size:clamp(1rem,2.4vw,1.35rem)}
-    .sdw-strapline.bottom{margin-top:.35rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:clamp(.9rem,2.2vw,1.1rem);opacity:.98}
-    /* stage & overlay for connector */
-    .sdw-stage{position:relative}
-    .sdw-overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
-    .sdw-wire{stroke:#000;stroke-width:3;fill:none;stroke-dasharray:12 8;opacity:.95;stroke-linecap:round;vector-effect:non-scaling-stroke;shape-rendering:geometricPrecision}
-    .sdw-sep{height:0;background:transparent;margin-top:auto;margin-bottom:1rem}
-    @media (max-width:780px){
-      .sdw-weave{grid-template-columns:1fr;grid-auto-rows:auto;column-gap:0;row-gap:1.2rem;margin-top:1.2rem}
-      .sdw-weave::before{display:none}
-      .sdw-vlabel.left{left:-.42rem}.sdw-vlabel.right{right:-.42rem}
-      .sdw-num{font-size:3.6rem}
-      .sdw-wire{stroke-width:3.5;stroke-dasharray:10 7}
+    .sdw{width:100%; margin:2rem 0 1.25rem}
+    .sdw-stage{width:100%}
+    .sdw-header{display:flex;align-items:center;gap:1rem;margin-bottom:clamp(1.6rem,3vw,2.4rem)}
+    .sdw-header::before{content:"";display:block;width:10px;height:clamp(2.2rem,5vw,3.9rem);background:#21b3f3;border-radius:999px}
+    .sdw-heading{margin:0;font-size:clamp(2rem,5vw,4.2rem);line-height:1.06;font-weight:900;letter-spacing:-.03em}
+    .sdw-axis-box{display:none}
+    .sdw-grid-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.5rem,7vw,8rem);align-items:start}
+    .sdw-block{display:flex;gap:clamp(1rem,2vw,1.6rem);align-items:flex-start}
+    .sdw-num{flex:0 0 auto;font-weight:900;font-size:clamp(2.4rem,4.6vw,4rem);line-height:1;color:#202020}
+    .sdw-copy{max-width:18ch}
+    .sdw-title{margin:0;font-weight:900;font-size:clamp(2.2rem,4.8vw,4rem);line-height:1.12;letter-spacing:-.03em;color:#1f1f1f}
+    .sdw-block--right{justify-self:end}
+    .sdw-block--right .sdw-copy{max-width:17ch}
+    @media (max-width:900px){
+      .sdw-grid-two{grid-template-columns:1fr;gap:1.8rem}
+      .sdw-block--right{justify-self:start}
+      .sdw-heading{font-size:clamp(1.8rem,8vw,3rem)}
     }
-    a{color:#000}
+    @media (max-width:640px){
+      .sdw-header{gap:.75rem}
+      .sdw-header::before{width:8px}
+      .sdw-block{gap:.8rem}
+      .sdw-title{font-size:clamp(1.7rem,8vw,2.4rem)}
+      .sdw-axis-box{margin-bottom:1.8rem}
+    }
   `;
     if (!document.getElementById('sdw-creative-style')) {
       const cs = document.createElement('style');
@@ -231,22 +212,21 @@
     section.setAttribute('aria-label', 'Q/est Subprojects');
     section.innerHTML = `
         <div class="sd-container sdw-stage">
-          <div class="sdw-weave">
-            <div class="sdw-pillar">
-                <div class="sdw-bubbles"><span class="b a"></span><span class="b b"></span><span class="b c"></span><span class="b d"></span></div>
-              <span class="sdw-num">1</span>
-              <h3 class="sdw-title">Dream Future World with Quantum</h3>
-              <div class="sdw-verse">
+          <div class="sdw-header">
+            <h2 class="sdw-heading">Q/est Subproject Categories</h2>
+          </div>
+          <div class="sdw-grid-two">
+            <div class="sdw-block">
+              <div class="sdw-num">1.</div>
+              <div class="sdw-copy">
+                <h3 class="sdw-title">Dream Future World with Quantum</h3>
               </div>
-              <div class="sdw-sep"></div>
             </div>
-            <div class="sdw-pillar">
-                <div class="sdw-bubbles"><span class="b a"></span><span class="b b"></span><span class="b c"></span><span class="b d"></span></div>
-              <span class="sdw-num">2</span>
-              <h3 class="sdw-title">Prototype Quantum Computer/Internet Systems</h3>
-              <div class="sdw-verse">
-                </div>
-              <div class="sdw-sep"></div>
+            <div class="sdw-block sdw-block--right">
+              <div class="sdw-num">2.</div>
+              <div class="sdw-copy">
+                <h3 class="sdw-title">Prototype Quantum Computer/Internet Systems</h3>
+              </div>
             </div>
           </div>
         </div>

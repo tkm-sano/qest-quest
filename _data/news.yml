@@ -9,6 +9,17 @@
   link: "https://www.keio.ac.jp/ja/press-releases/2025/11/17/28-170839/"
   link_en: "https://www.keio.ac.jp/en/press-releases/2025/Nov/17/49-170841/"
 
+- date: "2025-09-01"
+  slug: "toppema-sf-prototyping"
+  slug_en: "toppema-sf-prototyping-en"
+  title: "SFプロトタイピング事例「トッペマ」を公開しました"
+  title_en: "SF Prototyping Case Study: Toppema"
+  desc: "SFプロトタイピングの手法検証に焦点を当て、世界観設計・未来ガジェット・ELSI観点を統合した実験的取り組みを公開しました。"
+  desc_en: "We published an experimental SF prototyping case study that integrates worldbuilding, diegetic prototyping, and ELSI perspectives."
+  image: "assets/img/activities/cat.png"
+  link: "/projects/toppema-sf-prototyping/"
+  link_en: "/en/projects/toppema-sf-prototyping-en/"
+
 - date: "2025-09-09"
   slug: "qnet-award-2025"
   slug_en: "qnet-award-2025-en"

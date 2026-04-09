@@ -21,15 +21,15 @@ slug_en: members
   {% endif %}
   <!-- 必要ならボタンや追加要素も配置可能 -->
 </section>
-<div class="cards">
+<div class="cards members-grid">
   {% for m in site.data.members %}
-  <div class="card" data-reveal>
+  <div class="card member-card" data-reveal>
     {% assign alt_name = m.name %}
     {% if page.lang == "en" and m.name_en %}
     {% assign alt_name = m.name_en %}
     {% endif %}
-    <img src="{{ '/assets/img/members/' | append: m.photo | relative_url }}" alt="{{ alt_name }}">
-    <h3>
+    <img class="member-photo" src="{{ '/assets/img/members/' | append: m.photo | relative_url }}" alt="{{ alt_name }}">
+    <h3 class="member-name">
       {% if page.lang == 'en' and m.name_en %}
         {{ m.name_en }}<br>
       {% else %}
@@ -42,14 +42,14 @@ slug_en: members
       {% endif %}
     </h3>
     {% if page.lang == "en" and m.comment_en %}
-      <p>{{ m.comment_en }}</p>
+      <p class="member-comment">{{ m.comment_en }}</p>
     {% else %}
-      <p>{{ m.comment }}</p>
+      <p class="member-comment">{{ m.comment }}</p>
     {% endif %}
     {% if page.lang == "en" and m.link_en %}
-      <a href="{{ m.link_en }}" class="btn-quest" target="_blank" rel="noopener">Visit</a>
+      <a href="{{ m.link_en }}" class="member-link" target="_blank" rel="noopener">Visit</a>
     {% elsif m.link %}
-      <a href="{{ m.link }}" class="btn-quest" target="_blank" rel="noopener">Visit</a>
+      <a href="{{ m.link }}" class="member-link" target="_blank" rel="noopener">Visit</a>
     {% endif %}
   </div>
   {% endfor %}

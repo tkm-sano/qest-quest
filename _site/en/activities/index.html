@@ -194,37 +194,7 @@
 
   
   
-    <ul id="acts" class="cards">
-      
-      
-        
-        
-        
-        
-          
-          <li class="card" data-type="prototyping">
-            <img src="/assets/img/activities/cat.png" alt="SF Prototyping Activity Report - Toppema" loading="lazy" />
-            <h3><a href="/en/activities/toppema-sf-prototyping-en/">SF Prototyping Activity Report - Toppema</a></h3>
-            <div class="meta">
-              <span>2025-09-01</span>
-              
-              
-            </div>
-          </li>
-        
-      
-    </ul>
-    <script>
-      (function(){
-        const state={type:''};
-        const items=[...document.querySelectorAll('#acts .card')];
-        function apply(){ items.forEach(el=>{el.style.display = !state.type || el.dataset.type===state.type ? '' : 'none';}); }
-        document.querySelectorAll('.filters [data-type]').forEach(b=>{
-          b.addEventListener('click',()=>{ document.querySelectorAll('.filters [data-type]').forEach(x=>x.classList.remove('is-active')); b.classList.add('is-active'); state.type=b.dataset.type; apply(); });
-        });
-        apply();
-      })();
-    </script>
+    <p>Activities data is being prepared.</p>
   
 </section>
 

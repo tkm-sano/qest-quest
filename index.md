@@ -16,15 +16,15 @@ hero_slides:
     cta_url_jp: /projects/
     cta_url_en: /en/projects/
   - src: /assets/img/approach/cocreation.jpg
-    link: /activities/
+    link: /projects/toppema-sf-prototyping/
     alt_jp: "共創ワークショップの様子"
     alt_en: "Co-creation workshop"
-    caption_jp: "共創ワークショップ — 2040/2050のユースケース創出"
-    caption_en: "Co-creation Workshops — Generate 2040/2050 use cases"
-    cta_text_jp: "活動を見る"
-    cta_text_en: "See activities"
-    cta_url_jp: /activities/
-    cta_url_en: /en/activities/
+    caption_jp: "ニュース — SFプロトタイピング事例「トッペマ」"
+    caption_en: "News — SF Prototyping Case Study: Toppema"
+    cta_text_jp: "ニュースを見る"
+    cta_text_en: "See news"
+    cta_url_jp: /projects/toppema-sf-prototyping/
+    cta_url_en: /en/projects/toppema-sf-prototyping-en/
   - src: /assets/img/approach/behavior.jpg
     link: /method/
     alt_jp: "行動変容シナリオの図"
@@ -84,12 +84,10 @@ hero_slides:
   </style>
   <script defer src="{{ '/assets/js/design.js' | relative_url }}"></script>
   <script src="{{ '/assets/js/index.js' | relative_url }}"></script>
-  <div style="text-align:center;">
-    <div id="sd-root" data-mode="compact" style="display:inline-block; text-align:center;"></div>
+  <div class="hero-stage">
+    <div id="sd-hero-mount"></div>
+    <div id="sd-root" data-mode="compact"></div>
   </div>
-  <h2 id="hero-slideshow-title" style="font-size:2.8rem; text-align:center; margin:3rem 0 1.2rem; font-weight:700;">
-    Contents
-  </h2>
 
   {% assign slides = page.hero_slides %}
   {% assign slides_size = 0 %}
@@ -197,8 +195,8 @@ hero_slides:
     })();
     </script>
   {% else %}
-    <div class="qest-hero" style="aspect-ratio:16/9;display:grid;place-items:center;color:#fff;background:#111;border-radius:16px;border:1px dashed #333;">
-      <p style="margin:0;padding:1rem;text-align:center">{% if page.lang == "en" %}Add `hero_slides` to front matter to enable the hero slideshow.{% else %}front matter に `hero_slides` を追加するとスライドショーが表示されます。{% endif %}</p>
+    <div class="qest-hero qest-hero--empty">
+      <p class="qest-hero-empty-message">{% if page.lang == "en" %}Add `hero_slides` to front matter to enable the hero slideshow.{% else %}front matter に `hero_slides` を追加するとスライドショーが表示されます。{% endif %}</p>
     </div>
   {% endif %}
 </section>
@@ -299,114 +297,9 @@ hero_slides:
     {% if page.lang == "en" %}View all news →{% else %}すべてのNEWSを見る →{% endif %}
   </a>
 </section>
-<section id="activities-preview" class="activities-band" data-reveal>
-  <style>
-    /* LP Activities preview */
-    .activities-band{ margin: 1.5rem 0; }
-    .activities-band h2{ margin: 0 0 .5rem; font-size: 1.1rem; letter-spacing: .08em; }
-    .activities-band .tiles{ display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .6rem; }
-    .activities-band .tile{ position:relative; border:1px solid var(--c-border,#eaeef3); border-radius:10px; overflow:hidden; background:#fff; }
-    .activities-band .tile img{ width:100%; height:160px; object-fit:cover; display:block; }
-    .activities-band .tile h4{ position:absolute; left:0; right:0; bottom:0; margin:0; padding:.5rem .6rem; font-size:.98rem; color:#fff; background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.65) 100%); }
-    .activities-band .view-all{ margin-top:.75rem; }
-  </style>
-
-  <h2>{% if page.lang == "en" %}Activities{% else %}活動報告{% endif %}</h2>
-
-  {% assign base = site.data.activities %}
-  {% if base %}
-    {% assign featured = base | where_exp: 'a','a.featured_order' | sort: 'featured_order' %}
-    {% if featured and featured.size > 0 %}
-      {% assign items = featured | slice: 0, 5 %}
-    {% else %}
-      {% assign items = base | sort: 'date' | reverse | slice: 0, 5 %}
-    {% endif %}
-    <div class="tiles">
-      {% for a in items %}
-        {% assign thumb = a.thumbnail | default: a.image %}
-        {% if page.lang == "en" %}
-          {% assign slug_key = a.slug_en | default: a.slug %}
-        {% else %}
-          {% assign slug_key = a.slug %}
-        {% endif %}
-        {% capture href %}
-          {% if page.lang == "en" %}
-            {% if a.link_en %}
-              {{ a.link_en | relative_url }}
-            {% elsif slug_key %}
-              {{ '/en/activities/' | append: slug_key | relative_url }}
-            {% elsif a.link %}
-              {{ a.link | relative_url }}
-            {% else %}
-              #
-            {% endif %}
-          {% else %}
-            {% if a.link %}
-              {{ a.link | relative_url }}
-            {% elsif slug_key %}
-              {{ '/activities/' | append: slug_key | relative_url }}
-            {% else %}
-              #
-            {% endif %}
-          {% endif %}
-        {% endcapture %}
-        <a class="tile" href="{{ href | strip }}">
-          {% if thumb %}<img src="{{ '/assets/img/activities/' | append: thumb | relative_url }}" alt="{% if page.lang == 'en' and a.title_en %}{{ a.title_en }}{% else %}{{ a.title }}{% endif %}">{% endif %}
-          <h4>{% if page.lang == "en" and a.title_en %}{{ a.title_en }}{% else %}{{ a.title }}{% endif %}</h4>
-        </a>
-      {% endfor %}
-    </div>
-  {% else %}
-    <p>{% if page.lang == "en" %}Preparing activities...{% else %}活動データを準備中です。{% endif %}</p>
-  {% endif %}
-
-  <p class="view-all">
-    <a href="{{ '/activities/' | relative_url }}">
-      {% if page.lang == "en" %}View all activities →{% else %}すべての活動を見る →{% endif %}
-    </a>
-  </p>
-</section>
-<section class="quest-contact" data-reveal>
-  <h2 class="chapter">Contact</h2>
-  {% if page.lang == "en" %}
-    <p>Please contact us using the form below.</p>
-    <ul class="contact-list">
-      <li>KMD: 4-1-1 Hiyoshi, Kohoku-ku, Yokohama, Kanagawa</li>
-      <li>Q/EST: 7-7 Shinkawasaki, Saiwai-ku, Kawasaki, Kanagawa</li>
-    </ul>
-    <div style="text-align:center; margin: 2em 0;">
-      <a href="https://forms.gle/WhzwMF4iz6G1PrDf9"
-         target="_blank" rel="noopener"
-         class="btn get-in-touch"
-         style="padding:0.8em 1.6em;
-                background:#0050ff;
-                color:#ffffff;
-                font-size:1.2em;
-                border-radius:8px;
-                text-decoration:none;
-                display:inline-block;">
-        Contact&nbsp;Us
-      </a>
-    </div>
-  {% else %}
-    <p>ご連絡は下記フォームからどうぞ。</p>
-    <ul class="contact-list">
-      <li>KMD：横浜市港北区日吉 4-1-1 慶應義塾大学日吉協生館</li>
-      <li>Q/est：神奈川県川崎市幸区新川崎7-7 かわさき新産業創造センター</li>
-    </ul>
-    <div style="text-align:center; margin: 2em 0;">
-      <a href="https://forms.gle/WhzwMF4iz6G1PrDf9"
-         target="_blank" rel="noopener"
-         class="btn get-in-touch"
-         style="padding:0.8em 1.6em;
-                background:#0050ff;
-                color:#ffffff;
-                font-size:1.2em;
-                border-radius:8px;
-                text-decoration:none;
-                display:inline-block;">
-        Contact&nbsp;Us
-      </a>
-    </div>
-  {% endif %}
+<section class="quest-contact quest-contact--minimal" data-reveal>
+  <div class="contact-actions">
+    <span class="btn-quest get-in-touch is-disabled" aria-disabled="true">Contact&nbsp;Us</span>
+    <p class="contact-status">現在、お問い合わせフォームを調整中です。</p>
+  </div>
 </section>
