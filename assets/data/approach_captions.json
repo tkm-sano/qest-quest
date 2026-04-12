@@ -1,4 +1,0 @@
----
-permalink: /assets/data/approach_captions.json
----
-{{ site.data.approach_captions | jsonify }}

@@ -15,6 +15,9 @@ _site/                  # 出力先
 .jekyll-cache/          # Jekyll 4 のキャッシュ
 .jekyll-metadata        # 差分追跡用メタ
 .sass-cache/            # Sass コンパイルキャッシュ
+build/                  # 旧静的ビルド成果物
+__pycache__/            # Python キャッシュ
+*.pyc
 
 # ========================
 # Ruby / Bundler
@@ -59,4 +62,5 @@ coverage/
 # ========================
 # プロジェクト固有
 # ========================
-legacy/                 # Flask 時代のバックアップ_site/
+legacy/                 # Flask 時代のバックアップ
+templates/              # 旧 Flask テンプレート
