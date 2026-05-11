@@ -196,6 +196,13 @@
   type: Birds-of-a-Feather
 
 # Submitted / Pre-prints / In-progress Papers
+- title: "A Distributed Switching Protocol for Quantum Networks"
+  authors: "Aman Yacob Tekleab, Yifeng Shen, Yoshii Yutaro, Amin Taherkhani, Rodney Van Meter, Shota Nagayama"
+  publication: "arXiv preprint arXiv:2605.07295, 2026"
+  link: "https://arxiv.org/abs/2605.07295"
+  year: 2026
+  type: Pre-print
+
 - title: "An Optical Interconnect for Modular Quantum Computers"
   authors: "Daisuke Sakuma, Amin Taherkhani, Tomoki Tsuno, Toshihiko Sasaki, Hikaru Shimizu, Kentaro Teramoto, Andrew Todd, Yosuke Ueno, Michal Hajdušek, Rikizo Ikuta, Rodney Van Meter, Shota Nagayama"
   publication: "arXiv preprint arXiv:2412.09299, 2024"
