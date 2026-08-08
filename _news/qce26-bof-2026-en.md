@@ -23,7 +23,7 @@ The BoF aims to explore quantum use cases not only by starting from existing qua
 
 ## What We Will Do
 
-Participants will use stories depicting possible future everyday-life situations as starting points for considering the challenges, tensions, and expectations that may arise in those societies. Through individual reflection, small-group discussion, and plenary discussion, participants will connect these future situations with their own interests and areas of expertise.
+Participants will use stories depicting possible future everyday-life situations as starting points for considering the challenges and expectations that may arise in those societies. Through individual reflection, small-group discussion, and plenary discussion, participants will connect these future situations with their own interests and areas of expertise.
 
 Rather than beginning with the question, "What can quantum technology do?", the session first asks what people may want to achieve and what problems may need to be addressed in future everyday life and society. Participants will then explore where and how quantum technologies could contribute to those needs, using the discussion to identify and develop possible future quantum use cases.
 
