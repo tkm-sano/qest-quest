@@ -22,6 +22,9 @@ Jekyll の front matter や `.nojekyll` をアプリに追加しない。
 開発用 README、package.json、test、scripts、画像生成プロンプトは
 `_config.yml` で配信対象から除外する。この `_docs/` も Jekyll の配信対象外。
 
+画面左上の「Q/est へ戻る」リンクは、元の enjoy_quantum 側で管理する。
+言語切替で “Back to Q/est” に切り替わり、固定の `https://q-est.org/` に移動する。
+
 ## 更新
 
 元の変更を enjoy_quantum にコミットしてから、qest-quest で実行する。
