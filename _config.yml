@@ -26,6 +26,24 @@ include:
   - assets/data
   - assets/.well-known
 
+# Keep development files out of the published site. The mixer itself is a
+# plain static subtree; preserve its HTML, CSS, JavaScript and image paths.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules
+  - .bundle
+  - .sass-cache
+  - .jekyll-cache
+  - .jekyll-metadata
+  - quantum-image-mixer/README.md
+  - quantum-image-mixer/package.json
+  - quantum-image-mixer/test
+  - quantum-image-mixer/scripts
+  - quantum-image-mixer/assets/kyoseikan/prompts.json
+  - quantum-image-mixer/assets/yukichi/prompts.json
+
 # Collections
 collections:
   news:
