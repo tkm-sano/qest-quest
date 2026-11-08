@@ -3,6 +3,7 @@ const STORAGE_KEY = 'enjoy-quantum-language';
 const TEXT = {
   title: ['量子画像ミキサー', 'Quantum Image Mixer'],
   subtitle: ['8つの世界を重ね合わせよう', 'Blend eight parallel worlds'],
+  backToQest: ['Q/est へ戻る', 'Back to Q/est'],
   imageSetLabel: ['画像', 'Images'],
   kyoseikanSet: ['協生館', 'Kyoseikan'],
   yukichiSet: ['諭吉像', 'Yukichi Statue'],
