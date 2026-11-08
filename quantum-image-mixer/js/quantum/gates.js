@@ -63,7 +63,7 @@ export const GATES = {
     ],
   },
   R: {
-    id: 'R', label: 'R', caption: '位相回転', name: 'Rゲート(位相回転)', color: '#ffc53d',
+    id: 'R', label: 'R', caption: '位相回転', name: 'Rゲート（置いた行が1の成分だけ位相回転。0の成分と確率はそのまま）', color: '#ffc53d',
     isPhase: true,
   },
   RY: {
@@ -96,7 +96,7 @@ const GATE_EN = {
   Y: ['Flip + phase', 'Y gate (bit and phase flip)'],
   Z: ['Phase flip', 'Z gate (phase flip = R(π))'],
   H: ['Superposition', 'H gate (superposition)'],
-  R: ['Phase rotation', 'R gate (phase rotation)'],
+  R: ['Phase rotation', 'R gate (rotates phase only for components where its qubit is 1; components with 0 and all probabilities stay unchanged)'],
   RY: ['Mix 0 and 1', 'RY gate (Y-axis rotation; changes the amplitudes of 0 and 1)'],
   CNOT: ['Controlled flip', 'CX gate (flip X when the C row is 1; can create entanglement depending on the input state)'],
   CCNOT: ['Two controls', 'CCX gate (flip X when both C rows are 1)'],

@@ -20,12 +20,12 @@ const isProductExample = (c) => c.counts.CNOT === 1 && c.counts.X === 1
 
 export const LESSON_STEPS = [
   {
-    text: 'ようこそ、量子画像ミキサーへ! 選んだ建物や像が8つの世界に姿を変える。いまは <code>000</code>「桜」が100%なので、桜の世界だけが見えている。まずは画像と確率メーターを見てみよう。',
+    text: '画面下は<strong>量子回路</strong>。横線1本が量子ビットで、上から <code>q2・q1・q0</code>。ゲートは量子ビットへの操作で、<strong>左の列から右の列へ</strong>順にかかる。<br>画像の3桁は測ったときの値を左から <code>q2 q1 q0</code> と並べたもの。<code>001</code> なら q0 だけが1。最初は全部0なので <code>000</code>「桜」が100%。',
     allowed: [],
     needNext: true,
   },
   {
-    text: '<code>X</code> ゲートはビットを反転する。いちばん下の行(q0)に X を置いてみよう。<span class="goal">目標: 画像 001「海底」だけを表示する</span>',
+    text: '<code>X</code> ゲートは0と1を反転する。いちばん下の行 <code>q0</code> の空きマスに X を置いてみよう。q0 は画像番号の<strong>右端の桁</strong>なので、<code>000 → 001</code> に変わる。<span class="goal">目標: 画像 001「海底」だけを表示する</span>',
     allowed: ['X'],
     check: (c) => near(c.probs[1], 1),
   },
@@ -53,7 +53,7 @@ export const LESSON_STEPS = [
     check: (c) => [...c.probs].every((p) => near(p, 0.125, 0.01)) && c.measured !== null,
   },
   {
-    text: '<code>R</code> ゲートは「位相」を回す(タップするたびに45°ずつ変わる)。H の右隣に R を置いても、画像の濃さと確率は変わらない。でも液面上の針は回る。干渉で効くのは針同士の角度差だ。',
+    text: '<code>R</code> は、置いた行の量子ビットが<strong>1の成分だけ</strong>位相（針の向き）を回す。0の成分はそのまま。<br>q0 の H の右に R を置こう。末尾が1の <code>001・011・101・111</code> の針だけが回り、画像の濃さと確率は変わらない。R はタップするたび45°ずつ変わる。干渉で効くのは針同士の角度差だ。',
     allowed: ['X', 'H', 'R'],
     check: (c) => c.counts.R >= 1 && c.counts.H >= 1 && hasRelativePhase(c),
   },
@@ -132,13 +132,13 @@ export const LESSON_DONE_TEXT =
   '🎓 レッスン完了! X → CX の条件反転と H → CX が作るもつれを比べ、1つずつ観測できた。位相と干渉、CCX、グローバー探索で目的の画像も出やすくできた。全体に共通の位相と相対位相の違いも確かめた。次は「トライ」コースで腕試ししよう!';
 
 const LESSON_TEXT_EN = [
-  'Welcome to Quantum Image Mixer! Your chosen building or statue appears in eight worlds. The qubits start at <code>000</code>, so only the “Cherry Blossoms” world appears, with 100% probability. Look at the image and the probability meters.',
-  'An <code>X</code> gate flips a bit. Place X on the bottom row (q0).<span class="goal">Goal: show only image 001, “Underwater”</span>',
+  'The diagram below is a <strong>quantum circuit</strong>. Each line is a qubit: <code>q2, q1, q0</code> from top to bottom. Gates are operations on qubits, applied <strong>column by column, from left to right</strong>.<br>Image labels list measurement outcomes in <code>q2 q1 q0</code> order: <code>001</code> means only q0 is 1. Initially all three are 0, so <code>000</code>, “Cherry Blossoms”, has 100% probability.',
+  'An <code>X</code> gate flips 0 and 1. Place X in an empty cell on the bottom row, <code>q0</code>. q0 corresponds to the <strong>rightmost digit</strong> of the image label, changing <code>000 → 001</code>.<span class="goal">Goal: show only image 001, “Underwater”</span>',
   'Combine X gates to choose any of the eight images.<span class="goal">Goal: show only image 101, “Desert”</span>(Hint: flip q2 and q0.)',
   'Now press the gold <code>M</code> button to measure. With a certain outcome, every measurement selects “Desert”.',
   'Reset, then place an <code>H</code> gate on any row. H creates a superposition. Two images appear blended in equal parts.<span class="goal">Goal: blend two images at 50% each</span>',
   'Put H on all three rows to give all eight images equal probability (12.5% each). Then press <code>M</code>. Which image appears is random.',
-  '<code>R</code> rotates the phase (tap it to change the angle by 45°). Put R to the right of H. The blend and probabilities stay the same, but the needles on the liquid surfaces turn. Interference depends on the angles between the needles.',
+  '<code>R</code> rotates the phase (needle direction) <strong>only for components where its qubit is 1</strong>. Components where it is 0 stay unchanged.<br>Place R to the right of H on q0. Only the needles for labels ending in 1, <code>001, 011, 101, 111</code>, turn; the image blend and probabilities stay the same. Tap R to change its angle by 45°. Interference depends on the angles between the needles.',
   'Phase matters when states interfere. Reset and put <code>H → R(π) → H</code> on q2 (tap R until it shows π). The second H makes waves cancel, changing the image without X.<span class="goal">Goal: make image 100, “Space”, reach 100% without X</span>',
   '<code>CX</code> (CNOT) flips X only when C is 1. Reset, put one X on q2, then one CX on q0 in the next column. Set C to q2 (tap to change it).<span class="goal">Goal: make 101, “Desert”, reach 100%</span>Both q2 and q0 are certainly 1. This X → CX state has no entanglement. Using CX does not always create entanglement.',
   'Keep CX in place. Tap the X on q2 to remove it, then put <code>H</code> in the same cell. If measured, first press “Return to blend”.<span class="goal">Goal: give 000, “Cherry Blossoms”, and 101, “Desert”, 50% each. Do not measure yet</span>Before measurement, this H → CX state has entanglement: neither q2 nor q0 has a definite 0 or 1 value, yet measuring them always gives matching values.',
@@ -151,7 +151,7 @@ const LESSON_TEXT_EN = [
   'Compare the needles in three circuits, then compare their probabilities before and after interference with H. Discover the difference between a common rotation and the angles between the needles.',
 ];
 const LESSON_TITLES = [
-  ['ようこそ', 'Welcome'], ['Xで反転', 'Flip with X'], ['画像を選ぶ', 'Choose an image'],
+  ['回路の読み方', 'Read the circuit'], ['Xで反転', 'Flip with X'], ['画像を選ぶ', 'Choose an image'],
   ['観測する', 'Measurement'], ['Hで重ね合わせ', 'Superposition'], ['8枚を重ねる', 'Eight worlds'],
   ['位相を回す', 'Rotate phase'], ['干渉', 'Interference'], ['CXの条件反転', 'Controlled flip'],
   ['XをHに交換', 'Replace X with H'], ['HをXに戻す', 'Replace H with X'], ['1つずつ観測', 'Measure one at a time'],
