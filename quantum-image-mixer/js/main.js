@@ -3,9 +3,11 @@ import { probabilities, phases as getPhases, measure, measureQubit } from './qua
 import { createCircuit, evaluate, clearCircuit, usedGateCounts, loadCircuitRecipe } from './quantum/circuit.js';
 import { createPalette } from './ui/palette.js';
 import { createBoard } from './ui/board.js';
+import { installKeyboardShortcuts } from './ui/keyboard-shortcuts.js';
 import { createMeter } from './ui/floor.js';
 import { phaseDisplay } from './ui/phase-display.js';
 import { createFloor } from './ui/image-floor.js';
+import { createMusicControls } from './ui/music-controls.js';
 import { loadSavedImageSet, saveImageSet } from './ui/image-scenes.js';
 import { renderQubitMeasurement, measurementLabel } from './ui/qubit-measurement.js';
 import { createAdvancedView } from './ui/advanced-view.js';
@@ -43,6 +45,7 @@ const releaseBtn = $('#release-btn');
 const palette = createPalette($('#palette'));
 const meter = createMeter($('#meter'));
 const floor = createFloor($('#floor-canvas'));
+const music = createMusicControls($('#music-controls'));
 const advancedView = createAdvancedView($('#advanced-stage'), $('#advanced-meter'));
 const imageSetSelect = $('#image-set-select');
 const imagePhaseRotation = $('#image-phase-rotation');
@@ -67,19 +70,29 @@ const courses = createCourses($('#course-panel'), {
   isBusy: () => busy,
   onPhaseDisplayChange: () => syncMeasurementUI(),
   onLessonSelect(step) {
+    board.cancelHold();
+    music.followCircuit();
     advancedExample = null;
     loadCircuitRecipe(circuit, step.initialGates);
     board.render();
     releaseMeasurement();
   },
   onModeChange() {
+    board.cancelHold();
+    music.followCircuit();
     advancedExample = null;
     clearCircuit(circuit);
     board.render();
     if (measured !== null || partialMeasurement) releaseMeasurement();
     else recompute();
   },
+  onAdvance() {
+    board.cancelHold();
+    music.followCircuit();
+    if (measured !== null || partialMeasurement) releaseMeasurement();
+  },
   onAdvancedExample(example) {
+    board.cancelHold();
     advancedExample = example;
     advancedStep = 'output';
     loadCircuitRecipe(circuit, example.kind === 'phase' ? phaseEstimationRecipe(example.turns)
@@ -105,6 +118,7 @@ $('#language-select').addEventListener('change', (event) => {
   board.render();
   meter.renderLanguage();
   floor.renderLanguage();
+  music.renderLanguage();
   advancedView.renderLanguage();
   courses.render();
   if (measured !== null && courses.getMode() !== 'advanced') showAnnounce(announceEl, measured);
@@ -158,7 +172,7 @@ function renderVisualization() {
   $('#advanced-meter').hidden = !advanced;
   $('#credit').textContent = t(advanced ? 'advancedCredit' : 'credit');
   const help = $('.board-help > div');
-  const helpText = t(advanced ? 'advancedBoardHelp' : 'boardHelp');
+  const helpText = t(advanced ? 'advancedBoardHelp' : 'boardHelp') + '<br>' + t('keyboardHelp');
   if (help.innerHTML !== helpText) help.innerHTML = helpText;
   const preview = advanced && advancedExample !== null && advancedStep === 'input';
   const state = preview ? evaluate(circuit, preparationColumns(advancedExample)) : partialMeasurement?.state ?? currentState;
@@ -168,9 +182,11 @@ function renderVisualization() {
   }
   $('#board').dataset.preview = preview ? 'input' : 'output';
   if (advanced) {
+    music.update({ probabilities: null, isAdvanced: true });
     advancedView.render({ state, referenceState: currentState, results: preview ? [] : partialMeasurement?.results ?? [], measured: preview ? null : measured, example: advancedExample, preview });
   } else {
     const probs = probabilities(state);
+    music.update({ probabilities: probs, outcome: measured });
     const settings = courses.getPhaseDisplay();
     const display = phaseDisplay(probs, getPhases(state), settings);
     floor.setState(probs, display.phases, { rotate: imagePhaseRotation.checked });
@@ -186,13 +202,14 @@ function renderVisualization() {
 
 function syncMeasurementUI() {
   releaseBtn.innerHTML = t(courses.getMode() === 'advanced' ? 'prepareAgain' : 'release');
+  releaseBtn.title = t(courses.getMode() === 'advanced' ? 'prepareAgainShortcut' : 'releaseShortcut');
   const plan = getMeasurementPlan();
   const results = partialMeasurement?.results ?? [];
   const ready = plan ? plan.ready(buildCtx()) : true;
   const label = t('measure');
   const preview = courses.getMode() === 'advanced' && advancedExample !== null && advancedStep === 'input';
   measureBtn.querySelector('.label').textContent = label;
-  measureBtn.title = preview ? t('measureAfterCircuit') : label;
+  measureBtn.title = preview ? t('measureAfterCircuit') : t('measureShortcut');
   measureBtn.setAttribute('aria-label', measureBtn.title);
   measureBtn.hidden = Boolean(plan);
   measureBtn.disabled = preview || busy || measured !== null || Boolean(plan);
@@ -220,14 +237,16 @@ function syncMeasurementUI() {
     element.dataset.measureNext = 'false';
   }
   renderVisualization();
+  board.refreshHeldGate();
 }
 
 function onCircuitChange() {
+  music.followCircuit();
   courses.cancelOptimizers();
   const firstEdit = advancedExample && !advancedExample.edited;
   if (advancedExample) advancedExample = { ...advancedExample, edited: true, training: null };
   if (firstEdit) board.render();
-  palette.clearSelect();
+  board.cancelHold();
   recompute();
 }
 
@@ -283,9 +302,11 @@ async function runRoulette(winner, probs, durMs, onIndex) {
 function onMeasureQubit(row) {
   const plan = getMeasurementPlan();
   if (busy || !plan || !plan.ready(buildCtx()) || (advancedExample && advancedStep === 'input')) return;
+  music.followCircuit();
   pauseTraining();
   const results = partialMeasurement?.results ?? [];
   if (results.some((result) => result.row === row)) return;
+  board.cancelHold();
   const { outcome, state } = measureQubit(partialMeasurement?.state ?? currentState, row);
   partialMeasurement = { state, results: [...results, { row, value: outcome }] };
   const conditionalProbs = probabilities(state);
@@ -311,6 +332,8 @@ function onMeasureQubit(row) {
 
 async function onMeasure() {
   if (busy || measured !== null || getMeasurementPlan() || (advancedExample && advancedStep === 'input')) return;
+  board.cancelHold();
+  music.followCircuit();
   pauseTraining();
   if (courses.getMode() === 'advanced') {
     const result = measure(currentState);
@@ -346,6 +369,7 @@ async function onMeasure() {
   releaseBtn.hidden = false;
   measureBtn.disabled = true;
   courses.update(buildCtx());
+  syncMeasurementUI();
 }
 
 function handleTeleportAction(action) {
@@ -363,6 +387,7 @@ function handleTeleportAction(action) {
 }
 
 function releaseMeasurement() {
+  board.cancelHold();
   if (advancedExample?.kind === 'teleport' && !advancedExample.edited) {
     advancedExample = { ...advancedExample, sent: false, corrected: false };
     loadCircuitRecipe(circuit, teleportRecipe(advancedExample.input));board.render();
@@ -404,8 +429,42 @@ $('#measurement-mode-select').addEventListener('change', (event) => {
 });
 releaseBtn.addEventListener('click', releaseMeasurement);
 
+installKeyboardShortcuts({
+  allowedGates: () => courses.getAllowedGates(),
+  selectedGate: palette.getSelected,
+  holdGate: board.holdGate,
+  isBusy: () => busy,
+  isDragging: board.isDragging,
+  release() {
+    if (board.cancelHold()) return true;
+    if (measured !== null || partialMeasurement) { releaseMeasurement();return true; }
+    return false;
+  },
+  measure() {
+    if (measured !== null || (advancedExample && advancedStep === 'input')) return false;
+    const plan = getMeasurementPlan();
+    if (plan) {
+      if (!plan.ready(buildCtx())) return false;
+      const row = plan.requiredRows.find(row => !partialMeasurement?.results.some(result => result.row === row));
+      if (row === undefined) return false;
+      onMeasureQubit(row);
+    } else {
+      if (measureBtn.disabled) return false;
+      onMeasure();
+    }
+    return true;
+  },
+  next() {
+    const button = $('#course-panel button[data-act="next-step"]:not(:disabled), #course-panel button[data-act="next-challenge"]:not(:disabled), #course-panel button[data-act="next-quiz"]:not(:disabled), #course-panel button[data-act="goto-try"]:not(:disabled)');
+    if (!button) return false;
+    board.cancelHold();button.click();return true;
+  },
+});
+
 $('#reset-btn').addEventListener('click', () => {
   if (busy) return;
+  board.cancelHold();
+  music.followCircuit();
   courses.cancelOptimizers();
   advancedExample = null;
   clearCircuit(circuit);
@@ -417,6 +476,7 @@ $('#reset-btn').addEventListener('click', () => {
 for (const tab of document.querySelectorAll('#course-tabs .tab')) {
   tab.addEventListener('click', () => {
     if (busy) return;
+    board.cancelHold();
     if (measured !== null || partialMeasurement) releaseMeasurement();
     advancedExample = null;
     circuit.splice(0, circuit.length, ...createCircuit(tab.dataset.mode === 'advanced' ? ADVANCED_COLS : 15, tab.dataset.mode === 'advanced' ? 5 : 3));

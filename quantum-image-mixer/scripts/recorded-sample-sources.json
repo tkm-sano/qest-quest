@@ -1,0 +1,396 @@
+{
+  "license": "CC0-1.0",
+  "creator": "Versilian Studios / Sam Gossner and contributing performers",
+  "libraries": {
+    "VSCO-2-CE": {
+      "repository": "https://github.com/sgossner/VSCO-2-CE",
+      "revision": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+      "homepage": "https://versilian-studios.com/vsco-community/"
+    },
+    "VCSL": {
+      "repository": "https://github.com/sgossner/VCSL",
+      "revision": "c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e",
+      "homepage": "https://versilian-studios.com/vcsl/"
+    }
+  },
+  "samples": [
+    {
+      "id": "harp-01",
+      "family": "harp",
+      "rootNote": "A2",
+      "seconds": 4.5,
+      "repository": "VSCO-2-CE",
+      "path": "Strings/Harp/KSHarp_A2_mf.wav",
+      "blobSHA": "265383d75cb23b2882ca297e6c50908e3ec8247a"
+    },
+    {
+      "id": "harp-02",
+      "family": "harp",
+      "rootNote": "E3",
+      "seconds": 4.5,
+      "repository": "VSCO-2-CE",
+      "path": "Strings/Harp/KSHarp_E3_mf.wav",
+      "blobSHA": "5c6c7410ae0ff7800214931f9db9a7f52db5987e"
+    },
+    {
+      "id": "harp-03",
+      "family": "harp",
+      "rootNote": "B3",
+      "seconds": 4.5,
+      "repository": "VSCO-2-CE",
+      "path": "Strings/Harp/KSHarp_B3_mf.wav",
+      "blobSHA": "8d06cd55bc871d19f25a2bb1b56c7a567aabbc6b"
+    },
+    {
+      "id": "harp-04",
+      "family": "harp",
+      "rootNote": "F4",
+      "seconds": 4.5,
+      "repository": "VSCO-2-CE",
+      "path": "Strings/Harp/KSHarp_F4_mf.wav",
+      "blobSHA": "a1966639b165b623ac533270d616814cbc5389ef"
+    },
+    {
+      "id": "harp-05",
+      "family": "harp",
+      "rootNote": "C5",
+      "seconds": 4.5,
+      "repository": "VSCO-2-CE",
+      "path": "Strings/Harp/KSHarp_C5_mf.wav",
+      "blobSHA": "748b4b1366616972c2a22e81fc48a86178801c45"
+    },
+    {
+      "id": "harp-06",
+      "family": "harp",
+      "rootNote": "G5",
+      "seconds": 4.5,
+      "repository": "VSCO-2-CE",
+      "path": "Strings/Harp/KSHarp_G5_mf.wav",
+      "blobSHA": "8e3593345c95368ae9d74591c1046d21de6a8e60"
+    },
+    {
+      "id": "guitar-01",
+      "family": "guitar",
+      "rootNote": "D3",
+      "seconds": 3,
+      "repository": "VCSL",
+      "path": "Chordophones/Composite Chordophones/Strumstick/Finger/Strumstick_Finger_Str1_Main_D2_vl2_rr1.wav",
+      "blobSHA": "d9f4387ff90c1f38cc38c9be86657a836ff52977"
+    },
+    {
+      "id": "guitar-02",
+      "family": "guitar",
+      "rootNote": "G3",
+      "seconds": 3,
+      "repository": "VCSL",
+      "path": "Chordophones/Composite Chordophones/Strumstick/Finger/Strumstick_Finger_Str1_Main_G2_vl2_rr1.wav",
+      "blobSHA": "bf08c9e35d0f6da2d1665d9dcf2772d71bf48404"
+    },
+    {
+      "id": "guitar-03",
+      "family": "guitar",
+      "rootNote": "D4",
+      "seconds": 3,
+      "repository": "VCSL",
+      "path": "Chordophones/Composite Chordophones/Strumstick/Finger/Strumstick_Finger_Str2_Main_D3_vl2_rr1.wav",
+      "blobSHA": "8a723759648def9ae368a1168db7a2fb38c411b6"
+    },
+    {
+      "id": "guitar-04",
+      "family": "guitar",
+      "rootNote": "A4",
+      "seconds": 3,
+      "repository": "VCSL",
+      "path": "Chordophones/Composite Chordophones/Strumstick/Finger/Strumstick_Finger_Str3_Main_A3_vl2_rr1.wav",
+      "blobSHA": "048e6015df8f564b94e6d98f66ea4f89b308e963"
+    },
+    {
+      "id": "flute-01",
+      "family": "flute",
+      "rootNote": "A4",
+      "seconds": 2.2,
+      "repository": "VSCO-2-CE",
+      "path": "Woodwinds/Flute/susvib/LDFlute_susvib_A3_v1_1.wav",
+      "blobSHA": "1e8972d4e28dbf8b48e348b93c7862f29b0edfab"
+    },
+    {
+      "id": "flute-02",
+      "family": "flute",
+      "rootNote": "C5",
+      "seconds": 2.2,
+      "repository": "VSCO-2-CE",
+      "path": "Woodwinds/Flute/susvib/LDFlute_susvib_C4_v1_1.wav",
+      "blobSHA": "7be22f8b86e5dc405a10f51dd71d44712d23c9aa"
+    },
+    {
+      "id": "flute-03",
+      "family": "flute",
+      "rootNote": "E5",
+      "seconds": 2.2,
+      "repository": "VSCO-2-CE",
+      "path": "Woodwinds/Flute/susvib/LDFlute_susvib_E4_v1_1.wav",
+      "blobSHA": "19c052eab97d1e823fd7d8344c05d94dc7dd4733"
+    },
+    {
+      "id": "flute-04",
+      "family": "flute",
+      "rootNote": "A5",
+      "seconds": 2.2,
+      "repository": "VSCO-2-CE",
+      "path": "Woodwinds/Flute/susvib/LDFlute_susvib_A4_v1_1.wav",
+      "blobSHA": "1202232193c565a79618a1696913714e9fe1ad20"
+    },
+    {
+      "id": "piano-01",
+      "family": "piano",
+      "rootNote": "C3",
+      "seconds": 4,
+      "repository": "VCSL",
+      "path": "Chordophones/Zithers/Grand Piano, Kawai/Sustains/GPiano_sus_C2_v2_rr1_Player.wav",
+      "blobSHA": "3e64901412fe7935e3a1152b0b7a2d93645e53ef"
+    },
+    {
+      "id": "piano-02",
+      "family": "piano",
+      "rootNote": "C4",
+      "seconds": 4,
+      "repository": "VCSL",
+      "path": "Chordophones/Zithers/Grand Piano, Kawai/Sustains/GPiano_sus_C3_v2_rr1_Player.wav",
+      "blobSHA": "2449d26c97873705e234ad85b94e0c651018d4a5"
+    },
+    {
+      "id": "piano-03",
+      "family": "piano",
+      "rootNote": "F#4",
+      "seconds": 4,
+      "repository": "VCSL",
+      "path": "Chordophones/Zithers/Grand Piano, Kawai/Sustains/GPiano_sus_F#3_v2_rr1_Player.wav",
+      "blobSHA": "a9f07856dd1e3e3fa938a22d3453165fb9fdf089"
+    },
+    {
+      "id": "piano-04",
+      "family": "piano",
+      "rootNote": "C5",
+      "seconds": 4,
+      "repository": "VCSL",
+      "path": "Chordophones/Zithers/Grand Piano, Kawai/Sustains/GPiano_sus_C4_v2_rr1_Player.wav",
+      "blobSHA": "09dfd90293a537066bd825dac73f823bf46d0aa9"
+    },
+    {
+      "id": "epiano-01",
+      "family": "epiano",
+      "rootNote": "C3",
+      "seconds": 3.5,
+      "repository": "VCSL",
+      "path": "Electrophones/TX81Z/FM Piano/FMPiano_C3_vl2.wav",
+      "blobSHA": "51522926bb473719fe73d85d55c3fa886a222fe7"
+    },
+    {
+      "id": "epiano-02",
+      "family": "epiano",
+      "rootNote": "C4",
+      "seconds": 3.5,
+      "repository": "VCSL",
+      "path": "Electrophones/TX81Z/FM Piano/FMPiano_C4_vl2.wav",
+      "blobSHA": "5786a9fa63713f56bb2b945053331169a6c9fdaf"
+    },
+    {
+      "id": "epiano-03",
+      "family": "epiano",
+      "rootNote": "C5",
+      "seconds": 3.5,
+      "repository": "VCSL",
+      "path": "Electrophones/TX81Z/FM Piano/FMPiano_C5_vl2.wav",
+      "blobSHA": "50ad32e5b8fdfb4d142fe24f61a2762d2c320a74"
+    },
+    {
+      "id": "vibes-01",
+      "family": "vibes",
+      "rootNote": "D5",
+      "seconds": 4.5,
+      "repository": "VCSL",
+      "path": "Idiophones/Struck Idiophones/Vibraphone/Soft Mallets/Vibes_soft_D4_v1_rr1_Main.wav",
+      "blobSHA": "df2e9089d97a1f002655b75e9dcf9656fffb5950"
+    },
+    {
+      "id": "vibes-02",
+      "family": "vibes",
+      "rootNote": "A5",
+      "seconds": 4.5,
+      "repository": "VCSL",
+      "path": "Idiophones/Struck Idiophones/Vibraphone/Soft Mallets/Vibes_soft_A4_v1_rr1_Main.wav",
+      "blobSHA": "0e113727968fe8c907e483ef619abadb8060431f"
+    },
+    {
+      "id": "vibes-03",
+      "family": "vibes",
+      "rootNote": "C6",
+      "seconds": 4.5,
+      "repository": "VCSL",
+      "path": "Idiophones/Struck Idiophones/Vibraphone/Soft Mallets/Vibes_soft_C5_v1_rr1_Main.wav",
+      "blobSHA": "46a9c03a0ecfaee7246b10e2eec32908853ab860"
+    },
+    {
+      "id": "vibes-04",
+      "family": "vibes",
+      "rootNote": "E6",
+      "seconds": 4.5,
+      "repository": "VCSL",
+      "path": "Idiophones/Struck Idiophones/Vibraphone/Soft Mallets/Vibes_soft_E5_v1_rr1_Main.wav",
+      "blobSHA": "5ed1086c7afbe31827afa8be8a8c7c55dcbd7b01"
+    },
+    {
+      "id": "glock-01",
+      "family": "glock",
+      "rootNote": "G5",
+      "seconds": 4,
+      "repository": "VSCO-2-CE",
+      "path": "Percussion/Glock/glock_medium_G4.wav",
+      "blobSHA": "a7d9ca6c68e4c56327d83f0653ee3e16e4810265"
+    },
+    {
+      "id": "glock-02",
+      "family": "glock",
+      "rootNote": "C6",
+      "seconds": 4,
+      "repository": "VSCO-2-CE",
+      "path": "Percussion/Glock/glock_medium_C5.wav",
+      "blobSHA": "db079c70946137f543820b6a6ac023d0afaac47c"
+    },
+    {
+      "id": "glock-03",
+      "family": "glock",
+      "rootNote": "G6",
+      "seconds": 4,
+      "repository": "VSCO-2-CE",
+      "path": "Percussion/Glock/glock_medium_G5.wav",
+      "blobSHA": "dbaf80bc3975016095de3a611a202b581931311c"
+    },
+    {
+      "id": "marimba-01",
+      "family": "marimba",
+      "rootNote": "B3",
+      "seconds": 2.6,
+      "repository": "VCSL",
+      "path": "Idiophones/Struck Idiophones/Marimba/Marimba_hit_Outrigger_B2_med_01.wav",
+      "blobSHA": "c936311bb0a094e7a6625f3c8a4914754242583d"
+    },
+    {
+      "id": "marimba-02",
+      "family": "marimba",
+      "rootNote": "F4",
+      "seconds": 2.6,
+      "repository": "VCSL",
+      "path": "Idiophones/Struck Idiophones/Marimba/Marimba_hit_Outrigger_F3_med_01.wav",
+      "blobSHA": "2c74c56eba169268ec3e74bc2de31fb282716a58"
+    },
+    {
+      "id": "marimba-03",
+      "family": "marimba",
+      "rootNote": "C5",
+      "seconds": 2.6,
+      "repository": "VCSL",
+      "path": "Idiophones/Struck Idiophones/Marimba/Marimba_hit_Outrigger_C4_med_01.wav",
+      "blobSHA": "85c657dd0a8f58808efad5e9184d5b9124285512"
+    },
+    {
+      "id": "marimba-04",
+      "family": "marimba",
+      "rootNote": "G5",
+      "seconds": 2.6,
+      "repository": "VCSL",
+      "path": "Idiophones/Struck Idiophones/Marimba/Marimba_hit_Outrigger_G4_med_01.wav",
+      "blobSHA": "be84c27de4fea671b78c82591aa6d6f98c06619e"
+    },
+    {
+      "id": "glass-01",
+      "family": "glass",
+      "rootNote": "D#4",
+      "seconds": 5,
+      "repository": "VCSL",
+      "path": "Idiophones/Friction Idiophones/Wine Glasses/Sustains/Slow/glass1_D#4_Slow_1_Main.wav",
+      "blobSHA": "7185594e0e4431a76c8d9b1aae4e946c052680a2"
+    },
+    {
+      "id": "glass-02",
+      "family": "glass",
+      "rootNote": "D5",
+      "seconds": 5,
+      "repository": "VCSL",
+      "path": "Idiophones/Friction Idiophones/Wine Glasses/Sustains/Slow/glass4_D5_Slow_2_Main.wav",
+      "blobSHA": "3dc166c18c334a0d10dc93c3cd86ef1276e77fb1"
+    },
+    {
+      "id": "doum-01",
+      "family": "doum",
+      "rootNote": null,
+      "seconds": 0.8,
+      "repository": "VCSL",
+      "path": "Membranophones/Struck Membranophones/Darbuka/Darbuka_1_hit_vl2_rr1.wav",
+      "blobSHA": "3d649d5d643ff1be9df55322e6babfbf95eb671c"
+    },
+    {
+      "id": "doum-02",
+      "family": "doum",
+      "rootNote": null,
+      "seconds": 0.8,
+      "repository": "VCSL",
+      "path": "Membranophones/Struck Membranophones/Darbuka/Darbuka_1_hit_vl2_rr2.wav",
+      "blobSHA": "87b6a617f788153000779be0bd3ee4b0631734a8"
+    },
+    {
+      "id": "tek-01",
+      "family": "tek",
+      "rootNote": null,
+      "seconds": 0.8,
+      "repository": "VCSL",
+      "path": "Membranophones/Struck Membranophones/Darbuka/Darbuka_2_hit_vl2_rr1.wav",
+      "blobSHA": "dfe1a99231d1bf3ac9fdc782c27e010e840b3efb"
+    },
+    {
+      "id": "tek-02",
+      "family": "tek",
+      "rootNote": null,
+      "seconds": 0.8,
+      "repository": "VCSL",
+      "path": "Membranophones/Struck Membranophones/Darbuka/Darbuka_2_hit_vl2_rr2.wav",
+      "blobSHA": "2efcc10161913699627e3069aece67d4fd2bb5f7"
+    },
+    {
+      "id": "woodblock-01",
+      "family": "woodblock",
+      "rootNote": null,
+      "seconds": 0.65,
+      "repository": "VCSL",
+      "path": "Idiophones/Struck Idiophones/Claves/Claves1_Hit_v2_rr1_Mid.wav",
+      "blobSHA": "4b5fd3123833f205db154e4aeed85fc5b627b9f9"
+    },
+    {
+      "id": "kick-01",
+      "family": "kick",
+      "rootNote": null,
+      "seconds": 1.5,
+      "repository": "VCSL",
+      "path": "Membranophones/Struck Membranophones/Bass Drum 1/BDrumNew_hit_v3_rr1_Sum.wav",
+      "blobSHA": "5f068b40b13f887c170d574b916dd21927f545ca"
+    },
+    {
+      "id": "clap-01",
+      "family": "clap",
+      "rootNote": null,
+      "seconds": 0.9,
+      "repository": "VCSL",
+      "path": "Membranophones/Struck Membranophones/Snare Drum, Modern 1/Snare2_HitSN_v5_rr1_Mid.wav",
+      "blobSHA": "7439fbcbbce4e29decc5220808799615ce15c22b"
+    },
+    {
+      "id": "shaker-01",
+      "family": "shaker",
+      "rootNote": null,
+      "seconds": 0.7,
+      "repository": "VCSL",
+      "path": "Idiophones/Struck Idiophones/Shaker, Small/Mid_ShakerDouble_Down_rr1.wav",
+      "blobSHA": "f99341479f355a909f0cee16880e8a60d6bf925b"
+    }
+  ]
+}

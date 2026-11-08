@@ -131,3 +131,45 @@ test('a low-probability image can complete a challenge, while equal outcomes are
   assert.equal(LESSON_STEPS[5].check(context(uniform)), false);
   assert.equal(LESSON_STEPS[5].check(context(uniform, 7)), true);
 });
+
+test('advancing releases the previous observation before judging the next lesson or challenge, preserving the circuit', async () => {
+  globalThis.localStorage = { getItem: () => null, setItem() {} };
+  globalThis.document = { documentElement: {} };
+  const { createCourses } = await import('../js/courses/courses.js');
+  const { loadCircuitRecipe } = await import('../js/quantum/circuit.js');
+  const panel = panelMock(), circuit = createCircuit();
+  let measured = null, advances = 0, busy = false;
+  const courses = createCourses(panel, {
+    onAllowedChange() {}, isBusy: () => busy,
+    onLessonSelect(step) { loadCircuitRecipe(circuit, step.initialGates);measured = null;courses.update(context(circuit)); },
+    onAdvance() { advances++;measured = null;courses.update(context(circuit)); },
+  });
+  courses.setMode('lesson');
+  panel.click('goto-lesson', 3); // deterministic measurement lesson
+  measured = 5;courses.update(context(circuit, measured));
+  const before = JSON.stringify(circuit);
+  busy = true;panel.click('next-step');assert.equal(advances, 0);
+  busy = false;panel.click('next-step');
+  assert.equal(measured, null);assert.equal(advances, 1);assert.equal(JSON.stringify(circuit), before);
+
+  panel.click('goto-lesson', 4);
+  placeGate(circuit, 0, 0, 'H');courses.update(context(circuit));
+  for (const row of [1,2]) placeGate(circuit, row, 0, 'H');
+  measured = 3;courses.update(context(circuit, measured));
+  panel.click('next-step'); // next lesson requires a new measurement of the same uniform circuit
+  assert.doesNotMatch(panel.innerHTML, /data-act="next-step"/);
+  assert.equal(measured, null);
+  courses.update(context(circuit, 2));assert.match(panel.innerHTML, /data-act="next-step"/);
+
+  courses.setMode('try');
+  panel.click('goto-challenge', 2);
+  measured = 2;courses.update(context(circuit, measured));
+  const tryCircuit = JSON.stringify(circuit), count = advances;
+  panel.click('toggle-hint');assert.equal(advances, count);
+  panel.click('next-challenge');assert.equal(advances, count + 1);assert.equal(measured, null);
+  assert.doesNotMatch(panel.innerHTML, /観測された画像/);
+  measured = 7;courses.update(context(circuit, measured));
+  panel.click('goto-challenge', 2);assert.equal(advances, count + 2);assert.equal(measured, null);
+  assert.equal(JSON.stringify(circuit), tryCircuit);
+  assert.doesNotMatch(panel.innerHTML, /観測された画像/);
+});

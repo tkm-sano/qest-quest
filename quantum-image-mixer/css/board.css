@@ -1,5 +1,7 @@
 /* ゲートパレット・回路グリッド・観測ボタン */
 
+#board:focus-visible { outline: 1px solid var(--fg-dim);outline-offset: 2px; }
+
 #booth {
   display: flex;
   gap: 14px;

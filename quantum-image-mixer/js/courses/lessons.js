@@ -53,7 +53,7 @@ export const LESSON_STEPS = [
     check: (c) => [...c.probs].every((p) => near(p, 0.125, 0.01)) && c.measured !== null,
   },
   {
-    text: '「重ね合わせに戻る」を押そう。<code>R</code> ゲートは「位相」を回す(タップするたびに45°ずつ変わる)。H の右隣に R を置いても、画像の濃さと確率は変わらない。でも液面上の針は回る。干渉で効くのは針同士の角度差だ。',
+    text: '<code>R</code> ゲートは「位相」を回す(タップするたびに45°ずつ変わる)。H の右隣に R を置いても、画像の濃さと確率は変わらない。でも液面上の針は回る。干渉で効くのは針同士の角度差だ。',
     allowed: ['X', 'H', 'R'],
     check: (c) => c.counts.R >= 1 && c.counts.H >= 1 && hasRelativePhase(c),
   },
@@ -138,7 +138,7 @@ const LESSON_TEXT_EN = [
   'Now press the gold <code>M</code> button to measure. With a certain outcome, every measurement selects “Desert”.',
   'Reset, then place an <code>H</code> gate on any row. H creates a superposition. Two images appear blended in equal parts.<span class="goal">Goal: blend two images at 50% each</span>',
   'Put H on all three rows to give all eight images equal probability (12.5% each). Then press <code>M</code>. Which image appears is random.',
-  'Press “Return to blend”. <code>R</code> rotates the phase (tap it to change the angle by 45°). Put R to the right of H. The blend and probabilities stay the same, but the needles on the liquid surfaces turn. Interference depends on the angles between the needles.',
+  '<code>R</code> rotates the phase (tap it to change the angle by 45°). Put R to the right of H. The blend and probabilities stay the same, but the needles on the liquid surfaces turn. Interference depends on the angles between the needles.',
   'Phase matters when states interfere. Reset and put <code>H → R(π) → H</code> on q2 (tap R until it shows π). The second H makes waves cancel, changing the image without X.<span class="goal">Goal: make image 100, “Space”, reach 100% without X</span>',
   '<code>CX</code> (CNOT) flips X only when C is 1. Reset, put one X on q2, then one CX on q0 in the next column. Set C to q2 (tap to change it).<span class="goal">Goal: make 101, “Desert”, reach 100%</span>Both q2 and q0 are certainly 1. This X → CX state has no entanglement. Using CX does not always create entanglement.',
   'Keep CX in place. Tap the X on q2 to remove it, then put <code>H</code> in the same cell. If measured, first press “Return to blend”.<span class="goal">Goal: give 000, “Cherry Blossoms”, and 101, “Desert”, 50% each. Do not measure yet</span>Before measurement, this H → CX state has entanglement: neither q2 nor q0 has a definite 0 or 1 value, yet measuring them always gives matching values.',

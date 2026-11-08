@@ -16,7 +16,7 @@ import { PHASE_COMPARISONS, phaseComparisonRecipe, phaseComparisonSignature } fr
 const STORAGE_KEY = 'qdisco-cleared';
 const fill = (template, values) => template.replace(/\{(\w+)\}/g, (_, key) => String(values[key]));
 
-export function createCourses(panelEl, { onAllowedChange, onModeChange = () => {}, onLessonSelect = () => {}, onAdvancedExample = () => {}, onTeleportAction = () => {}, onPhaseDisplayChange = () => {}, isBusy = () => false }) {
+export function createCourses(panelEl, { onAllowedChange, onModeChange = () => {}, onLessonSelect = () => {}, onAdvance = () => {}, onAdvancedExample = () => {}, onTeleportAction = () => {}, onPhaseDisplayChange = () => {}, isBusy = () => false }) {
   let mode = 'lesson';
   let lessonStep = 0;
   let stepDone = false;
@@ -324,7 +324,7 @@ export function createCourses(panelEl, { onAllowedChange, onModeChange = () => {
         <div class="quiz-progress">${localized(question, 'category')} · ${fill(t('quizProgress'), { count: session.clearedCount(), total: QUIZ_QUESTIONS.length })}</div>
         <div class="panel-text" data-quiz-id="${question.id}">${localized(question, 'text')}<br>${tryStatusHtml(status, 'quiz')}</div>
         <div class="panel-actions">
-          <button class="panel-btn primary" data-act="next-quiz" ${isBusy() ? 'disabled' : ''}>${t(status.result?.ok ? 'nextQuiz' : 'skipQuiz')}</button>
+          <button class="panel-btn primary" data-act="next-quiz" aria-keyshortcuts="Shift+Enter N" ${isBusy() ? 'disabled' : ''}>${t(status.result?.ok ? 'nextQuiz' : 'skipQuiz')}</button>
           <button class="panel-btn ghost" data-act="toggle-hint">${t(showHint ? 'hideHint' : 'hint')}</button>
         </div>
         ${showHint ? `<div class="hint-text quiz-hint">💡 ${localized(question, 'hint')}</div>` : ''}`;
@@ -349,7 +349,7 @@ export function createCourses(panelEl, { onAllowedChange, onModeChange = () => {
           <span class="panel-badge ok">${t('lessonComplete')}</span>
           ${lessonNavigation()}
           <div class="panel-text">${getLanguage() === 'en' ? LESSON_DONE_TEXT_EN : LESSON_DONE_TEXT}</div>
-          <div class="panel-actions"><button class="panel-btn primary" data-act="goto-try">${t('goToChallenges')}</button></div>`;
+          <div class="panel-actions"><button class="panel-btn primary" data-act="goto-try" aria-keyshortcuts="Shift+Enter N">${t('goToChallenges')}</button></div>`;
         bind();
         return;
       }
@@ -357,7 +357,7 @@ export function createCourses(panelEl, { onAllowedChange, onModeChange = () => {
       const successHtml = stepDone && !step.needNext
         ? `<br><span class="success-msg">${t('done')}</span>` : '';
       const nextBtn = (step.needNext || stepDone)
-        ? `<button class="panel-btn primary" data-act="next-step">${t('next')}</button>` : '';
+        ? `<button class="panel-btn primary" data-act="next-step" aria-keyshortcuts="Shift+Enter N">${t('next')}</button>` : '';
       panelEl.innerHTML = `
         <span class="panel-badge">${t('lesson')} ${lessonStep + 1}/${LESSON_STEPS.length}</span>
         ${lessonNavigation()}
@@ -381,7 +381,7 @@ export function createCourses(panelEl, { onAllowedChange, onModeChange = () => {
       ? `<span class="panel-badge ok">${t('cleared')}</span>`
       : `<span class="panel-badge">${localized(ch, 'title')}</span>`;
     const nextBtn = isCleared && challengeIdx < CHALLENGES.length - 1
-      ? `<button class="panel-btn primary" data-act="next-challenge">${t('nextChallenge')}</button>` : '';
+      ? `<button class="panel-btn primary" data-act="next-challenge" aria-keyshortcuts="Shift+Enter N">${t('nextChallenge')}</button>` : '';
     const doneMsg = allCleared ? `<br><span class="success-msg">${getLanguage() === 'en' ? TRY_DONE_TEXT_EN : TRY_DONE_TEXT}</span>` : '';
     lastTryKey = tryKey();
     panelEl.innerHTML = `
@@ -506,11 +506,11 @@ export function createCourses(panelEl, { onAllowedChange, onModeChange = () => {
           completedLessons.add(lessonStep);
           lessonStep++;
           stepDone = false;
-          if (lessonStep >= LESSON_STEPS.length) lessonComplete = true;
+          if (lessonStep >= LESSON_STEPS.length) { lessonComplete = true;onAdvance(); }
           else if (LESSON_STEPS[lessonStep].experiment === 'phase-comparison') {
             phaseComparison = { variant: 'original', interference: false, visited: new Set() };
             showPhaseComparison();
-          }
+          } else onAdvance();
         } else if (act === 'goto-try') {
           mode = 'try';
           onModeChange();
@@ -518,10 +518,12 @@ export function createCourses(panelEl, { onAllowedChange, onModeChange = () => {
           challengeIdx++;
           showHint = false;
           tryResult = null;
+          onAdvance();
         } else if (act === 'goto-challenge') {
           challengeIdx = +btn.dataset.i;
           showHint = false;
           tryResult = null;
+          onAdvance();
         } else if (act === 'toggle-hint') {
           showHint = !showHint;
         }
