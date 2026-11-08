@@ -1,0 +1,67 @@
+/* 画像の重ね合わせプレビュー。 */
+.image-set-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-end;
+  font-size: .8rem;
+  color: #c4d3ed;
+}
+.image-set-control select {
+  padding: 5px 10px;
+  border: 1px solid #527192;
+  border-radius: 7px;
+  background: #14223d;
+  color: #f4f7ff;
+  font: inherit;
+  cursor: pointer;
+}
+.image-set-control select:focus-visible { outline: 2px solid #aecbff; outline-offset: 2px; }
+#floor-area {
+  height: auto;
+  aspect-ratio: 5 / 2;
+  background: #14223d;
+  border-color: #527192;
+}
+#floor-area::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, #06132688, transparent 24%, transparent 76%, #06132655);
+}
+#floor-canvas { z-index: 0; }
+#image-status, #image-caption {
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  padding: 5px 9px;
+  border-radius: 7px;
+  color: #f4f7ff;
+  background: #0a1735b8;
+  text-shadow: 0 1px 3px #001;
+  pointer-events: none;
+}
+#image-status { top: 12px; left: 12px; font-size: .84rem; font-weight: 700; }
+#image-caption { bottom: 11px; left: 12px; font-size: .72rem; }
+.image-phase-control { position: absolute; top: 11px; right: 12px; z-index: 2; display: flex; align-items: center; gap: 5px; padding: 5px 8px; border-radius: 7px; background: rgba(8, 18, 36, .85); color: #e2edff; font-size: .72rem; cursor: pointer; }
+.image-phase-control input { margin: 0; accent-color: #7dff6a; }
+.image-phase-control:focus-within { outline: 2px solid #aecbff; outline-offset: 2px; }
+#announce {
+  inset: auto 12px 12px auto;
+  max-width: min(55%, 440px);
+  padding: 11px 16px;
+  border-radius: 12px;
+  align-items: flex-end;
+  background: #07122ddb;
+  border: 1px solid #aecbff88;
+}
+#announce .announce-image { font-size: 1.35rem; }
+@media (max-width: 720px) {
+  #image-status { top: 8px; left: 8px; max-width: 38%; font-size: .68rem; }
+  #image-caption { bottom: 8px; left: 8px; max-width: 68%; font-size: .61rem; }
+  #floor-area:has(#announce:not([hidden])) #image-caption { display: none; }
+  #announce { max-width: 60%; right: 8px; bottom: 8px; padding: 6px 8px; }
+  #announce .announce-image { font-size: 1rem; }
+}

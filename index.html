@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>量子画像ミキサー</title>
+<meta name="description" content="量子回路を組んで8枚の画像を重ね合わせ、観測で1枚を取り出す体験ツール。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖼️</text></svg>">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/floor.css">
+<link rel="stylesheet" href="css/board.css">
+<link rel="stylesheet" href="css/ui.css">
+<link rel="stylesheet" href="css/image-stage.css">
+<link rel="stylesheet" href="css/workspace.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <h1><span data-i18n="title">量子画像ミキサー</span> <span class="sub" data-i18n="subtitle">8つの世界を重ね合わせよう</span></h1>
+    <nav id="course-tabs">
+      <button data-mode="lesson" class="tab active" data-i18n="lesson">レッスン</button>
+      <button data-mode="try" class="tab" data-i18n="try">トライ</button>
+      <button data-mode="quiz" class="tab" data-i18n="quiz">クイズ</button>
+      <button data-mode="free" class="tab" data-i18n="free">フリー</button>
+      <button data-mode="advanced" class="tab" data-i18n="advanced">発展</button>
+    </nav>
+    <label class="language-control"><span class="sr-only">Language / 言語</span><select id="language-select" aria-label="Language / 言語"><option value="ja">日本語</option><option value="en">English</option></select></label>
+  <label class="image-set-control" for="image-set-select">
+    <span data-i18n="imageSetLabel">画像</span>
+    <select id="image-set-select">
+      <option value="yukichi" data-i18n="yukichiSet">諭吉像</option>
+      <option value="kyoseikan" data-i18n="kyoseikanSet">協生館</option>
+    </select>
+  </label>
+  </header>
+
+  <div id="visualization">
+  <section id="floor-area">
+    <canvas id="floor-canvas" role="img" aria-label="量子回路で変わる8つの世界の合成表示" data-i18n-aria="imageCanvasLabel"></canvas>
+    <div id="image-status" role="status">画像を準備中…</div>
+    <label class="image-phase-control"><input id="image-phase-rotation" type="checkbox" checked><span data-i18n="rotateImagesWithPhase">画像も回転</span></label>
+    <p id="image-caption" data-i18n="imageCaption">画像の濃さは各結果の出現確率を表します。位相は下のメーターに表示。</p>
+    <div id="announce" hidden>
+      <div class="announce-label" data-i18n="observationResult">観測結果</div>
+      <div class="announce-image"></div>
+      <div class="announce-bits"></div>
+    </div>
+  </section>
+
+  <section id="meter" aria-label="各画像の出現確率" data-i18n-aria="meterLabel"></section>
+  <section id="advanced-stage" hidden>
+    <div id="advanced-header">
+      <div id="advanced-title"></div>
+      <div id="advanced-step-control" role="group" data-i18n-aria="stateView" hidden>
+        <button data-step="input" data-i18n="viewInitial" aria-pressed="false">初期状態まで</button>
+        <button data-step="output" data-i18n="viewOutput" aria-pressed="true">計算後</button>
+      </div>
+    </div>
+    <canvas id="advanced-canvas" role="img" data-i18n-aria="advancedCanvasLabel" aria-label="5量子ビットの確率分布"></canvas>
+    <div id="advanced-readout" role="status"></div>
+  </section>
+  <section id="advanced-meter" hidden data-i18n-aria="qubitProbabilitiesLabel" aria-label="各量子ビットの測定確率"></section>
+  </div>
+
+  <div id="course-region">
+  <section id="course-panel"></section>
+
+  <section id="qubit-measurement" hidden></section>
+  </div>
+
+  <section id="booth" aria-label="量子回路" data-i18n-aria="circuitLabel">
+    <div id="palette-wrap">
+      <div class="booth-label" data-i18n="gateLabel">ゲート</div>
+      <div id="palette"></div>
+    </div>
+    <div id="circuit-editor">
+    <div id="board-wrap">
+      <div id="board"></div>
+    </div>
+    <div id="row-measurements" hidden>
+      <button class="qubit-measure-btn" data-row="0" aria-label="q2を観測">M</button>
+      <button class="qubit-measure-btn" data-row="1" aria-label="q1を観測">M</button>
+      <button class="qubit-measure-btn" data-row="2" aria-label="q0を観測">M</button>
+    </div>
+    </div>
+    <details class="board-help">
+      <summary data-i18n="operationHelp">操作方法</summary>
+      <div data-i18n-html="boardHelp">
+        <strong>CX・CCX</strong> は<strong>置いた場所が <span class="sym-target">X</span>(反転される行)</strong>。縦線の先の <span class="sym-ctrl">C</span> = 制御で、その行が 1 のときだけ X が反転する(CX は C 1つ、CCX は C 2つ)。<br>
+        トークン: ドラッグで配置/移動、盤外へドラッグか右クリックで削除。R はタップで角度切替、CX はトークンか C マーカーをタップで制御の行を切替、その他はタップで削除。<br>
+        空きマスからドラッグすると<strong>範囲選択</strong>でき、選択したゲート(白い点線枠)はまとめてドラッグで移動できる。空きマスをタップで選択解除。
+      </div>
+    </details>
+    <div id="controls">
+      <label id="measurement-mode-control" hidden>
+        <span class="sr-only" data-i18n="measurementMode">測定方法</span>
+        <select id="measurement-mode-select">
+          <option value="all" data-i18n="measureTogether">まとめて測定</option>
+          <option value="individual" data-i18n="measureIndividually">1ビットずつ測定</option>
+        </select>
+      </label>
+      <button id="measure-btn" title="観測する" data-i18n-title="measureTitle"><span class="m">M</span><span class="label" data-i18n="measure">観測</span></button>
+      <button id="release-btn" hidden data-i18n-html="release">重ね合わせ<br>に戻る</button>
+      <button id="reset-btn" data-i18n="reset">リセット</button>
+    </div>
+  </section>
+
+  <footer id="credit" data-i18n="credit">
+    画像は実在の建物・像の写真を参考にAIで制作した幻想風景です。
+  </footer>
+</div>
+
+<div id="drag-ghost" hidden></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

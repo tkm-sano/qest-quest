@@ -1,0 +1,151 @@
+/* コースパネル・スタートオーバーレイ */
+
+#course-panel {
+  position: relative; /* ヒントのポップオーバー基準 */
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  /* いちばん長いレッスン文でも収まる高さで固定し、ステップ/コース切替で伸縮しない */
+  min-height: 116px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.panel-badge {
+  flex: 0 0 auto;
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(56, 198, 255, 0.15);
+  border: 1px solid var(--accent2);
+  color: var(--accent2);
+  white-space: nowrap;
+}
+.panel-badge.ok {
+  background: rgba(125, 255, 106, 0.15);
+  border-color: var(--ok);
+  color: var(--ok);
+}
+.panel-text {
+  flex: 1 1 300px;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+.panel-text .goal { display: block; margin: 4px 0; color: #ffc53d; }
+.panel-text code {
+  font-family: ui-monospace, monospace;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+.panel-text .success-msg { color: var(--ok); font-weight: bold; }
+.panel-text .ready-msg { color: #ffc53d; font-weight: bold; }
+.panel-text .rule-note { color: var(--fg-dim); font-size: 0.8rem; }
+.panel-actions {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.panel-btn {
+  border: 1px solid var(--accent2);
+  background: rgba(56, 198, 255, 0.12);
+  color: var(--fg);
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.panel-btn:hover { background: rgba(56, 198, 255, 0.28); }
+.panel-btn.primary {
+  border-color: var(--ok);
+  background: rgba(125, 255, 106, 0.15);
+}
+.panel-btn.primary:hover { background: rgba(125, 255, 106, 0.3); }
+.panel-btn.ghost {
+  border-color: var(--border);
+  background: transparent;
+  color: var(--fg-dim);
+}
+/* ヒントはポップオーバー表示にしてレイアウトの高さを変えない */
+.hint-text {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 12px;
+  right: 12px;
+  z-index: 40;
+  background: var(--bg-panel2);
+  border: 1px solid var(--accent2);
+  border-radius: 10px;
+  padding: 10px 14px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55);
+  font-size: 0.78rem;
+  color: var(--fg);
+  line-height: 1.6;
+}
+.challenge-list {
+  display: flex;
+  gap: 5px;
+  flex: 0 0 auto;
+}
+.challenge-dot {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-panel2);
+  color: var(--fg-dim);
+  font-size: 0.68rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.challenge-dot.current { border-color: var(--accent2); color: var(--fg); }
+.challenge-dot.cleared { border-color: var(--ok); color: var(--ok); }
+.lesson-list { display: flex; flex-wrap: wrap; gap: 5px; flex-basis: 100%; }
+.lesson-list .challenge-dot { width: 25px; height: 25px; }
+.phase-comparison-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin-bottom: 4px; }
+.phase-comparison-controls .panel-btn { padding: 3px 7px; font-size: .72rem; }
+.phase-comparison-controls .panel-btn[aria-pressed="true"] { border-color: var(--ok); background: rgba(125, 255, 106, .15); }
+.phase-comparison-progress { font-size: .72rem; color: var(--fg-dim); white-space: nowrap; }
+.phase-display-controls { font-size: .72rem; flex-direction: column; align-items: stretch; }
+.phase-display-controls label { display: flex; align-items: center; gap: 5px; }
+.phase-display-controls select { max-width: 175px; padding: 3px; border-radius: 5px; border: 1px solid var(--border); background: var(--bg-panel2); color: var(--fg); }
+
+/* もつれレッスンでだけ表示する、2回の測定の進行。 */
+#qubit-measurement:not([hidden]) {
+  display: grid;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--bg-panel);
+  border: 1px solid var(--accent2);
+  border-radius: 12px;
+}
+.qubit-readouts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.qubit-readout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: .78rem;
+}
+.qubit-readout[data-state="next"] { border-color: #ffc53d; }
+.qubit-readout[data-state="measured"] { border-color: var(--ok); }
+.qubit-name { font-weight: bold; }
+.qubit-state { justify-self: end; color: var(--fg-dim); }
+.qubit-readout strong { grid-column: 1 / -1; font-size: .86rem; }
+.qubit-readout[data-state="measured"] strong { color: var(--ok); }
+.partial-message { font-size: .8rem; line-height: 1.6; }
+.board-row[data-measure-next="true"] { outline: 2px solid #ffc53d; outline-offset: 1px; border-radius: 5px; }
+@media (max-width: 420px) {
+  #qubit-measurement:not([hidden]) { padding: 10px; }
+  .qubit-readouts { gap: 6px; }
+  .qubit-readout { padding: 7px; font-size: .7rem; }
+  .qubit-readout strong { font-size: .78rem; }
+}
