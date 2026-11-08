@@ -39,6 +39,10 @@ export function createPalette(el) {
       render();
     },
     getSelected: () => selected,
+    select(gateId) {
+      if (!allowed.includes(gateId)) return false;
+      selected = gateId;render();return true;
+    },
     toggleSelect(gateId) {
       selected = selected === gateId ? null : gateId;
       render();

@@ -1,0 +1,93 @@
+{
+  "description": "Original compositions for Quantum Image Mixer rendered with recorded instruments",
+  "version": 3,
+  "bpm": 96,
+  "loopSeconds": 20,
+  "bars": 8,
+  "progression": [
+    "Cadd9",
+    "Cadd9",
+    "Am7",
+    "Am7",
+    "Fmaj9",
+    "Fmaj9",
+    "Gsus2",
+    "Gsus2"
+  ],
+  "source": "../../js/audio/score.js",
+  "tracks": [
+    {
+      "bits": "000",
+      "title": "桜の小径",
+      "titleEn": "Petal Walk",
+      "instrument": "和風のハープ・弦の掛け合い",
+      "instrumentEn": "Acoustic harp duet",
+      "voice": "koto",
+      "asset": "000-cherry"
+    },
+    {
+      "bits": "001",
+      "title": "深海のゆりかご",
+      "titleEn": "Deep Sea Lullaby",
+      "instrument": "低い海中アンビエント・泡",
+      "instrumentEn": "Deep underwater ambient / bubbles",
+      "voice": "water",
+      "asset": "001-underwater"
+    },
+    {
+      "bits": "010",
+      "title": "風の階段",
+      "titleEn": "Stairway of Wind",
+      "instrument": "フルートとハープ",
+      "instrumentEn": "Recorded flute / harp",
+      "voice": "flute",
+      "asset": "010-sky"
+    },
+    {
+      "bits": "011",
+      "title": "ネオンの交差点",
+      "titleEn": "Neon Crossroads",
+      "instrument": "四つ打ち・ピアノと生ドラム",
+      "instrumentEn": "Four-on-the-floor / piano and acoustic drums",
+      "voice": "synth",
+      "asset": "011-future"
+    },
+    {
+      "bits": "100",
+      "title": "星の軌道",
+      "titleEn": "Stellar Orbits",
+      "instrument": "ビブラフォン・ガラスの余韻",
+      "instrumentEn": "Vibraphone / resonating glass",
+      "voice": "star",
+      "asset": "100-space"
+    },
+    {
+      "bits": "101",
+      "title": "砂丘のキャラバン",
+      "titleEn": "Dune Caravan",
+      "instrument": "アコースティック弦・ハンドドラム",
+      "instrumentEn": "Acoustic strings / hand drums",
+      "voice": "oud",
+      "asset": "101-desert"
+    },
+    {
+      "bits": "110",
+      "title": "木漏れ日のこだま",
+      "titleEn": "Woodland Echoes",
+      "instrument": "マリンバ・木の打楽器・小鳥",
+      "instrumentEn": "Marimba / wooden percussion / birds",
+      "voice": "wood",
+      "asset": "110-forest"
+    },
+    {
+      "bits": "111",
+      "title": "雪明かり",
+      "titleEn": "Snowlight",
+      "instrument": "グロッケン・静かなピアノ",
+      "instrumentEn": "Glockenspiel / quiet piano",
+      "voice": "celesta",
+      "asset": "111-snow"
+    }
+  ],
+  "instrumentBank": "../instruments/manifest.json"
+}

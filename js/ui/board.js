@@ -10,6 +10,8 @@ const DRAG_THRESHOLD = 6;
 export function createBoard(boardEl, paletteApi, ghostEl, circuit, callbacks) {
   // callbacks: { onChange(), isLocked() }
   let drag = null;
+  let heldGate = null;
+  let pointer = null;
   let selection = new Set(); // 範囲選択中のセル "r,c"(まとめて移動用)
   const keyOf = (r, c) => `${r},${c}`;
 
@@ -114,6 +116,7 @@ export function createBoard(boardEl, paletteApi, ghostEl, circuit, callbacks) {
       boardEl.appendChild(rowEl);
     }
     drawCnotLinks();
+    refreshHeldGate();
   }
 
   function makeToken(gateId) {
@@ -200,12 +203,38 @@ export function createBoard(boardEl, paletteApi, ghostEl, circuit, callbacks) {
     for (const el of boardEl.querySelectorAll('.drop-hint')) el.classList.remove('drop-hint');
   }
 
+  function refreshHeldGate() {
+    if (drag) return;
+    clearDropHints();
+    if (!heldGate || paletteApi.getSelected() !== heldGate || callbacks.isLocked()
+      || !pointer || document.querySelector('dialog[open]')) {
+      hideGhost();return;
+    }
+    if (ghostEl.hidden || ghostEl.querySelector('[data-gate]')?.dataset.gate !== heldGate) showGhost(heldGate);
+    ghostEl.style.left = `${pointer.x + 24}px`;
+    ghostEl.style.top = `${pointer.y + 24}px`;
+    const rect = boardEl.getBoundingClientRect();
+    if (pointer.x < rect.left-14 || pointer.x > rect.right+14 || pointer.y < rect.top-14 || pointer.y > rect.bottom+14) return;
+    const cell = cellFromPoint(pointer.x,pointer.y);
+    if (cell && !cellOccupied(circuit,Number(cell.dataset.row),Number(cell.dataset.col))) cell.classList.add('drop-hint');
+  }
+
+  function cancelHold() {
+    const hadSelection = Boolean(heldGate || paletteApi.getSelected() || drag);
+    if (drag?.boxEl) drag.boxEl.remove();
+    if (drag?.srcEl) drag.srcEl.classList.remove('dragging');
+    for (const element of boardEl.querySelectorAll('.dragging')) element.classList.remove('dragging');
+    drag = null;heldGate = null;paletteApi.clearSelect();hideGhost();clearDropHints();
+    return hadSelection;
+  }
+
   // ---- Pointer Events ----
 
   function onPointerDown(e) {
     if (callbacks.isLocked() || e.button === 2) return;
     const palTok = e.target.closest('.palette-token');
     if (palTok) {
+      heldGate = null;hideGhost();clearDropHints();
       drag = { source: 'palette', gateId: palTok.dataset.gate, startX: e.clientX, startY: e.clientY, moved: false, srcEl: palTok };
       e.preventDefault();
       return;
@@ -214,6 +243,14 @@ export function createBoard(boardEl, paletteApi, ghostEl, circuit, callbacks) {
     if (cellEl && boardEl.contains(cellEl)) {
       const row = +cellEl.dataset.row;
       const col = +cellEl.dataset.col;
+      if (heldGate && paletteApi.getSelected() === heldGate) {
+        e.preventDefault();
+        // Holding a gate is a placement tool: occupied cells must not remove
+        // or edit the existing gate when the user is trying to place another.
+        if (!cellOccupied(circuit,row,col)) drag = { source: 'held', gateId: heldGate, row, col,
+          startX: e.clientX, startY: e.clientY, moved: false };
+        return;
+      }
       const twin = e.target.closest('.span-twin');
       if (twin) {
         // ブロックの分身は本体と同じ操作。掴んだ行との差を保って移動する。
@@ -239,7 +276,8 @@ export function createBoard(boardEl, paletteApi, ghostEl, circuit, callbacks) {
   }
 
   function onPointerMove(e) {
-    if (!drag) return;
+    pointer = { x:e.clientX, y:e.clientY };
+    if (!drag) { refreshHeldGate();return; }
     const dx = e.clientX - drag.startX;
     const dy = e.clientY - drag.startY;
     if (!drag.moved && Math.hypot(dx, dy) > DRAG_THRESHOLD) {
@@ -310,6 +348,8 @@ export function createBoard(boardEl, paletteApi, ghostEl, circuit, callbacks) {
       // クリック(タップ)操作
       if (d.source === 'palette') {
         paletteApi.toggleSelect(d.gateId);
+      } else if (d.source === 'held') {
+        changed = placeGate(circuit,d.row,d.col,d.gateId);
       } else if (d.source === 'board' || d.source === 'group') {
         if (['R', 'RY', 'CP'].includes(d.gateId)) {
           // θを巡回し、再描画せずにその場で「R」を回転(常に前向きに45°ずつ回す)
@@ -362,7 +402,7 @@ export function createBoard(boardEl, paletteApi, ghostEl, circuit, callbacks) {
     } else {
       // 単体ドラッグ操作
       const cellEl = cellFromPoint(e.clientX, e.clientY);
-      if (d.source === 'palette') {
+      if (d.source === 'palette' || d.source === 'held') {
         if (cellEl) changed = placeGate(circuit, +cellEl.dataset.row, +cellEl.dataset.col, d.gateId);
       } else if (d.source === 'board') {
         const original = circuit[d.row][d.col];
@@ -383,6 +423,7 @@ export function createBoard(boardEl, paletteApi, ghostEl, circuit, callbacks) {
       if (rerender) render();
       callbacks.onChange();
     }
+    refreshHeldGate();
   }
 
   function onContextMenu(e) {
@@ -501,8 +542,22 @@ export function createBoard(boardEl, paletteApi, ghostEl, circuit, callbacks) {
   boardEl.addEventListener('pointerdown', onPointerDown);
   document.addEventListener('pointermove', onPointerMove);
   document.addEventListener('pointerup', onPointerUp);
+  document.addEventListener('focusin', refreshHeldGate);
+  document.addEventListener('pointerout', event => {
+    if (!event.relatedTarget && !drag) { pointer = null;hideGhost();clearDropHints(); }
+  });
+  window.addEventListener('blur', () => { if (!drag) { pointer = null;hideGhost();clearDropHints(); } });
   boardEl.addEventListener('contextmenu', onContextMenu);
 
   render();
-  return { render };
+  return {
+    render, cancelHold, refreshHeldGate,
+    isDragging: () => Boolean(drag),
+    holdGate(gateId) {
+      if (callbacks.isLocked() || drag || !paletteApi.select(gateId)) return false;
+      heldGate = gateId;
+      boardEl.focus({ preventScroll:true });
+      refreshHeldGate();return true;
+    },
+  };
 }

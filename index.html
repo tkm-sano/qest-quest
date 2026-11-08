@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="css/ui.css">
 <link rel="stylesheet" href="css/image-stage.css">
 <link rel="stylesheet" href="css/workspace.css">
+<link rel="stylesheet" href="css/music.css">
 </head>
 <body>
 <div id="app">
@@ -41,7 +42,24 @@
   <section id="floor-area">
     <canvas id="floor-canvas" role="img" aria-label="量子回路で変わる8つの世界の合成表示" data-i18n-aria="imageCanvasLabel"></canvas>
     <div id="image-status" role="status">画像を準備中…</div>
+    <div class="image-tools">
     <label class="image-phase-control"><input id="image-phase-rotation" type="checkbox" checked><span data-i18n="rotateImagesWithPhase">画像も回転</span></label>
+    <aside id="music-controls" aria-label="音楽" data-i18n-aria="musicLabel">
+      <div class="music-toolbar">
+        <button type="button" data-music="play">音楽を開始</button>
+        <button type="button" data-music="mute" aria-pressed="false">消音</button>
+        <label><span class="sr-only" data-i18n="musicVolume">音量</span><input type="range" data-music="volume" min="0" max="100" value="35" aria-label="音量"></label>
+        <button type="button" data-music="library"><span data-music="summary">8曲を聴く</span></button>
+      </div>
+      <span class="music-status" data-music="status" role="status">音楽はボタンで開始します</span>
+      <dialog class="music-library" aria-labelledby="music-library-title">
+        <div class="music-library-header"><h2 id="music-library-title" data-i18n="musicLibraryTitle">8つの世界の音楽</h2><button type="button" data-music="close" data-i18n="musicClose">閉じる</button></div>
+        <p data-music="help"></p>
+        <div class="music-tracks" data-music="tracks"></div>
+        <button type="button" data-music="follow" hidden>回路の音に戻る</button>
+      </dialog>
+    </aside>
+    </div>
     <p id="image-caption" data-i18n="imageCaption">画像の濃さは各結果の出現確率を表します。位相は下のメーターに表示。</p>
     <div id="announce" hidden>
       <div class="announce-label" data-i18n="observationResult">観測結果</div>
@@ -78,7 +96,7 @@
     </div>
     <div id="circuit-editor">
     <div id="board-wrap">
-      <div id="board"></div>
+      <div id="board" tabindex="0" role="group" aria-label="量子回路" data-i18n-aria="circuitLabel"></div>
     </div>
     <div id="row-measurements" hidden>
       <button class="qubit-measure-btn" data-row="0" aria-label="q2を観測">M</button>
@@ -102,8 +120,8 @@
           <option value="individual" data-i18n="measureIndividually">1ビットずつ測定</option>
         </select>
       </label>
-      <button id="measure-btn" title="観測する" data-i18n-title="measureTitle"><span class="m">M</span><span class="label" data-i18n="measure">観測</span></button>
-      <button id="release-btn" hidden data-i18n-html="release">重ね合わせ<br>に戻る</button>
+      <button id="measure-btn" title="観測する（Enter）" aria-keyshortcuts="Enter"><span class="m">M</span><span class="label" data-i18n="measure">観測</span></button>
+      <button id="release-btn" hidden data-i18n-html="release" aria-keyshortcuts="Escape">重ね合わせ<br>に戻る</button>
       <button id="reset-btn" data-i18n="reset">リセット</button>
     </div>
   </section>
