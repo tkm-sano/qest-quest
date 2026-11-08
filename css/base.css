@@ -54,6 +54,18 @@ html, body {
   margin-left: 6px;
 }
 
+.site-brand { min-width: 0; }
+.site-return {
+  display: inline-block;
+  padding: 2px 0;
+  color: var(--fg-dim);
+  font-size: .72rem;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.site-return:hover { color: var(--fg); text-decoration: underline; }
+.site-return:focus-visible { outline: 2px solid var(--accent2); outline-offset: 3px; border-radius: 2px; }
+
 #course-tabs { display: flex; gap: 6px; margin-left: auto; }
 .language-control select {
   background: var(--bg-panel);
@@ -95,6 +107,7 @@ button:disabled { opacity: 0.4; cursor: not-allowed; }
 
 @media (max-width: 720px) {
   :root { font-size: 14px; }
+  .site-brand { flex-basis: 100%; }
   #topbar h1 { flex-basis: 100%; font-size: 1rem; white-space: normal; }
   #topbar h1 .sub { display: block; margin: 2px 0 0; }
   #course-tabs { margin-left: 0; }

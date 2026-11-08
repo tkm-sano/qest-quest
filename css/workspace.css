@@ -189,7 +189,8 @@
   .hint-text { inset: 40px 8px 48px; }
   #app { gap: 8px; }
   #topbar { position: relative; flex-wrap: wrap; gap: 7px; }
-  #topbar h1 { flex-basis: 100%; padding-right: 92px; white-space: normal; font-size: 1rem; }
+  .site-brand { flex-basis: 100%; padding-right: 92px; }
+  #topbar h1 { white-space: normal; font-size: 1rem; }
   #topbar h1 .sub { display: none; }
   #course-tabs { margin-left: 0; gap: 4px; flex-wrap: wrap; }
   .tab { padding: 6px 9px; font-size: .78rem; }
