@@ -1,0 +1,135 @@
+/* 画像表示・観測演出・確率メーター */
+
+#floor-area {
+  position: relative;
+  height: 200px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 0%, #241540 0%, #0b0714 70%);
+  border: 1px solid var(--border);
+}
+
+#floor-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ストロボ(観測の瞬間)。観測結果(#announce, z-index:4)より下に置き、
+   結果表示が白飛びしないようにする */
+#floor-area.strobe::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: #fff;
+  animation: strobe-flash 0.6s linear forwards;
+  pointer-events: none;
+}
+@keyframes strobe-flash {
+  0%   { opacity: 0.85; }
+  12%  { opacity: 0.08; }
+  24%  { opacity: 0.6; }
+  38%  { opacity: 0.04; }
+  55%  { opacity: 0.3; }
+  100% { opacity: 0; }
+}
+
+/* 観測結果の発表 */
+#announce[hidden] { display: none; }
+#announce {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  /* ストロボの白が透けても文字が読めるだけの濃さを確保する */
+  background: rgba(6, 3, 14, 0.7);
+  text-shadow: 0 2px 12px #000;
+  animation: announce-in 0.4s ease-out;
+}
+#announce .announce-label { font-size: 0.8rem; color: var(--fg-dim); letter-spacing: 0.2em; }
+#announce .announce-image {
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ffc53d, #ff4d9d, #38c6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 10px rgba(255, 200, 100, 0.5));
+}
+#announce .announce-bits { font-family: ui-monospace, monospace; color: var(--fg-dim); }
+@keyframes announce-in {
+  from { opacity: 0; transform: scale(1.15); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* 確率メーター */
+#meter {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 8px;
+}
+.meter-col {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 6px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+.meter-col.hot {
+  border-color: #fff;
+  box-shadow: 0 0 14px 2px rgba(255, 255, 255, 0.35);
+}
+.meter-col.winner {
+  border-color: var(--ok);
+  box-shadow: 0 0 16px 3px rgba(125, 255, 106, 0.45);
+}
+.meter-bar-wrap {
+  position: relative;
+  width: 100%;
+  height: 90px;
+  background: radial-gradient(ellipse at 50% 75%, #23394b33, transparent 70%);
+  border-radius: 6px;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 12px minmax(0, 1fr);
+}
+.meter-cylinder { display: block; width: 100%; max-width: 110px; height: 100%; min-height: 0; justify-self: center; }
+.meter-cylinder path, .meter-cylinder ellipse, .meter-cylinder line { vector-effect: non-scaling-stroke; }
+.cylinder-rim, .cylinder-front { fill: none; stroke: #bdd4ed88; stroke-width: .9px; }
+.meter-readings { display: flex; justify-content: center; align-items: center; gap: 8px; min-width: 0; line-height: 12px; font-family: ui-monospace, monospace; }
+.meter-pct {
+  font-size: 0.72rem;
+  color: var(--fg);
+}
+.meter-phase-angle { fill: #fff0c5; stroke: #11192b; stroke-width: 1.8px; paint-order: stroke; font: 10px ui-monospace, monospace; pointer-events: none; }
+.phase-dial[hidden] { display: none; }
+.phase-needle { stroke: #fff2be; stroke-width: 1.7px; stroke-linecap: round; }
+.phase-center { fill: #edf7ff; }
+.phase-glow { fill: currentColor; }
+.phase-point { fill: #fff9dc; stroke: currentColor; stroke-width: 1.3px; filter: drop-shadow(0 0 2px #fff9); }
+.meter-col:focus-visible { outline: 2px solid var(--accent2); outline-offset: 1px; }
+.meter-caption { display: flex; align-items: baseline; justify-content: center; gap: 5px; max-width: 100%; }
+.meter-bits { font-family: ui-monospace, monospace; font-size: 0.78rem; color: var(--fg-dim); }
+.meter-name { font-size: 0.72rem; text-align: center; line-height: 1.2; min-height: 2.4em; }
+
+@media (max-width: 720px) {
+  #meter { grid-template-columns: repeat(4, 1fr); }
+  #floor-area { height: 150px; }
+  .meter-bar-wrap { height: 60px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mirrorball .ball, .beam { animation: none; }
+  #floor-area.strobe::after { animation: none; opacity: 0; }
+}

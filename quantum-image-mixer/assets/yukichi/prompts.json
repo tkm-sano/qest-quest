@@ -1,0 +1,55 @@
+{
+  "tool": "built-in image_gen",
+  "reference": {
+    "page": "https://www.takakuri1125.com/mypage70-kouyou-326.html",
+    "photo": "https://www.takakuri1125.com/kanagawa-yokohama-keiodaihiyoshicampus-kouyou-10.jpg",
+    "subjectInformation": "https://www.keio.ac.jp/ja/about/public-relations/stainedglass-1995-2010/220/"
+  },
+  "encoding": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6
+  },
+  "images": [
+    {
+      "file": "000-cherry.webp",
+      "reference": "photograph",
+      "prompt": "Use case: stylized-concept.\nAsset type: premium quantum image mixer background, one of eight aligned parallel worlds.\nPrimary request: depict the actual bronze bust of Fukuzawa Yukichi in front of the Hiyoshi library, Keio University, faithfully based on the supplied photographic reference, in an exquisite cherry blossom world.\nInput image: reference photograph for the bronze bust identity, posture, kimono sculpture, tall rectangular stone pedestal and low rectangular basin/plinth only.\nStyle: cinematic environment concept art, richly textured painterly realism, polished and magical but recognizably based on the real statue. Wide horizontal 5:2 composition, approximately 2000 by 800 pixels.\nComposition: straight-on eye-level camera, statue exactly centered; full head, bronze shoulders and tall pedestal plus low basin visible, head top at 16% frame height, basin base at 90%. Statue and pedestal together occupy about 28% of image width. Do not crop. Maintain this geometry for subsequent world variations. Background expansive plaza, recognizable but softly detailed Japanese campus library behind statue, cherry blossom trees framing left and right, drifting pink petals, warm golden sunset, subtle reflections on pavement.\nConstraints: dark bronze bust of an older Japanese man with short hair and traditional kimono, no full body, no legs, no hands, no invented monument shape. Preserve reference face and sculpture pose. Pedestal unlettered, no text, no labels, no logos, no watermark. No people. Let statue clearly stand out at small size. Avoid cheap vector illustration, toy-like forms, flat gradients, random decorative symbols."
+    },
+    {
+      "file": "001-underwater.webp",
+      "reference": "000-cherry generated master",
+      "prompt": "Use case: lighting-weather. Asset: one aligned fantasy world for a quantum image mixer. Edit the supplied cherry blossom image into this world: Deep underwater world: turquoise caustic lighting across bronze and stone, schools of small luminous fish, corals on far edges of the same basin, blue ocean depth, distant library transformed into mysterious submerged ruins.\nCritical invariants: EXACT same fixed camera and wide 5:2 framing, same bronze bust of Fukuzawa Yukichi including face, hair, kimono shoulders and pose; same rectangular stone pedestal and low rectangular basin, same exact position, scale, silhouette, and geometry in the image. Do not move, crop, enlarge or redesign the statue or pedestal. Preserve the paving perspective. Remove cherry blossom trees and petals, adapt all environment to requested world. Lighting and surface color can change to fit the new world. Premium cinematic matte painting, rich realistic textures and depth, appealing visual atmosphere. No people, text, labels, logos, watermark. Output one wide image approximately 2000 by 800."
+    },
+    {
+      "file": "010-sky.webp",
+      "reference": "000-cherry generated master",
+      "prompt": "Use case: lighting-weather. Asset: one aligned fantasy world for a quantum image mixer. Edit the supplied cherry blossom image into this world: Sky realm: same plaza floating above luminous clouds, bright azure blue sky, distant floating islands and a soft sunlit campus silhouette, magical airy light.\nCritical invariants: EXACT same fixed camera and wide 5:2 framing, same bronze bust of Fukuzawa Yukichi including face, hair, kimono shoulders and pose; same rectangular stone pedestal and low rectangular basin, same exact position, scale, silhouette, and geometry in the image. Do not move, crop, enlarge or redesign the statue or pedestal. Preserve the paving perspective. Remove cherry blossom trees and petals, adapt all environment to requested world. Lighting and surface color can change to fit the new world. Premium cinematic matte painting, rich realistic textures and depth, appealing visual atmosphere. No people, text, labels, logos, watermark. Output one wide image approximately 2000 by 800."
+    },
+    {
+      "file": "011-future.webp",
+      "reference": "000-cherry generated master",
+      "prompt": "Use case: lighting-weather. Asset: one aligned fantasy world for a quantum image mixer. Edit the supplied cherry blossom image into this world: Future city at twilight: violet and magenta neon lighting, distant elegant skyscrapers and futuristic campus library, wet paving reflecting neon, no text or signs.\nCritical invariants: EXACT same fixed camera and wide 5:2 framing, same bronze bust of Fukuzawa Yukichi including face, hair, kimono shoulders and pose; same rectangular stone pedestal and low rectangular basin, same exact position, scale, silhouette, and geometry in the image. Do not move, crop, enlarge or redesign the statue or pedestal. Preserve the paving perspective. Remove cherry blossom trees and petals, adapt all environment to requested world. Lighting and surface color can change to fit the new world. Premium cinematic matte painting, rich realistic textures and depth, appealing visual atmosphere. No people, text, labels, logos, watermark. Output one wide image approximately 2000 by 800."
+    },
+    {
+      "file": "100-space.webp",
+      "reference": "000-cherry generated master",
+      "prompt": "Use case: lighting-weather. Asset: one aligned fantasy world for a quantum image mixer. Edit the supplied cherry blossom image into this world: Cosmic world under a spectacular dark indigo and purple starfield: huge softly illuminated planet and nebula behind statue, distant futuristic observatory silhouettes, stars and faint luminous dust, violet rim lighting on bronze, same paved plaza as an orbital garden.\nCritical invariants: EXACT same fixed camera and wide 5:2 framing, same bronze bust of Fukuzawa Yukichi including face, hair, kimono shoulders and pose; same rectangular stone pedestal and low rectangular basin, same exact position, scale, silhouette, and geometry in the image. Do not move, crop, enlarge or redesign the statue or pedestal. Preserve the paving perspective. Remove cherry blossom trees and petals, adapt all environment to requested world. Lighting and surface color can change to fit the new world. Premium cinematic matte painting, rich realistic textures and depth, appealing visual atmosphere. No people, text, labels, logos, watermark. Output one wide image approximately 2000 by 800."
+    },
+    {
+      "file": "101-desert.webp",
+      "reference": "000-cherry generated master",
+      "prompt": "Use case: lighting-weather. Asset: one aligned fantasy world for a quantum image mixer. Edit the supplied cherry blossom image into this world: Desert world: golden dunes beyond the same paved plaza, distant sunlit desert campus silhouettes, sparse palms at far edges, bright amber late-afternoon sunlight, shimmering oasis water in the existing basin. No cherry trees.\nCritical invariants: EXACT same fixed camera and wide 5:2 framing, same bronze bust of Fukuzawa Yukichi including face, hair, kimono shoulders and pose; same rectangular stone pedestal and low rectangular basin, same exact position, scale, silhouette, and geometry in the image. Do not move, crop, enlarge or redesign the statue or pedestal. Preserve the paving perspective. Remove cherry blossom trees and petals, adapt all environment to requested world. Lighting and surface color can change to fit the new world. Premium cinematic matte painting, rich realistic textures and depth, appealing visual atmosphere. No people, text, labels, logos, watermark. Output one wide image approximately 2000 by 800."
+    },
+    {
+      "file": "110-forest.webp",
+      "reference": "000-cherry generated master",
+      "prompt": "Use case: lighting-weather. Asset: one aligned fantasy world for a quantum image mixer. Edit the supplied cherry blossom image into this world: Enchanted forest world: ancient emerald woodland, ferns and moss framing the same plaza and existing basin, distant library covered in ivy, soft shafts of sunlight through mist, luminous subtle fireflies, rich green cinematic atmosphere.\nCritical invariants: EXACT same fixed camera and wide 5:2 framing, same bronze bust of Fukuzawa Yukichi including face, hair, kimono shoulders and pose; same rectangular stone pedestal and low rectangular basin, same exact position, scale, silhouette, and geometry in the image. Do not move, crop, enlarge or redesign the statue or pedestal. Preserve the paving perspective. Remove cherry blossom trees and petals, adapt all environment to requested world. Lighting and surface color can change to fit the new world. Premium cinematic matte painting, rich realistic textures and depth, appealing visual atmosphere. No people, text, labels, logos, watermark. Output one wide image approximately 2000 by 800."
+    },
+    {
+      "file": "111-snow.webp",
+      "reference": "000-cherry generated master",
+      "prompt": "Use case: lighting-weather. Asset: one aligned fantasy world for a quantum image mixer. Edit the supplied cherry blossom image into this world: Snow world: tranquil blue winter twilight, snowy evergreens framing same plaza, delicate snow on pedestal and basin edges without hiding their silhouettes, distant campus library with warm windows, green and violet aurora overhead. Face and bronze shoulders remain visible.\nCritical invariants: EXACT same fixed camera and wide 5:2 framing, same bronze bust of Fukuzawa Yukichi including face, hair, kimono shoulders and pose; same rectangular stone pedestal and low rectangular basin, same exact position, scale, silhouette, and geometry in the image. Do not move, crop, enlarge or redesign the statue or pedestal. Preserve the paving perspective. Remove cherry blossom trees and petals, adapt all environment to requested world. Lighting and surface color can change to fit the new world. Premium cinematic matte painting, rich realistic textures and depth, appealing visual atmosphere. No people, text, labels, logos, watermark. Output one wide image approximately 2000 by 800."
+    }
+  ]
+}
