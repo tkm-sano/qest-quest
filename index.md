@@ -200,6 +200,11 @@ hero_slides:
     </div>
   {% endif %}
 </section>
+<section id="quantum-image-mixer" class="news-band" data-reveal aria-labelledby="mixer-title">
+  <h2 id="mixer-title">量子画像ミキサー</h2>
+  <p>量子回路を組んで8枚の画像を重ね合わせ、観測で1枚を取り出す体験ツールです。</p>
+  <a class="btn-quest" href="{{ '/quantum-image-mixer/' | relative_url }}">量子画像ミキサーを体験する →</a>
+</section>
 <section id="latest-news" class="news-band" data-reveal>
   <style>
     /* LP Latest News band */
