@@ -22,6 +22,9 @@
         {% endif %}
       </li>
     {%- endfor -%}
+    <li class="quantum-experience-item">
+      <a href="{{ '/quantum-image-mixer/' | relative_url }}">{{ site.data.i18n[page.lang].nav_quantum_experience }}</a>
+    </li>
         <li class="lang-switch-item">
       {% include lang_switch.html %}
     </li>
@@ -29,7 +32,7 @@
 </nav>
 <style>
   /* Mobile-only visibility: hide list until opened, show toggle */
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     #site-nav .nav-toggle {
       display: inline-flex;
       align-items: center;

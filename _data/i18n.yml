@@ -11,6 +11,7 @@ ja:
   nav_members:  "Members"
   nav_projects: "Projects"
   nav_contact:  "Contact"
+  nav_quantum_experience: "量子体験"
 
 en:
   # Navigation
@@ -19,3 +20,4 @@ en:
   nav_members:  "Members"
   nav_projects: "Projects"
   nav_contact:  "Contact"
+  nav_quantum_experience: "Quantum Experience"

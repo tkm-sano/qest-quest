@@ -2451,3 +2451,41 @@ main {
     line-height: 1.68;
   }
 }
+
+
+/* Compact homepage introduction; keep the shared news cards unchanged. */
+#quantum-image-mixer.mixer-card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem 1rem;
+  padding: 0.85rem 1rem;
+  text-align: left;
+}
+#quantum-image-mixer .mixer-card-copy {
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+#quantum-image-mixer h2 {
+  margin: 0 0 0.2rem;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  text-transform: none;
+}
+#quantum-image-mixer p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+#quantum-image-mixer .btn-quest {
+  flex: 0 0 auto;
+  width: auto;
+  min-height: 44px;
+  margin: 0;
+  padding: 0.55rem 0.95rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}

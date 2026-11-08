@@ -212,10 +212,12 @@ hero_slides:
     </div>
   {% endif %}
 </section>
-<section id="quantum-image-mixer" class="news-band" data-reveal aria-labelledby="mixer-title">
-  <h2 id="mixer-title">Quantum Image Mixer</h2>
-  <p>Build a quantum circuit, blend eight images, and measure one outcome.</p>
-  <a class="btn-quest" href="{{ '/quantum-image-mixer/' | relative_url }}">Try Quantum Image Mixer →</a>
+<section id="quantum-image-mixer" class="news-band mixer-card" data-reveal aria-labelledby="mixer-title">
+  <div class="mixer-card-copy">
+    <h2 id="mixer-title">Quantum Image Mixer</h2>
+    <p>Explore quantum circuits by blending images.</p>
+  </div>
+  <a class="btn-quest" href="{{ '/quantum-image-mixer/' | relative_url }}" aria-label="Try Quantum Image Mixer">Try it →</a>
 </section>
 <section id="latest-news" class="news-band" data-reveal>
   <style>
